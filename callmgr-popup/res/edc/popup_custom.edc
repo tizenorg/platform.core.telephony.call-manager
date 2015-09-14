@@ -1,0 +1,194 @@
+//
+// Samsung API
+// Copyright (c) 2013 Samsung Electronics Co., Ltd.
+//
+// Licensed under the Flora License, Version 1.1 (the License);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://floralicense.org/license/
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an AS IS BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+#define STYLE_TAG \
+   tag:  "br" "\n";\
+   tag:  "ps" "ps";\
+   tag:  "tab" "\t";\
+   tag:  "b" "+ font_weight=Bold";
+
+#define RESOURCE_IMAGE( GROUP_NAME, FILE_NAME ) \
+   group { \
+      name: GROUP_NAME; \
+      images.image: FILE_NAME COMP; \
+      parts { \
+         part { name: "image"; \
+            description { \
+               state: "default" 0.0; \
+               image.normal: FILE_NAME; \
+               aspect: 1 1; \
+               aspect_preference: BOTH; \
+            } \
+         } \
+      } \
+   }
+
+collections {
+
+	base_scale: 2.6;
+
+	RESOURCE_IMAGE("logs_icon_sim_1.png", images/"logs_icon_sim_1.png");
+	RESOURCE_IMAGE("logs_icon_sim_2.png", images/"logs_icon_sim_2.png");
+	RESOURCE_IMAGE("logs_icon_sim_heart.png", images/"logs_icon_sim_heart.png");
+	RESOURCE_IMAGE("logs_icon_sim_home.png", images/"logs_icon_sim_home.png");
+	RESOURCE_IMAGE("logs_icon_sim_internet.png", images/"logs_icon_sim_internet.png");
+	RESOURCE_IMAGE("logs_icon_sim_data.png", images/"logs_icon_sim_data.png");
+	RESOURCE_IMAGE("logs_icon_sim_office.png", images/"logs_icon_sim_office.png");
+	RESOURCE_IMAGE("logs_icon_sim_phone.png", images/"logs_icon_sim_phone.png");
+	RESOURCE_IMAGE("logs_icon_sim_messages.png", images/"logs_icon_sim_messages.png");
+
+	group { name: "elm/layout/list/B/popup/sim_select";
+		parts {
+			part {
+				name: "padding.left";
+				type: SPACER;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel2.relative: 0.0 1.0;
+					min: 32 0;
+					max: 32 -1;
+					fixed: 1 0;
+					rel2.relative: 0.0 1.0;
+					align: 0.0 0.5;
+				}
+			}
+			part {
+				name: "padding.right";
+				type: SPACER;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1.relative: 1.0 0.0;
+					min: 1 0;
+					max: 1 -1;
+					fixed: 1 0;
+					align: 1.0 0.5;
+				}
+			}
+			part {
+				name: "elm.swallow.icon";
+				type: SWALLOW;
+				scale: 1;
+				description {
+					state: "default" 0.0;
+					rel1 { relative: 1.0 0.0; to_x: "padding.left"; }
+					rel2 { relative: 0.0 1.0; to_x: "padding.right";}
+					min: 50 50;
+				}
+			}
+		}
+	}
+
+	group { name: "popup_processingview";
+#define DEMO_POPUP_PROCESSINGVIEW1BUTTON_CONTENT_MIN 0 120
+			styles {
+				style { name: "popup_processing_text_style";
+					base: "font=Tizen:style=Regular align=left font_size="30" color=#000000 wrap=mixed ellipsis=1.0 text_class=tizen";
+					tag: "br" "\n";
+					tag: "tab" "\t";
+					}
+				}
+
+			parts {
+				part { name: "base";
+					type: SPACER;
+					scale: 1;
+					description { state: "default" 0.0;
+						min: DEMO_POPUP_PROCESSINGVIEW1BUTTON_CONTENT_MIN;
+						fixed: 1 0;
+					}
+				}
+				part { name: "pad_l";
+					type: SPACER;
+					scale: 1;
+					description { state: "default" 0.0;
+						min: 32 0;
+						fixed: 1 0;
+		            			rel1.relative: 0.0 0.0;
+		            			rel2.relative: 0.0 1.0;
+						align: 0.0 0.0;
+					}
+				}
+				part { name: "pad_r";
+					type: SPACER;
+					scale: 1;
+					description { state: "default" 0.0;
+						min: 32 0;
+						fixed: 1 0;
+		           			rel1.relative: 1.0 0.0;
+		            			rel2.relative: 1.0 1.0;
+						align: 1.0 0.0;
+					}
+				}
+				part { name: "elm.swallow.content";
+					type: SWALLOW;
+					scale: 1;
+					description { state: "default" 0.0;
+						fixed: 1 1;
+						min: 0 56;
+						max: 0 56;
+						rel1 {
+							relative: 1.0 0.0;
+							to_x: "pad_l";
+						}
+						rel2 {
+							relative: 0.0 1.0;
+							to_x: "pad_r";
+						}
+						align: 0.0 0.5;
+					}
+				}
+				part { name: "pad_after_processing";
+					type: SPACER;
+					scale: 1;
+					description { state: "default" 0.0;
+						fixed: 1 1;
+						min: 32 120;
+						rel1 {
+							relative: 1.0 0.0;
+							to: "elm.swallow.content";
+						}
+						rel2.to: "elm.swallow.content";
+						align: 0.0 0.5;
+					}
+				}
+				part { name: "elm.text";
+					type: TEXTBLOCK;
+					scale : 1;
+					description { state: "default" 0.0;
+						min: 1 1;
+						fixed: 0 1;
+						rel1 {
+							relative: 1.0 0.0;
+							to: "pad_after_processing";
+						}
+						rel2 {
+							relative: 0.0 1.0;
+							to_x: "pad_r";
+						}
+						align: 0.0 0.5;
+						text {
+							style: "popup_processing_text_style";
+							min: 0 1;
+						}
+					}
+				}
+			}
+		}
+
+}

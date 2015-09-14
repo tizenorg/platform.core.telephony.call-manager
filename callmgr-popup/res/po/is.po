@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "Hætta við"
+
+msgid "IDS_COM_SK_OK"
+msgstr "Í lagi"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "Aðeins neyðarhringingar."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Vandamál í tengingu eða ógildur MMI-kóði."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "Símtalið við %s er í bið."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Óskilyrtur flutningur símtala er virkur."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "Mistókst að skipta á milli símtala."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "Utan þjónustusvæðis."
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "Ekki skráð á kerfi."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "Flutt símtal."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "Símtal var móttekið."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "Símtal í bið."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "Símtal bíður"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "Velja SIM-kort fyrir símtal"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(Á bannlista) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "Mistókst að hringja. %s er ekki neyðarnúmer."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "Hringd símtöl eru takmörkuð í læstu skammvali."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "Kveikt á flugstillingu. Slökktu á henni til að hringja."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "Ekki er hægt að hringja"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "Ræsingu símans er ekki lokið."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "Númer er ekki til."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "Skipti á milli símtala..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "Þegar símtali er svarað verður upptaka stöðvuð og hún vistuð."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "Skráð skilaboð vistuð."
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "Ekki tókst að vista skráðu skilaboðin."
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "Svara símtölum eða hafna með raddskipununum „%1$s“ eða „%2$s“."
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "Rangur hópur."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "Staðfestu SIM-kort eða settu gilt SIM-kort í."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "Notandi á tali."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "Ekki stutt að taka úr bið."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "Ekki til staðar"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "Það er of lítið minni til að taka upp."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "Mistókst að koma á símafundi."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "Flutningur er ekki studdur."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "Flutningur tókst ekki."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "Skipting er ekki studd."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "Skipting tókst ekki."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "Skipting er ekki studd."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "Ekki tókst að skipta."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "Þjónusta ekki leyfð."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "Ótiltæk þjónusta."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "Senda eftirfarandi tóna?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "Verið er að senda..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "Hafnað."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "Upptakan stöðvaðist og var vistuð. Minnið er fullt."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "Upptaka vistuð."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s skellti á."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "Lokað fyrir símtöl úr símanum."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "Aðgerð hafnað."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "Ekki er nægt minni. Eyðið nokkrum atriðum."
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "Engin þjónusta"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "Það er ekkert kerfi til staðar."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "Það næst ekki samband við kerfið."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "Sameining er ekki studd."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "Ógilt númer."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "Ólokið."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "Ekki stutt að láta bíða."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "Aðeins FDN hringingar."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "Neyðarhringing"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "Sending mistókst. Reyndu aftur."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "Geri flugstillingu óvirka..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "Er að tengjast %s..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "Komið er að hámarksfjölda þátttakenda"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "Skiptu úr ótengdu sniði í annað snið til að fá aðgang að netþjónustu."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "Rangt númer."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "Símtal flutt."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "Lokað fyrir símtal."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "Símtalið er óleyfilegt."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "Hringing tókst ekki."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "Kerfisvilla."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "Bæta við númeri"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "Tek upp skilaboð..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "Hringt símtal var flutt."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "Breytt númer."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "Ekkert talhólfsnúmer á SIM-korti"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "Ekkert svar"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "Mistókst að bæta við símtali"
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "Aftengt."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Skilyrtur flutningur símtala er virkur."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "Símtali hafnað."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "Upptaka símtals"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "Símtali lokið"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "Símtali lokið."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "Það næst ekki í viðmælanda."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "Utan 3G-þjónustusvæðis.\nViltu reyna venjulegt símtal?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "Of lítil hleðsla á rafhlöðu fyrir vídeóhringingu."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "Ekki er hægt að vista upptökuna. Hún er of stutt."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "Setjið SIM kort í til að fá aðgang að netþjónustu."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "Flughamur"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "Innhringing frá %s."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "%1$s sleit símtalinu. Símtali við %2$s haldið áfram..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "Símtal var flutt."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "Upptakan var vistuð í Raddupptöku. Geymsla tækisins er full."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "Símafundur"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "Slökkva á flugstillingu."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "Upptaka vistuð í raddupptöku."
+

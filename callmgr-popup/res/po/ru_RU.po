@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "Отмена"
+
+msgid "IDS_COM_SK_OK"
+msgstr "OK"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "Только экстренные вызовы."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Проблема подключения или недействительный код MMI."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "Разговор с пользователем %s поставлен на удержание."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Включена безусловная переадресация вызовов."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "Не удается переключить вызовы."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "Вне зоны обслуживания"
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "Не зарегистрирован в сети."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "Переадресованный вызов."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "Вызов переключен."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "Вызов на удержании."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "Ожидающий вызов"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "Выбор SIM-карты для звонка"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(Заблокировано) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "Невозможно выполнить вызов. %s не является номером экстренного вызова."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "Исходящие вызовы ограничены FDN."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "Включен автономный режим. Выключите автономный режим, чтобы выполнить вызов."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "Невозможно выполнить вызов"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "Телефон не инициализирован."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "Номер не существует."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "Переключение вызовов..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "При принятии вызова запись будет остановлена и сохранена."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "Записанное сообщение сохранено"
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "Не удалось сохранить записанное сообщение"
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "Голосовые команды “%1$s” и “%2$s”: принятие и отклон. звонков."
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "Неверная грyппа"
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "Проверьте SIM-карту или вставьте действующую SIM-карту."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "Абонент занят."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "Извлечение не поддерживается."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "Недоступно"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "Запись невозможна. Недостаточно памяти."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "Конференц-вызовы невозможны."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "Перевод не поддерживается."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "Сбой передачи."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "Переключение не поддерживается."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "Сбой переключения."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "Разделение не поддерживается."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "Сбой разделения."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "Услуга запрещена."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "Услуга недоступна."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "Отправить следующие звуки?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "Отправка..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "Отклонено."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "Запись остановлена и сохранена. Память заполнена."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "Запись сохранена."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "Абонент %s повесил трубку."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "Запрет исходящих вызовов."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "Операция отклонена."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "Недостаточно памяти. Удалите некоторые элементы"
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "Нет сети"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "Сеть недоступна."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "Сеть занята."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "Объединение не поддерживается."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "Неправильный номер"
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "Не завершено."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "Удержание не поддерживается."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "Только разрешенные вызовы."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "Экстренный вызов"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "Сбой отправки. Повторите попытку."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "Отключение автономного режима..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "Подключение к %s..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "Достигнуто максимальное число участников"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "Выключите автономный режим для использования сервисов сети."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "Неверный номер"
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "Вызов переадресован."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "Вызов запрещен."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "Вызов запрещен."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "Сбой вызова."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "Системная ошибка."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "Добавить"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "Запись сообщения..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "Исходящий вызов переадресован."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "Номер изменен."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "Номера голосовой почты на SIM-карте нет"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "Нет ответа"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "Не удалось добавить вызов."
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "Отключено."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Включена условная переадресация вызовов."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "Вызов отклонен."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "Запись вызовов"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "Вызов завершен"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "Вызов завершен."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "Абонент недоступен."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "Вне зоны покрытия 3G.\nВыполнить голосовой вызов?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "Заряда аккумулятора недостаточно для видеовызова."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "Невозможно сохранить запись. Запись слишком короткая."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "Вставьте SIM-карту для доступа к услугам сети."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "Автономный режим"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "Входящий вызов от абонента %s."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "Вызов завершен пользователем %1$s. Возобновление вызова с пользователем %2$s..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "Вызов переадресован."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "Записи, сохраненные в Диктофоне. Память устройства заполнена."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "Конференц-связь"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "Выключить автономный режим."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "Запись сохранена в папку диктофона."
+

@@ -1,0 +1,203 @@
+<node>
+
+	<interface name="org.tizen.callmgr">
+
+		<!--method list -->
+
+		<method name="DialCall">
+			<arg direction="in" type="s" name="number" />
+			<arg direction="in" type="i" name="call_type" />
+			<arg direction="in" type="i" name="sim_slot" />
+			<arg direction="in" type="i" name="disable_fm" />
+			<arg direction="in" type="b" name="is_emergency_contact" />
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="EndCall">
+			<arg direction="in" type="u" name="call_id" />
+			<arg direction="in" type="i" name="release_type" />
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="RejectCall">
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="SwapCall">
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="HoldCall">
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="UnholdCall">
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="JoinCall">
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="SplitCall">
+			<arg direction="in" type="u" name="call_id" />
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="TransferCall">
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="AnswerCall">
+			<arg direction="in" type="i" name="ans_type" />
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="SpkOn">
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="SpkOff">
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="BluetoothOn">
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="BluetoothOff">
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="SetExtraVol">
+			<arg direction="in" type="b" name="is_extra_vol" />
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="SetNoiseReduction">
+			<arg direction="in" type="b" name="is_noise_reduction" />
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="SetMuteState">
+			<arg direction="in" type="b" name="is_mute_state" />
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+                <method name="GetAudioState">
+                        <arg direction="out" type="i" name="audio_state" />
+                </method>
+
+		<method name="GetCallList">
+			<arg direction="out" type="aa{sv}" name="call_list" />
+		</method>
+
+		<method name="GetConfCallList">
+			<arg direction="out" type="aa{sv}" name="call_list" />
+		</method>
+
+		<method name="GetAllCallData">
+			<arg direction="out" type="a{sv}" name="incom_call" />
+			<arg direction="out" type="a{sv}" name="active_call" />
+			<arg direction="out" type="a{sv}" name="held_call" />
+		</method>
+
+		<method name="SendDtmfResp">
+			<arg direction="in" type="i" name="resp" />
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="StartDtmf">
+			<arg direction="in" type="y" name="dtmf_digit" />
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="StopDtmf">
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="BurstDtmf">
+			<arg direction="in" type="s" name="dtmf_digits" />
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="StopAlert">
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="StartAlert">
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="ActivateUi">
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="GetCallStatus">
+			<arg direction="out" type="i" name="call_status" />
+			<arg direction="out" type="i" name="call_type"/>
+		</method>
+
+		<method name="SetWatchName">
+			<arg direction="in" type="s" name="appid" />
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="StartVoiceRecord">
+			<arg direction="in" type="s" name="call_num" />
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="StopVoiceRecord">
+			<arg direction="out" type="i" name="err" />
+		</method>
+
+		<method name="GetMuteStatus">
+			<arg direction="out" type="i" name="mute_status" />
+		</method>
+
+		<method name="GetAnsweringMachineStatus">
+			<arg direction="out" type="b" name="is_answering_machine_on" />
+		</method>
+		<!--signal list -->
+
+		<signal name="CallEvent">
+			<arg type="i" name="state" />
+			<arg type="u" name="call_id" />
+			<arg type="i" name="sim_slot" />
+			<arg type="i" name="end_cause" />
+			<arg type="a{sv}" name="incom_call" />
+			<arg type="a{sv}" name="active_call" />
+			<arg type="a{sv}" name="held_call" />
+		</signal>
+
+		<signal name="CallStatus">
+			<arg type="i" name="call_status" />
+			<arg type="i" name="call_type"/>
+			<arg type="s" name="call_num" />
+		</signal>
+
+		<signal name="MuteStatus">
+			<arg type="i" name="mute_status" />
+		</signal>
+
+		<signal name="DialStatus">
+			<arg type="i" name="dial_status"/>
+		</signal>
+		<signal name="DtmfIndi">
+			<arg type="i" name="indi" />
+			<arg type="s" name="dtmf_number" />
+		</signal>
+
+		<signal name="AudioState">
+			<arg type="i" name="audio_status" />
+		</signal>
+		<signal name="GoForeground">
+		</signal>
+		<signal name="VoiceRecordStatus">
+			<arg type="i" name="vr_status"/>
+			<arg type="i" name="extra_type"/>
+		</signal>
+	</interface>
+
+</node>

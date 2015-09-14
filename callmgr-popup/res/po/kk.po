@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "Тоқтату"
+
+msgid "IDS_COM_SK_OK"
+msgstr "OK"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "Тек жедел қоңырау  үшін."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Қосылу ақаулығы немесе қате MMI коды."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "Сіз бен %s арасындағы қоңырау ұсталуда."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Шартсыз қоңыраудың бағытын өзгерту қосулы"
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "Қоңырауларды ауыстырып қосу мүмкін емес."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "Қызмет аясынан тыс жерде"
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "Желіде тіркелмеген."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "Бағыты өзгертілген қоңырау."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "Қоңырау қайтарылды."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "Қоңырау ұсталып тұр."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "Қоңырау күтіп тұр"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "Қоңырау шалу үшін SIM картасын таңдау"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(Бұғатталған) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "Қоңырау соғу мүмкін емес. %s төтенше қызмет нөмірі емес."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "Шығыс қоңыраулар FDN арқылы шектелген."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "Ұшу режимі қосулы. Қоңырау шалу үшін ұшу режимін өшіріңіз."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "Қоңырау шалу мүмкін емес"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "Телефон бастапқы қалпына келтірілмеді."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "Номер\nжоқ."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "Қоңырауларды ауыстыруда..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "Қоңырауға жауап бергенде жазу тоқтатылып, сақталады."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "Жазып алынған хабар сақталды"
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "Жазып алынған хабар сақталмады"
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "“%1$s” не “%2$s” дауыс. коман. арқ. қоң-ды қабыл-з не бас тар-з"
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "Қате топ."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "SIM картасын тексеріңіз немесе жарамды SIM картасын салыңыз."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "Тұтынушы бос емес"
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "Ұстамау мақұлданбайды."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "Байланыс аясынан тыс жерде"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "Жазуға болмайды. Жад жеткілікті емес."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "Конференциялық қоңырау шалу мүмкін емес."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "Орналастыру мақұлданбайды."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "Орналастыру үзіліп кетті."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "Өзгерту мақұлданбайды."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "Өзгерту үзіліп кетті."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "Бөліну мақұлданбайды."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "Қақ айрылу үзіліп кетті."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "Қызмет рұқсат етілмеген."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "Қызмет көрсете алмайды."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "Мына дыбыстарды жіберу керек пе?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "Жіберілуде..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "Қайтарылды"
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "Жазу тоқтатылды және сақталды. Жад толы."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "Жазба сақталды."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s өшірілді."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "Шығыс қоңырауларға тыйым салынды."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "Операциядан бас тартты."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "Жад жетыспейт.Көп арналы жою."
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "Қызмет жоқ"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "Желі үзіліп кетті."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "Желі бос емес"
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "Байланысу мақұлданбайды."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "Жарамсыз нөмір."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "Аяқталған жоқ"
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "Ұстау мақұлданбайды."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "FDN қоңыраулары ғана."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "Шұғыл қоңырау шалу"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "Жіберу үзіліп кетті. Қайталаңыз."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "Ұшу режимі өшірілуде..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "%s-ге қосылуда..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "Қатысушылар саны шегіне жетті"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "Желі қызметтері үшн Желі аясынан тыстан басқа профильге өзгерту."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "Нөмір қате."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "Қоңырау бағыты өзгертілді."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "Қоңырауға тыйым салынған."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "Қоңырауға тыйым салынған."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "Байланыс үзіліп кетті."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "Жүйе қателігі"
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "Нөмір қосу"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "Хабар жазылуда..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "Шығыс қоңырау басқаға жіберілді."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "Нөмір өзгертылген."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "SIM картасында дауысты пошта нөмірі жоқ"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "Жауап жоқ"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "Қоңырауды қосу мүмкін болмады"
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "Ажыратылды."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Шартты қоңырауды қайта бағыттау қосулы."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "Қоңырау қабылданбады."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "Қоңырау жазу"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "Коңырау аяқталды"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "Қоңырау аяқталды."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "Қоң-у соғылған жаққа қол жетімсіз."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "3G ауқымынан тыс.\nДауысты қоңырауды қолданып көру керек пе?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "Бейне қоңыруын жасауға батареяның қуаты жетпейді."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "Жазуды сақтау мүмкін емес. Жазба тым қысқа."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "Желі қызметтеріне өту үшін SIM картасына салу."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "Ұшу режимі"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "%s келген қоңырау."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "Қоңырау %1$s арқылы аяқталды. %2$s контактісімен болған қоңырауды жалғастыруда..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "Қоңыраудың бағыты өзгертілді."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "Жазба диктофонға сақталды. Құрылғы жады толы."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "Көп тарапты қоңырау"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "Ұшу режимін өшіру."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "Жазба “Диктофон” ішіне сақталды."
+

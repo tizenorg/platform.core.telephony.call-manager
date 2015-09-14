@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "خیر"
+
+msgid "IDS_COM_SK_OK"
+msgstr "تاييد"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "فقط تماس اضطراری گرفته شود."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "مشکل اتصال یا کد MMI غیر معتبر است."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "تماس شما با %s در حال انتظار است."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "هدایت تماس بی قید و شرط فعال است."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "تعویض تماس‌ها امکان پذیر نیست."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "از منطقه سرویس خارج است."
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "روی شبکه ثبت نشده است."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "تماس هدایت شده است."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "تماس بازیابی شد."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "تماس در حال انتظار است."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "تماس در حال انتظار است"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "انتخاب سیم‌کارت برای تماس"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(مسدود شد) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "تماس ممکن نیست. %s شماره اضطراری نیست."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "تماس های خروجی توسط شماره های تماس ثابت مسدود می شوند."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "حالت پرواز روشن است. حالت پرواز را برای برقراری تماس خاموش کنید."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "برقرار کردن تماس ممکن نیست"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "تلفن شروع نشد."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "شماره موجود نيست."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "تغییر بین تماس‌ها..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "وقتی به تماسی پاسخ داده ‌می‌شود، ضبط متوقف شده و ذخیره می‌گردد."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "پیام ضبط شده ذخیره شد"
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "پیام ضبط شده ذخیره نشد"
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "با فرمان صوتی ”‎“%1$s یا ”‎“%2$s تماس را بپذیرید یا رد کنید"
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "گروه اشتباه است."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "سیم یا جاگذاری سیم معتبر را تایید کنید."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "مشغول است."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "برقراری دوباره پشتیبانی نشده است."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "عدم دسترسی"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "ضبط امکان پذیر نیست. حافظه کافی موجود نیست."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "برقراری تماس کنفرانسی امکان پذیر نیست."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "انتقال پشتیبانی نشده است."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "انتقال ناموفق بود."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "جابجایی پشتیبانی نشده است."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "جابجایی ناموفق بود."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "جداسازی پشتیبانی نشده است."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "جداسازی ناموفق بود."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "سرویس غیرمجاز است."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "سرویس در دسترس نیست."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "آهنگ های زیر ارسال شوند؟"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "در حال ارسال"
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "رد شد."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "ضبط متوقف شد و ذخیره شد. حافظه پر است."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "مورد ضبط شده ذخیره شد."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s گوشی را گذاشت."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "ارسالی به خارج محدود شد."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "عملکرد رد شد."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "حافظه کافی موجود نیست.مواردی را حذف کنید."
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "عدم ارائه سرويس"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "شبکه در دسترس نیست."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "خطا در شبکه رخ داد."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "پیوستن پشتیبانی نشده است."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "شماره نامعتبر است."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "ناقص است."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "انتظار پشتیبانی نشده است."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "فقط تماس‌های FDN گرفته شود."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "تماس اضطراری"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "عدم موفقیت در ارسال.امتحان دوباره."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "درحال غیرفعال کردن حالت پرواز..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "اتصال به %s..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "تعداد شرکت کنندگان به حداکثر رسیده است"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "از حالت آفلاین به نمایه دیگر خدمات شبکه تغییر دهید."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "شماره اشتباه است."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "تماس منتقل شد."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "تماس مسدود شد."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "تماس غیرمجاز است."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "تماس برقرار نشد."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "خطای سیستم رخ داد."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "افزودن شماره"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "ضبط پیام..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "ارسال شد."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "شماره تغییر کرد."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "هیچ شماره پست صوتی روی سیم کارت وجود ندارد"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "عدم پاسخ"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "افزودن تماس ناموفق بود"
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "قطع شد."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "هدایت تماس مشروط فعال است."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "تماس رد شد."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "ضبط تماس"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "تماس پایان یافت"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "تماس پایان یافت."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "تماس گیرنده موجودنیست."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "خارج از پوشش3G.\nتماس صوتی را امتحان می کنید؟"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "باتری برای تماس تصویری بسیار ضعیف است."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "ذخیره ضبط ممکن نیست. ضبط بسیار کوتاه است."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "برای دستیابی به خدمات شبکه سیم کارت را وارد کنید."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "حالت پرواز"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "تماس ورودی از %s صورت گرفته است."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "تماس با ‎%1$s قطع شد. در حال ازسرگیری تماس با ‎%2$s..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "تماس هدایت شد."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "مورد ضبط شده در ضبط صوت ذخیره شد. محل ذخیره دستگاه پر است."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "تماس چند نفره"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "حالت پرواز را غیرفعال کنید."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "مورد ضبط شده در ضبط صوت ذخیره شد."
+

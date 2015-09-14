@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "Avbryt"
+
+msgid "IDS_COM_SK_OK"
+msgstr "OK"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "Kun nødanrop"
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Tilkoblingsproblem eller ugyldig MMI-kode."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "Samtalen med %s er satt på vent."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Ubetinget viderekobling aktivert."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "Kan ikke bytte samtale."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "Utenfor tjenesteområde."
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "Ikke registrert på nettverk."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "Viderekoblet samtale."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "Anrop hentet."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "Anrop på vent."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "Anrop venter"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "Velg SIM-kort for å ringe"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(Sperret) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "Kan ikke ringe. %s er ikke nødnummer."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "Utgående anrop er begrenset av Tillatte numre."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "Flymodus på. Slå av Flymodus for å foreta anrop."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "Kan ikke ringe ut"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "Telefon ikke initialisert."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "Nummer finnes ikke."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "Bytter samtaler..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "Opptak vil stanses og lagres når anrop besvares."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "Den innspilte meldingen er lagret."
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "Kunne ikke lagre innspilt melding."
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "Besvar eller avvis anrop med talekommandoene “%1$s” eller “%2$s”."
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "Feil gruppe."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "Bekreft SIM-kort eller sett inn gyldig SIM-kort."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "Opptatt."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "Opphev venting støttes ikke."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "Utilgjengelig"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "Kan ikke spille inn. Ikke nok minne."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "Konferansesamtaler mislyktes."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "Overføring støttes ikke."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "Overføringsfeil."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "Bytte støttes ikke."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "Bytte feilet."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "Deling støttes ikke."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "Deling mislyktes."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "Tjeneste ikke tilgjengelig."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "Tjenesten er ikke tilgjengelig."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "Sende følgende toner?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "Sender..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "Avvist."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "Opptak stoppet og lagret. Minnet er fullt."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "Opptak lagret."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s har lagt på."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "Utgående anrop sperret."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "Operasjon avvist."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "Ikke nok minne. Slett noen elementer."
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "Nettverk mangler"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "Nettverket er ikke tilgjengelig."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "Nettverk opptatt."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "Tilknytning støttes ikke."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "Ugyldig nummer."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "Ufullstendig."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "Venting støttes ikke."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "Kun Tillatte numre-samtaler."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "Nødanrop"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "Sendingen mislyktes. Prøv igjen."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "Deaktiverer Flymodus..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "Kobler til %s..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "Maksimalt antall deltakere er nådd"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "Endre fra Offline til en annen profil for nettverkstjenester."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "Feil nummer."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "Anrop viderekoblet."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "Samtale sperret."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "Samtale ikke tillatt."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "Samtale mislyktes."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "Systemfeil."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "Legg til nummer"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "Spiller inn melding..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "Utgående samtale viderekoblet."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "Nummer endret."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "Ingen mobilsvarnummer på SIM-kort"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "Ikke svar"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "Kunne ikke legge til samtale."
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "Koblet fra."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Betinget viderekobling aktivert."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "Anrop avvist."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "Anropsopptak"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "Samtale avsluttet"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "Samtale avsluttet."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "Oppringt part utilgj."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "Ingen 3G-dekning.\nPrøve taleanrop?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "For lite batteristrøm til å ringe opp videosamtale."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "Kan ikke lagre opptak. Opptaket er for kort."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "Sett inn SIM-kort for å få tilgang til nettverkstjenester."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "Flymodus"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "Innkommende anrop fra %s."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "Samtale ble avsluttet av %1$s. Gjenopptar samtale med %2$s..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "Anropet er viderekoblet."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "Opptaket er lagret i Lydopptaker. Enhetsminnet er fullt."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "Flerpartsanrop"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "Deaktiver Flymodus."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "Opptak lagret i Lydopptaker."
+
