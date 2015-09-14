@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "Отмени"
+
+msgid "IDS_COM_SK_OK"
+msgstr "OK"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "Само спешни повиквания."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Проблем с връзката или невалиден MMI код."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "Вашият разговор с %s е задържан."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Безусловното прехвърляне на повиквания е активирано."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "Не може да се превключат повикванията."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "Извън обслужвания периметър"
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "Не е регистриран в мрежата."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "Препратено повикване."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "Изтегляне на повикване."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "Разговорът e задържан."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "Има чакащо повикване"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "Избор на SIM карта за обаждане"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(Блокиран) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "Не може да се извърши повикване. %s не е номер за спешно повикване."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "Изходящите повиквания са ограничени от FDN."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "Включен е режим Полет. Изключете режима Полет, за да провеждате разговори."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "Не може да се извърши обаждане"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "Телефонът не е инициализиран."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "Номерът не съществува."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "Размяна на разговори..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "Записването ще спре и ще се запише при приемане на повикване."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "Записаното съобщение е запаметено."
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "Записването на записаното съобщение е неуспешно."
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "Прием. или отхвър. повикв. с гласовите команди „%1$s“ и „%2$s“."
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "Грешна група."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "Проверете SIM или поставете валидна SIM."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "Зает."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "Освобождаване не се поддържа."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "Недостъпен*"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "Не може да се запише. Няма достатъчно памет."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "Не може да се извърши конферентно повикване."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "Прехвърлянето не се поддържа."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "Прехвърлянето e неуспешно."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "Размяна не се поддържа."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "Размяната неуспешна."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "Разделяне не се поддържа."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "Разделянето неуспешно."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "Услугата не е позволена."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "Услугата не е налична."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "Изпращане на следните тонове?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "Изпращане..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "Отхвърлен."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "Записът спрян и запаметен. Паметта е пълна."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "Записът е записан."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s прекъсна връзката."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "Изходящи повиквания забранени."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "Операция отказана."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "Няма достатъчно памет. Изтрийте някои елементи"
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "Няма услуга"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "Няма мрежа."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "Мрежата е заета."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "Присъединяване не се поддържа."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "Невалиден номер."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "Непълен."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "Задържане не се поддържа."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "Само FDN повиквания."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "Спешно повикване"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "Изпращането неуспешно. Опитайте отново."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "Деактивиране на режим полет..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "Свързване с %s..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "Достигнат е максималният брой участници"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "За мрежови услуги преминете от профил офлайн на друг профил."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "Грешен номер."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "Повикването е пренасочено."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "Повикване не е разрешено."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "Повикването не е разрешено."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "Неуспешно обаждане."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "Системна грешка."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "Добави номер"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "Записване на съобщение..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "Изходящо повикване пренасочено."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "Номерът е променен."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "Няма номер за гласова поща на SIM картата"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "Няма отговор"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "Неуспешно добавяне на разговор"
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "Изключен e."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Условното прехвърляне на повиквания е активирано."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "Повикване отхвърлено"
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "Записване на повикване"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "Разговорът завършен"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "Край на разговор"
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "Набраният e недостъпен."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "Извън 3G покритие.\nОпит за гласово повикване?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "Батерията е твърде изтощена за извършване на видео повикване."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "Записът Не може да се запази. Записът е твърде къс."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "Поставете SIM картата, за да получите достъп до услуги на мрежата."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "Режим полет"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "Входящо повикване от %s."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "Повикването е прекратено от %1$s. Възобновяване на повикването с %2$s..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "Повикването e прехвърлено."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "Записът е запазен в Диктофон. Паметта на устройството е пълна."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "Конферентен разговор"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "Деактивирай режим Полет"
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "Записът е запазен в Диктофон."
+

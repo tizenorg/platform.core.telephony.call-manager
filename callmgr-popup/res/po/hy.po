@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "Չեղարկել"
+
+msgid "IDS_COM_SK_OK"
+msgstr "Ընդունել"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "Միայն հրատապ կանչեր:"
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Կապի խնդիր կամ անվավեր MMI կոդ:"
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "Ձեր զանգը %sի հետ հետաձգված է:"
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Չպայմանավորված զանգի փոխանցումը միացված է:"
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "Անհնար է փոխանջատել կանչերը:"
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "Ռադիոծածկույթից դուրս է:"
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "Գրանցված չէ ցանցում:"
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "Փոխանցված զանգ:"
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "Զանգն առբերված է:"
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "Զանգը պահվում է:"
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "Զանգի սպասում"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "Ընտրել SIM քարտը զանգահարելու համար"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(Արգելափակված) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "Անհնար է կանչ կատարել. %s-ը հրատապ կանչի համար չէ:"
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "Ելնող կանչերն արգելված են FDN-ով:"
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "Թռիչքային ռեժիմը միացված է: Անջատել Թռիչքային ռեժիմը՝ կանչեր կատարելու համար:"
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "Անհնար է կանչ կատարել"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "Հեռախոսը գործարկված չէ:"
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "Համարը գոյություն չունի:"
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "Կանչերը փոխվում են..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "Ձայնագրումը կկանգնեցվի և կպահպանվի, երբ կանչին պատասխանվի:"
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "Գրանցված ուղերձը պահված է"
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "Գրանցված ուղերձի պահումը ձախողվեց"
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "Ընդունել կամ մերժել կանչերը «%1$s» կամ «%2$s» ձայն. հրամաններով"
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "Սխալ խումբ:"
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "Ստուգել SIM-ը կամ մտցնել վավեր SIM:"
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "Բաժանորդը զբաղված է:"
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "Պահման հանումը չի սատարվում:"
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "Անհասանելի"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "Հնարավոր չէ ձայնագրել: Չկա բավական հիշողություն:"
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "Անհնար է համախմբել կանչերը:"
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "Գործարքը չի սատարվում:"
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "Փոխանցումը չհաջողվեց:"
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "Փոխարկումը չի սատարվում:"
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "Փոխարկումը ձախողվեց:"
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "Տրոհումը համատեղելի չէ:"
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "Տրոհումը ձախողվեց:"
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "Ծառայությունը թույլարտված չէ:"
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "Ծառայությունը անհասանելի է:"
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "Ուղարկե՞լ հետևյալ հնչերանգները:"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "Ուղարկում..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "Մերժված է:"
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "Գրանցումը կանգնեցվեց և պահպանվեց: Հիշողությունը լիքն է:"
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "Գրանցումը պահպանվեց:"
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s անջատվել է:"
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "Ելքային կանչերն արգելված են:"
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "Գործողությունը մերժվեց:"
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "Հիշողությունը չի բավարարում: Ջնջեք որոշ տարրեր"
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "Ծառայություն չկա"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "Ցանցն անհասանելի է:"
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "Ցանցը զբաղված է:"
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "Միացումը համատեղելի չէ:"
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "Անվավեր համար:"
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "Անավարտ:"
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "Պահումը հնարավոր չէ:"
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "Միայն FDN կանչեր:"
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "Հրատապ զանգ"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "Ուղարկումը ձախողվեց: Կրկին փորձեք:"
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "Թռիչքային ռեժիմը կասեցվում է..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "Միացում %s-ին..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "Հասել եք մասնակիցների առավելագույն քանակին"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "Ցանցային ծառայությունների համար փոխել Ավտոմատից այլ պրոֆիլի:"
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "Սխալ համար:"
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "Կանչը վերահասցեավորված է:"
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "Զանգն արգելափակված է:"
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "Կանչն արգելված է:"
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "Զանգը ձախողվեց:"
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "Համակարգի սխալ:"
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "Ավլցր հմր"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "Գրանցվում է հաղորդագրությունը..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "Ելից զանգը փոխանցված է:"
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "Համարը փոխվել է:"
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "SIM քարտի վրա ձայնային փոստի համար չկա"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "Պատասխան չկա"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "Չհաջողվեց կանչ ավելացնել"
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "Անջատված է:"
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Պայմանական կանչի փոխանցումն ակտիվ է:"
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "Կանչը մերժված է:"
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "Զանգի ձայնագրում"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "Կանչն ավարտված է"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "Զանգն ավարտված է:"
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "Կնչվ կղմ անհասանելի է:"
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "3G ծածկույթից դուրս է:\nՓորձե՞լ ձայնային կանչ"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "Վիդեո կանչ կատաչելու համար մարտկոցի լիցքը բավական չէ:"
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "Անհնար է պահպանել ձայնագրությունը: Ձայնագրությունը շատ կարճ է:"
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "Տեղադրեք SIM քարտը՝ ցանցային ծառայություններ մտնելու համար:"
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "Թռիչքի ռեժիմ"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "Մտից կանչ %sից:"
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "%1$sն ավարտեց կանչը: Վերսկսվում է կանչը %2$sի հետ..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "Զանգը փոխանցված է:"
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "Ձայնագրիչում պահված գրառումներ: Սարքի պահոցը լիքն է:"
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "Բազմակողմ զանգ"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "Կասեցնել Թռիչքային ռեժիմը:"
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "Ձայնագրումը պահպանվեց Ձայնագրիչում:"
+

@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "ರದ್ದು"
+
+msgid "IDS_COM_SK_OK"
+msgstr "ಸರಿ"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "ತುರ್ತು ಕರೆಗಳು ಮಾತ್ರ."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "ಸಂಪರ್ಕ ಸಮಸ್ಯೆ ಅಥವಾ ಸಿಂಧುವಲ್ಲದ MMI ಕೋಡ್."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "%sನೊಂದಿಗೆ ನಿಮ್ಮ ಕರೆಯನ್ನು ತಡೆಹಿಡಿಯಲಾಗಿದೆ."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "ಕರಾರಿಲ್ಲದ ಕರೆ ಫಾರ್ವರ್ಡಿಂಗ್ ಸಕ್ರಿಯ."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "ಕರೆಗಳನ್ನು ಸ್ವಿಚ್ ಮಾಡಲು ಅಸಮರ್ಥ."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "ಸೇವಾ ಪ್ರದೇಶದ ಹೊರಗೆ."
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "ನೆಟ್‌ವರ್ಕ್‌ ಮೇಲೆ ನೋಂದಣಿಯಾಗಿಲ್ಲ."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "ರವಾನಿಸಲಾದ ಕರೆ."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "ಕರೆ ಮರುಪಡೆಯಲಾಗಿದೆ."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "ಕರೆ ಹಿಡಿತದಲ್ಲಿದೆ."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "ಕರೆ ಕಾಯುತ್ತಿದೆ"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "ಕರೆ ಮಾಡಲು SIM ಕಾರ್ಡ್ ಆಯ್ಕೆಮಾಡಿ"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(ನಿರ್ಬಂಧಿಸಿದೆ) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "ಕರೆ ಮಾಡಲು ಅಸಮರ್ಥ. %s ತುರ್ತು ಸಂಖ್ಯೆ ಅಲ್ಲ."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "ಹೊರಹೋಗುತ್ತಿರುವ ಕರೆಗಳು FDNನಿಂದ ನಿರ್ಬಂಧಿತವಾಗಿದೆ."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "ಫ್ಲೈಟ್ ಮೋಡ್ ಆನ್. ಕರೆ ಮಾಡಲು ಫ್ಲೈಟ್ ಮೋಡ್ ಟರ್ನ್ ಆಫ್ ಮಾಡಿ."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "ಕರೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "ಫೋನ್ ಪ್ರಾರಂಭಿಸಲಾಗಿಲ್ಲ."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "ಸಂಖ್ಯೆ ಅಸ್ವಿತ್ವದಲ್ಲಿಲ್ಲ."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "ಕರೆಗಳನ್ನು ಬದಲಿ ಮಾಡಲಾಗುತ್ತಿದೆ..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "ಕರೆಯನ್ನು ಉತ್ತರಿಸಿದಾಗ ರೆಕಾರ್ಡಿಂಗ್ ನಿಲ್ಲುವುದು ಮತ್ತು ಉಳಿಸಲಾಗುವುದು."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "ರೆಕಾರ್ಡ್ ಮಾಡಿದ ಸಂದೇಶವನ್ನು ಉಳಿಸಲಾಗಿದೆ."
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "ರೆಕಾರ್ಡ್ ಮಾಡಿದ ಸಂದೇಶವನ್ನು ಅಳಿಸಲು ವಿಫಲವಾಗಿದೆ."
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "ಧ್ವನಿ ಆದೇಶ “%1$s” ಅಥವಾ “%2$s” ಗಳೊಂದಿಗೆ ಕರೆಗಳನ್ನು Accept ಅಥವಾ reject."
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "ತಪ್ಪು ಗುಂಪು."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "SIM ಪರಿಶೀಲಿಸಿ ಅಥವಾ ಸಿಂಧುವಾದ SIM ಸೇರಿಸಿ."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "ಬಳಕೆದಾರ ಕಾರ್ಯನಿರತ."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "ಅನ್‌ಹೋಲ್ಡ್ ಬೆಂಬಲಿಸುವುದಿಲ್ಲ."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "ಲಭ್ಯವಿಲ್ಲ"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "ದಾಖಲಿಸಲು ಅಸಾಧ್ಯ. ಸ್ಮರಣೆ ಸಾಕಷ್ಟಿಲ್ಲ"
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "ಕಾನ್ಫರೆನ್ಸ್ ಕರೆಗಳನ್ನು ಮಾಡಲು ಅಸಮರ್ಥ."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "ವರ್ಗಾವಣೆ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "ವರ್ಗಾವಣೆ ವಿಫಲವಾಗಿದೆ."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "ಸ್ವ್ಯಾಪ್ ಬೆಂಬಲಿಸುತ್ತಿಲ್ಲ."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "ಸ್ವ್ಯಾಪ್ ವಿಫಲ."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "ವಿಭಜನೆಯನ್ನು ಬೆಂಬಲಿಸಲಾಗುವುದಿಲ್ಲ."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "ವಿಭಜನೆ ವಿಫಲವಾಗಿದೆ."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "ಸೇವೆಯನ್ನು ಅನುಮತಿಸುವುದಿಲ್ಲ."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "ಸೇವೆ ಲಭ್ಯವಿಲ್ಲ."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "ಕೆಳಗಿನ ಟೋನ್‌ಗಳನ್ನು ಕಳುಹಿಸುವುದೇ?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "ತಿರಸ್ಕರಿಸಲಾಗಿದೆ."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "ರೆಕಾರ್ಡಿಂಗ್ ನಿಲ್ಲಿಸಿದೆ ಮತ್ತು ಉಳಿಸಿದೆ. ಸ್ಮರಣೆ ಭರ್ತಿ."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "ರೆಕಾರ್ಡಿಂಗ್ ಉಳಿಸಿದೆ."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s ಹ್ಯಾಂಗ್ ಅಪ್ ಆಗಿದೆ."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "ಹೊರ ಹೋಗುತ್ತಿರುವ ಕರೆಗಳನ್ನು ತಡೆಯಲಾಗಿದೆ."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "ಕಾರ್ಯಾಚರಣೆಯನ್ನು ತಿರಸ್ಕರಿಸಲಾಗಿದೆ."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "ಸಾಕಷ್ಟು ಸ್ಮರಣೆ ಇಲ್ಲ. ಕೆಲವೊಂದು ಅಂಶಗಳನ್ನು ತೆಗೆದುಹಾಕಿ."
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "ಯಾವುದೆ ಸೇವೆ ಇಲ್ಲ"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "ನೆಟ್‌ವರ್ಕ್‌ ಲಭ್ಯವಿಲ್ಲ."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "ನೆಟ್‌ವರ್ಕ್‌ ಕಾರ್ಯನಿರತ."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "ಸೇರುವಿಕೆ ಬೆಂಬಲಿಸುವುದಿಲ್ಲ."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "ಅಮಾನ್ಯವಾದ ಸಂಖ್ಯೆ."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "ಅಪೂರ್ಣವಾಗಿದೆ."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "ತಡೆಹಿಡಿಯುವಿಕೆಯನ್ನು ಬೆಂಬಲಿಸಲಾಗುವುದಿಲ್ಲ."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "FDN ಕರೆಗಳು ಮಾತ್ರ."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "ತುರ್ತು ಕರೆ"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "ಕಳುಹಿಸುವಿಕೆ ವಿಫಲವಾಗಿದೆ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "ಫ್ಲೈಟ್ ಮೋಡ್ ಅಶಕ್ತಗೊಳಿಸುತ್ತಿದೆ..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "%sಗೆ ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "ಗರಿಷ್ಠ ಸಂಖ್ಯೆಯ ಪಾಲ್ಗೊಳ್ಳುವವರು ತಲುಪಿದೆ"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "ನೆಟ್‌ವರ್ಕ್ ಸೇವೆಗಳಿಗಾಗಿ ಆಫ್‌ಲೈನ್‌ನಿಂದ ಇತರ ಪ್ರೊಫೈಲ್‌ಗೆ ಬದಲಾಯಿಸಿ."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "ತಪ್ಪಾದ ಸಂಖ್ಯೆ."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "ಕರೆ ವರ್ಗಾಯಿಸಲಾಗಿದೆ."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "ಕರೆ ತಡೆಯಲಾಗಿದೆ."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "ಕರೆ ಅನುಮತಿಸಲಾಗಿಲ್ಲ."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "ಕರೆ ವಿಫಲಗೊಂಡಿದೆ."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "ಸಿಸ್ಟಂ ದೋಷ."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "ಸಂಖ್ಯೆ ಸೇರಿಸು"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "ಸಂದೇಶ ದಾಖಲಿಸುತ್ತಿದೆ..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "ಹೊರ ಹೋಗುತ್ತಿರುವ ಕರೆಯನ್ನು ಫಾರ್ವರ್ಡ್ ಮಾಡಲಾಗಿದೆ."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "ಸಂಖ್ಯೆ ಬದಲಾಯಿಸಲಾಗಿದೆ."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "SIM ಕಾರ್ಡ್ ಮೇಲೆ ಧ್ವನಿಮೇಲ್‌ ಸಂಖ್ಯೆ ಇಲ್ಲ"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "ಉತ್ತರವಿಲ್ಲ"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "ಕರೆ ಸೇರಿಸಲು ವಿಫಲವಾಗಿದೆ."
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "ಸಂಪರ್ಕ ಕಡಿತಗೊಳಿಸಲಾಗಿದೆ."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "ನಿಯಮಕ್ಕೊಳಪಟ್ಟ ಕರೆ ಫಾರ್ವರ್ಡಿಂಗ್ ಸಕ್ರಿಯ."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "ಕರೆ ತಿರಸ್ಕರಿಸಲಾಗಿದೆ."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "ಕರೆ ರೆಕಾರ್ಡಿಂಗ್"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "ಕರೆ ಕೊನೆಗೊಂಡಿದೆ"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "ಕರೆ ಕೊನೆಗೊಂಡಿದೆ."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "ಕರೆ ಮಾಡಿದ ವ್ಯಕ್ತಿ ಲಭ್ಯವಿಲ್ಲ."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "3G ಕವರೇಜ್‌ನಿಂದ ಹೊರಗಿದೆ.\nಧ್ವನಿ ಕರೆ ಪ್ರಯತ್ನಿಸುವುದೆ?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "ವೀಡಿಯೊ ಕರೆಗಳನ್ನು ಮಾಡಲು ಬ್ಯಾಟರಿ ತುಂಬಾ ಕಡಿಮೆ ಇದೆ."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "ರೆಕಾರ್ಡಿಂಗ್ ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ರೆಕಾರ್ಡಿಂಗ್ ತುಂಬಾ ಚಿಕ್ಕದಾಗಿದೆ."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "ನೆಟ್‌ವರ್ಕ್ ಸೇವೆಯನ್ನು ಪಡೆಯಲು SIM ಕಾರ್ಡ್ ಸೇರಿಸಿ."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "ಫ್ಲೈಟ್‌ ಮೋಡ್"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "%sನಿಂದ ಒಳಬರುತ್ತಿರುವ ಕರೆ."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "%1$s ಮೂಲಕ ಕರೆ ಮುಕ್ತಾಯಗೊಂಡಿದೆ. %2$s ನೊಂದಿಗೆ ಕರೆ ಪುನರಾರಂಭಿಸುತ್ತಿದೆ..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "ಕರೆ ಫಾರ್ವರ್ಡ್ ಮಾಡಲಾಗಿದೆ."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "ವಾಯ್ಸ್ ರೆಕಾರ್ಡರ್‌ನಲ್ಲಿ ರೆಕಾರ್ಡಿಂಗ್ ಉಳಿಸಲಾಗಿದೆ. ಸಾಧನ ಸಂಗ್ರಹಣೆ ಭರ್ತಿಯಾಗಿದೆ."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "ಹಲವು ಗುಂಪಿನ ಕರೆ"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "ಫ್ಲೈಟ್ ಮೋಡ್ ಅಶಕ್ತಗೊಳಿಸಿ."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "ವಾಯ್ಸ್‌ ರೆಕಾರ್ಡರ್‌ ಅನ್ನು ಉಳಿಸಲಾಗಿದೆ."
+
