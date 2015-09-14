@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "റദ്ദാക്കു."
+
+msgid "IDS_COM_SK_OK"
+msgstr "ശരി"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "എമര്‍ജന്‍സി കോളുകള്‍  മാത്രം."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "കണക്ഷന്‍ തകരാര്‍ അല്ലെങ്കില്‍ തെറ്റായ MMI കോഡ്."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "%s-മായുള്ള നിങ്ങളുടെ കോള്‍ ഹോള്‍ഡിലാണ്."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "നിബന്ധനയില്ലാത്ത കോള്‍ ഫോര്‍വാഡിംഗ് സജീവം."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "കോളുകള്‍ക്കിടയില്‍ മാറ്റാനാവില്ല."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "സേവനപരിധിക്ക് പുറത്തുള്ള മേഖല."
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "നെറ്റ്‌വര്‍ക്കില്‍ രജിസ്റ്റര്‍ ചെയ്തിട്ടില്ല."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "ഫോര്‍വാര്‍ഡ് ചെയ്ത കോള്‍."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "കോള്‍ റിട്രീവ് ചെയ്തു."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "കോള്‍ ഹോള്‍ഡിലാണ്."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "കോള്‍ വെയ്റ്റ് ചെയ്യുന്നു"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "കോൾ ചെയ്യുന്നതിന് SIM കാർഡ് തിരഞ്ഞെടുക്കുക"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(തടഞ്ഞു) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "കോള്‍ വിളിക്കാനാവുന്നില്ല. %s എമര്‍ജന്‍സി നമ്പര്‍ അല്ല."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "പുറത്തേക്കുള്ള കോളുകള്‍ FDN നാല്‍ നിയന്ത്രിക്കപ്പെട്ടിരിക്കുന്നു."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "ഫ്ലൈറ്റ് മോഡ് ഓണ്‍. കോള്‍ ചെയ്യുന്നതിന് ഫ്ലൈറ്റ് മോഡ് ഓഫ് ചെയ്യുക."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "കോൾ ചെയ്യാനാവില്ല"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "ഫോണ്‍ സമാരംഭിച്ചിട്ടില്ല."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "നമ്പര്‍‌ നിലവിലില്ല."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "കോളുകൾ തമ്മിൽ മാറുന്നു..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "റെക്കോർഡിംഗ് നിർത്തലാക്കും, കോളിന് മറുപടി നൽകിയതിനു ശേഷം സംരക്ഷിക്കപ്പെടും."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "റെക്കോർഡ് ചെയ്ത സന്ദേശം സംരക്ഷിച്ചു"
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "റെക്കോർഡ് ചെയ്ത സന്ദേശം സംരക്ഷിക്കുന്നത് പരാജയപ്പെട്ടു"
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "ശബ്ദ കമാൻഡുകളായ “%1$s” അല്ലെങ്കിൽ “%2$s” ഉപയോഗിച്ച് കോളുകൾക്ക് മറുപടി നൽകുക അല്ലെങ്കിൽ നിരസിക്കുക"
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "തെറ്റായ ഗ്രൂപ്പ്."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "SIM പരിശോധിക്കുക അല്ലെങ്കില്‍ സാധുവായ SIM ഘിടപ്പിക്കുക."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "ഉപയോക്താവ് തിരക്കിലാണ്."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "അണ്‍‌ഹോള്‍ഡ് പിന്തുണയ്ക്കുന്നില്ല."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "ലഭ്യമല്ല"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "റെക്കോര്‍ഡ് ചെയ്യാനാവില്ല. മതിയായ മെമ്മറി ഇല്ല"
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "കോണ്‍ഫറന്‍സ് കോളുകള്‍ വിളിക്കാനാവില്ല."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "സ്ഥാനമാറ്റ മോഡ്‌ പിന്തുണയ്‌ക്കുന്നില്ല."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "സ്ഥാനം മാറ്റല്‍‌ പരാജയപ്പെട്ടു."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "സ്വാപ്പ് പിന്തുണയ്ക്കുന്നില്ല."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "സ്വാപ്പ് പരാജയപ്പെട്ടു."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "സ്പ്ലിറ്റ് പിന്തുണയ്ക്കുന്നില്ല."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "സ്പ്ലിറ്റ് പരാജയപ്പെട്ടു."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "സേവനം അനുവദിച്ചിട്ടില്ല."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "സേവനം ലഭ്യമല്ല."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "ഇനിപ്പറയുന്ന ടോണുകള്‍ അയയ്ക്കണമോ?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "അയക്കുന്നു..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "നിരസിച്ചു."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "റെക്കോര്‍ഡിംഗ് നിര്‍ത്തി സേവ് ചെയ്തു. മെമ്മറി നിറഞ്ഞു."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "റെക്കോര്‍ഡിംഗ് സേവ് ചെയ്തു."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s കോള്‍ അവസാനിപ്പിച്ചു."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "പുറത്തേക്കുള്ള കോളുകള്‍  തടഞ്ഞു."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "ഓപ്പറേഷന്‍ നിരസിച്ചു."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "മതിയായ മെമ്മറിയില്ല. ചില ഇനങ്ങള്‍  ഇല്ലാതാക്കുക."
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "സേവനമില്ല"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "നെറ്റ്‌വര്‍ക്ക് ലഭ്യമല്ല."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "നെറ്റ്‌വര്‍ക്ക് തിരക്കിലാണ്."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "ചേരുന്നത് പിന്തുണയ്‌ക്കുന്നില്ല."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "അസാധുവായ നമ്പര്‍."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "അപൂര്‍ണ്ണം."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "ഹോള്‍‌ഡ് ചെയ്യുന്നത് പിന്തുണയ്‌ക്കുന്നില്ല."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "FDN കോളുകള്‍ മാത്രം."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "എമര്‍ജന്‍സി കോള്‍"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "അയയ്‌ക്കല്‍ പരാജയപ്പെട്ടു. വീണ്ടും ശ്രമിക്കുക"
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "ഫ്ലൈറ്റ് മോഡ് നിഷ്ക്രിയമാക്കുന്നു..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "%s ലേക്ക് ബന്ധിപ്പിക്കുന്നു..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "പങ്കാളികളുടെ പരമാവധിയെണ്ണത്തിലെത്തി"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "നെറ്റ്‌വര്‍ക്ക് സേവനങ്ങള്‍ക്കായി ഓഫ്‌ലൈനില്‍ നിന്നും മറ്റ് പ്രൊഫൈലിലേക്ക് മാറ്റുക."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "തെറ്റായ നമ്പര്‍."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "കോള്‍  തിരിച്ചുവിട്ടു."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "കോള്‍  തടഞ്ഞു."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "കോള്‍ അനുവദനീയമല്ല."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "കോള്‍  പരാജയപ്പെട്ടു."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "സിസ്റ്റം പിശക്."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "അക്കം ചേര്‍‍ക്കുക"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "സന്ദേശം റെക്കോര്‍ഡ് ചെയ്യുന്നു..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "പുറത്തേക്കുള്ള കോള്‍  തിരിച്ചുവിട്ടു."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "നമ്പര്‍‌ മാറ്റി."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "SIM കാര്‍ഡില്‍ വോയിസ്മെയില്‍ നമ്പര്‍ ഒന്നും ഇല്ല"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "മറുപടിയില്ല"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "കോൾ ചേർക്കുന്നത് പരാജയപ്പെട്ടു."
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "വിച്ഛേദിച്ചു."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "നിബന്ധനയോടെയുള്ള കോള്‍ ഫോര്‍വാഡിംഗ് സജീവമാണ്."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "കോള്‍ നിരസിച്ചു."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "കോള്‍ റെക്കോര്‍ഡിംഗ്"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "കോൾ അവസാനിച്ചു"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "കോള്‍  അവസാനിച്ചു."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "വിളിച്ചയാളെ ലഭ്യമല്ല."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "3G കവറേജിന് പുറത്താണ്.\nവോയ്‌സ് കോളിന് ശ്രമിക്കണോ?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "വീഡിയോ കോള്‍ ചെയ്യുന്നതിന് ബാറ്ററി വളരെ കുറവാണ്."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "റെക്കോർഡിംഗ് സംരക്ഷിക്കാനാവില്ല. റെക്കോർഡിംഗ് വളരെ ഹ്രസ്വം."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "നെറ്റ്‌വര്‍ക്ക് സേവനങ്ങള്‍ ആക്സസുചെയ്യാന്‍ SIM  കാര്‍ഡ് തിരുകുക"
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "ഫ്ലൈറ്റ് മോഡ്"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "%s-ല്‍ നിന്നും ഇന്‍‌കമിംഗ് കോള്‍."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "%1$s കോൾ അവസാനിപ്പിച്ചു. %2$s-മൊത്തുള്ള കോൾ പുനരാരംഭിക്കുന്നു..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "കോള്‍ ഫോര്‍വാര്‍ഡ് ചെയ്തു."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "വോയ്സ് റെക്കോർഡറിൽ റെക്കോർഡിംഗ് സംരക്ഷിച്ചു. ഉപകരണ സ്റ്റോറേജ് നിറഞ്ഞു."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "മള്‍ട്ടി പാര്‍ട്ടി കോള്‍"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "ഫ്ലൈറ്റ് മോഡ് നിഷ്ക്രിയമാക്കുക."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "ശബ്ദ റെക്കോർഡറിലേക്ക് റെക്കോർഡിംഗ് സംരക്ഷിച്ചു."
+

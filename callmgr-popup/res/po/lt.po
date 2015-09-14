@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "Atšaukti"
+
+msgid "IDS_COM_SK_OK"
+msgstr "Gerai"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "Tik pagalbos skambučiai."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Įvyko ryšio klaida arba neteisingas MMI kodas"
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "Jūsų skambutis su %s atidėtas."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Įjungta besąlyginio skambučio persiuntimo funkciją"
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "Skambučių perjungti neįmanoma."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "Už ryšio zonos ribų"
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "Tinkle neregistruotas."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "Persiųstas skambutis."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "Skambutis atnaujintas."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "Pokalbis užlaikomas."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "Laukiantis skambutis"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "Pasirinkite SIM kortelę ir skambinkite"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(Užblokuota) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "Neįmanoma paskambinti. %s nėra pagalbos tarnybos numeris."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "FDN uždraudė siunčiamus skambučius."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "Skrydžio režimas įjungtas. Jei norite skambinti, išjunkite skrydžio režimą."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "Neįmanoma paskambinti"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "Telefonas neinicijuotas."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "Tokio numerio nėra."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "Sukeičiami skambučiai..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "Įrašymas bus sustabdytas, o įrašas išsaugotas atsiliepus į skambutį."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "Įrašyta žinutė išsaugota"
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "Nepavyko išsaugoti įrašytos žinutės"
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "Atsiliepk. ar atmesk. skambučius balso komandomis „%1$s“/ „%2$s“"
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "Neteisinga grupė."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "Patikrinkite SIM arba įdėkite galiojančią SIM."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "Naudotojas užimtas."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "Atidėjimo atšaukimas nepalaikomas."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "Neleistina"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "Negalima įrašyti. Nepakanka atminties."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "Neįmanoma atlikti konferencinių skambučių."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "Perkėlimas nepalaikomas."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "Persiųsti nepavyko."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "Skambučių pakeitimas nepalaikomas."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "Skambučių pakeitimas nepavyko."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "Skaidymas nepalaikomas."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "Skaidymas nepavyko."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "Paslauga neleidžiama."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "Paslauga neteikiama."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "Siųsti šiuos skambėjimo tonus?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "Siunčiama..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "Atmesta."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "Įrašas sustabdytas ir išsaugotas. Atmintis pilna."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "Įrašas išsaugotas."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "kai %s baigs pokalbį."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "Ryšiai iš telefono draudžiami."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "Operacija nepriimta."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "Nepakanka atminties. Ištrinkite kai kuriuos elementus"
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "Paslauga neteikiama"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "Tinklas nepasiekiamas."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "Tinklas užimtas."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "Prijungimas nepalaikomas."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "Neteisingas numeris."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "Neužbaigta."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "Sulaikymas nėra palaikomas."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "Tik FDN skambučiai."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "Pagalbos skambučiai"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "Nepavyko išsiųsti. Bandykite dar kartą."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "Išjungiamas skrydžio režimas..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "Jungiamasi prie %s..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "Pasiektas didžiausias leidžiamas dalyvių skaičius"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "Tinklo paslaugoms Ne tinklo profilį pakeiskite į kitą."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "Neteisingas numeris."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "Skambutis nukreiptas."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "Skambutis uždraustas."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "Skambinti neleidžiama."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "Prisiskambinti nepavyko."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "Sistemos klaida"
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "Pridėti numerį"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "Įrašoma žinutė..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "Ryšys iš telefono persiunčiamas."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "Numeris pasikeitė."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "SIM kortelėje nėra balso pašto numerio"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "Neatsako"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "Nepavyko pridėti skambučio"
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "Atjungta."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Įjungtas sąlyginis skambučių persiuntimas."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "Skambutis atmestas."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "Skambučių įrašymas"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "Pokalbis baigtas"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "Pokalbis baigtas."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "Skam. gav. nepasiek."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "Nepatenka į 3G zoną.\nBandyti balso skambutį?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "Baterija per daug išsekusi vaizdo skambučiui."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "Negalima išsaugoti įrašo. Įrašas per trumpas."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "Įdėkite SIM kortelę, kad galėtumėte  naudotis tinklo paslaugomis."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "Skrydžio režimas"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "Įeinantis skambutis nuo %s."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "Pokalbį baigė %1$s. Skambutis su %2$s atnaujinamas..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "Skambutis persiųstas."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "Įrašas išsaugotas diktofone. Įrenginio atmintis pilna."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "Kelių dalyvių pokalbis"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "Išjungti skrydžio režimą."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "Įrašas išsaugotas diktofone."
+

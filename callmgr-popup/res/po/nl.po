@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "Annuleren"
+
+msgid "IDS_COM_SK_OK"
+msgstr "OK"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "Alleen noodoproepen."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Verbindingsprobleem of ongeldige MMI-code."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "Uw oproep met %s is in de wacht gezet."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Doorsturen zonder voorwaarden actief."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "Kan niet afwisselen tussen oproepen."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "Buiten servicegebied."
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "Niet aangemeld bij netwerk."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "Oproep doorgeschakeld."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "Oproep opgehaald."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "Oproep in de wacht."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "Oproep in de wacht"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "SIM-kaart voor bellen selecteren"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(Geblokkeerd) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "Kan niet bellen. %s is geen noodnummer."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "Uitgaande oproepen zijn beperkt tot FDN."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "Vliegtuigstand aan. Schakel vliegtuigstand uit om te bellen."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "Kan niet bellen"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "Telefoon niet geïnitialiseerd."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "Nummer bestaat niet."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "Oproepen omwisselen..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "Opname wordt gestopt en opgeslagen wanneer u oproep aanneemt."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "Opgenomen bericht opgeslagen."
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "Opgenomen bericht niet opgeslagen."
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "Accept. of weiger oproepen met spraakopdrachten “%1$s” of “%2$s”."
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "Onjuiste groep."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "SIM controleren of geldige SIM plaatsen"
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "In gesprek."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "Uit wacht halen niet ondersteund."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "Niet beschikbaar"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "Kan niet opnemen. Onvoldoende geheugen."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "Vergaderoproepen niet mogelijk."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "Doorverbinden niet ondersteund."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "Fout bij doorverbinden."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "Wisselen niet ondersteund."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "Wisselen mislukt."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "Uit multiparty halen niet ondersteund."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "Uit multiparty halen mislukt."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "Dienst niet toegestaan."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "Service niet beschikbaar."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "De volgende tonen verzenden?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "Verzenden..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "Geweigerd."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "Opname gestopt en opgeslagen. Geheugen vol."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "Opname opgeslagen."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s heeft opgehangen."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "Uitgaande oproepen geblokkeerd."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "Actie geweigerd."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "Onvoldoende geheugen. Wis een aantal items."
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "Geen netwerk"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "Netwerk niet beschikbaar."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "Netwerk bezet."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "Deelnemen aan multiparty niet ondersteund."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "Ongeldig getal."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "Niet compleet."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "In wacht zetten niet ondersteund."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "Alleen FDN-oproepen."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "Noodoproep"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "Verzenden mislukt. Opnieuw."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "Vliegtuigstand uitschakelen..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "Verbinden met %s..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "Maximumaantal deelnemers bereikt"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "Voor netwerkdiensten offlineprofiel in ander profiel wijzigen."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "Nummer onjuist."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "Oproep doorgestuurd."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "Oproep geblokkeerd."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "Oproep niet toegestaan."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "Oproep mislukt."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "Systeemfout."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "Nummer toevoegen"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "Bericht opnemen..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "Uitgaande oproepen doorgeschakeld."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "Nummer gewijzigd."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "Geen voicemailnummer op SIM-kaart"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "Geen gehoor"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "Oproep toevoegen mislukt"
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "Verbinding verbroken."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Doorschakelen met voorwaarden actief."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "Oproep geweigerd."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "Oproep opnemen"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "Oproep beëindigd"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "Oproep beëindigd."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "Gebelde niet besch."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "Geen 3G-bereik.\nSpraakoproep proberen?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "Batterij te zwak om videogesprek te voeren."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "Kan opname niet opslaan. Opname te kort."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "Plaats de SIM-kaart voor netwerkdiensten."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "Vliegtuigstand"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "Inkomende oproep van %s."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "Oproep beëindigd door %1$s. Oproep hervatten met %2$s..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "Oproep doorgeschakeld."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "Opname is opgeslagen in Spraakrecorder. Apparaatopslag is vol."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "Multiparty-oproep"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "Vliegtuigstand uitschakelen"
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "Opname opgeslagen in Spraakrecorder."
+

@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "Avbryt"
+
+msgid "IDS_COM_SK_OK"
+msgstr "OK"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "Endast nödsamtal."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Anslutningsproblem eller ogiltig MMI-kod."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "Ditt samtal med %s är parkerat."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Obegränsad vidarekoppling är aktiv."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "Kan inte växla mellan samtal."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "Utanför täckningsområde."
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "Ej registrerad på nätverk."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "Vidarebefordrat samtal."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "Samtal hämtat."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "Samtal har parkerats."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "Samtal väntar"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "Välj SIM-kort att ringa upp med"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(Blockerad) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "Det går inte att ringa. %s är inget nödnummer."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "Utgående samtal begränsas av FDN."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "Flygläge på. Inaktivera flygläget för att ringa samtal."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "Det går inte att ringa samtal"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "Telefonboken inte initierad."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "Numret finns inte."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "Byter samtal ..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "Inspelningen kommer att stoppas och sparas när samtal besvaras."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "Det inspelade meddelandet sparades."
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "Det gick inte att spara det inspelade meddelandet."
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "Svara på eller avvisa samtal med röstkommandona ”%1$s” eller ”%2$s”."
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "Fel grupp."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "Verifiera SIM eller sätt i giltigt SIM."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "Upptaget."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "Återta stöds inte."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "Ej tillgänglig"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "Kan inte registrera. Otillräckligt minne."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "Det gick inte att skapa gruppsamtal."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "Överföring stöds inte."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "Överföringsfel."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "Växla stöds inte."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "Växla misslyckades."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "Delning stöds inte."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "Delning misslyckades."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "Tjänsten är inte tillåten."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "Tjänst ej tillgänglig."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "Skicka följande signaler?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "Sänder..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "Avvisat."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "Inspelningen stoppades och sparades. Minnet är fullt."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "Inspelningen har sparats."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s har lagt på."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "Utgående samtal spärrade."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "Åtgärd nekad."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "Minnet räcker inte. Radera några objekt."
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "Ej service"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "Nätverket ej tillgängligt."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "Nätverket upptaget."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "Anslutning stöds inte."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "Ogiltigt nummer."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "Ofullständigt."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "Parkering stöds inte."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "Endast FDN-samtal."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "Nödsamtal"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "Sändning misslyckades. Försök igen."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "Inaktiverar Flygläget..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "Ansluter till %s..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "Högsta antalet deltagare är uppnått"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "Avsluta Flightmode för nättjänster."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "Fel nummer."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "Samtalet vidarekopplat."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "Samtal spärrat."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "Samtal inte tillåtet."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "Samtalet kunde inte kopplas."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "Systemfel."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "Lägg till nummer"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "Spelar in meddelande ..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "Utgående samtal vidarekopplat."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "Ändrat nummer."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "Inget röstbrevlådenummer på SIM-kortet"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "Inget svar"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "Det gick inte att lägga till samtal."
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "Frånkopplad."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Begränsad vidarekoppling är aktiv."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "Samtal avvisat."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "Samtalsinspelning"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "Samtalet avslutades"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "Samtal avslutat."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "Ringd part otillgänglig."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "Ej inom 3G-område.\nFörsök med röstsamtal?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "Batteriet för svagt för videosamtal."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "Det går inte att spara inspelning. Inspelningen är för kort."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "Sätt in SIM-kort för att få tillgång till nätverkstjänster."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "Flygläge"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "Inkommande samtal från %s."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "Samtalet avslutades av %1$s. Återupptar samtalet med %2$s ..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "Samtal har vidarekopplats."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "Inspelningen har sparats i Röstinspelning. Enhetens lagringsutrymme fullt."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "Flerpartssamtal"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "Inaktivera flygläge."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "Inspelningen har sparats i Röstinspelning."
+
