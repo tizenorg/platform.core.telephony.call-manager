@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "Zrušit"
+
+msgid "IDS_COM_SK_OK"
+msgstr "OK"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "Pouze tísňová volání."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Potíže s připojením nebo neplatný kód MMI."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "Hovor s %s je přidržen."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Je zapnuto nepodmíněné přesměrování hovorů."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "Nelze přepínat hovory."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "Mimo oblast pokrytí."
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "Není registrován v síti."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "Přesměrovaný hovor."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "Hovor byl přijat."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "Držený hovor."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "Druhý hovor"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "Vybrat SIM kartu pro volání"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(Blokováno) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "Nelze volat. %s není číslo tísňové linky."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "Odchozí hovory jsou omezeny pevnou volbou."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "Je zapnutý režim Letadlo. Chcete-li volat, vypněte režim Letadlo."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "Nelze telefonovat"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "Telefon nebyl inicializován."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "Číslo neexistuje."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "Přepínání hovorů..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "Nahrávání bude při přijetí hovoru zastaveno a nahrávka uložena."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "Nahraná zpráva byla uložena."
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "Nepodařilo se uložit nahranou zprávu."
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "Můžete přijímat/odmítat hovory pomocí hl. příkazů „%1$s“/„%2$s“."
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "Chybná skupina."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "Zkontrolujte SIM kartu nebo vložte platnou SIM kartu."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "Obsazeno."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "Puštění není podporováno."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "Není k dispozici"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "Nelze nahrát. Nedostatek paměti."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "Nelze uskutečnit konferenční hovory."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "Předání není podporováno."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "Chyba přenosu."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "Přepnutí není podporováno."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "Přepnutí se nezdařilo."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "Rozdělení není podporováno."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "Rozdělení se nezdařilo."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "Služba není povolena."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "Služba není dostupná."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "Odeslat následující tóny?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "Odesílání..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "Odmítnuto."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "Nahrávání bylo zastaveno a nahrávka byla uložena. Paměť je plná."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "Nahrávka byla uložena."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s zavěsil(a)."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "Odchozí hovory blokovány."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "Operace byla odmítnuta."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "Nedostatek paměti. Odstraňte některé položky"
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "Žádné služby"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "Síť není dostupná."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "Síť obsazena."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "Připojení není podporováno."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "Neplatné číslo."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "Nedokončené."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "Přidržení není podporováno."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "Pouze hovory FDN."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "Tísňové volání"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "Odeslání se nezdařilo. Opakujte akci později."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "Zakazování režimu Letadlo..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "Připojování k %s..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "Bylo dosaženo maximálního počtu účastníků"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "Chcete-li používat síťové služby, změňte profil Offline na jiný profil."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "Chybné číslo."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "Hovor byl přesměrován."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "Hovor je blokován."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "Hovor není povolen."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "Hovor se nezdařil."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "Systémová chyba."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "Přidat číslo"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "Nahrávání zprávy..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "Odchozí hovor přesměrován."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "Číslo bylo změněno."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "Na SIM kartě není uloženo číslo hlasové schránky"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "Žádná odpověď"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "Nepodařilo se přidat hovor"
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "Odpojeno."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Podmíněné přesměrování hovorů je zapnuté."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "Hovor odmítnut."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "Nahrávání hovorů"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "Hovor ukončen"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "Hovor ukončen."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "Volaný úč. je nedost."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "Mimo pokrytí sítě 3G.\nChcete zkusit hlasový hovor?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "Baterie je příliš slabá na to, aby bylo možné uskutečnit videohovor."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "Nahrávku nelze uložit. Nahrávka je příliš krátká."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "Chcete-li používat síťové služby, vložte SIM kartu."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "Režim Letadlo"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "Příchozí hovor od %s."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "%1$s ukončil(a) hovor. Pokračování v hovoru s %2$s..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "Hovor byl přesměrován."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "Nahrávka byla uložena do Záznamníku. Paměť zařízení je plná."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "Konferenční hovor"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "Vypněte režim Letadlo."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "Nahrávka byla uložena do Záznamníku."
+

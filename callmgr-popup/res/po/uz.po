@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "Bekor qilish"
+
+msgid "IDS_COM_SK_OK"
+msgstr "OK"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "Faqat favqulodda qo‘ng‘iroqlar."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Ulanish muammosi yoki noto‘g‘ri MMI kodi."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "%s bilan qo‘ng‘irog‘ingiz kutish rejimida."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Shartsiz qo‘n-ni boshqa raqamga yo‘naltirish yoqilgan."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "Qo‘ng‘iroqlarni almashib bo‘lmaydi."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "Ximat ko‘rsatish doirasidan tashqari."
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "Tarmoqda ro‘yxatga olinmagan."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "Boshqaga yo‘naltirilgan qo‘ng‘iroq."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "Qo‘ng‘iroq tiklandi."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "Qo‘ng‘iroq kutish rejimida."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "Qo‘ng‘iroq kutilmoqda"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "Qo‘ng‘iroq qilish uchun SIM-kartani tanlang"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(Bloklangan) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "Qo‘ng‘iroq qilib bo‘lmaydi. %s favqulodda raqam emas."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "Chiquvchi qo‘ng‘iroqlar FDN tomonidan taqiqlangan."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "Parvoz rejimi yoqiq. Qo‘ng‘iroq qilish uchun Parvoz rejimini o‘chiring."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "Qo‘ng‘iroq qilib bo‘lmaydi"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "telefon initisializatsiyalanmagan."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "Raqam mavjud emas."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "Qo‘ng‘iroqlar almashtirilmoqda..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "Qo‘ng‘iroqqa javob berilganda yozib olish to‘xtatiladi va saqlanadi."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "Yozib olingan xabar saqlandi"
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "Yozib olingan xabarni saqlab bo‘lmadi"
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "“%1$s” yoki “%2$s” ovozli buyruq b-n qo‘n-ni qab/qil yoki rad et"
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "Noto‘g‘ri guruh."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "SIM-kartani tekshiring yoki to‘g‘ri SIM-kartani kiriting."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "Foydalanuvchi band."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "Bekor qilish qo‘llab-quvvatlanmaydi."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "Mavjud emas"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "Qayd qilib bo‘lmaydi. Xotira yetarli emas."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "Konferens-qo‘ng‘iroqlarni amalga oshirib bo‘lmaydi."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "Uzatish qo‘llab-quvvatlanmaydi."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "Uzatish bajarilmadi."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "Almashish qo‘llab-quvvatlanmaydi."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "Almashish bajarilmadi."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "Ajratish qo‘llab-quvvatlanmaydi."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "Ajratib bo‘lmadi."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "Xizmat ruxsat etilmagan."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "Xizmatdan foydalanib bo‘lmaydi."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "Quyidagi ohanglar yuborilsinmi?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "Yuborilmoqda..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "Rad etildi."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "Yozib olish to‘xtatildi va saqlandi. Xotira to‘la."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "Yozuv saqlandi."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s qo‘yib qo‘ydi."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "Chiquvchi qo‘ng‘iroqlar ta‘qiqlangan."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "Amal rad etildi."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "Xotira yetarli emas. Ba’zi elementlarni o'chiring"
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "Xizmat yo‘q"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "Tarmoqdan foydalanib bo‘lmaydi."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "Tarmoq band."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "Qo‘shilish qo‘llab-quvvatlanmagan."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "Noto‘g‘ri raqam."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "Tugallanmagan."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "Ushlab turish qo‘llab-quvvatlanmagan."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "Faqat FDN qo‘ng‘iroqlar."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "Favqulodda qo‘ng‘iroqlar"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "Yuborib bo‘lmadi. Qayta urinib ko‘ring."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "Parvoz rejimi o‘chirilmoqda..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "%sga ulanmoqda..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "Ishtirokchi soni ruxsat etilgan maks. miqdorga yetdi"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "Tarmoq xizmatlari uchun, Offlayndan boshqa profilga o‘zgartiring."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "Noto‘g‘ri raqam."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "Qo‘ng‘iroq boshqa raqamga o‘tkazildi."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "Qo‘ng‘iroq chegaralangan."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "Qo‘ng‘iroq ruxsat etilmagan."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "Qo‘ng‘iroq qilib bo‘lmadi."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "Tizim xatosi."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "Raq. qo‘sh"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "Xabar yozib olinmoqda..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "Chiquvchi qo‘ng‘iroq boshqaga yo‘naltirildi."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "Raqam o‘zgartirildi."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "SIM karta ovozli pochta raqami yo'q"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "Javob yo‘q"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "Qo‘ng‘iroq qo‘shib bo‘lmadi"
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "Uzildi."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Qo‘ng‘iroqni boshqa raqamga shartli yo‘naltirish faol."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "Qo‘ng‘iroq rad etildi."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "Qo‘ng‘iroqni yozib olish"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "Qo‘ng‘. yakunlandi"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "Qo‘ng‘iroq yakunlandi."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "Chaqirilayotgan abonent mavjud emas."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "3G doirasidan tashqarida.\nOvozli qo‘ng‘. bilan urinib ko‘rilsinmi?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "Video qo‘ng‘iroq uchun batareya quvvati yetarli emas."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "Yozuvni saqlab bo‘lmaydi. Yozuv juda qisqa."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "Tarmoq xizmatlariga kirish uchun SIM-karta kiriting."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "Parvoz rejimi"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "%sdan kiruvchi qo‘ng‘iroq."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "Qo‘ng‘iroq %1$s tomonidan yakunlandi. %2$s bilan qo‘ng‘iroq tiklanmoqda..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "Qo‘ng‘iroq boshqaga yo‘naltirildi."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "Yozuv Ovoz yozib olish vositasida saqlandi. Qurilma xotirasi to‘la."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "Konferens-qo‘ng‘iroq"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "Parvoz rejimini o‘chirish."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "Yozuv Ovoz yozish vositasida saqlandi."
+

@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "Cancel"
+
+msgid "IDS_COM_SK_OK"
+msgstr "Acceptar"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "Només trucades d'emergència"
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Problema de connexió o codi MMI no vàlid"
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "La seva trucada amb %s està en espera"
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Reenviament incondicional de trucades actiu"
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "No es poden intercanviar trucades"
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "Zona fora de servei"
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "No està registrat a la xarxa"
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "Trucada desviada"
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "Trucada recuperada"
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "Trucada en espera"
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "La trucada s'espera"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "Seleccioni la targeta SIM per trucar"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(Bloquejat) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "No es pot trucar. %s no és un número d'emergència."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "Les trucades de sortida estan restringides per FDN"
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "Mode Vol activat. Desactivi el mode Vol per realitzar trucades."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "No es pot fer la trucada"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "No s'ha inicialitzat el telèfon"
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "Aquest número no existeix"
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "Canviant de trucades..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "S'aturarà la gravació i es desarà quan es respongui la trucada."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "S'ha desat el missatge gravat."
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "Error en desar el missatge gravat."
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "Accepti o rebutgi trucades amb ordres de veu “%1$s” o “%2$s”."
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "Grup incorrecte"
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "Verifiqui la SIM o introdueixi'n una de vàlida"
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "Usuari ocupat"
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "No s'admet sense retenció"
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "No disponible"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "No es pot gravar. No hi ha prou memòria."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "No es poden realitzar trucades de multiconferència"
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "No s'admet la transferència"
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "Error de transferència"
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "No s'admet l'intercanvi"
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "Error en intercanviar"
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "No s'admet la separació"
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "Error en dividir"
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "No es permet el servei"
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "Servei no disponible"
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "Enviar els tons següents?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "Enviant..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "Rebutjat"
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "S'ha aturat i desat la gravació. Memòria plena."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "Gravació desada"
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s ha penjat"
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "Trucades de sortida restringides"
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "Operació rebutjada"
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "No hi ha prou memòria. Esborrar-ne alguns elements."
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "Sense servei"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "Xarxa no disponible"
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "Xarxa ocupada"
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "No s'admet la unió"
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "Número no vàlid"
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "Incomplet"
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "No s'admet retenció"
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "Només trucades FDN"
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "Trucada d'emergència"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "Error en enviar. Tornar-ho a intentar."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "Deshabilitant mode Vol..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "S'està connectant a %s..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "S'ha assolit el nombre màxim de participants"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "Canviar perfil Fora de línia a un altre perfil per a serveis de xarxa"
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "Número incorrecte"
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "Trucada desviada"
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "Trucada restringida"
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "No es permet la trucada"
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "Error de trucada"
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "Error del sistema"
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "Afegir número"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "Gravant missatge..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "Trucada de sortida reenviada"
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "El número ha canviat"
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "Sense núm. de bústia de veu a la targeta SIM"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "No hi ha resposta"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "Error en afegir la trucada"
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "S'ha desconnectat."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Reenviament condicional de trucades actiu"
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "Trucada rebutjada"
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "Gravació de trucades"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "Trucada finalitzada"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "Fi de trucada"
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "Multicon truc no disp"
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "Fora de cobertura 3G.\nIntentar trucada de veu?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "Bateria massa baixa per a fer videotrucada"
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "No es pot desar la gravació perquè és massa curta."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "Insereixi la targeta SIM per a accedir als serveis de xarxa"
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "Mode Vol"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "Trucada d'entrada de %s"
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "Trucada finalitzada per %1$s. Reprenent trucada amb %2$s..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "Trucada desviada"
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "La gravació s'ha desat a la Gravadora de veu. Emmagatzematge del dispositiu ple."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "Trucada de multiconferència"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "Deshabilitar mode Vol"
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "Gravació desada a la Gravadora de veu."
+

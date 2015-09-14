@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "ביטול"
+
+msgid "IDS_COM_SK_OK"
+msgstr "אישור"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "שיחות חירום בלבד."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "בעיית חיבור או קוד MMI לא חוקי."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "השיחה שלך עם %s נמצאת בהמתנה."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "העברת שיחות לא מותנית פעילה."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "לא ניתן להחליף שיחות."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "אזור חוסר זמינות."
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "לא רשום ברשת."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "שיחה שהועברה."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "שיחה אוחזרה."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "שיחה בהמתנה."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "שיחה ממתינה"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "בחר בכרטיס SIM לחיוג"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(חסום) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "לא ניתן להתקשר. %s אינו מספר חירום."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "השיחות מוגבלות ע״י FDN."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "מצב טיסה מופעל. כבה מצב טיסה כדי לבצע שיחות."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "לא ניתן לבצע שיחה"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "הטלפון אינו מאותחל."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "המספר לא קיים."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "מחליף שיחות..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "בעת קבלת השיחה, ההקלטה תופסק ותישמר"
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "הודעה מוקלטת נשמרה"
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "שמירת ההודעה המוקלטת נכשלה"
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "קבל או דחה שיחות באמצעות הפקודות הקוליות ״%1$s״ או ״%2$s״"
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "קבוצה שגויה."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "אמת SIM או הכנס SIM חוקי."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "משתמש תפוס."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "ביטול החזקה לא נתמך."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "לא זמין"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "לא ניתן להקליט. אין די זיכרון."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "לא ניתן ליצור שיחות ועידה."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "העברה לא נתמכת."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "ההעברה נכשלה."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "החלפה אינה נתמכת."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "ההחלפה נכשלה."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "הפיצול אינו נתמך."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "הפיצול נכשל."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "השירות אינו מותר."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "השירות אינו זמין."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "לשלוח את הצלילים הבאים?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "שולח..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "נדחה"
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "ההקלטה נעצרה ונשמרה. הזיכרון מלא."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "ההקלטה נשמרה."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s ניתק."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "שיחות יוצאות חסומות."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "הפעולה נדחתה."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "אין די זיכרון. מחק כמה פריטים."
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "אין שירות"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "הרשת אינה זמינה."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "רשת תפוסה."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "ההצטרפות אינה נתמכת."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "מספר לא חוקי."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "לא שלם."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "החזקה אינה נתמכת."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "שיחות FDN בלבד."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "שיחת חירום"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "השליחה נכשלה. נסה שוב."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "משבית מצב טיסה..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "מתחבר אל %s..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "הגעת למספר המרבי של משתתפים"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "שנה ממצב לא מקוון לפרופיל אחר עבור שירותי רשת."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "מספר שגוי."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "השיחה הופנתה."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "שיחה נחסמה."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "השיחה לא מותרת."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "שיחה נכשלה."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "שגיאת מערכת."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "הוסף מספר"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "מקליט הודעה..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "שיחה יוצאת מועברת."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "המספר השתנה."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "אין מספר דואר קולי בכרטיס ה-SIM"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "אין תשובה"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "נכשלה הוספת השיחה"
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "המכשיר מנותק."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "העברת שיחות מותנית פעילה."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "השיחה נדחתה."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "הקלטת שיחה"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "השיחה הסתיימה"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "שיחה הסתיימה."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "נמען השיחה אינו זמין."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "מחוץ לכיסוי 3G.\nלנסות שיחה קולית?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "הסוללה חלשה מדי כדי לבצע שיחת וידאו."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "לא ניתן לשמור את ההקלטה. ההקלטה קצרה מדי."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "הכנס כרטיס SIM כדי לגשת לשירותי רשת."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "מצב טיסה"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "שיחה נכנסת מאת %s."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "השיחה הסתיימה על-ידי %1$s. מחדש שיחה עם %2$s..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "שיחה הועברה."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "ההקלטה נשמרה ברשמקול. האחסון של המכשיר מלא."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "שיחה מרובת משתתפים"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "השבת מצב טיסה."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "ההקלטה נשמרה ב'רשמקול'."
+

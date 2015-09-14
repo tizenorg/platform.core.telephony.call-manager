@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "取消"
+
+msgid "IDS_COM_SK_OK"
+msgstr "确定"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "仅限紧急通话"
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "连接问题或无效MMI代码。"
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "您与 %s 的通话已保留。"
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "启动无条件呼叫转移。"
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "无法切换通话。"
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "不在服务区。"
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "未在网络上注册。"
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "已转接来电。"
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "通话已恢复。"
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "通话保持中。"
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "呼叫等待中"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "选择用于通话的 SIM 卡"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "（已阻止）%s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "无法呼叫。%s 不是紧急号码。"
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "呼出受到固定拨号限制。"
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "飞行模式启动。关闭飞行模式以拨打电话。"
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "无法进行通话"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "手机未初始化"
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "号码不存在。"
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "正在切换通话..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "接听来电时录音将停止并保存。"
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "已保存录制信息"
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "无法保存录制信息"
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "通过语音命令“%1$s”与“%2$s”来接听或拒接来电"
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "错误分组。"
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "验证SIM卡或插入有效SIM卡。"
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "用户繁忙。"
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "取消保持不支持。"
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "不适用"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "无法录制。存储空间不足。"
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "无法进行电话会议。"
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "不支持转换。"
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "转换失败。"
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "不支持切换。"
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "切换失败。"
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "不支持断开。"
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "断开失败。"
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "服务禁止。"
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "服务无法正常提供。"
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "是否发送以下铃声？"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "发送中…"
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "被拒绝"
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "录音已停止并保存。 内存已满。"
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "录音已保存"
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s已挂断。"
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "呼出限制"
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "拒绝操作"
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "存储空间不足。请删除部分项目。"
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "无服务"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "网络无法使用"
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "网络繁忙"
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "不支持加入"
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "数值无效"
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "不完整"
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "通话保持不支持"
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "仅限 FDN 呼叫"
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "紧急呼叫"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "发送失败。再试。"
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "正在取消飞行模式…"
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "连接到 %s ..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "已达最大参与人数"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "关闭飞行模式以使用网络服务。"
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "错误号码。"
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "呼叫已转移"
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "通话被限制"
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "禁止通话"
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "通话失败"
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "系统出错。"
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "添加号码"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "正在录制信息……"
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "呼出已转移"
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "号码已更改"
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "SIM卡上没有语音信箱号码"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "无应答"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "添加通话失败"
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "已断开。"
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "条件性呼叫转移已启动。"
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "通话被拒绝"
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "通话录音"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "通话已结束"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "已结束通话"
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "被呼叫方不可用"
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "在 3G 覆盖范围之外。\n尝试语音电话？"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "电池电量太低，无法进行视频通话"
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "无法保存录音。录音太短。"
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "插入 SIM 卡以访问网络服务。"
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "飞行模式"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "电话来自 %s。"
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "通话已被%1$s结束。正在通过%2$s恢复通话..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "呼叫已前转。"
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "录音已保存在录音机中。设备存储已满。"
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "多方通话"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "禁用飞行模式。"
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "录音已保存在录音机中。"
+

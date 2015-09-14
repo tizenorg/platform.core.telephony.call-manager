@@ -1,0 +1,8 @@
+#default include
+org.tizen.callmgr-popup app.default include
+org.tizen.callmgr-popup app-svc::db rw
+org.tizen.callmgr-popup aul::launch x
+org.tizen.callmgr-popup device::app_logging w
+org.tizen.callmgr-popup system::crash rwxat
+org.tizen.callmgr-popup starter::vconf rl
+org.tizen.callmgr-popup tizen::vconf::platform::rw rl

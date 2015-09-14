@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" package="org.tizen.vm-popup" version="1.0.0">
+    <ui-application appid="org.tizen.vm-popup" exec="vm-popup" type="capp" multiple="false" taskmanage="true" nodisplay="false">
+        <icon>vm-popup.png</icon>
+        <label>vm-popup</label>
+	</ui-application>
+</manifest>

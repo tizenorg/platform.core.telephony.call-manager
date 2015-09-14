@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "રદ કરો"
+
+msgid "IDS_COM_SK_OK"
+msgstr "ઓકે"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "માત્ર તાત્કાલિક કૉલ."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "જોડાણ સમસ્યા અથવા અમાન્ય MMI કોડ."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "%s સાથેનો તમારો કૉલ અવલંબન પર છે."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "બિનશરતી કૉલ ફોર્વર્ડિંગ સક્રિય."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "કૉલ્સ સ્વિચ કરવામાં અક્ષમ."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "સર્વિસ બહારનો વિસ્તાર."
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "નેટવર્ક પર નોંધાયેલ નથી."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "ફોર્વર્ડે કરાયેલો કૉલ."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "કૉલ પાછો મેળવાયો."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "કૉલ હોલ્ડ પર રાખ્યો છે."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "કૉલ રાહ જુએ છે"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "કૉલ કરવા માટે SIM કાર્ડ પસંદ કરો"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(અવરોધિત) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "કૉલ કરવામાં અસમર્થ. %s કટોકટી નંબર નથી."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "FDN દ્વારા આઉટગોઇંગ કૉલ્સ પ્રતિબંધિત કરેલાં છે."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "ફ્લાઇટ મોડ ચાલુ. કૉલ કરવા માટે ફ્લાઇટ મોડ બંધ કરો."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "કૉલ કરવામાં અસમર્થ"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "ફોન શરૂ થયો નથી."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "નંબર હાજર નથી."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "કૉલ્સ સ્વેપ કરી રહ્યાં છે..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "કૉલનો જવાબ આપવામાં આવે ત્યારે રેકોર્ડિંગ રોકવામાં આવશે અને સાચવવામાં આવશે."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "રેકોર્ડ કરેલા સંદેશા સાચવ્યાં."
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "રેકોર્ડ કરેલા સંદેશાને સાચવવામાં નિષ્ફળ થયું."
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "અવાજ આદેશો “%1$s” અથવા “%2$s” સાથેના કૉલ્સને સ્વીકારો અથવા નકારો."
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "ખોટો સમૂહ."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "SIM ચકાસો અથવા માન્ય SIM સામેલ કરો."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "ઉપયોગ કરનાર વ્યસ્ત."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "અનહોલ્ડને ટેકો નથી."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "ઉપલબ્ધ નથી"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "રેકોર્ડ કરવામાં અસમર્થ. પર્યાપ્ત સ્મૃતિ નથી"
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "કોન્ફરન્સ કૉલ્સ કરવામાં અક્ષમ."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "તબદીલીને ટેકો નથી."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "તબદીલી નિષ્ફળ."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "અદલાબદલી ટેકો નથી."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "અદલાબદલી નિષ્ફળ."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "વિભાજનને ટેકો નથી."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "વિભાજન નિષ્ફળ."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "સેવાની છૂટ નથી."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "સેવા ઉપલબ્ધ નથી."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "નીચે આપેલા ટોન્સ મોકલીએ?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "મોકલે છે..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "રદ કર્યુ."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "રેકોર્ડિંગ રોક્યું અને સાચવ્યું. સ્મૃતિ પૂર્ણ."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "રેકોર્ડિંગ સાચવ્યા."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s હૅંગ અપ કર્યુ છે."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "આઉટગોઈંગ કૉલ પર પ્રતિબંધ."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "ઓપરેશન નકાર્યું."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "સ્મૃતિ પૂરતી નથી. કેટલીક વસ્તુઓ કાઢી નાખીએ?"
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "સેવા નથી"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "નેટવર્ક ઉપલબ્ધ નથી."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "નેટવર્ક વ્યસ્ત."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "જોડાવવાને ટેકો નથી."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "અમાન્ય નંબર."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "અધૂરો."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "હોલ્ડને ટેકો નથી."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "ફક્ત FDN કૉલ્સ."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "તાત્કાલિક કૉલ"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "મોકલવું નિષ્ફળ. ફરી પ્રયત્ન કરો"
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "ફ્લાઇટ મોડ નિષ્ક્રિય કરે છે..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "%s થી જોડે છે..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "પ્રતિભાગીઓને મહત્તમ સંખ્યાએ પહોંચ્યા"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "નેટવર્ક સેવાઓ માટે પ્રોફાઇલને ઓફલાઇનથી અન્ય પર બદલો."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "ખોટો નંબર."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "કૉલ બીજી દિશા માં વાળ્યો."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "કૉલ પર પ્રતિબંધ."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "કૉલને છૂટ નથી."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "કૉલ નિષ્ફળ."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "સિસ્ટમ ભૂલ."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "નંબર ઉમેરો"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "સંદેશ રેકોર્ડ કરી રહ્યું છે..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "આઉટગોઈંગ કૉલ આગળ કરાયી."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "નંબર બદલ્યો."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "SIM કાર્ડ પર કોઈ અવાજમેલ નંબર નથી"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "જવાબ નથી"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "કૉલ ઉમેરવામાં નિષ્ફળ."
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "જોડાણ તુટી ગયું."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "શરતીય કૉલ ફોર્વર્ડિંગ સક્રિય."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "કૉલ અસ્વીકૃત."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "કૉલ રેકોર્ડિંગ"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "કૉલ સમાપ્ત થયો"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "કૉલ પૂરો."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "કૉલ્ડ પાર્ટી અનુપલબ્ધ."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "3G ક્ષેત્રની બહાર.\nઅવાજકૉલનો પ્રયાસ કરીએ?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "વિડિયો કૉલ કરવા માટે બેટરી ખૂબ લો છે."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "રેકોર્ડિંગ સાચવવામાં અસમર્થ. રેકોર્ડિંગ ખૂબ ટૂંકી છે."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "નેટવર્ક સેવાઓ ઍક્સેસ કરવા માટે SIM કાર્ડ સામેલ કરો."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "ફ્લાઇટ મોડ"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "%s થી આવનારી કૉલ છે."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "%1$s દ્વારા કૉલ સમાપ્ત કરવામાં આવ્યો. %2$s સાથે ફરી કૉલ શરૂ કરી રહ્યાં છે..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "કૉલ ફોર્વર્ડ કર્યો."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "અવાજ રેકોર્ડરમાં રેકોર્ડિંગ સાચવી. ઉપકરણ સંગ્રહ પૂર્ણ ભરેલો છે."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "મલ્ટિ પાર્ટી કૉલ"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "ફ્લાઇટ મોડ નિષ્ક્રિય કરો."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "અવાજ રેકોર્ડરમાં રેકોર્ડિંગ સાચવી."
+
