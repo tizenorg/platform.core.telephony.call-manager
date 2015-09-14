@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "Cancelar"
+
+msgid "IDS_COM_SK_OK"
+msgstr "OK"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "Somente chamadas de emergência."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Problema de conexão ou código MMI inválido."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "Sua chamada com %s está em espera."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Encaminhamento incondicional de chamadas ativado."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "Impossível alternar chamadas."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "Fora da área de serviço."
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "Não registrado na rede."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "Chamada encaminhada."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "Chamada obtida."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "Chamada em espera."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "A chamada está em espera"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "Selecionar cartão SIM para chamada"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(Bloqueado) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "Impossível efetuar chamada. %s não é um número de emergência."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "As chamadas efetuadas estão restritas por FDN."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "Modo Offline ativado. Desative o modo Offline para efetuar chamadas."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "Não é possível efetuar chamada"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "O telefone não foi inicializado."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "Número inexistente."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "Alternando chamadas..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "A gravação será interrompida e salva quando a chamada for atendida."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "Mensagem gravada salva."
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "Falha ao salvar mensagem gravada."
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "Aceite/recuse chamadas com os comandos de voz “%1$s” ou “%2$s”."
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "Grupo incorreto."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "Verificar SIM ou inserir SIM válido."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "Usuário ocupado."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "Recuperar não suportado."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "Indisponível"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "Impossível gravar. Memória insuficiente."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "Impossível colocar chamadas em conferência."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "Transferência não suportada."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "Erro ao transferir."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "Alternar não suportado."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "Erro ao alternar."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "Dividir não suportado."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "Erro ao dividir."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "Serviço não permitido."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "Serviço não disponível."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "Enviar os seguintes tons?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "Enviando…"
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "Rejeitado."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "Gravação parada e salva. Memória cheia."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "Gravação salva."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s desligou."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "Chamadas efetuadas restritas."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "Operação recusada."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "Memória insuficiente. Apague alguns itens"
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "Sem serviço"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "Rede indisponível."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "Rede ocupada."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "Conferência não suportada."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "Número inválido."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "Não efetuado."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "Espera não suportada."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "Só chamadas FDN."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "Chamada de emergência"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "Erro ao enviar. Tente novamente."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "Desativando o Modo Offline..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "Conectando a %s..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "O número máximo de participantes foi atingido"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "Saia do perfil Offline para acessar os serviços de rede."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "Número incorreto."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "Chamada encaminhada."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "Chamada restrita."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "Chamada não permitida."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "Falha na chamada."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "Erro de sistema."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "Adicionar número"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "Gravando mensagem..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "Chamada efetuada encaminhada."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "Número alterado."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "Nenhum número de caixa postal no cartão SIM"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "Sem resposta"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "Falha ao adicionar chamada"
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "O Bluetooth está desconectado."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Encaminhamento condicional de chamadas ativado."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "Chamada rejeitada."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "Gravação de chamadas"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "Chamada encerrada"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "Chamada encerrada."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "Destinatario indispon."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "Fora de cobertura 3G.\nTentar chamada de voz?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "Bateria muito fraca para efetuar uma videochamada."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "Impossível salvar gravação. Gravação muito curta."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "Insira um chip para acessar serviços de rede."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "Modo Offline"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "Chamada recebida de %s."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "Chamada encerrada por %1$s. Continuando a chamada com %2$s..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "Chamada encaminhada."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "Gravação salva no Gravador de Voz. Armazenamento do dispositivo cheio."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "Conferência"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "Desativar modo Offline."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "Gravação salva no Gravador de Voz."
+

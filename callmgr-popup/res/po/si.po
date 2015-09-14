@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "අව. කර."
+
+msgid "IDS_COM_SK_OK"
+msgstr "හරි"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "හදිසිය ඇමතුමක් පමණි."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "සබඳතා ගැටළුවක් හෝ වැරදි MMI කේතයක්."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "%s සමඟ ඔබේ ඇමතුම රැඳවිණ."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "කොන්දේසි විරහිත ඇමතුම් යොමු කිරීම සක්‍රියයි."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "ඇමතුම් මාරු කළ නොහැක."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "සේවා ප්‍රදේශයෙන් පිට."
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "ජාලයේ ලියාපදිංචි කර නැත."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "යොමු කළ ඇමතුම."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "ඇමතුම ලබාගැනිණි."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "ඇමතුම රඳවා ඇත."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "ඇමතුම පොරොත්තුවෙන්"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "ඇමතීමට SIM කාඩ්පතක් තේරීම"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(අවහිර කර ඇත) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "ඇමතිය නොහැක. %s යනු හදිසි ඇමතුම් අංකයක් නොවේ."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "යන ඇමතුම් සඳහා FDN මඟින් සීමා පණවා ඇත."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "පියාසර මාදිලිය සක්‍රියයි. ඇමතුම් ලබාගැනීම සඳහා පියාසර මාදිලිය ක්‍රියාවිරහිත කරන්න."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "ඇමතුම ලබාගත නොහැක"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "දුරකථනය ආරම්භ කර නැත."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "අංකය නැත."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "ඇමතුම් හුවමාරු කරමින්..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "ඇමතුමට පිළිතුරු දුන් විට පටිගත කිරීම නැවතී සුරැකෙනු ඇත."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "පටිගත කළ පණිවිඩය සුරැකිණි."
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "පටිගත කළ පණිවිඩය සුරැකීමට අසමත් විය."
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "හඬ විධාන “%1$s” හෝ “%2$s” සමගින් ඇමතුම් පිළිගන්න නැතහොත් ප්‍රතික්ෂේප කරන්න."
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "වැරදි කණ්ඩායම."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "SIM පත පරීක්ෂා කරන්න හෝ වලංගු SIM පතක් ඇතුල් කරන්න."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "භාවිතාකරන්නා කාර්යබහුලයි."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "අත්හැරීම සහය නොදක්වයි."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "නොමැත"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "පටිගත කළ නොහැක. ප්‍රමාණවත් මතකයක් නැත"
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "සම්මන්ත්‍රණ ඇමතුම් කිරීමට නොහැකියි."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "මාරුකිරීම සහාය නොදක්වයි."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "මාරු කිරීම අසාර්ථකයි."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "මාරු කිරීම සහය නොදක්වයි."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "මාරු කිරීම අසාර්ථකයි."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "වෙන් කිරීම සහය නොදක්වයි."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "වෙන් කිරීම අසාර්ථකයි."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "සේවාවට ඉඩ දී නොමැත."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "සේවා නොපවතී."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "මෙම නාදරටා යවන්නද?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "යවමින්..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "ප්‍රතික්ෂේපයි."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "පටිගත කිරීම නැවතී සුරැකිණ. මතකය පිරී ඇත."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "පටිගත කිරීම සුරැකිණ."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s දුරකථනය තබා ඇත."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "වළකන ලද යැවෙන ඇමතුම්."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "මෙහෙයුම ප්‍රතික්‍ෂේප විය."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "ප්‍රමාණවත් මතකයක් නොමැත. අයිතම කීපයක් මකා දමන්න."
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "සේවාවක් නොමැත"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "ජාලය නොපවතී."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "ජාලය කාර්යබහුලයි."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "එකතුවීමට සහාය නොදක්වයි."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "වලංගු නොවන අංකයක්."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "අසම්පූර්ණ."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "අල්ලා සිටීම සහය දක්වන්නේ නැත."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "FDN ඇමතුම් පමණයි."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "හදිසි ඇමතුම්"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "යැවීම අසාර්ථකයි. නැවත උත්සාහ කරන්න"
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "පියාසර මාදිලිය අක්‍රිය කරමින්..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "%s සමඟ සම්බන්ධ වෙමින්..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "උපරිම සහභාගීවන්නන් ගණනට ලඟාවිය"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "ජාල සේවා සඳහා නිබැඳි සිට වෙනත් පැතිකඩට වෙනස් කරන්න."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "වැරදි අංකය."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "ඇමතුම හැරවුණි."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "ඇමතුම් වළක්වා ඇත."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "ඇමතුමට ඉඩ නොමැත."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "ඇමතුම අසමත් විය."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "පද්ධති දෝෂය."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "අංකය එ. ක."
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "පණිවිඩය පටිගත කරමින්..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "යැවෙන ඇමතුම ඉදිරියට යොමු කර ඇත."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "අංකය වෙනස්විය."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "SIM පතෙහි ‍හඬ පණිවුඩ අංකයන් නොමැත"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "පිළිතුරක් නැත"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "ඇමතුම එක් කිරීමට අසමත් විය."
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "විසන්ධි විය."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "කොන්දේසිමය ඇමතුම් යොමු කිරීම සක්‍රියයි."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "ඇමතුම ප්‍රතික්ෂේප විය."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "ඇමතුම පටිගත කිරීම"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "ඇමතුම අවසන් විය"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "ඇමතුම නිමාවිය."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "ඇමතූ අය නොසිටී."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "3G ආවරණ කලාපයෙන් පිට.\nහඬ ඇමතුමකට උත්සාහ කරන්නද?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "වීඩියෝ ඇමතුම ගැනීමට බැටරිය දුර්වල වැඩිය."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "පටිගතකරණය සුරැකිය නොහැක. පටිගතකරණය කෙටි වැඩියි."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "ජාල සේවා වෙත ප්‍රවේශ වීමට SIM කාඩ්පත ඇතුල් කරන්න."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "පියාසර ප්‍රාකාරය"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "%s ගෙන් ඇමතුමක්."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "%1$s විසින් ඇමතුම අවසන් කරන ලදී. %2$s සමග ඇමතුම යළි අරඹමින්..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "ඇමතුම ඉදිරිපත් කරන ලදී."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "පටිගත කිරීම හඬ රෙකෝඩරය තුළ සුරැකෙනු ඇත. උපාංග මතකය පිරී ඇත."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "බහු සාද ඇමතුම"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "පියාසර මාදිලිය අක්‍රිය කරන්න."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "පටිගත කිරීම හඬ රෙකෝඩරය තුළ සුරැකිණි."
+

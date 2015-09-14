@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "Anulare"
+
+msgid "IDS_COM_SK_OK"
+msgstr "OK"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "Numai apeluri de urgenţă"
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "Problemă de conexiune sau cod MMI nevalid"
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "Apelul dvs. către %s este în aşteptare."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Redirecţionarea necondiţionată a apelurilor a fost activată."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "Imposibil de comutat între apeluri"
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "În afara zonei de acoperire a serviciului"
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "Neînregistrat în reţea"
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "Apel redirecţionat"
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "Apelul a fost preluat."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "Apel în aşteptare"
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "Apelul se află în aşteptare"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "Selectare cartelă SIM de apelat"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(Blocat) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "Imposibil de apelat. %s nu este un număr de urgenţă."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "Apelurile de ieşire sunt restricţionate de FDN."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "Mod Avion activat. Dezactivaţi modul Avion pentru a efectua apeluri."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "Nu se poate efectua apelul"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "Telefonul nu este iniţializat."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "Număr inexistent"
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "Se comută între apeluri..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "Înregistrarea va fi oprită şi salvată când se va prelua apelul."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "Mesajul înregistrat a fost salvat."
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "Salvarea mesajului înregistrat nu a reuşit."
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "Acceptaţi/respingeţi apeluri cu com. voc. „%1$s” sau „%2$s”."
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "Grup greşit"
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "Verificaţi cartela SIM sau introduceţi o cartelă SIM validă."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "Utilizator ocupat"
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "Anulare menţinere neacceptată"
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "Indisponibil"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "Imposibil de înregistrat. Memorie insuficientă."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "Imposibil de unit apelurile în conferinţă"
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "Transfer neacceptat"
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "Transfer nereuşit"
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "Permutare neacceptată"
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "Permutare nereuşită"
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "Separare neacceptată"
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "Separare nereuşită"
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "Serviciu nepermis"
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "Serviciu indisponibil"
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "Trimiteţi următoarele tonuri?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "Se trimite..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "Respins"
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "Înregistrarea s-a oprit şi a fost salvată. Memoria este plină."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "Înregistrare salvată"
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s a întrerupt conexiunea."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "Apeluri de ieşire blocate"
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "Operaţie refuzată"
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "Memorie insuficientă. Ştergeţi câteva elemente"
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "Nici un serviciu"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "Reţea indisponibilă"
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "Reţea ocupată"
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "Asociere neacceptată"
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "Număr incorect"
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "Incomplet"
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "Menţinere neacceptată"
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "Numai apeluri FDN"
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "Apel de urgenţă"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "Trimitere nereuşită. Reîncercaţi."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "Se dezactivează modul Avion..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "Conectare cu  %s"
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "A fost atins numărul maxim de participanţi"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "Schimbaţi din profilul Offline într-un alt profil pentru serviciile de reţea."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "Număr greşit"
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "Apel redirecţionat"
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "Apel blocat"
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "Apel nepermis"
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "Apel eşuat"
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "Eroare de sistem"
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "Ad. număr"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "Se înregistrează mesajul..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "Apel efectuat redirecţionat"
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "S-a schimbat numărul."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "Niciun număr de mesagerie vocală pe cartela SIM"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "Nici un răspuns"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "Apelul nu a putut fi adăugat"
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "S-a deconectat."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "Redirecţionarea condiţionată a apelurilor este activă."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "Apel respins"
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "Înregistrare apel"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "Apel terminat"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "Apel terminat"
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "Pers. apelată indisp."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "În afara ariei de acoperire 3G.\nÎncercaţi un apel vocal?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "Baterie insuficientă pentru a efectua un apel video"
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "Înregistrarea nu poate fi salvată. Aceasta este prea scurtă."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "Introduceţi cartela SIM pentru a accesa serviciile de reţea."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "Mod Avion"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "Apel de intrare de la %s"
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "Apelul a fost încheiat de %1$s. Se reia apelul cu %2$s..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "Apelul a fost redirecţionat."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "Înregistrarea a fost salvată în Înregistrare voce. Memoria dispozitivului este plină."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "Apel conferinţă"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "Dezactivare mod Avion"
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "Înregistrarea a fost salvată în Înregistrare voce."
+

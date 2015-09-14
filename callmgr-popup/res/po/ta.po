@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "ரத்து"
+
+msgid "IDS_COM_SK_OK"
+msgstr "சரி"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "அவசர அழைப்புகள் மட்டும்."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "இணைப்பு சிக்கல் அல்லது MMI குறியீடு."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "%s உடனான உங்கள் அழைப்பு காத்திருப்பில் உள்ளது."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "நிபந்தனையற்ற அழைப்பு முன்னனுப்புதல் செயலில்."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "அழைப்புகளை மாற்ற இயலாது."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "சேவைக்கு அப்பாற்பட்ட பகுதியிலுள்ளது."
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "நெட்வொர்க்கில் பதிவு செய்யவில்லை."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "முன்னனுப்பப்பட்ட அழைப்பு."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "அழைப்பு சீர்செய்யப்பட்டது."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "அழைப்பு பிடிப்பில்."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "அழைப்பு காத்திருப்பில்"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "அழைப்பதற்கான SIM அட்டை தேர்வுசெய்க"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(தடைசெய்யப்பட்டது) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "அழைக்க இயலாது. %s ஆனது அவசர எண் இல்லை."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "வெளிச்செல்லும் அழைப்புகள் FDN படி தடைசெய்யப்படுள்ளது."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "ஃப்ளைட் முறை ஆன். அழைப்பு செய்ய ஃப்ளைட் முறையை ஆஃப் செய்க."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "அழைப்பைச் செய்ய இயலவில்லை"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "தொலைபேசி தொடங்கவில்லை."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "எண் நடப்பிலில்லை."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "அழைப்புகளை மாற்றுகிறது..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "அழைப்புக்கு பதிலளிக்கும்போது பதிவுசெய்தல் நிறுத்தப்பட்டு சேமிக்கப்படும்."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "பதிவுசெய்த தகவல் சேமிக்கப்பட்டது."
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "பதிவுசெய்த தகவலை சேமிப்பது தோல்வியுற்றது."
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "“%1$s” மற்றும் “%2$s” என்ற குரல் கட்டளைகள் மூலம் அழைப்புகளை ஏற்கவும் அல்லது மறுக்கவும்"
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "தவறான குழு."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "SIMஐ சரிபார் அல்லது சரியான SIMஐ நுழை."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "பயனர் பிஸி."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "விடுவித்தல் ஆதரிக்கப்படவில்லை."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "கிடைக்கவில்லை"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "பதிவுசெய்ய இயலவில்லை. போதுமான நினைவகம் இல்லை"
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "கூட்டு அழைப்புகளை செய்ய இயலாது."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "பரிமாற்றம் ஆதரிக்கப்படாது."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "பரிமாற்றம் தோல்வி."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "மாற்றுதல் ஆதரிக்கப்படவில்லை."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "மாற்றுதல் தோல்வி."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "பிரித்தல் ஆதரிக்கப்படாது."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "பிரித்தல் தோல்வி."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "சேவை அனுமதிக்கப்படவில்லை."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "சேவை இல்லை."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "பின்வரும் டோனை அனுப்பவா?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "அனுப்புகிறது..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "மறுக்கப்பட்டது."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "பதிதல் நிறுத்தப்பட்டு சேமிக்கப்பட்டது. நினைவகம் நிரம்பியது."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "பதிதல் சேமிக்கப்பட்டது."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s ஹேங் அப் செய்கிறது."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "வெளிச்செல்லும் அழைப்புகள் தடை செய்யப்பட்டுள்ளன."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "செயல் மறுக்கப்பட்டது."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "போதுமான நினைவகம் இல்லை. சில உருப்படிகளை நீக்குக."
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "சேவை இல்லை"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "நெட்வொர்க் இல்லை."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "நெட்வொர்க் பணிமிகுதி."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "சேர்தல் ஆதரிக்கப்படவில்லை."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "தவறான எண்."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "முழுமையாகவில்லை."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "காத்திருப்பு  ஆதரிக்கப்படவில்லை."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "FDN அழைப்புகள் மட்டும்."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "அவசர அழைப்பு"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "அனுப்புதல் தோல்வி. மீண்டும் முயலுக"
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "ஃப்ளைட் முறையை செயல்நீக்குகிறது..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "%s உடன் இணைகிறது..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "அதிகபட்ச பங்கேற்பாளர்களின் எண்ணிக்கையை அடைந்தது"
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "நெட்வொர்க் சேவைகளுக்கு Offlineல் இருந்து பிற பயன்வகைக்கு மாறவும்."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "தவறான எண்."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "அழைப்பு திருப்பி விடப்பட்டது."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "அழைப்பு தடைசெய்யப்பட்டது."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "அழைப்பு அனுமதிஇல்லை."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "அழைப்பு தோல்வி."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "கணினி பிழை."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "எண்ணைச் சேர்"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "தகவல் பதிகிறது..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "வெளிச்செல்லும் அழைப்பு பகிரப்பட்டது."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "எண் மாற்றப்பட்டது."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "SIM அட்டையில் குரலஞ்சல் எண் எதுவும் இல்லை"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "பதில் இல்லை"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "அழைப்பைச் சேர்ப்பது தோல்வி."
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "துண்டிக்கபட்டது."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "நிபந்தனையுடன் அழைப்பு முன்னனுப்புதல் செயலில்."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "அழைப்பு தவிர்க்கப்பட்டது."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "அழைப்பு பதிதல்"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "அழைப்பு முடிவுற்றது"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "அழைப்பு முடிந்தது."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "அழைக்கப்பட்ட நபர் கிடைக்கவில்லை."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "3G வரம்பிற்குள் இல்லை.\nகுரல் அழைப்புக்கு முயற்சிக்கவா?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "மின்கலம் குறைவால் நிகழ்பட அழைப்பை பயன்படுத்த இயலாது."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "பதிவைச் சேமிக்க இயலவில்லை. பதிவு மிகவும் சிறியது."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "நெட்வர்க் சேவையை அணுக SIM அட்டையை நுழைக்கவும்."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "ஃப்ளைட் முறை"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "%s-லிருந்து உள்வரும் அழைப்பு."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "%1$s ஆல் அழைப்பு முடிக்கப்பட்டது. %2$s உடனான அழைப்பு மீண்டும் துவங்குகிறது..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "அழைப்பு முன்னனுப்பப்பட்டது."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "குரல் பதிகருவியில் பதிதல் சேமிக்கப்பட்டது. சாதன சேமிப்பகம் நிரம்பியுள்ளது."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "பலதரப்பினர் அழைப்பு"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "ஃப்ளைட் முறையை செயல்நீக்குக."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "குரல் பதிகருவியில் பதிதல் சேமிக்கப்பட்டது."
+

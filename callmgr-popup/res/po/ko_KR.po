@@ -1,0 +1,288 @@
+msgid "IDS_COM_SK_CANCEL"
+msgstr "취소"
+
+msgid "IDS_COM_SK_OK"
+msgstr "확인"
+
+msgid "IDS_CALL_POP_CALLING_EMERG_ONLY"
+msgstr "긴급전화만 가능합니다."
+
+msgid "IDS_COM_POP_CONNECTION_PROBLEM_OR_INVALID_MMI_CODE"
+msgstr "네트워크 연결에 문제가 발생했거나 MMI 코드가 바르지 않습니다."
+
+msgid "IDS_COM_BODY_YOUR_CALL_WITH_PS_IS_ON_HOLD"
+msgstr "%s 님과의 통화가 보류 중입니다."
+
+msgid "IDS_COM_BODY_UNCONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "호 전달 중입니다."
+
+msgid "IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS"
+msgstr "통화를 전환할 수 없습니다."
+
+msgid "IDS_COM_BODY_OUT_OF_SERVICE_AREA"
+msgstr "서비스 지역을 벗어났습니다."
+
+msgid "IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK"
+msgstr "서비스 지역이 아닙니다."
+
+msgid "IDS_COM_BODY_FORWARDED_CALL"
+msgstr "착신전환된 통화입니다."
+
+msgid "IDS_COM_BODY_CALL_RETRIEVED"
+msgstr "상대방이 통화중지를 해제합니다."
+
+msgid "IDS_COM_BODY_CALL_ON_HOLD"
+msgstr "상대방이 통화를 중지합니다."
+
+msgid "IDS_COM_BODY_CALL_IS_WAITING"
+msgstr "응답 대기 중(상대방 통화 중)"
+
+msgid "IDS_PB_HEADER_SELECT_SIM_CARD_TO_CALL"
+msgstr "통화 전용 SIM 카드 선택"
+
+msgid "IDS_CLOG_BODY_HBLOCKED_PS"
+msgstr "(차단된) %s"
+
+msgid "IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER"
+msgstr "%s번은 긴급 전화번호가 아니어서 전화를 걸 수 없습니다."
+
+msgid "IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN"
+msgstr "[발신 허용번호]가 실행되어 있어 전화 발신이 제한됩니다."
+
+msgid "IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"
+msgstr "[비행기 탑승 모드] 실행 중입니다. 전화를 걸려면 [비행기 탑승 모드]를 해제하세요."
+
+msgid "IDS_CST_HEADER_UNABLE_TO_MAKE_CALL_ABB"
+msgstr "전화를 걸 수 없음"
+
+msgid "IDS_VCALL_POP_PHONE_NOT_INITIALISED"
+msgstr "휴대전화를 초기화할 수 없습니다."
+
+msgid "IDS_VCALL_BODY_NUMBER_DOES_NOT_EXIST"
+msgstr "사용하지 않는 번호입니다."
+
+msgid "IDS_CALL_TPOP_SWAPPING_CALLS_ING"
+msgstr "통화 전환 중..."
+
+msgid "IDS_CALL_TPOP_RECORDING_WILL_BE_STOPPED_AND_SAVED_WHEN_CALL_ANSWERED"
+msgstr "전화를 받으면 음성 녹음을 중지하고 녹음된 내용을 저장합니다."
+
+msgid "IDS_CALL_TPOP_RECORDED_MESSAGE_SAVED"
+msgstr "녹음 메시지를 저장하였습니다."
+
+msgid "IDS_CALL_TPOP_FAILED_TO_SAVE_RECORDED_MESSAGE"
+msgstr "녹음 메시지를 저장하지 못하였습니다."
+
+msgid "IDS_CALL_TPOP_ACCEPT_OR_REJECT_CALLS_WITH_THE_VOICE_COMMANDS_P1SS_OR_P2SS_ABB"
+msgstr "“%1$s”, “%2$s”과 같은 음성 명령으로 전화를 받거나 거절할 수 있습니다."
+
+msgid "IDS_CALL_POP_WRONG_GROUP"
+msgstr "그룹이 바르지 않습니다."
+
+msgid "IDS_CALL_POP_VERIFY_SIM_OR_INSERT_VALID_SIM"
+msgstr "SIM 카드를 확인하거나 사용할 수 있는 SIM 카드를 삽입하세요."
+
+msgid "IDS_CALL_POP_USER_BUSY"
+msgstr "상대방이 통화 중입니다."
+
+msgid "IDS_CALL_POP_UNHOLD_NOT_SUPPORTED"
+msgstr "통화 보류를 취소할 수 없습니다."
+
+msgid "IDS_CALL_POP_UNAVAILABLE"
+msgstr "사용할 수 없음"
+
+msgid "IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"
+msgstr "녹음할 수 없습니다. 저장공간이 부족합니다."
+
+msgid "IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS"
+msgstr "컨퍼런스 콜을 연결할 수 없습니다."
+
+msgid "IDS_CALL_POP_TRANSFER_NOT_SUPPORTED"
+msgstr "상대방 연결이 지원되지 않습니다."
+
+msgid "IDS_CALL_POP_TRANSFER_FAILED"
+msgstr "전송하지 못하였습니다."
+
+msgid "IDS_CALL_POP_SWAP_NOT_SUPPORTED"
+msgstr "통화 전환이 지원되지 않습니다."
+
+msgid "IDS_CALL_POP_SWAP_FAILED"
+msgstr "전환하지 못하였습니다."
+
+msgid "IDS_CALL_POP_SPLIT_NOT_SUPPORTED"
+msgstr "통화 분리가 지원되지 않습니다."
+
+msgid "IDS_CALL_POP_SPLIT_FAILED"
+msgstr "통화를 분리하지 못하였습니다."
+
+msgid "IDS_CALL_POP_SERVICE_NOT_ALLOWED"
+msgstr "사용할 수 없는 서비스입니다."
+
+msgid "IDS_CALL_POP_SERVICEUNAVAILABLE"
+msgstr "서비스를 이용할 수 없습니다."
+
+msgid "IDS_CALL_POP_SEND_THE_FOLLOWING_TONES_Q"
+msgstr "다음 알림음을 보낼까요?"
+
+msgid "IDS_CALL_POP_SENDING"
+msgstr "보내는 중..."
+
+msgid "IDS_CALL_POP_REJECTED"
+msgstr "거절하였습니다."
+
+msgid "IDS_CALL_POP_RECORDING_STOPPED_AND_SAVED_MEMORY_FULL"
+msgstr "녹음을 중지한 후 저장하였습니다. 디바이스 저장공간을 모두 사용 중입니다."
+
+msgid "IDS_CALL_POP_RECORDING_SAVED"
+msgstr "녹음을 저장하였습니다."
+
+msgid "IDS_CALL_POP_PS_HAS_HUNG_UP"
+msgstr "%s 님과의 통화를 종료하였습니다."
+
+msgid "IDS_CALL_POP_OUTGOING_CALLS_BARRED"
+msgstr "발신전화를 제한하였습니다."
+
+msgid "IDS_CALL_POP_OPERATION_REFUSED"
+msgstr "작업을 거부하였습니다."
+
+msgid "IDS_CALL_POP_NOT_ENOUGH_MEMORY_DELETE_SOME_ITEMS"
+msgstr "저장공간이 부족합니다. 일부 항목을 삭제하세요."
+
+msgid "IDS_CALL_POP_NOSERVICE"
+msgstr "서비스 지역이 아닙니다"
+
+msgid "IDS_CALL_POP_NETWORK_UNAVAILABLE"
+msgstr "네트워크에 연결할 수 없습니다."
+
+msgid "IDS_CALL_POP_NETWORKBUSY"
+msgstr "네트워크 연결 상태가 원활하지 않습니다."
+
+msgid "IDS_CALL_POP_JOIN_NOT_SUPPORTED"
+msgstr "컨퍼런스 콜을 지원하지 않습니다."
+
+msgid "IDS_CALL_POP_INVALID_NUMBER"
+msgstr "전화번호가 바르지 않습니다."
+
+msgid "IDS_CALL_POP_INCOMPLETE"
+msgstr "완료되지 않았습니다."
+
+msgid "IDS_CALL_POP_HOLD_NOT_SUPPORTED"
+msgstr "통화 보류를 지원하지 않습니다."
+
+msgid "IDS_CALL_POP_FDNCALLONLY"
+msgstr "발신 허용번호로만 전화를 걸 수 있습니다."
+
+msgid "IDS_CALL_POP_EMERGENCY_CALL"
+msgstr "긴급전화"
+
+msgid "IDS_CALL_POP_DTMFSENDING_FAIL"
+msgstr "보내지 못하였습니다. 다시 시도하세요."
+
+msgid "IDS_CALL_POP_DISABLING_FLIGHT_MODE_ING"
+msgstr "[비행기 탑승 모드] 해제 중..."
+
+msgid "IDS_CALL_POP_CONNECTING_TO_PS_ING"
+msgstr "%s에 연결 중..."
+
+msgid "IDS_CALL_POP_CONFERENCECALL_PARTICIPANTS_FULL_VODA"
+msgstr "최대 참가자 수에 도달하였습니다."
+
+msgid "IDS_CALL_POP_CHANGEOFFLINEMODETOCALL"
+msgstr "네트워크에 연결하려면 [비행기 탑승 모드]를 해제하세요."
+
+msgid "IDS_CALL_POP_CAUSE_WRONG_NUMBER"
+msgstr "전화번호가 바르지 않습니다."
+
+msgid "IDS_CALL_POP_CALL_IS_DIVERTED"
+msgstr "착신전환하였습니다."
+
+msgid "IDS_CALL_POP_CALL_BARRED"
+msgstr "통화를 제한하였습니다."
+
+msgid "IDS_CALL_POP_CALLNOTCALLOWED"
+msgstr "전화를 연결할 수 없습니다."
+
+msgid "IDS_CALL_POP_CALLFAILED"
+msgstr "연결하지 못하였습니다."
+
+msgid "IDS_CALL_POP_AEESYS_SYSTEMFAILUREERROR"
+msgstr "시스템 오류가 발생하였습니다."
+
+msgid "IDS_CALL_BUTTON_ADD_NUMBER"
+msgstr "번호 추가"
+
+msgid "IDS_CALL_BODY_RECORDING_MESSAGE_ING"
+msgstr "메시지 녹음 중..."
+
+msgid "IDS_CALL_BODY_OUTGOING_CALL_FORWARDED"
+msgstr "발신전화를 착신전환하였습니다."
+
+msgid "IDS_CALL_BODY_NUMBER_CHANGED"
+msgstr "전화번호를 변경하였습니다."
+
+msgid "IDS_CALL_BODY_NO_VOICE_MAIL_NUMBER_ON_SIM_CARD"
+msgstr "SIM 카드에 음성 메시지 번호가 없습니다"
+
+msgid "IDS_CALL_BODY_NO_ANSWER"
+msgstr "응답이 없습니다"
+
+msgid "IDS_CALL_BODY_FAILED_TO_ADD_CALL"
+msgstr "통화를 추가하지 못하였습니다."
+
+msgid "IDS_CALL_BODY_DISCONNECTED"
+msgstr "연결을 해제하였습니다."
+
+msgid "IDS_CALL_BODY_CONDITIONAL_CALL_FORWARDING_ACTIVE"
+msgstr "조건에 따라 수신전화를 착신전환합니다."
+
+msgid "IDS_CALL_BODY_CALL_REJECTED"
+msgstr "전화를 거절하였습니다."
+
+msgid "IDS_CALL_BODY_CALL_RECORDING"
+msgstr "통화 녹음"
+
+msgid "IDS_CALL_BODY_CALL_ENDE_M_STATUS_ABB"
+msgstr "통화 종료"
+
+msgid "IDS_CALL_BODY_CALLENDED"
+msgstr "통화를 종료하였습니다."
+
+msgid "IDS_CALL_BODY_CALLED_PARTY_UNAVAILABLE"
+msgstr "상대방이 전화를 받지 않습니다."
+
+msgid "IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"
+msgstr "3G 서비스 지역이 아닙니다. 음성통화를 시도할까요?"
+
+msgid "IDS_VCALL_POP_BATTERY_TOO_LOW_TO_MAKE_VIDEO_CALL"
+msgstr "배터리가 부족하여 영상통화를 종료합니다."
+
+msgid "IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"
+msgstr "녹음 시간이 너무 짧아 녹음 파일을 저장할 수 없습니다."
+
+msgid "IDS_COM_POP_PELASE_INSERT_SIM_CARD_TO_ACCESS_NETWORK_SERVICES"
+msgstr "네트워크 서비스를 이용하려면 SIM 카드를 삽입하세요."
+
+msgid "IDS_COM_HEADER_FLIGHT_MODE"
+msgstr "비행기 탑승 모드"
+
+msgid "IDS_COM_BODY_INCOMING_CALL_FROM_PS"
+msgstr "%s 님의 전화입니다."
+
+msgid "IDS_CALL_TPOP_CALL_ENDED_BY_P1SS_RESUMING_CALL_WITH_P2SS_ING"
+msgstr "%1$s 님이 전화를 끊었습니다. %2$s 님의 전화를 연결 중..."
+
+msgid "IDS_COM_BODY_CALL_FORWARDED"
+msgstr "착신전환하였습니다."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER_DEVICE_STORAGE_FULL"
+msgstr "디바이스 저장공간이 없어 녹음 파일을 [음성 녹음]에 저장하였습니다."
+
+msgid "IDS_COM_BODY_MULTI_PARTY_CALL"
+msgstr "컨퍼런스 콜"
+
+msgid "IDS_COM_POP_DISABLE_FLIGHT_MODE"
+msgstr "[비행기 탑승 모드]를 해제하세요."
+
+msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
+msgstr "녹음 파일을 [음성 녹음]에 저장하였습니다."
+

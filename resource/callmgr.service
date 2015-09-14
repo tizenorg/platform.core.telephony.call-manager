@@ -1,0 +1,15 @@
+[Unit]
+Description=Call Manager Daemon
+Requires=tizen-runtime.target
+After=tizen-runtime.target telephony-daemon.service contacts-service.service
+
+[Service]
+User=system
+Group=system
+Type=simple
+ExecStart=/usr/bin/callmgrd
+Restart=always
+RestartSec=0
+
+[Install]
+WantedBy=multi-user.target
