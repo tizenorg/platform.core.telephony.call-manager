@@ -88,7 +88,7 @@ static void __callmgr_bt_ag_call_handling_event_cb(bt_ag_call_handling_event_e e
 		break;
 	}
 
-	bt_handle->cb_fn(bt_event, (void *)call_id, bt_handle->user_data);
+	bt_handle->cb_fn(bt_event, GUINT_TO_POINTER(call_id), bt_handle->user_data);
 }
 
 static void __callmgr_bt_ag_multi_call_handling_event_cb(bt_ag_multi_call_handling_event_e event, void *user_data)
@@ -138,7 +138,7 @@ static void __callmgr_bt_ag_spk_gain_changed_cb(int gain, void *user_data)
 	CM_RETURN_IF_FAIL(bt_handle);
 
 	dbg("gain : %d", gain);
-	bt_handle->cb_fn(CM_BT_EVENT_SPK_GAIN_CHANGED_E, (void *)gain, bt_handle->user_data);
+	bt_handle->cb_fn(CM_BT_EVENT_SPK_GAIN_CHANGED_E, GINT_TO_POINTER(gain), bt_handle->user_data);
 }
 
 static void __callmgr_bt_register_handler(callmgr_bt_handle_h bt_handle)

@@ -104,7 +104,7 @@ make %{?_smp_mflags}
 %install
 %make_install
 mkdir -p %{buildroot}%{_unitdir}/multi-user.target.wants
-ln -s ../callmgr.service %{buildroot}%{_unitdir}/multi-user.target.wants/callmgr.service
+ln -s %{_unitdir}/callmgr.service %{buildroot}%{_unitdir}/multi-user.target.wants/callmgr.service
 
 mkdir -p %{buildroot}/usr/share/license
 cp LICENSE %{buildroot}/usr/share/license/call-manager
@@ -119,7 +119,8 @@ ln -s %{_unitdir}/call-logger.service %{buildroot}%{_unitdir}/multi-user.target.
 %defattr(644,system,system,-)
 %attr(755,system,system) %{_bindir}/callmgrd
 #/etc/*
-%{_unitdir}/*
+%{_unitdir}/callmgr.service
+%{_unitdir}/multi-user.target.wants/callmgr.service
 %{_datadir}/license/call-manager
 %if 0%{?enable_slient_log}
 %attr(755,system,system) /opt/usr/devel/usr/bin/call_silent_logger

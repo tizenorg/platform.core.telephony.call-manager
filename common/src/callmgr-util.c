@@ -19,7 +19,7 @@
 #include <stdio.h>
 #include <aul.h>
 #include <app_control.h>
-//#include <aul_svc.h>
+#include <appsvc.h>
 #include <sys/sysinfo.h>
 #include <stdlib.h>
 #include <metadata_extractor.h>
@@ -201,7 +201,7 @@ static gpointer __callmgr_util_launch_voice_call(gpointer data)
 
 	kb = bundle_create();
 
-	//aul_svc_set_operation(kb, AUL_SVC_OPERATION_CALL);
+	appsvc_set_operation(kb, APPSVC_OPERATION_CALL);
 	appsvc_set_pkgname(kb, "org.tizen.call");
 	appsvc_set_uri(kb,"tel:MT");
 
@@ -235,7 +235,7 @@ static gpointer __callmgr_util_launch_voice_call_by_sat(gpointer data)
 
 	kb = bundle_create();
 
-	//aul_svc_set_operation(kb, AUL_SVC_OPERATION_CALL);
+	appsvc_set_operation(kb, APPSVC_OPERATION_CALL);
 	appsvc_set_uri(kb, "tel:SAT");
 
 	g_snprintf(buf, 2, "%d", cb_data->sim_slot);
@@ -267,7 +267,7 @@ static gpointer __callmgr_util_launch_video_call(gpointer data)
 	kb = bundle_create();
 /*
  * This operation will work when VT stack and VT UI are support
-	aul_svc_set_operation(kb, AUL_SVC_OPERATION_VTCALL);
+	appsvc_set_operation(kb, AUL_SVC_OPERATION_VTCALL);
 */
 	appsvc_set_uri(kb, "tel:MT");
 
@@ -290,20 +290,15 @@ static gpointer __callmgr_util_launch_video_call(gpointer data)
 	return NULL;
 }
 
-
-
-
-
-
 int _callmgr_util_is_ringtone_playable(char *ringtone_path, gboolean *is_playable)
 {
 	int err = METADATA_EXTRACTOR_ERROR_NONE;
 	metadata_extractor_h metadata = NULL;
 	char *value = NULL;
 
-	dbg("_callmgr_util_is_ringtone_playable()");
-
 	CM_RETURN_VAL_IF_FAIL(ringtone_path, -1);
+
+	dbg("_callmgr_util_is_ringtone_playable()");
 
 	if (g_file_test(ringtone_path, G_FILE_TEST_EXISTS) == FALSE) {
 		warn("File missing");
@@ -313,7 +308,6 @@ int _callmgr_util_is_ringtone_playable(char *ringtone_path, gboolean *is_playabl
 
 	if (metadata_extractor_create(&metadata) != METADATA_EXTRACTOR_ERROR_NONE) {
 		err("metadata_extractor_create() failed: ret(%d)", err);
-
 		return -1;
 	}
 
@@ -344,25 +338,23 @@ int _callmgr_util_is_ringtone_playable(char *ringtone_path, gboolean *is_playabl
 
 int _callmgr_util_is_silent_ringtone(char *ringtone_path, gboolean *is_silent_ringtone)
 {
-	dbg("_callmgr_util_is_ringtone_playable()");
-
 	CM_RETURN_VAL_IF_FAIL(ringtone_path, -1);
+
+	dbg("_callmgr_util_is_ringtone_playable()");
 
 	if ((strlen(ringtone_path) == strlen(SOUND_PATH_SILENT)) && ((strncmp(ringtone_path, SOUND_PATH_SILENT, strlen(SOUND_PATH_SILENT)) == 0))) {
 		*is_silent_ringtone = TRUE;
 	} else {
 		*is_silent_ringtone = FALSE;
 	}
-
 	return 0;
 }
 
-
-
 int _callmgr_util_is_callui_running(gboolean *is_callui_running)
 {
-	dbg("_callmgr_util_is_callui_running");
 	bool running = FALSE;
+
+	dbg("_callmgr_util_is_callui_running");
 
 	app_manager_is_running(CALLUI_PKG_NAME, &running);
 	if (running) {
@@ -372,7 +364,6 @@ int _callmgr_util_is_callui_running(gboolean *is_callui_running)
 		dbg("call app is not running");
 		*is_callui_running = FALSE;
 	}
-
 	return 0;
 }
 
@@ -831,7 +822,7 @@ int _callmgr_util_check_disturbing_setting(gboolean *is_do_not_disturb)
 
 	if(do_not_disturb) {
 		err = notification_setting_get_setting_by_package_name(CALLUI_PKG_NAME, &setting);
-		if(err = NOTIFICATION_ERROR_NONE || setting == NULL) {
+		if((err = NOTIFICATION_ERROR_NONE) || (setting == NULL)) {
 			err("notification_setting_get_setting_by_package_name failed [%d]", err);
 			goto out;
 		}

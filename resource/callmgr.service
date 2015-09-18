@@ -4,8 +4,6 @@ Requires=tizen-runtime.target
 After=tizen-runtime.target telephony-daemon.service contacts-service.service
 
 [Service]
-User=system
-Group=system
 Type=simple
 ExecStart=/usr/bin/callmgrd
 Restart=always

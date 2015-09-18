@@ -114,7 +114,7 @@ static void __callmgr_ct_get_group_list_with_pserson_id(int person_id, GSList **
 
 		while(CONTACTS_ERROR_NONE == contacts_list_get_current_record_p(list, &record)) {
 			contacts_record_get_int(record, _contacts_person_grouprel.group_id, &group_id);
-			*group_list = g_slist_append(*group_list, (void *)group_id);
+			*group_list = g_slist_append(*group_list, GINT_TO_POINTER(group_id));
 			err = contacts_list_next(list);
 			if (CONTACTS_ERROR_NONE != err)
 				break;
@@ -153,7 +153,7 @@ static int __callmgr_ct_get_group_ringtone(int person_id, callmgr_contact_info_t
 
 	if (group_len > 0) {
 		for (idx = 0; idx < group_len; idx++) {
-			int group_id = (int)g_slist_nth_data(group_list, idx);
+			int group_id = GPOINTER_TO_INT(g_slist_nth_data(group_list, idx));
 			err = contacts_db_get_record(_contacts_group._uri, group_id , &group_record);
 
 			if (CONTACTS_ERROR_NONE != err) {

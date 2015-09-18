@@ -20,9 +20,6 @@
 #include <ITapiSim.h>
 #include <ITapiModem.h>
 #include <ITapiNetwork.h>
-#ifdef SUPPORT_NOISE_REDUCTION
-#include <ITapiCall_product.h>
-#endif
 #include <ITapiSat.h>
 
 #include <vconf.h>
@@ -423,7 +420,7 @@ static void __callmgr_telephony_handle_tapi_events(TapiHandle *handle, const cha
 			}
 		}
 
-		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_IDLE, (void *)callIdleInfo->id, telephony_handle->user_data);
+		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_IDLE, GUINT_TO_POINTER(callIdleInfo->id), telephony_handle->user_data);
 
 		__callmgr_telephony_get_call_to_be_retreived(telephony_handle, &held_call);
 		if (held_call) {
@@ -445,7 +442,7 @@ static void __callmgr_telephony_handle_tapi_events(TapiHandle *handle, const cha
 		/*If all wait calls are updated*/
 		if (modem_info->wait_call_list == NULL) {
 			__callmgr_telephony_get_all_call_list(telephony_handle);
-			telephony_handle->cb_fn(modem_info->wait_event, (void *)callActiveInfo->id, telephony_handle->user_data);
+			telephony_handle->cb_fn(modem_info->wait_event, GUINT_TO_POINTER(callActiveInfo->id), telephony_handle->user_data);
 		}
 	} else if (g_strcmp0(noti_id, TAPI_NOTI_VOICE_CALL_STATUS_HELD) == 0) {
 		cm_telephony_call_data_t *call_data = NULL;
@@ -461,7 +458,7 @@ static void __callmgr_telephony_handle_tapi_events(TapiHandle *handle, const cha
 		/*If all wait calls are updated*/
 		if (modem_info->wait_call_list == NULL) {
 			__callmgr_telephony_get_all_call_list(telephony_handle);
-			telephony_handle->cb_fn(modem_info->wait_event, (void *)callHeldInfo->id, telephony_handle->user_data);
+			telephony_handle->cb_fn(modem_info->wait_event, GUINT_TO_POINTER(callHeldInfo->id), telephony_handle->user_data);
 
 			call_data = NULL;
 			_callmgr_telephony_get_call_by_call_id(telephony_handle, NO_CALL_HANDLE, &call_data);
@@ -482,7 +479,7 @@ static void __callmgr_telephony_handle_tapi_events(TapiHandle *handle, const cha
 		}
 		__callmgr_telephony_set_call_state(call_data, CM_TEL_CALL_STATE_DIALING);
 		__callmgr_telephony_set_call_id(call_data, callDialingInfo->id);
-		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_DIALING, (void *)callDialingInfo->id, telephony_handle->user_data);
+		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_DIALING, GUINT_TO_POINTER(callDialingInfo->id), telephony_handle->user_data);
 	} else if ((g_strcmp0(noti_id, TAPI_NOTI_VOICE_CALL_STATUS_ALERT) == 0) || (g_strcmp0(noti_id, TAPI_NOTI_VIDEO_CALL_STATUS_ALERT) == 0)) {
 		TelCallStatusAlertNoti_t *callAlertInfo = NULL;
 		cm_telephony_call_data_t *call_data = NULL;
@@ -495,7 +492,7 @@ static void __callmgr_telephony_handle_tapi_events(TapiHandle *handle, const cha
 			return;
 		}
 		__callmgr_telephony_set_call_state(call_data, CM_TEL_CALL_STATE_ALERT);
-		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_ALERT, (void *)callAlertInfo->id, telephony_handle->user_data);
+		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_ALERT, GUINT_TO_POINTER(callAlertInfo->id), telephony_handle->user_data);
 	} else if ((g_strcmp0(noti_id, TAPI_NOTI_VOICE_CALL_STATUS_INCOMING) == 0) || (g_strcmp0(noti_id, TAPI_NOTI_VIDEO_CALL_STATUS_INCOMING) == 0)) {
 		TelCallIncomingCallInfo_t callIncomingInfo = {0,};
 		cm_telephony_call_data_t *call = NULL;
@@ -615,7 +612,7 @@ static void __callmgr_telephony_handle_sound_tapi_events(TapiHandle *handle, con
 			wbamr_status = TRUE;
 		}
 
-		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_SOUND_WBAMR, (void *)wbamr_status, telephony_handle->user_data);
+		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_SOUND_WBAMR, GINT_TO_POINTER(wbamr_status), telephony_handle->user_data);
 	} else if (g_strcmp0(noti_id, TAPI_NOTI_CALL_SOUND_CLOCK_STATUS) == 0) {
 		dbg("TAPI_NOTI_CALL_SOUND_CLOCK_STATUS");
 		/* ToDo : We have to handle this event for 1st MO call */
@@ -1090,7 +1087,6 @@ void _callmgr_telephony_send_sat_response(callmgr_telephony_t telephony_handle, 
 	case CM_TELEPHONY_SAT_EVENT_CALL_CONTROL_RESULT:
 		{
 			cm_telephony_call_data_t *sat_dial_active_call = NULL;
-			int ret = 0;
 			CM_RETURN_IF_FAIL(sat_data->call_control_result);
 
 			switch(sat_data->call_control_result->callCtrlResult) {
@@ -1102,11 +1098,11 @@ void _callmgr_telephony_send_sat_response(callmgr_telephony_t telephony_handle, 
 				break;
 			case TAPI_SAT_CALL_CTRL_R_ALLOWED_WITH_MOD:
 				/* Fetch the Sat / Dial / Active call data for */
-				ret = _callmgr_telephony_get_sat_originated_call(telephony_handle, &sat_dial_active_call);
+				_callmgr_telephony_get_sat_originated_call(telephony_handle, &sat_dial_active_call);
 				if (!sat_dial_active_call)
-					ret = _callmgr_telephony_get_call_by_state(telephony_handle, CM_TEL_CALL_STATE_DIALING, &sat_dial_active_call);
+					_callmgr_telephony_get_call_by_state(telephony_handle, CM_TEL_CALL_STATE_DIALING, &sat_dial_active_call);
 				if (!sat_dial_active_call)
-					ret = _callmgr_telephony_get_call_by_state(telephony_handle, CM_TEL_CALL_STATE_ACTIVE, &sat_dial_active_call);
+					_callmgr_telephony_get_call_by_state(telephony_handle, CM_TEL_CALL_STATE_ACTIVE, &sat_dial_active_call);
 
 				_callmgr_telephony_set_call_number(sat_dial_active_call, sat_data->call_control_result->u.callCtrlCnfCallData.address.string);
 				_callmgr_telephony_set_calling_name(sat_dial_active_call, sat_data->call_control_result->dispData.string);
@@ -1870,7 +1866,6 @@ int _callmgr_telephony_answer_call(callmgr_telephony_t telephony_handle, int ans
 {
 	int ret = -1;
 	cm_telephony_call_data_t *incoming_call_data = NULL;
-	cm_telephony_call_data_t *held_call_data = NULL;
 	unsigned int incoming_call_id = NO_CALL_HANDLE;
 	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
 	CM_RETURN_VAL_IF_FAIL(telephony_handle->active_sim_slot < telephony_handle->modem_cnt, -1);
@@ -3001,39 +2996,6 @@ int _callmgr_telephony_set_audio_path(callmgr_telephony_t telephony_handle, cm_t
 
 	return 0;
 }
-#ifdef SUPPORT_NOISE_REDUCTION
-static void __callmgr_telephony_set_noise_reduction_resp_cb(TapiHandle *handle, int result, void *tapi_data, void *user_data)
-{
-	dbg("Result : %d", result);
-}
-
-int _callmgr_telephony_set_noise_reduction(callmgr_telephony_t telephony_handle, gboolean is_noise_reduction)
-{
-	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
-	CM_RETURN_VAL_IF_FAIL(telephony_handle->active_sim_slot < telephony_handle->modem_cnt, -1);
-
-	dbg(">>");
-
-	TapiResult_t tapi_error = TAPI_API_SUCCESS;
-	TelSoundNoiseReduction_t noise_reduction_status = TAPI_SOUND_NOISE_REDUCTION_OFF;
-
-	dbg("Noise reduction = %d", is_noise_reduction);
-
-	if (is_noise_reduction) {
-		noise_reduction_status = TAPI_SOUND_NOISE_REDUCTION_ON;
-	} else {
-		noise_reduction_status = TAPI_SOUND_NOISE_REDUCTION_OFF;
-	}
-
-	tapi_error = tel_set_call_sound_noise_reduction(telephony_handle->multi_handles[telephony_handle->active_sim_slot], noise_reduction_status, __callmgr_telephony_set_noise_reduction_resp_cb, NULL);
-	if (tapi_error != TAPI_API_SUCCESS) {
-		err("tel_set_call_sound_noise_reduction error: %d", tapi_error);
-		return -1;
-	}
-
-	return 0;
-}
-#endif
 
 static void __callmgr_telephony_set_audio_tx_mute_resp_cb(TapiHandle *handle, int result, void *tapi_data, void *user_data)
 {

@@ -355,7 +355,7 @@ void _callmgr_popup_del_popup(void *data)
 
 static char *__callmgr_popup_sim_list_gl_label_get(void *data, Evas_Object *obj, const char *part)
 {
-	int idx = (int) data;
+	int idx = GPOINTER_TO_INT(data);
 	char *sim_name = NULL;
 	if (strcmp(part, "elm.text.main.left") == 0) {
 		if (idx == 0) {
@@ -378,7 +378,7 @@ static char *__callmgr_popup_sim_list_gl_label_get(void *data, Evas_Object *obj,
 
 static Evas_Object *__callmgr_popup_sim_list_gl_icon_get(void *data, Evas_Object *obj, const char *part)
 {
-	int idx = (int) data;
+	int idx = GPOINTER_TO_INT(data);
 	Evas_Object *sim_icon = NULL;
 	int sim_icon_index = 0;
 	Evas_Object *main_ly = NULL;
@@ -428,7 +428,7 @@ static void __callmgr_popup_sim_list_gl_sel(void *data, Evas_Object *obj, void *
 	_callmgr_popup_del_popup(ad);
 
 	if (item != NULL) {
-		int index = (int)elm_object_item_data_get(item);
+		int index = GPOINTER_TO_INT(elm_object_item_data_get(item));
 		DBG("index: %d", index);
 
 		_callmgr_popup_reply_to_launch_request(ad, "RESULT", "1");	/* "1" means OK */
@@ -488,11 +488,11 @@ void _callmgr_popup_create_sim_selection(void *data)
 
 	elm_scroller_content_min_limit(glist, EINA_FALSE, EINA_TRUE);
 
-	it = elm_genlist_item_append(glist, itc, (void *)index, NULL, ELM_GENLIST_ITEM_NONE, __callmgr_popup_sim_list_gl_sel, ad);
-	elm_object_item_data_set(it, (void*)index);
+	it = elm_genlist_item_append(glist, itc, GINT_TO_POINTER(index), NULL, ELM_GENLIST_ITEM_NONE, __callmgr_popup_sim_list_gl_sel, ad);
+	elm_object_item_data_set(it, GINT_TO_POINTER(index));
 	index++;
-	it = elm_genlist_item_append(glist, itc, (void *)index, NULL, ELM_GENLIST_ITEM_NONE, __callmgr_popup_sim_list_gl_sel, ad);
-	elm_object_item_data_set(it, (void*)index);
+	it = elm_genlist_item_append(glist, itc, GINT_TO_POINTER(index), NULL, ELM_GENLIST_ITEM_NONE, __callmgr_popup_sim_list_gl_sel, ad);
+	elm_object_item_data_set(it, GINT_TO_POINTER(index));
 
 	evas_object_smart_callback_add(ad->popup, "response",
 				__callmgr_popup_hw_key_unload, ad);

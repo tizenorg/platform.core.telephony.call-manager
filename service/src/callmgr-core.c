@@ -597,7 +597,7 @@ static void __callmgr_core_process_incoming_call(callmgr_core_data_t *core_data,
 	}
 	else {
 		err("Invalid call type[%d].", call_type);
-		sound_mode = CALLMGR_AUDIO_SESSION_VIDEO_E;
+		sound_mode = CALLMGR_AUDIO_SESSION_VOICE_E;
 	}
 
 	_callmgr_ringer_stop_signal(core_data->ringer_handle);
@@ -2787,12 +2787,6 @@ int _callmgr_core_process_set_noise_reduction(callmgr_core_data_t *core_data, gb
 		err("_callmgr_audio_set_noise_reduction() failed");
 		return -1;
 	}
-#ifdef SUPPORT_NOISE_REDUCTION
-	if (_callmgr_telephony_set_noise_reduction(core_data->telephony_handle, is_noise_reduction) < 0) {
-		err("_callmgr_telephony_set_noise_reduction() failed");
-		return -1;
-	}
-#endif
 	return 0;
 }
 

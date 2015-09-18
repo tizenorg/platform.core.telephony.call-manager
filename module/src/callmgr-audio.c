@@ -170,7 +170,7 @@ static void __callmgr_audio_volume_changed_cb(sound_type_e type, unsigned int vo
 
 	if (snd_type == SOUND_TYPE_CALL) {
 		dbg("sound type : %d, volume : %d", snd_type, volume);
-		audio_handle->cb_fn(CM_AUDIO_EVENT_VOLUME_CHANGED_E, (void *)volume, audio_handle->user_data);
+		audio_handle->cb_fn(CM_AUDIO_EVENT_VOLUME_CHANGED_E, GUINT_TO_POINTER(volume), audio_handle->user_data);
 	}
 	return;
 }
@@ -183,7 +183,6 @@ int _callmgr_audio_create_call_sound_session(callmgr_audio_handle_h audio_handle
 	dbg("_callmgr_audio_create_call_sound_session()");
 	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
 
-/*
 	if (audio_handle->current_mode == session_mode) {
 		warn("already (%d) set ", session_mode);
 		return -2;
@@ -195,6 +194,7 @@ int _callmgr_audio_create_call_sound_session(callmgr_audio_handle_h audio_handle
 		return -1;
 	}
 
+/*
 	if (CALLMGR_AUDIO_SESSION_VOICE_E == session_mode) {
 		ret = sound_manager_set_session_type_internal(SOUND_SESSION_TYPE_CALL);
 	} else {
@@ -373,7 +373,6 @@ static int __callmgr_audio_get_sound_device(sound_device_type_e device_type, sou
 	sound_device_h	device = NULL;
 	sound_device_type_e o_device_type;
 	int ret = -1;
-	int index = 0;
 
 	ret = sound_manager_get_current_device_list (SOUND_DEVICE_ALL_MASK, &device_list);
 	if (ret != SOUND_MANAGER_ERROR_NONE) {

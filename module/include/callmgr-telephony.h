@@ -417,9 +417,6 @@ int _callmgr_telephony_is_flight_mode_enabled(callmgr_telephony_t telephony_hand
 int _callmgr_telephony_is_cs_available(callmgr_telephony_t telephony_handle, gboolean *is_available);
 int _callmgr_telephony_get_call_list(callmgr_telephony_t telephony_handle, GSList **call_list);
 int _callmgr_telephony_set_audio_path(callmgr_telephony_t telephony_handle, cm_telephony_audio_path_type_e path, gboolean is_extra_vol);
-#ifdef SUPPORT_NOISE_REDUCTION
-int _callmgr_telephony_set_noise_reduction(callmgr_telephony_t telephony_handle, gboolean is_noise_reduction);
-#endif
 int _callmgr_telephony_set_audio_tx_mute(callmgr_telephony_t telephony_handle, gboolean is_mute_state);
 int _callmgr_telephony_reset_call_start_time(cm_telephony_call_data_t *call);
 int _callmgr_telephony_get_imsi_mcc_mnc(callmgr_telephony_t telephony_handle, unsigned long *mcc, unsigned long *mnc);
