@@ -129,7 +129,7 @@ static int __callmgr_vr_stop_record_internal(callmgr_vr_handle_h vr_handle);
 static gboolean __callmgr_vr_state_changed_cb_real(void *user_data)
 {
 	callmgr_vr_cb_info_t *info = (callmgr_vr_cb_info_t *)user_data;
-	callmgr_vr_handle_h vr_handle = (callmgr_vr_handle_h *)info->user_data;
+	callmgr_vr_handle_h vr_handle = (callmgr_vr_handle_h )info->user_data;
 	callmgr_vr_status_extra_type_e extra_data;
 
 	/*recorder_state_e previous, recorder_state_e current, bool by_policy,*/
@@ -176,7 +176,7 @@ static gboolean __callmgr_vr_state_changed_cb_real(void *user_data)
 static gboolean __callmgr_vr_limit_reached_cb_real(void *user_data)
 {
 	callmgr_vr_cb_info_t *info = (callmgr_vr_cb_info_t *)user_data;
-	callmgr_vr_handle_h vr_handle = (callmgr_vr_handle_h *)info->user_data;
+	callmgr_vr_handle_h vr_handle = (callmgr_vr_handle_h )info->user_data;
 	callmgr_vr_status_extra_type_e extra_data = CALLMGR_VR_STATUS_EXTRA_STOP_TYPE_BY_NORMAL;
 	int result = 0;
 
@@ -220,7 +220,6 @@ static gboolean __callmgr_vr_limit_reached_cb_real(void *user_data)
 static gboolean __callmgr_vr_error_cb_real(void *user_data)
 {
 	callmgr_vr_cb_info_t *info = (callmgr_vr_cb_info_t *)user_data;
-	callmgr_vr_handle_h *vr_handle = (callmgr_vr_handle_h *)info->user_data;
 
 	err("!!! ERROR[%d], current state[%d]", info->cb_data.error.error, info->cb_data.error.current_state);
 
@@ -320,58 +319,19 @@ static int __callmgr_vr_ready(callmgr_vr_handle_h vr_handle)
 		return -1;
 	}
 
-	ret_val = recorder_attr_set_audio_device(vr_handle->recorder_handle, RECORDER_AUDIO_DEVICE_MIC);
-	if (ret_val != RECORDER_ERROR_NONE) {
-		err("recorder_attr_set_audio_device");
-		goto READY_FAIL;
-	}
-
-	ret_val = recorder_set_audio_encoder(vr_handle->recorder_handle, RECORDER_AUDIO_CODEC_AMR);
-	if (ret_val != RECORDER_ERROR_NONE) {
-		err("recorder_set_audio_encoder");
-		goto READY_FAIL;
-	}
-
-	ret_val = recorder_set_file_format(vr_handle->recorder_handle, RECORDER_FILE_FORMAT_AMR);
-	if (ret_val != RECORDER_ERROR_NONE) {
-		err("recorder_set_file_format");
-		goto READY_FAIL;
-	}
-
-	ret_val = recorder_attr_set_audio_samplerate(vr_handle->recorder_handle, CM_VR_SAMPLERATE_LOW);
-	if (ret_val != RECORDER_ERROR_NONE) {
-		err("recorder_attr_set_audio_samplerate");
-		goto READY_FAIL;
-	}
-
-	ret_val = recorder_attr_set_audio_encoder_bitrate(vr_handle->recorder_handle, CM_VR_ENCODER_BITRATE_AMR);
-	if (ret_val != RECORDER_ERROR_NONE) {
-		err("recorder_attr_set_audio_encoder_bitrate");
-		goto READY_FAIL;
-	}
-
-	ret_val = recorder_set_filename(vr_handle->recorder_handle, CM_VR_TEMP_FILENAME);
-	if (ret_val != RECORDER_ERROR_NONE) {
-		err("recorder_set_filename");
-		goto READY_FAIL;
-	}
-
-	ret_val = recorder_attr_set_audio_channel(vr_handle->recorder_handle, CM_VR_SOURCE_CHANNEL);
-	if (ret_val != RECORDER_ERROR_NONE) {
-		err("recorder_attr_set_audio_channel");
-		goto READY_FAIL;
-	}
-
-	if (vr_handle->is_answering == EINA_TRUE) {
-		vr_handle->max_time = CM_VR_ANSWERING_MSG_MAX_TIME_LIMIT;
-	} else {
-		vr_handle->max_time = CM_VR_RECORD_MAX_TIME_LIMIT;
-	}
-
 	ret_val = recorder_attr_set_time_limit(vr_handle->recorder_handle, vr_handle->max_time);
 	if (ret_val != RECORDER_ERROR_NONE) {
 		err("recorder_attr_set_time_limit");
 		goto READY_FAIL;
+	}
+
+	recorder_state_e rec_status = RECORDER_STATE_NONE;
+	recorder_get_state(vr_handle->recorder_handle, &rec_status);
+	dbg("rec_status = %d ", rec_status);
+
+	if (rec_status == RECORDER_STATE_READY) {
+		dbg("recorder state is already ready.");
+		return 0;
 	}
 
 	ret_val = recorder_prepare(vr_handle->recorder_handle);
@@ -382,20 +342,17 @@ static int __callmgr_vr_ready(callmgr_vr_handle_h vr_handle)
 		goto READY_FAIL;
 	}
 
-	vr_handle->record_state = CALLMGR_VR_INITIALIZED;
 	return 0;
 
 READY_FAIL:
-	dbg("Ready fail : 0x%x", ret_val);
+	err("Ready fail : 0x%x", ret_val);
 	return -1;
 }
 
-static int __callmgr_vr_create(callmgr_vr_handle_h vr_handle, const char* call_num, const char* call_name, gboolean is_answering_machine)
+static int __callmgr_vr_reset(callmgr_vr_handle_h vr_handle, const char* call_num, const char* call_name, gboolean is_answering_machine)
 {
 	CM_RETURN_VAL_IF_FAIL(vr_handle, -1);
-	int ret_val = RECORDER_ERROR_NONE;
 
-	vr_handle->recorder_handle = CM_VR_INVALID_HANDLE;
 	vr_handle->is_answering = is_answering_machine;
 	vr_handle->elapsed_time = 0;
 
@@ -414,30 +371,87 @@ static int __callmgr_vr_create(callmgr_vr_handle_h vr_handle, const char* call_n
 	/* Reset the time */
 	vr_handle->start_time = time(NULL);
 
+	if (vr_handle->is_answering == EINA_TRUE) {
+		vr_handle->max_time = CM_VR_ANSWERING_MSG_MAX_TIME_LIMIT;
+	} else {
+		vr_handle->max_time = CM_VR_RECORD_MAX_TIME_LIMIT;
+	}
+
+	return 0;
+}
+
+static int __callmgr_vr_create(callmgr_vr_handle_h vr_handle)
+{
+	CM_RETURN_VAL_IF_FAIL(vr_handle, -1);
+	int ret_val = RECORDER_ERROR_NONE;
+
 	ret_val = recorder_create_audiorecorder(&(vr_handle->recorder_handle));
 
 	if (ret_val == RECORDER_ERROR_NONE) {
-		recorder_set_state_changed_cb(vr_handle->recorder_handle,
+		ret_val = recorder_set_state_changed_cb(vr_handle->recorder_handle,
 				__callmgr_vr_state_changed_cb, vr_handle);
+		if (ret_val != RECORDER_ERROR_NONE) {
+			err("recorder_set_state_changed_cb");
+		}
 
-		recorder_set_recording_status_cb(vr_handle->recorder_handle,
+		ret_val = recorder_set_recording_status_cb(vr_handle->recorder_handle,
 				__callmgr_vr_recording_status_changed_cb, vr_handle);
+		if (ret_val != RECORDER_ERROR_NONE) {
+			err("recorder_set_recording_status_cb");
+		}
 
-		recorder_set_recording_limit_reached_cb(vr_handle->recorder_handle,
+		ret_val = recorder_set_recording_limit_reached_cb(vr_handle->recorder_handle,
 				__callmgr_vr_limit_reached_cb, vr_handle);
+		if (ret_val != RECORDER_ERROR_NONE) {
+			err("recorder_set_recording_limit_reached_cb");
+		}
 
-		recorder_set_error_cb(vr_handle->recorder_handle,
+		ret_val = recorder_set_error_cb(vr_handle->recorder_handle,
 				__callmgr_vr_error_cb, vr_handle);
+		if (ret_val != RECORDER_ERROR_NONE) {
+			err("recorder_set_error_cb");
+		}
+
+		ret_val = recorder_attr_set_audio_device(vr_handle->recorder_handle, RECORDER_AUDIO_DEVICE_MIC);
+		if (ret_val != RECORDER_ERROR_NONE) {
+			err("recorder_attr_set_audio_device");
+		}
+
+		ret_val = recorder_set_audio_encoder(vr_handle->recorder_handle, RECORDER_AUDIO_CODEC_AMR);
+		if (ret_val != RECORDER_ERROR_NONE) {
+			err("recorder_set_audio_encoder");
+		}
+
+		ret_val = recorder_set_file_format(vr_handle->recorder_handle, RECORDER_FILE_FORMAT_AMR);
+		if (ret_val != RECORDER_ERROR_NONE) {
+			err("recorder_set_file_format");
+		}
+
+		ret_val = recorder_attr_set_audio_samplerate(vr_handle->recorder_handle, CM_VR_SAMPLERATE_LOW);
+		if (ret_val != RECORDER_ERROR_NONE) {
+			err("recorder_attr_set_audio_samplerate");
+		}
+
+		ret_val = recorder_attr_set_audio_encoder_bitrate(vr_handle->recorder_handle, CM_VR_ENCODER_BITRATE_AMR);
+		if (ret_val != RECORDER_ERROR_NONE) {
+			err("recorder_attr_set_audio_encoder_bitrate");
+		}
+
+		ret_val = recorder_set_filename(vr_handle->recorder_handle, CM_VR_TEMP_FILENAME);
+		if (ret_val != RECORDER_ERROR_NONE) {
+			err("recorder_set_filename");
+		}
+
+		ret_val = recorder_attr_set_audio_channel(vr_handle->recorder_handle, CM_VR_SOURCE_CHANNEL);
+		if (ret_val != RECORDER_ERROR_NONE) {
+			err("recorder_attr_set_audio_channel");
+		}
 	} else {
 		err("recorder_create_audiorecorder error : %d", ret_val);
 		return -1;
 	}
 
-	ret_val = __callmgr_vr_ready(vr_handle);
-	if (ret_val == -1) {
-		err("__voicecall_vr_ready error : %d", ret_val);
-		return -1;
-	}
+	vr_handle->record_state = CALLMGR_VR_INITIALIZED;
 
 	return 0;
 }
@@ -490,7 +504,7 @@ static int __callmgr_vr_unrealize(callmgr_vr_handle_h vr_handle)
 		}
 	}
 
-	vr_handle->record_state = CALLMGR_VR_NONE;
+	vr_handle->record_state = CALLMGR_VR_INITIALIZED;
 	return 0;
 }
 
@@ -612,9 +626,9 @@ int _callmgr_vr_start_record(callmgr_vr_handle_h vr_handle, const char* call_num
 	int ret_val = RECORDER_ERROR_NONE;
 	callmgr_vr_state_e cur_vr_state = CALLMGR_VR_NONE;
 
-	if (__callmgr_vr_is_available_memory() < 0) {
+	if (__callmgr_vr_is_available_memory() == FALSE) {
 		err("No free space");
-
+		_callmgr_util_launch_popup(CALL_POPUP_REC_STATUS, CM_UTIL_REC_STATUS_STOP_BY_NO_ENOUGH_MEMORY, NULL, 0, NULL, NULL);
 		/*
 		 * Todo need to launch "Unable to save data" popup.
 		 * (refer [Tizen_2.4]Voice_Call_UI_[Z3].pdf, [Tizen_2.4]Pattern_UI_[Z3].pdf)
@@ -624,11 +638,12 @@ int _callmgr_vr_start_record(callmgr_vr_handle_h vr_handle, const char* call_num
 	}
 
 	_callmgr_vr_get_recording_state(vr_handle, &cur_vr_state);
+	__callmgr_vr_reset(vr_handle, call_num, call_name, is_answering_machine);
 
 	switch (cur_vr_state) {
 	case CALLMGR_VR_NONE:
 		{
-			ret_val = __callmgr_vr_create(vr_handle, call_num, call_name, is_answering_machine);
+			ret_val = __callmgr_vr_create(vr_handle);
 			if (ret_val >= 0) {
 /* Todo need to add check for answering machine */
 /*
@@ -638,6 +653,11 @@ int _callmgr_vr_start_record(callmgr_vr_handle_h vr_handle, const char* call_num
 				}
 	#endif
 */
+				ret_val = __callmgr_vr_ready(vr_handle);
+				if (ret_val < 0) {
+					err("__callmgr_vr_ready error : %d", ret_val);
+					return -1;
+				}
 				ret_val = __callmgr_vr_record(vr_handle);
 				if (ret_val < 0) {
 					err("__callmgr_vr_record failed");
@@ -649,9 +669,14 @@ int _callmgr_vr_start_record(callmgr_vr_handle_h vr_handle, const char* call_num
 
 	case CALLMGR_VR_INITIALIZED:
 		{
+			ret_val = __callmgr_vr_ready(vr_handle);
+			if (ret_val < 0) {
+				err("__callmgr_vr_ready error : %d", ret_val);
+				return -1;
+			}
 			ret_val = __callmgr_vr_record(vr_handle);
 			if (ret_val < 0) {
-				err("__callmgr_vr_record failed");
+				err("__callmgr_vr_record failed : %d", ret_val);
 				return -1;
 			}
 		}
@@ -664,7 +689,7 @@ int _callmgr_vr_start_record(callmgr_vr_handle_h vr_handle, const char* call_num
 		break;
 
 	default:
-		dbg("Invalid State[%d].", cur_vr_state);
+		err("Invalid State[%d].", cur_vr_state);
 		break;
 	}
 
@@ -773,15 +798,15 @@ static int __callmgr_vr_create_filename(callmgr_vr_handle_h vr_handle)
 	rec_size = __callmgr_vr_get_file_size_by_filename(CM_VR_TEMP_FILENAME);
 	fex_remain_size = __callmgr_vr_fex_get_available_memory_space(g_storage_type);
 	if (rec_size == 0) {
-		dbg("Can't save: empty file!!");
+		err("Can't save: empty file!!");
 		return -1;
 	} else if ((int)(rec_size / 1024) > fex_remain_size
 			&& (g_storage_type != CALLMGR_VR_STORAGE_PHONE)) {
-		dbg("Can't save: short of memory!!");
+		err("Can't save: short of memory!!");
 		return -1;
 	} else {
 		char *str_time = NULL;
-		dbg("Can save: recorded[%d Byte, (=%d KB)], available[%d KB].", (int)rec_size, (int)(rec_size / 1024), (int)(fex_remain_size));
+		info("Can save: recorded[%d Byte, (=%d KB)], available[%d KB].", (int)rec_size, (int)(rec_size / 1024), (int)(fex_remain_size));
 
 		/*Get the Traget Path */
 		memset(vr_handle->file_path, 0, sizeof(vr_handle->file_path));
@@ -798,7 +823,7 @@ static int __callmgr_vr_create_filename(callmgr_vr_handle_h vr_handle)
 //		}
 
 		if (FALSE == __callmgr_vr_is_dir_exist(vr_handle->file_path)) {
-			dbg("Directory is not exist. Create it");
+			info("Directory is not exist. Create it");
 			__callmgr_vr_make_dir(vr_handle->file_path, 0755);
 		}
 		str_time = __callmgr_vr_get_start_time(vr_handle->start_time);
@@ -823,7 +848,7 @@ static int __callmgr_vr_create_filename(callmgr_vr_handle_h vr_handle)
 			sync();
 			dbg("rename success");
 		} else {
-			dbg("rename failed");
+			err("rename failed");
 			return -1;
 		}
 
@@ -848,7 +873,7 @@ static int __callmgr_vr_update_media_info(callmgr_vr_handle_h vr_handle)
 		if (ret == MEDIA_CONTENT_ERROR_NONE) {
 			result = 0;
 		} else {
-			dbg("media_info_insert_to_db().. [%d]", ret);
+			err("media_info_insert_to_db().. [%d]", ret);
 			result = -1;
 		}
 
@@ -859,7 +884,7 @@ static int __callmgr_vr_update_media_info(callmgr_vr_handle_h vr_handle)
 
 		media_content_disconnect();
 	} else {
-		dbg("media_content_connect()..failed [%d]", ret);
+		err("media_content_connect()..failed [%d]", ret);
 	}
 	return result;
 }
@@ -882,26 +907,26 @@ static int __callmgr_vr_create_filter(callmgr_vr_filter_type_t cond_type, filter
 			condition = "MEDIA_STORAGE_TYPE=122 AND MEDIA_PLAYED_COUNT=0";
 			break;
 		default:
-			dbg("Filter type is error");
+			err("Filter type is error");
 			goto error;
 			break;
 	}
 
 	ret = media_filter_create(&filter);
 	if (ret != MEDIA_CONTENT_ERROR_NONE) {
-		dbg("media_filter_create() failed : [%d]", ret);
+		err("media_filter_create() failed : [%d]", ret);
 		goto error;
 	}
 
 	ret = media_filter_set_condition(filter, condition, MEDIA_CONTENT_COLLATE_NOCASE);
 	if (ret != MEDIA_CONTENT_ERROR_NONE) {
-		dbg("media_filter_set_condition() failed : [%d]", ret);
+		err("media_filter_set_condition() failed : [%d]", ret);
 		goto error;
 	}
 
 	ret = media_filter_set_order(filter, MEDIA_CONTENT_ORDER_ASC, MEDIA_ADDED_TIME, MEDIA_CONTENT_COLLATE_NOCASE);
 	if (ret != MEDIA_CONTENT_ERROR_NONE) {
-		dbg("media_filter_set_order() failed : [%d]", ret);
+		err("media_filter_set_order() failed : [%d]", ret);
 		goto error;
 	}
 	*o_filter_h =  filter;
@@ -927,7 +952,7 @@ static int __callmgr_vr_get_file_number_from_db(callmgr_vr_filter_type_t cond_ty
 		if (filter) {
 			ret = media_info_get_media_count_from_db(filter, &count);
 			if (ret != MEDIA_CONTENT_ERROR_NONE) {
-				dbg("media_info_get_media_count_from_db_with_media_mode() failed : [%d]", ret);
+				err("media_info_get_media_count_from_db_with_media_mode() failed : [%d]", ret);
 			}
 
 			media_filter_destroy(filter);
@@ -935,10 +960,10 @@ static int __callmgr_vr_get_file_number_from_db(callmgr_vr_filter_type_t cond_ty
 		}
 		media_content_disconnect();
 	} else {
-		dbg("media_content_connect() failed : [%d]", ret);
+		err("media_content_connect() failed : [%d]", ret);
 	}
 
-	dbg("File count from DB : [%d]", count);
+	info("File count from DB : [%d]", count);
 	return count;
 }
 static bool __callmgr_vr_media_info_cb(media_info_h media, void *user_data)
@@ -967,7 +992,7 @@ static void __callmgr_vr_get_oldest_file(char **media_id, char **file_path)
 		}
 		ret = media_info_foreach_media_from_db(filter, __callmgr_vr_media_info_cb, &media);
 		if (ret != MEDIA_CONTENT_ERROR_NONE) {
-			dbg("media_info_get_media_count_from_db_with_media_mode() failed : [%d]", ret);
+			err("media_info_get_media_count_from_db_with_media_mode() failed : [%d]", ret);
 			media_filter_destroy(filter);
 			return;
 		}
@@ -977,14 +1002,14 @@ static void __callmgr_vr_get_oldest_file(char **media_id, char **file_path)
 		if (media_id) {
 			ret = media_info_get_media_id(media, media_id);
 			if (ret != MEDIA_CONTENT_ERROR_NONE) {
-				dbg("media_info_get_media_id() failed : [%d]", ret);
+				err("media_info_get_media_id() failed : [%d]", ret);
 			}
 		}
 
 		if (file_path) {
 			ret = media_info_get_file_path(media, file_path);
 			if (ret != MEDIA_CONTENT_ERROR_NONE) {
-			dbg("media_info_get_file_path() failed : [%d]", ret);
+			err("media_info_get_file_path() failed : [%d]", ret);
 			}
 		}
 
@@ -1030,11 +1055,11 @@ static int __callmgr_vr_del_read_file(void)
 			if (__callmgr_vr_files_remove_file_real(file_path) >= 0) {
 				int err = media_info_delete_from_db(media_id);
 				if (err != MEDIA_CONTENT_ERROR_NONE) {
-					dbg("media_info_delete_from_db Failed : [%d]", err);
+					err("media_info_delete_from_db Failed : [%d]", err);
 					result = -1;
 				}
 			} else {
-				dbg("Can not remove file");
+				err("Can not remove file");
 				result = -1;
 			}
 
@@ -1049,11 +1074,11 @@ static int __callmgr_vr_del_read_file(void)
 
 			media_content_disconnect();
 		} else {
-			dbg("media_content_connect failed ; [%d]", ret);
+			err("media_content_connect failed ; [%d]", ret);
 			result = -1;
 		}
 	} else {
-		dbg("No need to delete oldest file");
+		err("No need to delete oldest file");
 		result = 0;
 	}
 
@@ -1080,14 +1105,14 @@ static int __callmgr_vr_update_answering_msg_media_info(callmgr_vr_handle_h vr_h
 
 			ret = media_info_set_display_name(info, vr_handle->disp_name);
 			if (ret != MEDIA_CONTENT_ERROR_NONE) {
-				dbg("media_info_set_display_name().. [%d]", ret);
+				err("media_info_set_display_name().. [%d]", ret);
 				result = -1;
 			}
 
 			char *display_name = NULL;
 			ret = media_info_get_display_name(info, &display_name);
 			if (ret != MEDIA_CONTENT_ERROR_NONE) {
-				dbg("media_info_get_display_name().. [%d]", ret);
+				err("media_info_get_display_name().. [%d]", ret);
 				result = -1;
 			}
 			free(display_name);
@@ -1095,11 +1120,11 @@ static int __callmgr_vr_update_answering_msg_media_info(callmgr_vr_handle_h vr_h
 
 			ret = media_info_update_to_db(info);
 			if (ret != MEDIA_CONTENT_ERROR_NONE) {
-				dbg("media_info_update_to_db().. [%d]", ret);
+				err("media_info_update_to_db().. [%d]", ret);
 				result = -1;
 			}
 		} else {
-			dbg("media_cloud_info_insert_to_db_without_info().. [%d]", ret);
+			err("media_cloud_info_insert_to_db_without_info().. [%d]", ret);
 			result = -1;
 		}
 		/* info can't be true due to media_cloud_info_insert_to_db_without_info blocked*/
@@ -1110,7 +1135,7 @@ static int __callmgr_vr_update_answering_msg_media_info(callmgr_vr_handle_h vr_h
 
 		media_content_disconnect();
 	} else {
-		dbg("media_content_connect()..failed [%d]", ret);
+		err("media_content_connect()..failed [%d]", ret);
 		result = -1;
 	}
 	return result;
@@ -1141,7 +1166,7 @@ static int __callmgr_vr_stop_record_internal(callmgr_vr_handle_h vr_handle)
 				if (ret >= 0) {
 					ret = __callmgr_vr_update_answering_msg_media_info(vr_handle);
 				} else {
-					dbg("Can not remove oldest file");
+					err("Can not remove oldest file");
 				}
 			}
 		}
@@ -1200,7 +1225,7 @@ static int __callmgr_vr_fex_get_available_memory_space(callmgr_vr_store_type_e s
 		}
 
 		available_kilobytes = (int)(avail / 1024);
-		dbg("Available size : %lf, KB : %d", avail, available_kilobytes);
+		info("Available size : %lf, KB : %d", avail, available_kilobytes);
 	} else {
 		struct statfs buf = { 0 };
 		callmgr_vr_fex_memory_status_t memory_status = { 0, 0 };
@@ -1214,7 +1239,7 @@ static int __callmgr_vr_fex_get_available_memory_space(callmgr_vr_store_type_e s
 
 		memory_status.capacity = buf.f_blocks * (buf.f_bsize / 1024);	/* return kilo byte. Calculating division first avoids overflow */
 		memory_status.used = memory_status.capacity - (buf.f_bavail * (buf.f_bsize / 1024));
-		dbg(".....capacity = %ld KB, used = %ld KB", memory_status.capacity, memory_status.used);
+		info(".....capacity = %ld KB, used = %ld KB", memory_status.capacity, memory_status.used);
 
 		available_kilobytes = memory_status.capacity - memory_status.used;
 	}
@@ -1230,11 +1255,11 @@ static gboolean __callmgr_vr_is_available_memory(void)
 	int fex_remain_size = 0;
 
 	fex_remain_size = __callmgr_vr_fex_get_available_memory_space(g_storage_type);
-	dbg("The remained memory space size is %d!", fex_remain_size);
+	info("The remained memory space size is %d!", fex_remain_size);
 	if (fex_remain_size > 0) {
-		return 0;
+		return TRUE;
 	} else {
-		dbg("Short of memory!");
-		return -1;
+		err("Short of memory!");
+		return FALSE;
 	}
 }

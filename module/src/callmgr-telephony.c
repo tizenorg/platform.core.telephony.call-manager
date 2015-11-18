@@ -21,6 +21,7 @@
 #include <ITapiModem.h>
 #include <ITapiNetwork.h>
 #include <ITapiSat.h>
+#include <device/power.h>
 
 #include <vconf.h>
 #include <assert.h>
@@ -54,18 +55,18 @@ struct __cm_tel_call_data {
 	cm_telephony_call_type_e call_type;			/**< Specifies type of call (voice, data, emergency) */
 	cm_telephony_call_state_e call_state;		/**< Current Call state */
 	gboolean is_sat_originated_call;
+	gboolean is_in_sat_call_control;
 	gboolean is_conference;						/**< Whether Call is in Conference or not*/
 	int ecc_category;			/**< emergency category(seethe TelSimEccEmergencyServiceInfo_t or TelCallEmergencyCategory_t)*/
 	long start_time;	/**< start time of the Call*/
 	cm_telephony_end_cause_type_e end_cause;		/* End cause of ended call*/
 	cm_telephony_name_mode_e name_mode;
 
-	gboolean retreive_flag;
+	gboolean retrieve_flag;
+	gboolean is_canceled;		/* Call is canceled by user before connected */
 };
 
 struct __cm_tel_sat_data {
-	cm_telephony_sat_event_type_e event_type;
-
 	TelSatSetupCallIndCallData_t *setup_call;
 	TelSatSendDtmfIndDtmfData_t *send_dtmf;
 	TelSatCallCtrlIndData_t *call_control_result;
@@ -76,6 +77,7 @@ struct __modem_info {
 	gboolean is_sim_initialized;
 	gboolean is_phone_initialized;
 	gboolean is_cs_available;
+	gboolean is_sim_poweroff;
 	cm_telephony_card_type_e card_type;				/**< SIM Card Type */
 	cm_network_status_e network_status;
 	unsigned long net_mcc;
@@ -163,11 +165,13 @@ static int __callmgr_telephony_set_conference_call_state(cm_telephony_call_data_
 static int __callmgr_telephony_set_name_mode(cm_telephony_call_data_t *call, cm_telephony_name_mode_e name_mode);
 static int __callmgr_telephony_set_start_time(cm_telephony_call_data_t *call);
 static int __callmgr_telephony_get_all_call_list(callmgr_telephony_t telephony_handle);
-static int __callmgr_telephony_set_retreive_flag(cm_telephony_call_data_t *call, gboolean is_set);
-static int __callmgr_telephony_get_call_to_be_retreived(callmgr_telephony_t telephony_handle, cm_telephony_call_data_t **call_data_out);
+static int __callmgr_telephony_set_retrieve_flag(cm_telephony_call_data_t *call, gboolean is_set);
+static int __callmgr_telephony_set_call_canceled_flag(cm_telephony_call_data_t *call, gboolean is_set);
+static int __callmgr_telephony_get_call_to_be_retrieved(callmgr_telephony_t telephony_handle, cm_telephony_call_data_t **call_data_out);
 static int __callmgr_telephony_set_end_cause(cm_telephony_call_data_t *call, cm_telephony_end_cause_type_e cause);
 static int __callmgr_telephony_get_end_cause_type(TelCallCause_t call_cause, TelTapiEndCause_t cause, cm_telephony_end_cause_type_e *end_cause_type);
 static int __callmgr_telephony_end_all_call_by_state(callmgr_telephony_t telephony_handle, cm_telephony_call_state_e state);
+static int __callmgr_telephony_check_ecc_slot(callmgr_telephony_t telephony_handle, const char *pNumber, cm_telepony_sim_slot_type_e *sim_slot);
 
 static int __callmgr_telephony_create_wait_call_list(callmgr_telephony_t telephony_handle, cm_telephony_event_type_e event_type, cm_telephony_call_data_t *active_call, cm_telephony_call_data_t *held_call)
 {
@@ -186,7 +190,7 @@ static int __callmgr_telephony_create_wait_call_list(callmgr_telephony_t telepho
 		err("The wait_event of modem_info = %d", modem_info->wait_event);
 
 		if ((CM_TELEPHONY_EVENT_SWAP == event_type) && (CM_TELEPHONY_EVENT_SWAP == modem_info->wait_event)) {
-			dbg("Waiting for swap_event..Request for swap_call...");
+			warn("Waiting for swap_event..Request for swap_call...");
 			_callmgr_util_launch_popup(CALL_POPUP_TOAST, CALL_POPUP_TOAST_SWAP_CALL, NULL, 0 , NULL, NULL);
 		}
 
@@ -392,10 +396,28 @@ static void __callmgr_telephony_handle_tapi_events(TapiHandle *handle, const cha
 	callmgr_telephony_t telephony_handle = (callmgr_telephony_t)user_data;
 	int ret_val = -1;
 	unsigned int call_handle = -1;
-	struct __modem_info *modem_info = NULL;
-	CM_RETURN_IF_FAIL(telephony_handle);
+	cm_telephony_call_data_t *sat_call = NULL;
 
-	info("event_type:[%s], sim_slot[%d]", noti_id, telephony_handle->active_sim_slot);
+	struct __modem_info *modem_info = NULL;
+	int idx = 0;
+	int slot_id = 0;
+	int result = -1;
+	CM_RETURN_IF_FAIL(telephony_handle);
+	CM_RETURN_IF_FAIL(data);
+
+	result = device_power_request_lock(POWER_LOCK_CPU, 0);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_request_lock() failed with err[%d]", result);
+	}
+
+	for (idx = 0; idx < telephony_handle->modem_cnt; idx++) {
+		if (telephony_handle->multi_handles[idx] == handle) {
+			slot_id = idx;
+			break;
+		}
+	}
+
+	info("event_type:[%s] from SIM[%d]. Current active_sim_slot[%d]", noti_id, slot_id, telephony_handle->active_sim_slot);
 
 	modem_info = &telephony_handle->modem_info[telephony_handle->active_sim_slot];
 	/* Process TAPI events */
@@ -403,7 +425,6 @@ static void __callmgr_telephony_handle_tapi_events(TapiHandle *handle, const cha
 		TelCallStatusIdleNoti_t *callIdleInfo = (TelCallStatusIdleNoti_t *)data;
 		cm_telephony_call_data_t *held_call = NULL;
 		cm_telephony_call_data_t *call_data = NULL;
-		CM_RETURN_IF_FAIL(callIdleInfo);
 
 		_callmgr_telephony_get_call_by_call_id(telephony_handle, callIdleInfo->id, &call_data);
 		if (call_data) {
@@ -411,49 +432,104 @@ static void __callmgr_telephony_handle_tapi_events(TapiHandle *handle, const cha
 			__callmgr_telephony_get_end_cause_type(TAPI_CAUSE_SUCCESS, callIdleInfo->cause, &end_cause_type);
 			__callmgr_telephony_set_end_cause(call_data, end_cause_type);
 
-			if (end_cause_type == CM_TELEPHONY_ENDCAUSE_REJ_SAT_CALL_CTRL) {
-				cm_telephony_call_data_t *call = NULL;
-				if (_callmgr_telephony_get_sat_originated_call(telephony_handle, &call) == 0) {
+			if (_callmgr_telephony_get_sat_originated_call(telephony_handle, &sat_call) == 0) {
+				/*
+				** Qualcomm sends this event. But SPRD doesn't
+				** SPRD send SAT event for call not allowed
+				*/
+				if (end_cause_type == CM_TELEPHONY_ENDCAUSE_REJ_SAT_CALL_CTRL) {
 					_callmgr_telephony_send_sat_response(telephony_handle,
 							CM_TELEPHONY_SAT_EVENT_SETUP_CALL, CM_TELEPHONY_SAT_RESPONSE_ME_CONTROL_PERMANENT_PROBLEM, CM_TELEPHONY_SIM_UNKNOWN);
+				} else if (call_data->is_canceled == TRUE) {
+					_callmgr_telephony_send_sat_response(telephony_handle,
+							CM_TELEPHONY_SAT_EVENT_SETUP_CALL, CM_TELEPHONY_SAT_RESPONSE_ME_CLEAR_DOWN_BEFORE_CONN, CM_TELEPHONY_SIM_UNKNOWN);
+				} else if (call_data->call_state == CM_TEL_CALL_STATE_DIALING || call_data->call_state == CM_TEL_CALL_STATE_ALERT) {
+					_callmgr_telephony_send_sat_response(telephony_handle,
+							CM_TELEPHONY_SAT_EVENT_SETUP_CALL, CM_TELEPHONY_SAT_RESPONSE_NETWORK_UNABLE_TO_PROCESS_COMMAND, CM_TELEPHONY_SIM_UNKNOWN);
 				}
 			}
 		}
 
 		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_IDLE, GUINT_TO_POINTER(callIdleInfo->id), telephony_handle->user_data);
 
-		__callmgr_telephony_get_call_to_be_retreived(telephony_handle, &held_call);
+		__callmgr_telephony_get_call_to_be_retrieved(telephony_handle, &held_call);
 		if (held_call) {
 			_callmgr_telephony_active_call(telephony_handle);
 		}
+
+		// If call is disconnected by SAT SETUP_CALL process
+		if (modem_info->sat_data.setup_call) {
+			info("Process setup_call event continously.");
+			if (telephony_handle->multi_handles[CM_TELEPHONY_SIM_1] == handle) {
+				_callmgr_telephony_set_active_sim_slot(telephony_handle, CM_TELEPHONY_SIM_1);
+			} else {
+				_callmgr_telephony_set_active_sim_slot(telephony_handle, CM_TELEPHONY_SIM_2);
+			}
+			telephony_handle->cb_fn(CM_TELEPHONY_EVENT_SAT_SETUP_CALL, NULL, telephony_handle->user_data);
+		}
+
 	} else if ((g_strcmp0(noti_id, TAPI_NOTI_VOICE_CALL_STATUS_ACTIVE) == 0) || (g_strcmp0(noti_id, TAPI_NOTI_VIDEO_CALL_STATUS_ACTIVE) == 0)) {
 		cm_telephony_call_data_t *call_data = NULL;
 		TelCallStatusActiveNoti_t *callActiveInfo = (TelCallStatusActiveNoti_t *)data;
-		CM_RETURN_IF_FAIL(callActiveInfo);
+
 		if (_callmgr_telephony_get_call_by_call_id(telephony_handle, callActiveInfo->id, &call_data) < 0) {
-			dbg("No call_data exists for this event...");
-			return;
+			err("No call_data exists for this event...");
+			goto FINISHED;
 		}
 		__callmgr_telephony_set_call_state(call_data, CM_TEL_CALL_STATE_ACTIVE);
 		__callmgr_telephony_set_start_time(call_data);
 		__callmgr_telephony_remove_wait_call(telephony_handle, call_data);
-		__callmgr_telephony_set_retreive_flag(call_data, FALSE);
+		__callmgr_telephony_set_retrieve_flag(call_data, FALSE);
 
 		/*If all wait calls are updated*/
 		if (modem_info->wait_call_list == NULL) {
 			__callmgr_telephony_get_all_call_list(telephony_handle);
 			telephony_handle->cb_fn(modem_info->wait_event, GUINT_TO_POINTER(callActiveInfo->id), telephony_handle->user_data);
 		}
+
+		// If there is call_control info not processed yet
+		if (modem_info->sat_data.call_control_result) {
+			dbg("set call_number[%s], calling_name[%s]",
+					modem_info->sat_data.call_control_result->u.callCtrlCnfCallData.address.string,
+					modem_info->sat_data.call_control_result->dispData.string);
+
+			_callmgr_telephony_set_call_number(call_data, (char*)modem_info->sat_data.call_control_result->u.callCtrlCnfCallData.address.string);
+			_callmgr_telephony_set_calling_name(call_data, (char*)modem_info->sat_data.call_control_result->dispData.string);
+
+			call_data->is_in_sat_call_control = TRUE;
+
+			telephony_handle->cb_fn(CM_TELEPHONY_EVENT_SAT_CALL_CONTROL_RESULT,
+					&modem_info->sat_data.call_control_result->callCtrlResult, telephony_handle->user_data);
+
+			call_data->is_in_sat_call_control = FALSE;
+			g_free(modem_info->sat_data.call_control_result);
+			modem_info->sat_data.call_control_result = NULL;
+		}
+
+		if (_callmgr_telephony_get_sat_originated_call(telephony_handle, &sat_call) == 0) {
+			_callmgr_telephony_send_sat_response(telephony_handle,
+					CM_TELEPHONY_SAT_EVENT_SETUP_CALL, CM_TELEPHONY_SAT_RESPONSE_ME_RET_SUCCESS, CM_TELEPHONY_SIM_UNKNOWN);
+		}
+
 	} else if (g_strcmp0(noti_id, TAPI_NOTI_VOICE_CALL_STATUS_HELD) == 0) {
 		cm_telephony_call_data_t *call_data = NULL;
 		TelCallStatusHeldNoti_t *callHeldInfo = (TelCallStatusHeldNoti_t *)data;
-		CM_RETURN_IF_FAIL(callHeldInfo);
+		cm_telephony_sat_setup_call_type_e sat_setup_call_type = CM_TELEPHONY_SAT_SETUP_CALL_RESERVED;
+
 		if (_callmgr_telephony_get_call_by_call_id(telephony_handle, callHeldInfo->id, &call_data) < 0) {
-			dbg("No call_data exists for this event...");
-			return;
+			err("No call_data exists for this event...");
+			goto FINISHED;
 		}
 		__callmgr_telephony_set_call_state(call_data, CM_TEL_CALL_STATE_HELD);
 		__callmgr_telephony_remove_wait_call(telephony_handle, call_data);
+
+		/* Retreive hold call after end sat call*/
+		_callmgr_telephony_get_sat_setup_call_type(telephony_handle, &sat_setup_call_type);
+		if (sat_setup_call_type == CM_TELEPHONY_SAT_SETUP_CALL_PUT_ALL_OTHER_CALLS_ON_HOLD
+				|| sat_setup_call_type == CM_TELEPHONY_SAT_SETUP_CALL_PUT_ALL_OTHER_CALLS_ON_HOLD_WITH_REDIAL) {
+			info("Set retrieve for SAT");
+			__callmgr_telephony_set_retrieve_flag(call_data, TRUE);
+		}
 
 		/*If all wait calls are updated*/
 		if (modem_info->wait_call_list == NULL) {
@@ -467,56 +543,85 @@ static void __callmgr_telephony_handle_tapi_events(TapiHandle *handle, const cha
 				_callmgr_telephony_dial(telephony_handle, call_data);
 			}
 		}
+
+		// If call is held by SAT SETUP_CALL process
+		if (modem_info->sat_data.setup_call) {
+			info("Process setup_call event continously.");
+			if (telephony_handle->multi_handles[CM_TELEPHONY_SIM_1] == handle) {
+				_callmgr_telephony_set_active_sim_slot(telephony_handle, CM_TELEPHONY_SIM_1);
+			} else {
+				_callmgr_telephony_set_active_sim_slot(telephony_handle, CM_TELEPHONY_SIM_2);
+			}
+			telephony_handle->cb_fn(CM_TELEPHONY_EVENT_SAT_SETUP_CALL, NULL, telephony_handle->user_data);
+		}
+
 	} else if ((g_strcmp0(noti_id, TAPI_NOTI_VOICE_CALL_STATUS_DIALING) == 0) || (g_strcmp0(noti_id, TAPI_NOTI_VIDEO_CALL_STATUS_DIALING) == 0)) {
 		TelCallStatusDialingNoti_t *callDialingInfo = NULL;
 		cm_telephony_call_data_t *call_data = NULL;
-
 		callDialingInfo = (TelCallStatusDialingNoti_t *)data;
-		CM_RETURN_IF_FAIL(callDialingInfo);
+
 		if (_callmgr_telephony_get_call_by_call_id(telephony_handle, NO_CALL_HANDLE, &call_data) < 0) {
-			dbg("No call_data exists for this event...");
-			return;
+			err("No call_data exists for this event...");
+			goto FINISHED;
 		}
 		__callmgr_telephony_set_call_state(call_data, CM_TEL_CALL_STATE_DIALING);
 		__callmgr_telephony_set_call_id(call_data, callDialingInfo->id);
-		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_DIALING, GUINT_TO_POINTER(callDialingInfo->id), telephony_handle->user_data);
+
+
+		// If there is call_control info not processed yet
+		if (modem_info->sat_data.call_control_result) {
+			dbg("set call_number[%s], calling_name[%s]",
+					modem_info->sat_data.call_control_result->u.callCtrlCnfCallData.address.string,
+					modem_info->sat_data.call_control_result->dispData.string);
+
+			_callmgr_telephony_set_call_number(call_data, (char*)modem_info->sat_data.call_control_result->u.callCtrlCnfCallData.address.string);
+			_callmgr_telephony_set_calling_name(call_data, (char*)modem_info->sat_data.call_control_result->dispData.string);
+
+			call_data->is_in_sat_call_control = TRUE;
+
+			telephony_handle->cb_fn(CM_TELEPHONY_EVENT_SAT_CALL_CONTROL_RESULT,
+					&modem_info->sat_data.call_control_result->callCtrlResult, telephony_handle->user_data);
+
+			call_data->is_in_sat_call_control = FALSE;
+			g_free(modem_info->sat_data.call_control_result);
+			modem_info->sat_data.call_control_result = NULL;
+		}
+
+		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_DIALING, (void *)callDialingInfo->id, telephony_handle->user_data);
+
 	} else if ((g_strcmp0(noti_id, TAPI_NOTI_VOICE_CALL_STATUS_ALERT) == 0) || (g_strcmp0(noti_id, TAPI_NOTI_VIDEO_CALL_STATUS_ALERT) == 0)) {
 		TelCallStatusAlertNoti_t *callAlertInfo = NULL;
 		cm_telephony_call_data_t *call_data = NULL;
-
 		callAlertInfo = (TelCallStatusAlertNoti_t *)data;
-		CM_RETURN_IF_FAIL(callAlertInfo);
 
 		if (_callmgr_telephony_get_call_by_call_id(telephony_handle, callAlertInfo->id, &call_data) < 0) {
-			dbg("No call_data exists for this event...");
-			return;
+			err("No call_data exists for this event...");
+			goto FINISHED;
 		}
 		__callmgr_telephony_set_call_state(call_data, CM_TEL_CALL_STATE_ALERT);
 		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_ALERT, GUINT_TO_POINTER(callAlertInfo->id), telephony_handle->user_data);
 	} else if ((g_strcmp0(noti_id, TAPI_NOTI_VOICE_CALL_STATUS_INCOMING) == 0) || (g_strcmp0(noti_id, TAPI_NOTI_VIDEO_CALL_STATUS_INCOMING) == 0)) {
-		TelCallIncomingCallInfo_t callIncomingInfo = {0,};
+		TelCallIncomingCallInfo_t *callIncomingInfo = NULL;
 		cm_telephony_call_data_t *call = NULL;
 		cm_telephony_call_type_e call_type = CM_TEL_CALL_TYPE_INVALID;
 		cm_telephony_name_mode_e name_mode = CM_TEL_NAME_MODE_NONE;
 		char *number = NULL;
+		callIncomingInfo = (TelCallIncomingCallInfo_t *)data;
 
-		if (data != NULL) {
-			memcpy(&callIncomingInfo, data, sizeof(TelCallIncomingCallInfo_t));
-			call_handle = callIncomingInfo.CallHandle;
-		}
+		call_handle = callIncomingInfo->CallHandle;
 
 		if (telephony_handle->multi_handles[CM_TELEPHONY_SIM_1] == handle) {
 			_callmgr_telephony_set_active_sim_slot(telephony_handle, CM_TELEPHONY_SIM_1);
 		} else {
 			_callmgr_telephony_set_active_sim_slot(telephony_handle, CM_TELEPHONY_SIM_2);
 		}
-		sec_dbg("calling party number : [%s]", callIncomingInfo.szCallingPartyNumber);
-		sec_dbg("calling party name mode : [%d]", callIncomingInfo.CallingNameInfo.NameMode);
-		sec_dbg("calling party name : [%s]", callIncomingInfo.CallingNameInfo.szNameData);
+		sec_dbg("calling party number : [%s]", callIncomingInfo->szCallingPartyNumber);
+		sec_dbg("calling party name mode : [%d]", callIncomingInfo->CallingNameInfo.NameMode);
+		sec_dbg("calling party name : [%s]", callIncomingInfo->CallingNameInfo.szNameData);
 
-		__callmgr_telephony_get_name_mode(callIncomingInfo.szCallingPartyNumber, callIncomingInfo.CliMode, callIncomingInfo.CliCause, &name_mode);
+		__callmgr_telephony_get_name_mode(callIncomingInfo->szCallingPartyNumber, callIncomingInfo->CliMode, callIncomingInfo->CliCause, &name_mode);
 		if (name_mode == CM_TEL_NAME_MODE_NONE) {
-			number = callIncomingInfo.szCallingPartyNumber;
+			number = callIncomingInfo->szCallingPartyNumber;
 		}
 		if ((g_strcmp0(noti_id, TAPI_NOTI_VOICE_CALL_STATUS_INCOMING) == 0)) {
 			call_type = CM_TEL_CALL_TYPE_CS_VOICE;
@@ -524,23 +629,33 @@ static void __callmgr_telephony_handle_tapi_events(TapiHandle *handle, const cha
 			call_type = CM_TEL_CALL_TYPE_CS_VIDEO;
 		}
 		_callmgr_telephony_call_new(telephony_handle, call_type, CM_TEL_CALL_DIRECTION_MT, number, &call);
-		CM_RETURN_IF_FAIL(call);
-		if (strlen(callIncomingInfo.CallingNameInfo.szNameData) > 0) {
-			_callmgr_telephony_set_calling_name(call, callIncomingInfo.CallingNameInfo.szNameData);
+		if (call == NULL) {
+			err("call data is NULL");
+			goto FINISHED;
+		}
+
+		if (strlen(callIncomingInfo->CallingNameInfo.szNameData) > 0) {
+			_callmgr_telephony_set_calling_name(call, callIncomingInfo->CallingNameInfo.szNameData);
 		}
 		__callmgr_telephony_set_call_state(call, CM_TEL_CALL_STATE_INCOMING);
 		__callmgr_telephony_set_call_id(call, call_handle);
-		__callmgr_telephony_check_special_string(callIncomingInfo.szCallingPartyNumber, &name_mode);
+		__callmgr_telephony_check_special_string(callIncomingInfo->szCallingPartyNumber, &name_mode);
 		__callmgr_telephony_set_name_mode(call, name_mode);
 		ret_val = __callmgr_telephony_create_wait_call_list(telephony_handle, CM_TELEPHONY_EVENT_ACTIVE, call, NULL);
 		if (ret_val < 0) {
 			err("__callmgr_telephony_create_wait_call_list() failed");
-			return;
+			goto FINISHED;
 		}
 		info("Incoming call[%d]", call_handle);
 		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_INCOMING, (void *)call, telephony_handle->user_data);
 	} else {
 		err("ERROR!! Noti is not defined");
+	}
+
+FINISHED:
+	result = device_power_release_lock(POWER_LOCK_CPU);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_release_lock() failed with err[%d]", result);
 	}
 
 	info("tapi noti(%s) processed done.", noti_id);
@@ -551,9 +666,24 @@ static void __callmgr_telephony_handle_tapi_events(TapiHandle *handle, const cha
 static void __callmgr_telephony_handle_info_tapi_events(TapiHandle *handle, const char *noti_id, void *data, void *user_data)
 {
 	callmgr_telephony_t telephony_handle = (callmgr_telephony_t)user_data;
+	int idx = 0;
+	int slot_id = 0;
+	int result = -1;
 	CM_RETURN_IF_FAIL(telephony_handle);
 
-	info("event_type:[%s]", noti_id);
+	result = device_power_request_lock(POWER_LOCK_CPU, 0);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_request_lock() failed with err[%d]", result);
+	}
+
+	for (idx = 0; idx < telephony_handle->modem_cnt; idx++) {
+		if (telephony_handle->multi_handles[idx] == handle) {
+			slot_id = idx;
+			break;
+		}
+	}
+
+	info("event_type:[%s] from SIM[%d]. Current active_sim_slot[%d]", noti_id, slot_id, telephony_handle->active_sim_slot);
 	if (g_strcmp0(noti_id, TAPI_NOTI_CALL_INFO_FORWARDED) == 0) {
 		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_SS_INFO, (void *)CM_MO_CODE_CALL_FORWARDED, telephony_handle->user_data);
 	} else if (g_strcmp0(noti_id, TAPI_NOTI_CALL_INFO_BARRED_INCOMING) == 0) {
@@ -587,14 +717,34 @@ static void __callmgr_telephony_handle_info_tapi_events(TapiHandle *handle, cons
 	} else {
 		err("ERROR!! Noti is not defined");
 	}
+
+	result = device_power_release_lock(POWER_LOCK_CPU);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_release_lock() failed with err[%d]", result);
+	}
 }
 
 static void __callmgr_telephony_handle_sound_tapi_events(TapiHandle *handle, const char *noti_id, void *data, void *user_data)
 {
 	callmgr_telephony_t telephony_handle = (callmgr_telephony_t)user_data;
-	CM_RETURN_IF_FAIL(telephony_handle);
+	int idx = 0;
+	int sim_slot = -1;
+	int result = -1;
 
-	info("event_type:[%s]", noti_id);
+	result = device_power_request_lock(POWER_LOCK_CPU, 0);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_request_lock() failed with err[%d]", result);
+	}
+
+	for (idx = 0; idx < telephony_handle->modem_cnt; idx++) {
+		if ((telephony_handle->multi_handles[idx] != NULL) && (telephony_handle->multi_handles[idx] == handle)) {
+			sim_slot = idx;
+			break;
+		}
+	}
+
+	info("event_type:[%s] from SIM[%d]. Current active_sim_slot[%d]", noti_id, sim_slot, telephony_handle->active_sim_slot);
+
 	if (g_strcmp0(noti_id, TAPI_NOTI_CALL_SOUND_WBAMR) == 0) {
 		dbg("TAPI_NOTI_CALL_SOUND_WBAMR");
 		TelCallSoundWbamrNoti_t wbamrInfo = TAPI_CALL_SOUND_WBAMR_STATUS_OFF;
@@ -628,7 +778,12 @@ static void __callmgr_telephony_handle_sound_tapi_events(TapiHandle *handle, con
 
 		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_SOUND_RINGBACK_TONE, (void *)ringbacktone_info, telephony_handle->user_data);
 	} else {
-		dbg("ERROR!! Noti is not defined");
+		err("ERROR!! Noti is not defined");
+	}
+
+	result = device_power_release_lock(POWER_LOCK_CPU);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_release_lock() failed with err[%d]", result);
 	}
 }
 
@@ -647,7 +802,7 @@ static int __callmgr_telephony_check_no_sim_state(callmgr_telephony_t telephony_
 		*is_no_sim = FALSE;
 		return -1;
 	} else {
-		dbg("card_status = %d", sim_status);
+		info("card_status = %d", sim_status);
 		switch (sim_status) {
 		case TAPI_SIM_STATUS_CARD_NOT_PRESENT:
 		case TAPI_SIM_STATUS_CARD_REMOVED:
@@ -665,6 +820,36 @@ static int __callmgr_telephony_check_no_sim_state(callmgr_telephony_t telephony_
 
 	return 0;
 }
+
+static int __callmgr_telephony_check_sim_poweroff_state(callmgr_telephony_t telephony_handle, int slot_id, gboolean *is_power_off)
+{
+	int ret = -1;
+	int sim_changed = 0;
+	TelSimCardStatus_t sim_status = TAPI_SIM_STATUS_UNKNOWN;
+	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
+	CM_RETURN_VAL_IF_FAIL(slot_id < telephony_handle->modem_cnt, -1);
+	dbg("__callmgr_telephony_check_sim_poweroff_state()");
+
+	ret = tel_get_sim_init_info(telephony_handle->multi_handles[slot_id], &sim_status, &sim_changed);
+	if (TAPI_API_SUCCESS != ret) {
+		err("tel_get_sim_init_info() failed with err[%d]", ret);
+		*is_power_off = FALSE;
+		return -1;
+	} else {
+		info("card_status = %d", sim_status);
+		switch (sim_status) {
+		case TAPI_SIM_STATUS_CARD_POWEROFF:
+			*is_power_off = TRUE;
+			break;
+		default:
+			warn("Unknown Card_status[%d]", sim_status);
+			*is_power_off = FALSE;
+			break;
+		}
+	}
+	return 0;
+}
+
 
 static int __callmgr_telephony_get_card_type(callmgr_telephony_t telephony_handle, int slot_id, cm_telephony_card_type_e *card_type_out)
 {
@@ -696,7 +881,7 @@ static int __callmgr_telephony_get_card_type(callmgr_telephony_t telephony_handl
 			cm_card_type = CM_CARD_TYPE_UNKNOWN;
 			break;
 	}
-	dbg("card_type = %d", cm_card_type);
+	info("card_type = %d", cm_card_type);
 	*card_type_out = cm_card_type;
 	return 0;
 }
@@ -709,6 +894,12 @@ static void __callmgr_telephony_handle_sim_status_events(TapiHandle *handle, con
 	int idx = 0;
 	int sim_slot = -1;
 	struct __modem_info *modem_info = NULL;
+	int result = -1;
+
+	result = device_power_request_lock(POWER_LOCK_CPU, 0);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_request_lock() failed with err[%d]", result);
+	}
 
 	for (idx = 0; idx < telephony_handle->modem_cnt; idx++) {
 		if ((telephony_handle->multi_handles[idx] != NULL) && (telephony_handle->multi_handles[idx] == handle)) {
@@ -716,6 +907,8 @@ static void __callmgr_telephony_handle_sim_status_events(TapiHandle *handle, con
 			break;
 		}
 	}
+
+	info("event_type:[%s] from SIM[%d]. Current active_sim_slot[%d]", noti_id, sim_slot, telephony_handle->active_sim_slot);
 
 	if (sim_slot != -1) {
 		TapiResult_t tapi_err = TAPI_API_SUCCESS;
@@ -725,9 +918,15 @@ static void __callmgr_telephony_handle_sim_status_events(TapiHandle *handle, con
 			|| (*status == TAPI_SIM_STATUS_CARD_CRASHED)) {
 			info("SIM slot[%d] is empty", sim_slot);
 			modem_info->is_no_sim = TRUE;
+			modem_info->is_sim_poweroff = FALSE;
 			modem_info->is_sim_initialized = FALSE;
-		} else {
+		} else if((*status == TAPI_SIM_STATUS_CARD_POWEROFF)){
+			info("SIM slot[%d] is powered-off", sim_slot);
+			modem_info->is_sim_poweroff = TRUE;
+			modem_info->is_sim_initialized = FALSE;
+		}else {
 			modem_info->is_no_sim = FALSE;
+			modem_info->is_sim_poweroff = FALSE;
 			if (*status == TAPI_SIM_STATUS_SIM_INIT_COMPLETED) {
 				modem_info->is_sim_initialized = TRUE;
 			} else {
@@ -747,9 +946,15 @@ static void __callmgr_telephony_handle_sim_status_events(TapiHandle *handle, con
 				warn("tel_get_sim_ecc failed, tapi_err=%d", tapi_err);
 			}
 		} else {
-			dbg("Already Fetched tel_get_sim_ecc for SIM slot[%d]", idx);
+			warn("Already Fetched tel_get_sim_ecc for SIM slot[%d]", idx);
 		}
 	}
+
+	result = device_power_release_lock(POWER_LOCK_CPU);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_release_lock() failed with err[%d]", result);
+	}
+
 	return;
 }
 
@@ -761,6 +966,12 @@ static void __callmgr_telephony_handle_modem_power_status_events(TapiHandle *han
 	int idx = 0;
 	int sim_slot = -1;
 	struct __modem_info *modem_info = NULL;
+	int result = -1;
+
+	result = device_power_request_lock(POWER_LOCK_CPU, 0);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_request_lock() failed with err[%d]", result);
+	}
 
 	for (idx = 0; idx < telephony_handle->modem_cnt; idx++) {
 		if ((telephony_handle->multi_handles[idx] != NULL) && (telephony_handle->multi_handles[idx] == handle)) {
@@ -768,6 +979,8 @@ static void __callmgr_telephony_handle_modem_power_status_events(TapiHandle *han
 			break;
 		}
 	}
+
+	info("event_type:[%s] from SIM[%d]. Current active_sim_slot[%d]", noti_id, sim_slot, telephony_handle->active_sim_slot);
 
 	if (sim_slot != -1) {
 		modem_info = &telephony_handle->modem_info[sim_slot];
@@ -780,6 +993,12 @@ static void __callmgr_telephony_handle_modem_power_status_events(TapiHandle *han
 	} else {
 		err("Invalid handle");
 	}
+
+	result = device_power_release_lock(POWER_LOCK_CPU);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_release_lock() failed with err[%d]", result);
+	}
+
 	return;
 }
 
@@ -791,6 +1010,12 @@ static void __callmgr_telephony_handle_network_events(TapiHandle *handle, const 
 	int idx = -1;
 	struct __modem_info *modem_info = NULL;
 	info("event_type:[%s]", noti_id);
+	int result = -1;
+
+	result = device_power_request_lock(POWER_LOCK_CPU, 0);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_request_lock() failed with err[%d]", result);
+	}
 
 	for (idx = 0; idx < telephony_handle->modem_cnt; idx++) {
 		if (telephony_handle->multi_handles[idx] == handle) {
@@ -799,13 +1024,15 @@ static void __callmgr_telephony_handle_network_events(TapiHandle *handle, const 
 		}
 	}
 
+	info("sim[%d], event_type:[%s]",slot_id, noti_id);
+
 	if (slot_id != -1) {
 		modem_info = &telephony_handle->modem_info[slot_id];
 		if (g_strcmp0(noti_id, TAPI_PROP_NETWORK_PLMN) == 0) {
 			char *plmn = (char *)data;
 			char mcc_value[4] = {0,};
 			char mnc_value[4] = {0,};
-			dbg("plmn_value = [%s]", plmn);
+			info("plmn_value = [%s]", plmn);
 
 			g_strlcpy(mcc_value, plmn, 4);
 			g_strlcpy(mnc_value, plmn+3, 4);
@@ -851,6 +1078,11 @@ static void __callmgr_telephony_handle_network_events(TapiHandle *handle, const 
 	} else {
 		err("Invalid handle");
 	}
+
+	result = device_power_release_lock(POWER_LOCK_CPU);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_release_lock() failed with err[%d]", result);
+	}
 	return;
 }
 
@@ -862,6 +1094,12 @@ static void __callmgr_telephony_handle_sat_events(TapiHandle *handle, const char
 	cm_telepony_sim_slot_type_e request_sim_slot = CM_TELEPHONY_SIM_UNKNOWN;
 	struct __cm_tel_sat_data *sat_data = NULL;
 	info("event_type:[%s]", noti_id);
+	int result = -1;
+
+	result = device_power_request_lock(POWER_LOCK_CPU, 0);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_request_lock() failed with err[%d]", result);
+	}
 
 	_callmgr_telephony_get_active_sim_slot(telephony_handle, &active_sim_slot);
 	if (telephony_handle->multi_handles[CM_TELEPHONY_SIM_1] == handle) {
@@ -870,7 +1108,7 @@ static void __callmgr_telephony_handle_sat_events(TapiHandle *handle, const char
 		request_sim_slot = CM_TELEPHONY_SIM_2;
 	}
 
-	dbg("active_sim_slot: %d sat_req_for_sim_slot: %d", active_sim_slot, request_sim_slot);
+	info("active_sim_slot[%d], request_sim_slot[%d]", active_sim_slot, request_sim_slot);
 
 	if(CM_TELEPHONY_SIM_UNKNOWN == active_sim_slot) {
 		_callmgr_telephony_set_active_sim_slot(telephony_handle, request_sim_slot);
@@ -882,23 +1120,37 @@ static void __callmgr_telephony_handle_sat_events(TapiHandle *handle, const char
 	if (g_strcmp0(noti_id, TAPI_NOTI_SAT_SETUP_CALL) == 0) {
 		TelSatSetupCallIndCallData_t *ind_data = data;
 
-		dbg("cmdId[%d], dispText[%s], callNumber[%s], duration[%d], icon[%d]",
-				ind_data->commandId, ind_data->dispText.string, ind_data->callNumber.string,
+		dbg("cmdId[%d], call_type[%d], dispText[%s], callNumber[%s], duration[%d], icon[%d]",
+				ind_data->commandId, ind_data->calltype, ind_data->dispText.string, ind_data->callNumber.string,
 				ind_data->duration, ind_data->iconId.bIsPresent);
 
-		sat_data->event_type = CM_TELEPHONY_SAT_EVENT_SETUP_CALL;
 		if ((sat_data->setup_call = g_malloc0(sizeof(TelSatSetupCallIndCallData_t) + 1)))
 			memcpy(sat_data->setup_call, ind_data, sizeof(TelSatSetupCallIndCallData_t));
 		else
 			err("g_malloc0() failed.");
 
-		if(request_sim_slot == active_sim_slot) {
-			telephony_handle->cb_fn(CM_TELEPHONY_EVENT_SAT_SETUP_CALL, NULL, telephony_handle->user_data);
-		} else {
-			err("SAT request came for wrong sim_slot");
-			_callmgr_telephony_send_sat_response(telephony_handle,
-					CM_TELEPHONY_SAT_EVENT_SETUP_CALL, CM_TELEPHONY_SAT_RESPONSE_ME_UNABLE_TO_PROCESS_COMMAND, request_sim_slot);
+		if (ind_data->dispText.stringLen > 0) {
+			// display second alpha ID with popup
+			// according to spec, 3GPP 51.010-4 / 31.124
+			// 27.22.4.13 SEQ 2.1 (SET UP CALL, two alpha identifiers)
+			_callmgr_util_launch_popup(CALL_POPUP_TOAST, CALL_POPUP_TOAST_CUSTOM, (const char*)ind_data->dispText.string, 0 , NULL, NULL);
 		}
+
+		if (request_sim_slot != active_sim_slot) {
+			int ret = 0, call_count = 0;
+			ret = _callmgr_telephony_get_call_count(telephony_handle, &call_count);
+			if ( ret == 0 && call_count == 0) {
+				// change active_sim_slot only when there is no other call
+				_callmgr_telephony_set_active_sim_slot(telephony_handle, request_sim_slot);
+			} else {
+				err("there is another call in other SIM slot or _callmgr_telephony_get_call_count() failed[%d].", ret);
+				_callmgr_telephony_send_sat_response(telephony_handle,
+						CM_TELEPHONY_SAT_EVENT_SETUP_CALL, CM_TELEPHONY_SAT_RESPONSE_ME_UNABLE_TO_PROCESS_COMMAND, request_sim_slot);
+				goto FINISHED;
+			}
+		}
+
+		telephony_handle->cb_fn(CM_TELEPHONY_EVENT_SAT_SETUP_CALL, NULL, telephony_handle->user_data);
 
 	} else if (g_strcmp0(noti_id, TAPI_NOTI_SAT_SEND_DTMF) == 0) {
 		TelSatSendDtmfIndDtmfData_t *ind_data = data;
@@ -906,43 +1158,106 @@ static void __callmgr_telephony_handle_sat_events(TapiHandle *handle, const char
 		dbg("cmdId[%d], bIsHiddenMode[%d], dtmfString[%s]",
 				ind_data->commandId, ind_data->bIsHiddenMode, ind_data->dtmfString.string);
 
-		sat_data->event_type = CM_TELEPHONY_SAT_EVENT_SEND_DTMF;
 		if ((sat_data->send_dtmf = g_malloc0(sizeof(TelSatSendDtmfIndDtmfData_t) + 1)))
 			memcpy(sat_data->send_dtmf, ind_data, sizeof(TelSatSendDtmfIndDtmfData_t));
 		else
 			err("g_malloc0() failed.");
-		if(request_sim_slot == active_sim_slot) {
+
+		if (request_sim_slot == active_sim_slot) {
 			telephony_handle->cb_fn(CM_TELEPHONY_EVENT_SAT_SEND_DTMF, (void *)ind_data->dtmfString.string, telephony_handle->user_data);
 		} else {
-			err("SAT request came for wrong sim_slot");
+			err("request came for wrong sim_slot");
 			_callmgr_telephony_send_sat_response(telephony_handle,
 					CM_TELEPHONY_EVENT_SAT_SEND_DTMF, CM_TELEPHONY_SAT_RESPONSE_ME_UNABLE_TO_PROCESS_COMMAND, request_sim_slot);
 		}
 
 	} else if (g_strcmp0(noti_id, TAPI_NOTI_SAT_CALL_CONTROL_RESULT) == 0) {
 		TelSatCallCtrlIndData_t *ind_data = data;
-		gboolean b_ui_update = FALSE;
+		cm_telephony_sat_call_ctrl_type_e call_ctrl_type = CM_TELEPHONY_SAT_CALL_CTRL_RESERVED;
+		cm_telephony_call_data_t *call = NULL;
 
 		dbg("callCtrlCnfType[%d], callCtrlResult[%d], dispData[%s], bIsUserInfoDisplayEnabled[%d]",
 				ind_data->callCtrlCnfType, ind_data->callCtrlResult, ind_data->dispData.string,
 				ind_data->bIsUserInfoDisplayEnabled);
 
-		sat_data->event_type = CM_TELEPHONY_SAT_EVENT_CALL_CONTROL_RESULT;
-		if ((sat_data->call_control_result = g_malloc0(sizeof(TelSatCallCtrlIndData_t) + 1))) {
-			memcpy(sat_data->call_control_result, ind_data, sizeof(TelSatCallCtrlIndData_t));
-			if (sat_data->call_control_result->callCtrlResult == TAPI_SAT_CALL_CTRL_R_ALLOWED_WITH_MOD)
-				b_ui_update = TRUE;
+		if (ind_data->callCtrlCnfType == TAPI_SAT_CALL_TYPE_MO_VOICE &&
+				ind_data->u.callCtrlCnfCallData.address.stringLen > 0) {
+			dbg("MO_VOICE call control call address[%s]", ind_data->u.callCtrlCnfCallData.address.string);
 		}
-		else
-			err("g_malloc0() failed.");
 
-		if(request_sim_slot == active_sim_slot) {
-			telephony_handle->cb_fn(CM_TELEPHONY_EVENT_SAT_CALL_CONTROL_RESULT, &b_ui_update, telephony_handle->user_data);
-		} else {
-			err("SAT request came for wrong sim_slot");
-			_callmgr_telephony_send_sat_response(telephony_handle,
-					CM_TELEPHONY_EVENT_SAT_CALL_CONTROL_RESULT, TAPI_SAT_CALL_CTRL_R_NOT_ALLOWED, request_sim_slot);
+		if(request_sim_slot != active_sim_slot) {
+			err("request came for wrong sim_slot");
 		}
+
+		if ((sat_data->call_control_result = g_malloc0(sizeof(TelSatCallCtrlIndData_t) + 1))) {
+			char popup[128] = {0,};
+			char *number = NULL;
+
+			memcpy(sat_data->call_control_result, ind_data, sizeof(TelSatCallCtrlIndData_t));
+			switch (sat_data->call_control_result->callCtrlResult) {
+			case TAPI_SAT_CALL_CTRL_R_ALLOWED_NO_MOD:
+				call_ctrl_type = CM_TELEPHONY_SAT_CALL_CTRL_R_ALLOWED_NO_MOD;
+				break;
+			case TAPI_SAT_CALL_CTRL_R_NOT_ALLOWED:
+				call_ctrl_type = CM_TELEPHONY_SAT_CALL_CTRL_R_NOT_ALLOWED;
+				break;
+			case TAPI_SAT_CALL_CTRL_R_ALLOWED_WITH_MOD:
+				call_ctrl_type = CM_TELEPHONY_SAT_CALL_CTRL_R_ALLOWED_MOD;
+
+				/* Fetch the Sat / Dial / Active call data for */
+				_callmgr_telephony_get_sat_originated_call(telephony_handle, &call);
+				if (call == NULL) {
+					warn("There is no sat originated call. trying to get a call with NO_CALL_HANDLE id");
+					_callmgr_telephony_get_call_by_call_id(telephony_handle, NO_CALL_HANDLE, &call);
+					if (call == NULL) {
+						warn("There is no NO_CALL_HANDLE call. trying to get a call in DIALING status");
+						_callmgr_telephony_get_call_by_state(telephony_handle, CM_TEL_CALL_STATE_DIALING, &call);
+						if (call == NULL) {
+							warn("There is no call in DIALING status. trying to get a call in ACTIVE status");
+							_callmgr_telephony_get_call_by_state(telephony_handle, CM_TEL_CALL_STATE_ACTIVE, &call);
+							if (call == NULL) {
+								err("There is no call in ACTIVE status. apply this to next DIALING/ACTIVE call.");
+								goto FINISHED;
+							}
+						}
+					}
+				}
+
+				dbg("current call_name[%s], call_num[%s]", call->calling_name, call->call_number);
+				// update call number & calling name using call control result info
+				_callmgr_telephony_set_call_number(call, (char*)ind_data->u.callCtrlCnfCallData.address.string);
+				_callmgr_telephony_set_calling_name(call, (char*)ind_data->dispData.string);
+				dbg("updated call_name[%s], call_num[%s] by call controll", call->calling_name, call->call_number);
+
+				_callmgr_telephony_get_call_number(call, &number);
+				if (number) {
+					// display "Number changed by SIM: XXXX" with popup
+					// according to SMC lab. requirement (P150909-00591)
+					g_snprintf(popup, 127, "Number changed by SIM: %s", number);
+					_callmgr_util_launch_popup(CALL_POPUP_TOAST, CALL_POPUP_TOAST_CUSTOM, popup, 0 , NULL, NULL);
+
+					g_free(number);
+				}
+				break;
+			default:
+				warn("invalid call control result[%d]", ind_data->callCtrlResult);
+				break;
+			}
+
+			telephony_handle->cb_fn(CM_TELEPHONY_EVENT_SAT_CALL_CONTROL_RESULT, &call_ctrl_type, telephony_handle->user_data);
+
+			g_free(sat_data->call_control_result);
+			sat_data->call_control_result = NULL;
+
+		} else {
+			err("g_malloc0() failed.");
+		}
+	}
+
+FINISHED:
+	result = device_power_release_lock(POWER_LOCK_CPU);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_release_lock() failed with err[%d]", result);
 	}
 
 	return;
@@ -1036,7 +1351,6 @@ void _callmgr_telephony_send_sat_response(callmgr_telephony_t telephony_handle, 
 				err("tel_send_sat_app_exec_result() is failed[%d].", error_code);
 			}
 
-			sat_data->event_type = CM_TELEPHONY_SAT_EVENT_NONE;
 			g_free(sat_data->setup_call);
 			sat_data->setup_call = NULL;
 		}
@@ -1079,47 +1393,13 @@ void _callmgr_telephony_send_sat_response(callmgr_telephony_t telephony_handle, 
 				err("tel_send_sat_app_exec_result() is failed[%d].", error_code);
 			}
 
-			sat_data->event_type = CM_TELEPHONY_SAT_EVENT_NONE;
 			g_free(sat_data->send_dtmf);
 			sat_data->send_dtmf = NULL;
 		}
 		break;
 	case CM_TELEPHONY_SAT_EVENT_CALL_CONTROL_RESULT:
-		{
-			cm_telephony_call_data_t *sat_dial_active_call = NULL;
-			CM_RETURN_IF_FAIL(sat_data->call_control_result);
-
-			switch(sat_data->call_control_result->callCtrlResult) {
-			case TAPI_SAT_CALL_CTRL_R_ALLOWED_NO_MOD:
-				break;
-			case TAPI_SAT_CALL_CTRL_R_NOT_ALLOWED:
-				_callmgr_telephony_send_sat_response(telephony_handle,
-						CM_TELEPHONY_SAT_EVENT_SETUP_CALL, CM_TELEPHONY_SAT_RESPONSE_ME_CONTROL_PERMANENT_PROBLEM, current_active_sim_slot);
-				break;
-			case TAPI_SAT_CALL_CTRL_R_ALLOWED_WITH_MOD:
-				/* Fetch the Sat / Dial / Active call data for */
-				_callmgr_telephony_get_sat_originated_call(telephony_handle, &sat_dial_active_call);
-				if (!sat_dial_active_call)
-					_callmgr_telephony_get_call_by_state(telephony_handle, CM_TEL_CALL_STATE_DIALING, &sat_dial_active_call);
-				if (!sat_dial_active_call)
-					_callmgr_telephony_get_call_by_state(telephony_handle, CM_TEL_CALL_STATE_ACTIVE, &sat_dial_active_call);
-
-				_callmgr_telephony_set_call_number(sat_dial_active_call, sat_data->call_control_result->u.callCtrlCnfCallData.address.string);
-				_callmgr_telephony_set_calling_name(sat_dial_active_call, sat_data->call_control_result->dispData.string);
-				break;
-			default:
-				warn("unhandled resp_type[%d].", sat_data->call_control_result->callCtrlResult);
-				break;
-
-			}
-
-			sat_data->event_type = CM_TELEPHONY_SAT_EVENT_NONE;
-			g_free(sat_data->call_control_result);
-			sat_data->call_control_result = NULL;
-		}
-		break;
 	default:
-		warn("invalid event_type[%d]", event_type);
+		warn("unhandled event_type[%d]", event_type);
 		break;
 	}
 
@@ -1132,8 +1412,20 @@ static void __callmgr_telephony_handle_preferred_sim_events(TapiHandle *handle, 
 	TelCallPreferredVoiceSubs_t *preferred_sim = (TelCallPreferredVoiceSubs_t *)data;
 	callmgr_telephony_t telephony_handle = (callmgr_telephony_t)user_data;
 	CM_RETURN_IF_FAIL(telephony_handle);
+	int result = -1;
+
+	result = device_power_request_lock(POWER_LOCK_CPU, 0);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_request_lock() failed with err[%d]", result);
+	}
+
 	warn("preferred SIM changed to [%d]", *preferred_sim);
 	telephony_handle->cb_fn(CM_TELEPHONY_EVENT_PREFERRED_SIM_CHANGED, (void *)*preferred_sim, telephony_handle->user_data);
+
+	result = device_power_release_lock(POWER_LOCK_CPU);
+	if (result != DEVICE_ERROR_NONE) {
+		err("device_power_release_lock() failed with err[%d]", result);
+	}
 	return;
 }
 
@@ -1259,7 +1551,7 @@ static int __callmgr_telephony_check_service_status(callmgr_telephony_t telephon
 
 	ret = tel_get_property_int(telephony_handle->multi_handles[slot_id], TAPI_PROP_NETWORK_SERVICE_TYPE, &svc_type);
 	if (TAPI_API_SUCCESS == ret) {
-		dbg("svc_type = [%d]", svc_type);
+		info("svc_type = [%d]", svc_type);
 		switch (svc_type) {
 			case TAPI_NETWORK_SERVICE_TYPE_UNKNOWN:
 			case TAPI_NETWORK_SERVICE_TYPE_NO_SERVICE:
@@ -1331,7 +1623,7 @@ static int __callmgr_telephony_check_cs_status(callmgr_telephony_t telephony_han
 		err("tel_get_property_int() failed");
 		return -1;
 	} else {
-		dbg("CS network state : %d", cs_type);
+		info("CS network state : %d", cs_type);
 		if (cs_type == VCONFKEY_TELEPHONY_SVC_CS_ON) {
 			is_cs_on = TRUE;
 		}
@@ -1353,7 +1645,7 @@ static int __callmgr_telephony_get_imsi_mcc_mnc(callmgr_telephony_t telephony_ha
 
 	ret = tel_get_sim_imsi(telephony_handle->multi_handles[slot_id], &sim_imsi_info);
 	if (0 == ret) {
-		dbg("mcc = [%s], mnc = [%s]", sim_imsi_info.szMcc, sim_imsi_info.szMnc);
+		info("mcc = [%s], mnc = [%s]", sim_imsi_info.szMcc, sim_imsi_info.szMnc);
 		*mcc = (unsigned long)atoi(sim_imsi_info.szMcc);
 		*mnc = (unsigned long)atoi(sim_imsi_info.szMnc);
 	} else {
@@ -1385,7 +1677,7 @@ static int __callmgr_telephony_get_network_mcc_mnc(callmgr_telephony_t telephony
 		char mcc_value[4] = {0,};
 		char mnc_value[4] = {0,};
 
-		dbg("plmn_value = [%s]", plmn);
+		info("plmn_value = [%s]", plmn);
 
 		g_strlcpy(mcc_value, plmn, 4);
 		g_strlcpy(mnc_value, plmn+3, 4);
@@ -1399,7 +1691,7 @@ static int __callmgr_telephony_get_network_mcc_mnc(callmgr_telephony_t telephony
 		*mcc = CALL_NETWORK_MCC_UK;
 		*mnc = CALL_NETWORK_MNC_01;
 	}
-	dbg("mcc = %ld,mnc = %ld", *mcc, *mnc);
+	info("mcc = %ld,mnc = %ld", *mcc, *mnc);
 
 	return 0;
 }
@@ -1452,6 +1744,8 @@ static int __callmgr_telephony_init(callmgr_telephony_t telephony_handle)
 			__callmgr_telephony_check_cs_status(telephony_handle, idx, &modem_info->is_cs_available);
 			/* Get network status */
 			__callmgr_telephony_check_service_status(telephony_handle, idx, &modem_info->network_status);
+			/* Get SIM power status*/
+			__callmgr_telephony_check_sim_poweroff_state(telephony_handle, idx, &modem_info->is_sim_poweroff);
 
 			memset(&modem_info->sim_ecc_list, 0x00, sizeof(TelSimEccList_t));
 			tapi_err = tel_get_sim_ecc(telephony_handle->multi_handles[idx], &modem_info->sim_ecc_list);
@@ -1549,7 +1843,7 @@ int _callmgr_telephony_call_new(callmgr_telephony_t telephony_handle, cm_telepho
 		_callmgr_telephony_call_delete(telephony_handle, NO_CALL_HANDLE);
 		call = NULL;
 	} else {
-		dbg("No call data exists...");
+		err("No call data exists...");
 	}
 
 	call = (cm_telephony_call_data_t*)calloc(1, sizeof(cm_telephony_call_data_t));
@@ -1600,7 +1894,7 @@ int _callmgr_telephony_call_delete(callmgr_telephony_t telephony_handle, unsigne
 int _callmgr_telephony_set_active_sim_slot(callmgr_telephony_t telephony_handle, cm_telepony_sim_slot_type_e active_slot)
 {
 	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
-	warn("_callmgr_telephony_set_active_sim_slot(), active_slot[%d]", active_slot);
+	info("active_slot[%d]", active_slot);
 	telephony_handle->active_sim_slot = active_slot;
 
 	return 0;
@@ -1609,9 +1903,8 @@ int _callmgr_telephony_set_active_sim_slot(callmgr_telephony_t telephony_handle,
 int _callmgr_telephony_get_active_sim_slot(callmgr_telephony_t telephony_handle, cm_telepony_sim_slot_type_e *active_slot)
 {
 	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
-	dbg("_callmgr_telephony_get_active_sim_slot()");
 	*active_slot = telephony_handle->active_sim_slot;
-	dbg("active_slot[%d]", *active_slot);
+	info("active_slot[%d]", *active_slot);
 	return 0;
 }
 
@@ -1623,10 +1916,12 @@ static void __callmgr_telephony_dial_call_resp_cb(TapiHandle *handle, int result
 	telephony_handle = (callmgr_telephony_t)user_data;
 
 	if (TAPI_CAUSE_SUCCESS != result) {
-		dbg("MO Call Dial call Failed with error cause: %d", result);
+		err("MO Call Dial call Failed with error cause: %d", result);
 
 		if (result == TAPI_CAUSE_FIXED_DIALING_NUMBER_ONLY) {
 			telephony_handle->cb_fn(CM_TELEPHONY_EVENT_NETWORK_ERROR, (void *)CM_TEL_CALL_ERR_FDN_ONLY, telephony_handle->user_data);
+		} else if (result == TAPI_CAUSE_REJ_SAT_CALL_CTRL) {
+			telephony_handle->cb_fn(CM_TELEPHONY_EVENT_NETWORK_ERROR, (void *)CM_TEL_CALL_ERR_REJ_SAT_CALL_CTRL, telephony_handle->user_data);
 		} else {
 			telephony_handle->cb_fn(CM_TELEPHONY_EVENT_NETWORK_ERROR, (void *)CM_TEL_CALL_ERR_DIAL_FAIL, telephony_handle->user_data);
 		}
@@ -1693,10 +1988,10 @@ int _callmgr_telephony_dial(callmgr_telephony_t telephony_handle, cm_telephony_c
 static void __callmgr_telephony_hold_call_resp_cb(TapiHandle *handle, int result, void *tapi_data, void *user_data)
 {
 	callmgr_telephony_t telephony_handle = (callmgr_telephony_t)user_data;
-	dbg("__callmgr_telephony_hold_call_resp_cb() Result : %d", result);
+	cm_telepony_sim_slot_type_e requested_sim_slot = CM_TELEPHONY_SIM_UNKNOWN;
 
 	if (TAPI_CAUSE_SUCCESS != result) {
-		err("tel_hold_call() failed");
+		err("tel_hold_call() failed[%d]", result);
 		cm_telephony_call_data_t *call_data = NULL;
 		_callmgr_telephony_get_call_by_call_id(telephony_handle, NO_CALL_HANDLE, &call_data);
 		if (call_data) {
@@ -1705,9 +2000,22 @@ static void __callmgr_telephony_hold_call_resp_cb(TapiHandle *handle, int result
 		}
 		_callmgr_util_launch_popup(CALL_POPUP_CALL_ERR, CALL_ERR_HOLD_CALL_FAILED, NULL, 0, NULL, NULL);
 		__callmgr_telephony_remove_wait_call_list(telephony_handle);
+
+		// If it's tried to hold call by SAT SETUP_CALL process
+		if (telephony_handle->multi_handles[CM_TELEPHONY_SIM_1] == handle) {
+			requested_sim_slot = CM_TELEPHONY_SIM_1;
+		} else {
+			requested_sim_slot = CM_TELEPHONY_SIM_2;
+		}
+		if (telephony_handle->modem_info[requested_sim_slot].sat_data.setup_call) {
+			info("send fail TR since holding call is failed.");
+			_callmgr_telephony_send_sat_response(telephony_handle,
+					CM_TELEPHONY_SAT_EVENT_SETUP_CALL, CM_TELEPHONY_SAT_RESPONSE_NETWORK_UNABLE_TO_PROCESS_COMMAND_WITHOUT_CAUSE, CM_TELEPHONY_SIM_UNKNOWN);
+		}
 	} else {
-		dbg("tel_hold_call success");
+		info("tel_hold_call success");
 	}
+
 	return;
 }
 
@@ -1740,7 +2048,7 @@ int _callmgr_telephony_hold_call(callmgr_telephony_t telephony_handle)
 static void __callmgr_telephony_join_call_resp_cb(TapiHandle *handle, int result, void *tapi_data, void *user_data)
 {
 	callmgr_telephony_t telephony_handle = (callmgr_telephony_t)user_data;
-	dbg("__callmgr_telephony_join_call_resp_cb() Result : %d", result);
+	info("__callmgr_telephony_join_call_resp_cb() Result : %d", result);
 
 	if (TAPI_CAUSE_SUCCESS != result) {
 		err("_callmgr_telephony_join_call() get failed ");
@@ -1789,7 +2097,7 @@ int _callmgr_telephony_join_call(callmgr_telephony_t telephony_handle)
 static void __callmgr_telephony_split_call_resp_cb(TapiHandle *handle, int result, void *tapi_data, void *user_data)
 {
 	callmgr_telephony_t telephony_handle = (callmgr_telephony_t)user_data;
-	dbg("__callmgr_telephony_split_call_resp_cb() Result : %d", result);
+	info("__callmgr_telephony_split_call_resp_cb() Result : %d", result);
 
 	if (TAPI_CAUSE_SUCCESS != result) {
 		err("tel_split_call() is failed");
@@ -1849,7 +2157,7 @@ int _callmgr_telephony_set_answer_request_type(callmgr_telephony_t telephony_han
 
 static void __callmgr_telephony_answer_call_resp_cb(TapiHandle *handle, int result, void *tapi_data, void *user_data)
 {
-	dbg("__callmgr_telephony_answer_call_resp_cb() Result : %d", result);
+	info("__callmgr_telephony_answer_call_resp_cb() Result : %d", result);
 
 	callmgr_telephony_t telephony_handle = (callmgr_telephony_t)user_data;
 
@@ -1857,7 +2165,7 @@ static void __callmgr_telephony_answer_call_resp_cb(TapiHandle *handle, int resu
 
 	if (TAPI_CAUSE_SUCCESS != result) {
 		err("tel_answer_call() failed");
-		_callmgr_util_launch_popup(CALL_POPUP_CALL_ERR, CALL_ERR_ANSWER_CALL_FAILED, NULL, 0, NULL, NULL);
+//		_callmgr_util_launch_popup(CALL_POPUP_CALL_ERR, CALL_ERR_ANSWER_CALL_FAILED, NULL, 0, NULL, NULL);
 	}
 	return;
 }
@@ -1869,7 +2177,7 @@ int _callmgr_telephony_answer_call(callmgr_telephony_t telephony_handle, int ans
 	unsigned int incoming_call_id = NO_CALL_HANDLE;
 	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
 	CM_RETURN_VAL_IF_FAIL(telephony_handle->active_sim_slot < telephony_handle->modem_cnt, -1);
-	dbg("_callmgr_telephony_answer_call() with answer type[%d]", ans_type);
+	info("_callmgr_telephony_answer_call() with answer type[%d]", ans_type);
 
 	/* Fetch the Incoming call data */
 	ret = _callmgr_telephony_get_call_by_state(telephony_handle, CM_TEL_CALL_STATE_INCOMING, &incoming_call_data);
@@ -1959,14 +2267,13 @@ int _callmgr_telephony_reject_call(callmgr_telephony_t telephony_handle)
 		err("tel_answer_call failed with err: %d", ret);
 		return -1;
 	}
-
 	return 0;
 }
 
 static void __callmgr_telephony_active_call_resp_cb(TapiHandle *handle, int result, void *tapi_data, void *user_data)
 {
 	callmgr_telephony_t telephony_handle = (callmgr_telephony_t)user_data;
-	dbg("__callmgr_telephony_active_call_resp_cb() Result : %d", result);
+	info("__callmgr_telephony_active_call_resp_cb() Result : %d", result);
 
 	if (TAPI_CAUSE_SUCCESS != result) {
 		err("tel_activate_call() failed");
@@ -2008,7 +2315,7 @@ int _callmgr_telephony_active_call(callmgr_telephony_t telephony_handle)
 static void __callmgr_telephony_swap_call_resp_cb(TapiHandle *handle, int result, void *tapi_data, void *user_data)
 {
 	callmgr_telephony_t telephony_handle = (callmgr_telephony_t)user_data;
-	dbg("__callmgr_telephony_swap_call_resp_cb() Result : %d", result);
+	info("__callmgr_telephony_swap_call_resp_cb() Result : %d", result);
 
 	if (TAPI_CAUSE_SUCCESS != result) {
 		err("tel_swap_call() failed");
@@ -2054,7 +2361,7 @@ int _callmgr_telephony_swap_call(callmgr_telephony_t telephony_handle)
 
 static void __callmgr_telephony_transfer_call_resp_cb(TapiHandle *handle, int result, void *tapi_data, void *user_data)
 {
-	dbg("__callmgr_telephony_transfer_call_resp_cb() Result : %d", result);
+	info("__callmgr_telephony_transfer_call_resp_cb() Result : %d", result);
 	if (TAPI_CAUSE_SUCCESS != result) {
 		err("tel_transfer_call() failed");
 		_callmgr_util_launch_popup(CALL_POPUP_CALL_ERR, CALL_ERR_TRANSFER_CALL_FAILED, NULL, 0, NULL, NULL);
@@ -2097,7 +2404,7 @@ static void __callmgr_telephony_end_call_resp_cb(TapiHandle *handle, int result,
 	callmgr_telephony_t telephony_handle = user_data;
 	CM_RETURN_IF_FAIL(tapi_data);
 	CM_RETURN_IF_FAIL(telephony_handle);
-	dbg("Result : %d", result);
+	info("Result : %d", result);
 	if (TAPI_CAUSE_SUCCESS != result) {
 		err("tel_end_call() failed");
 	}
@@ -2117,9 +2424,21 @@ int _callmgr_telephony_end_call(callmgr_telephony_t telephony_handle, unsigned i
 	switch (release_type) {
 	case CM_TEL_CALL_RELEASE_TYPE_BY_CALL_HANDLE:
 		{
-			/* To do
-			 * Check whether passed handle is of incoming, outgoing or connected call...and accordingly change the state.
-			 */
+			cm_telephony_call_data_t *call_data = NULL;
+			if (_callmgr_telephony_get_call_by_call_id(telephony_handle, call_id, &call_data) < 0) {
+				err("No call_data exists for this event...");
+			} else {
+				/*******************************************
+				* To handle Canceled outgoing call.
+				* call-ui must call release by call handle,
+				* in case of ending dilaing call
+				********************************************/
+				if (call_data->call_state == CM_TEL_CALL_STATE_DIALING ||
+					call_data->call_state == CM_TEL_CALL_STATE_ALERT) {
+					__callmgr_telephony_set_call_canceled_flag(call_data, TRUE);
+				}
+			}
+
 			ret_tapi = tel_end_call(telephony_handle->multi_handles[telephony_handle->active_sim_slot], call_id, TAPI_CALL_END, __callmgr_telephony_end_call_resp_cb, telephony_handle);
 			if (ret_tapi != TAPI_API_SUCCESS) {
 				err("tel_end_call() get failed with err: %d", ret);
@@ -2251,7 +2570,7 @@ int _callmgr_telephony_stop_dtmf(callmgr_telephony_t telephony_handle)
 
 static void __callmgr_telephony_burst_dtmf_cb(TapiHandle *handle, int result, void *data, void *user_data)
 {
-	dbg("result : %d", result);
+	info("result : %d", result);
 }
 
 int _callmgr_telephony_burst_dtmf(callmgr_telephony_t telephony_handle, const char *dtmf_digits)
@@ -2309,7 +2628,7 @@ static void __callmgr_telephony_all_call_list_cb(TelCallStatus_t *out, void *use
 	__callmgr_telephony_set_call_id(call_data, out->CallHandle);
 	__callmgr_telephony_set_conference_call_state(call_data, out->bConferenceState);
 
-	dbg("call state [%d]", out->CallState);
+	info("call state [%d]", out->CallState);
 	switch (out->CallState) {
 		case TAPI_CALL_STATE_IDLE:
 			call_state = CM_TEL_CALL_STATE_IDLE;
@@ -2358,7 +2677,7 @@ static int __callmgr_telephony_get_all_call_list(callmgr_telephony_t telephony_h
 
 static int __callmgr_telephony_set_call_id(cm_telephony_call_data_t *call, unsigned int call_id)
 {
-	dbg("__callmgr_telephony_set_call_id(), call ID[%d]", call_id);
+	info("__callmgr_telephony_set_call_id(), call ID[%d]", call_id);
 	CM_RETURN_VAL_IF_FAIL(call, -1);
 	call->call_id = call_id;
 	return 0;
@@ -2373,7 +2692,7 @@ static int __callmgr_telephony_set_call_state(cm_telephony_call_data_t *call, cm
 
 static int __callmgr_telephony_set_conference_call_state(cm_telephony_call_data_t *call, gboolean bConferenceState)
 {
-	dbg("__callmgr_telephony_set_conference_call(), bConferenceState[%d]", bConferenceState);
+	info("__callmgr_telephony_set_conference_call(), bConferenceState[%d]", bConferenceState);
 	CM_RETURN_VAL_IF_FAIL(call, -1);
 	call->is_conference = bConferenceState;
 	return 0;
@@ -2429,11 +2748,19 @@ static int __callmgr_telephony_set_start_time(cm_telephony_call_data_t *call)
 	return -1;
 }
 
-static int __callmgr_telephony_set_retreive_flag(cm_telephony_call_data_t *call, gboolean is_set)
+static int __callmgr_telephony_set_retrieve_flag(cm_telephony_call_data_t *call, gboolean is_set)
 {
 	CM_RETURN_VAL_IF_FAIL(call, -1);
-	call->retreive_flag = is_set;
-	warn("retreive flag [%d]", call->retreive_flag);
+	call->retrieve_flag = is_set;
+	warn("call(%d) retrieve flag [%d]", call->call_id, call->retrieve_flag);
+	return 0;
+}
+
+static int __callmgr_telephony_set_call_canceled_flag(cm_telephony_call_data_t *call, gboolean is_set)
+{
+	CM_RETURN_VAL_IF_FAIL(call, -1);
+	call->is_canceled = is_set;
+	warn("call(%d) is_canceled [%d]", call->call_id, call->is_canceled);
 	return 0;
 }
 
@@ -2479,7 +2806,13 @@ int _callmgr_telephony_get_call_number(cm_telephony_call_data_t *call, char **ca
 	CM_RETURN_VAL_IF_FAIL(call, -1);
 	CM_RETURN_VAL_IF_FAIL(call_number, -1);
 	if (call->call_number) {
-		*call_number = g_strdup(call->call_number);
+		if (g_str_has_prefix(call->call_number, CALLMGR_CLI_SHOW_ID)
+			|| g_str_has_prefix(call->call_number, CALLMGR_CLI_HIDE_ID)) {
+			/* Hide CLI code */
+			*call_number = g_strdup(call->call_number + 4);
+		} else {
+			*call_number = g_strdup(call->call_number);
+		}
 	} else {
 		*call_number = NULL;
 	}
@@ -2615,7 +2948,6 @@ int _callmgr_telephony_get_call_by_state(callmgr_telephony_t telephony_handle, c
 	cm_telephony_call_data_t *call = NULL;
 	int list_len = -1;
 	int idx = -1;
-	dbg("_callmgr_telephony_get_call_by_state :%d", state);
 	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
 	CM_RETURN_VAL_IF_FAIL(call_data_out, -1);
 
@@ -2637,7 +2969,6 @@ static int __callmgr_telephony_end_all_call_by_state(callmgr_telephony_t telepho
 	cm_telephony_call_data_t *call = NULL;
 	int list_len = -1;
 	int idx = -1;
-	dbg("__callmgr_telephony_end_all_call_by_state :%d", state);
 	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
 
 	modem_info = &telephony_handle->modem_info[telephony_handle->active_sim_slot];
@@ -2651,13 +2982,13 @@ static int __callmgr_telephony_end_all_call_by_state(callmgr_telephony_t telepho
 	return -1;
 }
 
-static int __callmgr_telephony_get_call_to_be_retreived(callmgr_telephony_t telephony_handle, cm_telephony_call_data_t **call_data_out)
+static int __callmgr_telephony_get_call_to_be_retrieved(callmgr_telephony_t telephony_handle, cm_telephony_call_data_t **call_data_out)
 {
 	struct __modem_info *modem_info = NULL;
 	cm_telephony_call_data_t *call = NULL;
 	int list_len = -1;
 	int idx = -1;
-	dbg("__callmgr_telephony_get_call_to_be_retreived()");
+	dbg("__callmgr_telephony_get_call_to_be_retrieved()");
 	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
 	CM_RETURN_VAL_IF_FAIL(call_data_out, -1);
 
@@ -2665,7 +2996,7 @@ static int __callmgr_telephony_get_call_to_be_retreived(callmgr_telephony_t tele
 	list_len = g_slist_length(modem_info->call_list);
 	for (idx = 0; idx < list_len; idx++) {
 		call = g_slist_nth_data(modem_info->call_list, idx);
-		if (call->retreive_flag == TRUE) {
+		if (call->retrieve_flag == TRUE) {
 			*call_data_out = call;
 			return 0;
 		}
@@ -2717,13 +3048,40 @@ int _callmgr_telephony_get_voice_call(callmgr_telephony_t telephony_handle, cm_t
 	return -1;
 }
 
+int _callmgr_telephony_get_sat_event_status(callmgr_telephony_t telephony_handle, cm_telephony_sat_event_type_e event_type, gboolean *b_is_ongoing)
+{
+	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
+	CM_RETURN_VAL_IF_FAIL(b_is_ongoing, -1);
+
+	switch(event_type) {
+	case CM_TELEPHONY_SAT_EVENT_SETUP_CALL:
+		if (telephony_handle->modem_info[telephony_handle->active_sim_slot].sat_data.setup_call)
+			*b_is_ongoing = TRUE;
+		break;
+	case CM_TELEPHONY_SAT_EVENT_SEND_DTMF:
+		if (telephony_handle->modem_info[telephony_handle->active_sim_slot].sat_data.send_dtmf)
+			*b_is_ongoing = TRUE;
+		break;
+	case CM_TELEPHONY_SAT_EVENT_CALL_CONTROL_RESULT:
+		if (telephony_handle->modem_info[telephony_handle->active_sim_slot].sat_data.call_control_result)
+			*b_is_ongoing = TRUE;
+		break;
+	default:
+		warn("invalid event_type[%d]", event_type);
+		return -1;
+		break;
+	}
+
+	return 0;
+}
+
 int _callmgr_telephony_get_sat_setup_call_number(callmgr_telephony_t telephony_handle, char **call_number)
 {
 	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
 	CM_RETURN_VAL_IF_FAIL(call_number, -1);
 
 	if (telephony_handle->modem_info[telephony_handle->active_sim_slot].sat_data.setup_call) {
-		*call_number = g_strdup(telephony_handle->modem_info[telephony_handle->active_sim_slot].sat_data.setup_call->callNumber.string);
+		*call_number = g_strdup((const gchar *)telephony_handle->modem_info[telephony_handle->active_sim_slot].sat_data.setup_call->callNumber.string);
 	} else {
 		*call_number = NULL;
 	}
@@ -2735,17 +3093,18 @@ int _callmgr_telephony_get_sat_setup_call_name(callmgr_telephony_t telephony_han
 	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
 	CM_RETURN_VAL_IF_FAIL(call_name, -1);
 	if (telephony_handle->modem_info[telephony_handle->active_sim_slot].sat_data.setup_call) {
-		*call_name = g_strdup(telephony_handle->modem_info[telephony_handle->active_sim_slot].sat_data.setup_call->dispText.string);
+		*call_name = g_strdup((const gchar *)telephony_handle->modem_info[telephony_handle->active_sim_slot].sat_data.setup_call->dispText.string);
 	} else {
 		*call_name = NULL;
 	}
 	return 0;
 }
 
-int _callmgr_telephony_get_sat_event_type(callmgr_telephony_t telephony_handle, cm_telephony_sat_event_type_e *sat_event_type)
+int _callmgr_telephony_get_sat_setup_call_type(callmgr_telephony_t telephony_handle, cm_telephony_sat_setup_call_type_e *sat_setup_call_type)
 {
 	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
-	*sat_event_type = telephony_handle->modem_info[telephony_handle->active_sim_slot].sat_data.event_type;
+	CM_RETURN_VAL_IF_FAIL(telephony_handle->modem_info[telephony_handle->active_sim_slot].sat_data.setup_call, -1);
+	*sat_setup_call_type = telephony_handle->modem_info[telephony_handle->active_sim_slot].sat_data.setup_call->calltype;
 	return 0;
 }
 
@@ -2771,15 +3130,26 @@ int _callmgr_telephony_get_sat_originated_call(callmgr_telephony_t telephony_han
 	return -1;
 }
 
-int _callmgr_telephony_is_sat_originated_call(cm_telephony_call_data_t *call, gboolean *is_sat_originated_call)
+int _callmgr_telephony_get_sat_call_control_call(callmgr_telephony_t telephony_handle, cm_telephony_call_data_t **call_data_out)
 {
-	CM_RETURN_VAL_IF_FAIL(call, -1);
-	CM_RETURN_VAL_IF_FAIL(is_sat_originated_call, -1);
-	if (call->is_sat_originated_call)
-		*is_sat_originated_call = TRUE;
-	else
-		*is_sat_originated_call = FALSE;
-	return 0;
+	cm_telephony_call_data_t *call = NULL;
+	GSList *call_list = NULL;
+	int list_len = -1;
+	int idx = -1;
+	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
+	CM_RETURN_VAL_IF_FAIL(call_data_out, -1);
+
+	call_list = telephony_handle->modem_info[telephony_handle->active_sim_slot].call_list;
+	list_len = g_slist_length(call_list);
+	for (idx = 0; idx < list_len; idx++) {
+		call = g_slist_nth_data(call_list, idx);
+		if (call->is_in_sat_call_control) {
+			info("Call found. id[%d], name[%s], number[%s]", call->call_id, call->calling_name, call->call_number);
+			*call_data_out = call;
+			return 0;
+		}
+	}
+	return -1;
 }
 
 int _callmgr_telephony_set_sat_originated_call_flag(cm_telephony_call_data_t *call, gboolean is_sat_originated_call)
@@ -2820,7 +3190,7 @@ int _callmgr_telephony_get_call_count(callmgr_telephony_t telephony_handle, int 
 
 	call_list = telephony_handle->modem_info[telephony_handle->active_sim_slot].call_list;
 	*call_count_out = g_slist_length(call_list);
-	dbg("call_cnt :%d", *call_count_out);
+	info("call_cnt :%d", *call_count_out);
 	return 0;
 }
 
@@ -3053,36 +3423,59 @@ int _callmgr_telephony_get_mcc_mnc(callmgr_telephony_t telephony_handle, unsigne
 	return 0;
 }
 
-static int __callmgr_telephony_set_sim_slot_for_ecc(callmgr_telephony_t telephony_handle)
+static int __callmgr_telephony_set_sim_slot_for_ecc(callmgr_telephony_t telephony_handle, const char *pNumber)
 {
 	int sim_init_cnt = 0;
 	cm_telepony_preferred_sim_type_e pref_sim_type = CM_TEL_PREFERRED_UNKNOWN_E;
 	cm_telepony_sim_slot_type_e preferred_sim = CM_TELEPHONY_SIM_UNKNOWN;
 	int idx = -1;
+	gboolean sim_power_off = FALSE;
+
 	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
 
+
+/* step1. SIM power check for MultiSIM only. if one SIM is powered-off,  use available SIM slot by default regardless SIM state */
+	if(telephony_handle->modem_cnt > 1){
+		for(idx =0;idx<telephony_handle->modem_cnt;idx++){
+			sim_power_off = telephony_handle->modem_info[idx].is_sim_poweroff;
+			if(sim_power_off == TRUE){
+				info("SIM %d powered off. choose alternative slot for emergency call",idx);
+				if(idx == CM_TELEPHONY_SIM_1){
+					return _callmgr_telephony_set_active_sim_slot(telephony_handle, CM_TELEPHONY_SIM_2);
+				}
+				else if(idx == CM_TELEPHONY_SIM_2){
+					return _callmgr_telephony_set_active_sim_slot(telephony_handle, CM_TELEPHONY_SIM_1);
+				}
+			}
+		}
+	}
+
+/*step 2. Pirority check for active SIM(s) */
 	for (idx = 0; idx < telephony_handle->modem_cnt; idx++) {
 		if (telephony_handle->modem_info[idx].is_sim_initialized == TRUE) {
 			sim_init_cnt++;
 		}
 	}
 
+	info("sim_init_cnt : %d", sim_init_cnt);
+
 	_callmgr_telephony_set_active_sim_slot(telephony_handle, CM_TELEPHONY_SIM_UNKNOWN);
 	if (sim_init_cnt > 1) {
 		_callmgr_telephony_get_preferred_sim_type(telephony_handle, &pref_sim_type);
-		if (pref_sim_type == CM_TELEPHONY_SIM_2) {
+		if (pref_sim_type == CM_TEL_PREFERRED_SIM_2_E) {
 			preferred_sim = CM_TELEPHONY_SIM_2;
 		} else {
 			preferred_sim = CM_TELEPHONY_SIM_1;
 		}
 	} else if (sim_init_cnt == 1) {
+		info("one SIM disabled/not present/Locked or SingleSIM only model. select initialized SIM");
 		if (telephony_handle->modem_info[CM_TELEPHONY_SIM_1].is_sim_initialized) {
 			preferred_sim = CM_TELEPHONY_SIM_1;
 		} else {
 			preferred_sim = CM_TELEPHONY_SIM_2;
 		}
 	} else {
-		err("SIM not initialized!!");
+		err("SingleSIM model or both SIM slot not initialized!!");
 		preferred_sim = CM_TELEPHONY_SIM_1;
 	}
 
@@ -3098,14 +3491,24 @@ static int __callmgr_telephony_set_sim_slot_for_ecc(callmgr_telephony_t telephon
 		} else {
 			alternative_slot = CM_TELEPHONY_SIM_1;
 		}
+
 		if (telephony_handle->modem_info[alternative_slot].network_status != CM_NETWORK_STATUS_OUT_OF_SERVICE) {
+			info("SIM%d is on service. use this SIM instead of preferred SIM", alternative_slot);
 			_callmgr_telephony_set_active_sim_slot(telephony_handle, alternative_slot);
 			return 0;
 		}
 	}
 
-	err("All modem is no service status! Use SIM 1 slot!!");
-	_callmgr_telephony_set_active_sim_slot(telephony_handle, CM_TELEPHONY_SIM_1);
+	warn("(both)SIM slots are in No service, Check SIM ECC");
+	if (__callmgr_telephony_check_ecc_slot(telephony_handle,pNumber, (cm_telepony_sim_slot_type_e *)&idx) == 0)
+	{
+		warn("SIM has same ecc num");
+		_callmgr_telephony_set_active_sim_slot(telephony_handle, idx);
+		return 0;
+	}
+
+	err("ECC list not matched! select pre-selected SIM slot!! : %d", preferred_sim);
+	_callmgr_telephony_set_active_sim_slot(telephony_handle, preferred_sim);
 	return -1;
 }
 
@@ -3133,7 +3536,7 @@ int _callmgr_telephony_check_ecc_number(callmgr_telephony_t telephony_handle, co
 
 	_callmgr_telephony_get_call_count(telephony_handle, &call_count);
 	if (call_count == 0) {
-		__callmgr_telephony_set_sim_slot_for_ecc(telephony_handle);
+		__callmgr_telephony_set_sim_slot_for_ecc(telephony_handle, pNumber);
 	}
 	_callmgr_vconf_get_salescode(&salescode);
 	if ((salescode == CALL_CSC_KT) || (salescode == CALL_CSC_SKT)) {
@@ -3184,6 +3587,72 @@ FINISH:
 	return ret_val;
 }
 
+int __callmgr_telephony_check_ecc_slot(callmgr_telephony_t telephony_handle, const char *pNumber, cm_telepony_sim_slot_type_e *sim_slot)
+{
+	cm_telephony_card_type_e simcard_type = CM_CARD_TYPE_UNKNOWN;
+	struct __modem_info *modem_info = NULL;
+	int i = 0;
+	int sim_cnt = 0;
+
+	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
+	CM_RETURN_VAL_IF_FAIL(pNumber, -1);
+	CM_RETURN_VAL_IF_FAIL(sim_slot, -1);
+
+	*sim_slot = CM_TELEPHONY_SIM_UNKNOWN;	/*Init*/
+
+	for (sim_cnt = 0 ; sim_cnt < CALLMGR_TAPI_HANDLE_MAX ; sim_cnt++) {
+		modem_info = &telephony_handle->modem_info[sim_cnt];
+		simcard_type = modem_info->card_type;
+		info("simcard_type : %d", simcard_type);
+
+		switch (simcard_type) {
+			case CM_CARD_TYPE_GSM:
+				{
+					dbg("[SimCardType=SIM_CARD_TYPE_GSM]");
+
+					/*TAPI api Compliance */
+					/*To get Emergency data of 2G */
+					if (modem_info->sim_ecc_list.ecc_count > 0) {
+						dbg("GSM pNumber ecc1(%s) ecc2(%s) ecc3(%s) ecc4(%s) ecc5(%s)",
+								   modem_info->sim_ecc_list.list[0].number, modem_info->sim_ecc_list.list[1].number, modem_info->sim_ecc_list.list[2].number, modem_info->sim_ecc_list.list[3].number, modem_info->sim_ecc_list.list[4].number);
+
+						if ((g_strcmp0(pNumber, modem_info->sim_ecc_list.list[0].number) == 0)
+							|| (g_strcmp0(pNumber, modem_info->sim_ecc_list.list[1].number) == 0)
+							|| (g_strcmp0(pNumber, modem_info->sim_ecc_list.list[2].number) == 0)
+							|| (g_strcmp0(pNumber, modem_info->sim_ecc_list.list[3].number) == 0)
+							|| (g_strcmp0(pNumber, modem_info->sim_ecc_list.list[4].number) == 0)) {
+							dbg("_callmgr_telephony_check_ecc_number: return TRUE");
+							*sim_slot = sim_cnt;
+							return 0;
+						}
+					}
+				}
+				break;
+			case CM_CARD_TYPE_USIM:
+				{
+					dbg("SimCardType=SIM_CARD_TYPE_USIM");
+
+					if (modem_info->sim_ecc_list.ecc_count > 0) {
+						for (i = 0; i < modem_info->sim_ecc_list.ecc_count; i++) {
+							dbg("[ecc=%s, category:[%d]]", modem_info->sim_ecc_list.list[i].number, modem_info->sim_ecc_list.list[i].category);
+							if (!g_strcmp0(pNumber, modem_info->sim_ecc_list.list[i].number)) {
+								dbg("uecc matched!!");
+								*sim_slot = sim_cnt;
+								return 0;
+							}
+						}
+					}
+				}
+				break;
+			default:
+				dbg("type : %d", simcard_type);
+				break;
+		}
+	}
+
+	return -1;
+}
+
 
 int _callmgr_telephony_check_sim_ecc(callmgr_telephony_t telephony_handle, const char *pNumber, gboolean *is_sim_ecc, int *ecc_category)
 {
@@ -3200,7 +3669,7 @@ int _callmgr_telephony_check_sim_ecc(callmgr_telephony_t telephony_handle, const
 	*is_sim_ecc = FALSE;	/*Init*/
 	modem_info = &telephony_handle->modem_info[telephony_handle->active_sim_slot];
 	simcard_type = modem_info->card_type;
-	dbg("simcard_type : %d", simcard_type);
+	info("simcard_type : %d", simcard_type);
 
 	/*_callmgr_telephony_get_imsi_mcc_mnc(telephony_handle, &imsi_mcc, &imsi_mnc);*/
 
@@ -3212,8 +3681,8 @@ int _callmgr_telephony_check_sim_ecc(callmgr_telephony_t telephony_handle, const
 				/*TAPI api Compliance */
 				/*To get Emergency data of 2G */
 				if (modem_info->sim_ecc_list.ecc_count > 0) {
-					/*SEC_DBG("GSM pNumber ecc1(%s) ecc2(%s) ecc3(%s) ecc4(%s) ecc5(%s)",
-							   sim_ecc_list.list[0].number, sim_ecc_list.list[1].number, sim_ecc_list.list[2].number, sim_ecc_list.list[3].number, sim_ecc_list.list[4].number);*/
+					sec_dbg("GSM pNumber ecc1(%s) ecc2(%s) ecc3(%s) ecc4(%s) ecc5(%s)",
+							   modem_info->sim_ecc_list.list[0].number, modem_info->sim_ecc_list.list[1].number, modem_info->sim_ecc_list.list[2].number, modem_info->sim_ecc_list.list[3].number, modem_info->sim_ecc_list.list[4].number);
 
 					if ((g_strcmp0(pNumber, modem_info->sim_ecc_list.list[0].number) == 0)
 						|| (g_strcmp0(pNumber, modem_info->sim_ecc_list.list[1].number) == 0)
@@ -3233,7 +3702,7 @@ int _callmgr_telephony_check_sim_ecc(callmgr_telephony_t telephony_handle, const
 
 				if (modem_info->sim_ecc_list.ecc_count > 0) {
 					for (i = 0; i < modem_info->sim_ecc_list.ecc_count; i++) {
-						/*SEC_DBG("[ecc=%s, category:[%d]]", usim_ecc_list.list[i].number, usim_ecc_list.list[i].category);*/
+						sec_dbg("[ecc=%s, category:[%d]]", modem_info->sim_ecc_list.list[i].number, modem_info->sim_ecc_list.list[i].category);
 						if (!g_strcmp0(pNumber, modem_info->sim_ecc_list.list[i].number)) {
 							*ecc_category = modem_info->sim_ecc_list.list[i].category;
 							dbg("uecc matched!!");
@@ -3362,12 +3831,12 @@ int _callmgr_telephony_process_incall_ss(callmgr_telephony_t telephony_handle, c
 					_callmgr_telephony_end_call(telephony_handle, selected_call_id, CM_TEL_CALL_RELEASE_TYPE_BY_CALL_HANDLE);
 
 					if (held_call) {
-						__callmgr_telephony_set_retreive_flag(held_call, TRUE);
+						__callmgr_telephony_set_retrieve_flag(held_call, TRUE);
 					}
 				} else if (active_call) {
 					_callmgr_telephony_end_call(telephony_handle, active_call->call_id, CM_TEL_CALL_RELEASE_TYPE_ALL_ACTIVE_CALLS);
 					if (held_call) {
-						__callmgr_telephony_set_retreive_flag(held_call, TRUE);
+						__callmgr_telephony_set_retrieve_flag(held_call, TRUE);
 					}
 				} else if (held_call) {
 					if (_callmgr_telephony_active_call(telephony_handle) < 0) {
@@ -3514,7 +3983,7 @@ static gboolean __callmgr_telephony_disable_fm_timer_cb(gpointer data)
 
 	_callmgr_telephony_get_network_status(telephony_handle, &nw_status);
 
-	dbg("nw_status(%d)", nw_status);
+	info("nw_status(%d)", nw_status);
 
 	if (nw_status == CM_NETWORK_STATUS_OUT_OF_SERVICE) {
 		g_disable_fm_cnt++;
@@ -3685,6 +4154,8 @@ int _callmgr_telephony_is_number_valid(const char *number, gboolean *b_number_va
 int _callmgr_telephony_is_ss_string(callmgr_telephony_t telephony_handle, int slot_id, const char *number, gboolean *o_is_ss)
 {
 	int len;
+	int call_count = -1;
+	gboolean ret = FALSE;
 	CM_RETURN_VAL_IF_FAIL(number, -1);
 	CM_RETURN_VAL_IF_FAIL(telephony_handle, -1);
 	CM_RETURN_VAL_IF_FAIL(slot_id < telephony_handle->modem_cnt, -1);
@@ -3707,7 +4178,7 @@ int _callmgr_telephony_is_ss_string(callmgr_telephony_t telephony_handle, int sl
 					*o_is_ss = FALSE;
 					return 0;
 				}
-				dbg("USSD");
+				info("USSD");
 				*o_is_ss = TRUE;
 				return 0;
 			}
@@ -3715,28 +4186,49 @@ int _callmgr_telephony_is_ss_string(callmgr_telephony_t telephony_handle, int sl
 	}
 
 	if ((len == 2)) {
-		if ((number[0] == '0') && (IS1CHARUSSDDIGIT(number[1]))) {
+		ret = _callmgr_telephony_get_call_count(telephony_handle, &call_count);
+		if (ret) {
+			err("_callmgr_telephony_is_ss_string() call count error");
+			return -1;
+		}
+		if ((number[0] == '0') && (IS_DIGIT(number[1]))) {
 			if (number[1] == '8') {
 				/* 08 is emergency number */
 				*o_is_ss = FALSE;
 				return 0;
+			} else if(number[1] == '0' && call_count == 0) {
+				warn("If NO CALL then dial call for 00");
+				*o_is_ss = FALSE;
+				return 0;
 			} else {
-				dbg("USSD string");
+				info("USSD string");
 				*o_is_ss = TRUE;
 				return 0;
 			}
-		} else if ((ISUSSDDIGIT(number[0]) && IS_DIGIT(number[1]))) {
+		} 
+		if ((number[0] == '1') && (IS_DIGIT(number[1]))) {
+			if ((number[1] == '0')&&(call_count >0)) {
+				/* 10 is ussd  */
+				info("10 is USSD string when active call exist");
+				*o_is_ss = TRUE;
+				return 0;
+			}else {
+				*o_is_ss = FALSE;
+				return 0;
+			}
+		}
+		else if ((ISUSSDDIGIT(number[0]) && IS_DIGIT(number[1]))) {
 			unsigned long mcc = 0;
 			unsigned long mnc = 0;
 			__callmgr_telephony_get_network_mcc_mnc(telephony_handle, slot_id, &mcc, &mnc);
 
 			if ((mcc == CALL_NETWORK_MCC_CROATIA || mcc == CALL_NETWORK_MCC_SERBIA)
 					&& (number[0] == '9' && ISECCDIGIT(number[1]))) {
-				dbg("Emergency or Service number");
+				info("Emergency or Service number");
 				*o_is_ss = FALSE;
 				return 0;
 			} else {
-				dbg("USSD string");
+				info("USSD string");
 				*o_is_ss = TRUE;
 				return 0;
 			}
@@ -3750,7 +4242,7 @@ int _callmgr_telephony_is_ss_string(callmgr_telephony_t telephony_handle, int sl
 	}
 
 	if (number[len - 1] == '#') {
-		dbg("USSD string");
+		info("USSD string");
 		*o_is_ss = TRUE;
 		return 0;
 	}
@@ -3783,7 +4275,7 @@ int _callmgr_telephony_get_answer_request_type(callmgr_telephony_t telephony_han
 
 int __callmgr_telephony_get_end_cause_type(TelCallCause_t call_cause, TelTapiEndCause_t cause, cm_telephony_end_cause_type_e *end_cause_type)
 {
-	dbg("call_cause [%d] end case [%d]", call_cause, cause);
+	info("call_cause [%d] end case [%d]", call_cause, cause);
 	*end_cause_type = CM_TELEPHONY_ENDCAUSE_CALL_ENDED;
 	if (TAPI_CAUSE_FIXED_DIALING_NUMBER_ONLY == call_cause) {
 		/* This case is dial failed because of FDN */
@@ -3884,7 +4376,7 @@ int __callmgr_telephony_get_end_cause_type(TelCallCause_t call_cause, TelTapiEnd
 			default:
 				*end_cause_type = CM_TELEPHONY_ENDCAUSE_CALL_ENDED;
 
-				dbg("Call Ended or Default Cause Value: %d", *end_cause_type);
+				info("Call Ended or Default Cause Value: %d", *end_cause_type);
 				break;
 			}
 	}

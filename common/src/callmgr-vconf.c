@@ -62,13 +62,43 @@ int _callmgr_vconf_is_pwlock(gboolean *is_pwlock)
 		*is_pwlock = FALSE;
 		return -1;
 	}
-	dbg("pwlock_state:[%d]", pwlock_state);
+	info("pwlock_state:[%d]", pwlock_state);
 	if ((pwlock_state == VCONFKEY_PWLOCK_BOOTING_LOCK) || (pwlock_state == VCONFKEY_PWLOCK_RUNNING_LOCK)) {
 		*is_pwlock = TRUE;
 	} else {
 		*is_pwlock = FALSE;
 	}
 	return 0;
+}
+
+int _callmgr_vconf_is_low_battery(gboolean *is_low_battery)
+{
+	dbg("_callmgr_vconf_is_low_battery()");
+	int low_status = -1;
+	int charger_status = -1;
+
+	if (!vconf_get_int(VCONFKEY_SYSMAN_BATTERY_STATUS_LOW, &low_status)) {
+		if (low_status <= VCONFKEY_SYSMAN_BAT_CRITICAL_LOW) {
+
+			//check charger status
+			if (vconf_get_int(VCONFKEY_SYSMAN_BATTERY_CHARGE_NOW, &charger_status)) {
+				err("vconf_get_int failed");
+				*is_low_battery = FALSE;
+				return -1;
+			}
+
+			if (charger_status == 1) {	// charging
+				*is_low_battery = FALSE;
+			} else {
+				*is_low_battery = TRUE;
+			}
+		}
+	} else {
+		warn("get setting failed %s", VCONFKEY_SYSMAN_BATTERY_STATUS_LOW);
+		*is_low_battery = FALSE;
+	}
+
+	return -1;
 }
 
 int _callmgr_vconf_is_sound_setting_enabled(gboolean *is_sound_enabled)

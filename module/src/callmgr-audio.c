@@ -44,6 +44,7 @@ int _callmgr_audio_init(callmgr_audio_handle_h *audio_handle, audio_event_cb cb_
 {
 	struct __audio_data *handle = NULL;
 	int b_noise_reduction = 0;
+
 	handle = calloc(1, sizeof(struct __audio_data));
 	CM_RETURN_VAL_IF_FAIL(handle, -1);
 
@@ -94,7 +95,6 @@ static void __callmgr_audio_available_route_changed_cb(sound_device_h device, bo
 		audio_handle->cb_fn(CM_AUDIO_EVENT_EARJACK_CHANGED_E, (void *)is_connected, audio_handle->user_data);
 	}
 }
-
 
 static void __callmgr_audio_active_device_changed_cb(sound_device_h device, sound_device_changed_info_e changed_info, void *user_data)
 {
@@ -149,12 +149,13 @@ static void __callmgr_audio_active_device_changed_cb(sound_device_h device, soun
 	if ((cm_device == audio_handle->current_device) || cm_device == CALLMGR_AUDIO_DEVICE_NONE_E) {
 		warn("Do not update");
 	} else {
-		audio_handle->current_device = cm_device;
-		audio_handle->cb_fn(CM_AUDIO_EVENT_PATH_CHANGED_E, (void*)cm_device, audio_handle->user_data);
+		//audio_handle->current_device = cm_device;
+		//audio_handle->cb_fn(CM_AUDIO_EVENT_PATH_CHANGED_E, (void*)cm_device, audio_handle->user_data);
 	}
 }
 
-static void __callmgr_audio_call_stream_focus_state_cb(sound_stream_info_h stream_info, sound_stream_focus_change_reason_e reason_for_change, const char *additional_info, void *user_data)
+static void __callmgr_audio_call_stream_focus_state_cb(sound_stream_info_h stream_info,
+	sound_stream_focus_change_reason_e reason_for_change, const char *additional_info, void *user_data)
 {
 	dbg("__callmgr_audio_call_stream_focus_state_cb");
 	return;
@@ -169,22 +170,22 @@ static void __callmgr_audio_volume_changed_cb(sound_type_e type, unsigned int vo
 	sound_type_e snd_type = type;
 
 	if (snd_type == SOUND_TYPE_CALL) {
-		dbg("sound type : %d, volume : %d", snd_type, volume);
+		info("sound type : %d, volume : %d", snd_type, volume);
 		audio_handle->cb_fn(CM_AUDIO_EVENT_VOLUME_CHANGED_E, GUINT_TO_POINTER(volume), audio_handle->user_data);
 	}
 	return;
 }
 
-int _callmgr_audio_create_call_sound_session(callmgr_audio_handle_h audio_handle, callmgr_audio_session_mode_e session_mode)
+int _callmgr_audio_create_call_sound_session(callmgr_audio_handle_h audio_handle, callmgr_audio_session_mode_e mode)
 {
 	int ret = -1;
 	sound_stream_type_internal_e stream_type = SOUND_STREAM_TYPE_VOICE_CALL;
-
-	dbg("_callmgr_audio_create_call_sound_session()");
 	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
 
-	if (audio_handle->current_mode == session_mode) {
-		warn("already (%d) set ", session_mode);
+	info("_callmgr_audio_create_call_sound_session()");
+
+	if (audio_handle->current_mode == mode) {
+		warn("already (%d) set ", mode);
 		return -2;
 	}
 
@@ -194,26 +195,12 @@ int _callmgr_audio_create_call_sound_session(callmgr_audio_handle_h audio_handle
 		return -1;
 	}
 
-/*
-	if (CALLMGR_AUDIO_SESSION_VOICE_E == session_mode) {
-		ret = sound_manager_set_session_type_internal(SOUND_SESSION_TYPE_CALL);
-	} else {
-		ret = sound_manager_set_session_type_internal(SOUND_SESSION_TYPE_VIDEOCALL);
-	}
-
-	dbg("sound_manager_set_session_type_internal done");
-	if (ret != SOUND_MANAGER_ERROR_NONE) {
-		err("sound_manager_set_session_type_internal() failed for %d. [%d]", session_mode, ret);
-		return -1;
-	}
-	audio_handle->current_mode = session_mode;
-*/
 	if (audio_handle->sound_stream_handle != NULL) {
 		err("call sound stream already created.");
 		return -1;
 	}
 
-	switch (session_mode) {
+	switch (mode) {
 		case CALLMGR_AUDIO_SESSION_VOICE_E:
 			stream_type = SOUND_STREAM_TYPE_VOICE_CALL;
 			break;
@@ -222,7 +209,7 @@ int _callmgr_audio_create_call_sound_session(callmgr_audio_handle_h audio_handle
 			break;
 		case CALLMGR_AUDIO_SESSION_NONE_E:
 		default:
-			err("unhandled session mode: %d", session_mode);
+			err("unhandled session mode: %d", mode);
 			return -1;
 	}
 
@@ -237,7 +224,7 @@ int _callmgr_audio_create_call_sound_session(callmgr_audio_handle_h audio_handle
 		err("sound_manager_acquire_focus() get failed with err[%d]", ret);
 	}
 
- 	/* Handle EP event  */
+	/* Handle EP event  */
 	ret = sound_manager_set_device_connected_cb(SOUND_DEVICE_ALL_MASK, __callmgr_audio_available_route_changed_cb, audio_handle);
 	if (ret != SOUND_MANAGER_ERROR_NONE) {
 		err("sound_manager_set_device_connected_cb() failed. [%d]", ret);
@@ -257,7 +244,7 @@ int _callmgr_audio_create_call_sound_session(callmgr_audio_handle_h audio_handle
 int _callmgr_audio_destroy_call_sound_session(callmgr_audio_handle_h audio_handle)
 {
 	int ret = -1;
-	dbg("_callmgr_audio_destroy_call_sound_session()");
+	info("_callmgr_audio_destroy_call_sound_session()");
 	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
 	CM_RETURN_VAL_IF_FAIL(audio_handle->vstream, -1);
 	CM_RETURN_VAL_IF_FAIL(audio_handle->sound_stream_handle, -1);
@@ -283,19 +270,7 @@ int _callmgr_audio_destroy_call_sound_session(callmgr_audio_handle_h audio_handl
 
 	audio_handle->vstream = NULL;
 	audio_handle->sound_stream_handle = NULL;
-#if 0
-	audio_handle->current_mode = CALLMGR_AUDIO_SESSION_NONE_E;
 
-	ret = sound_manager_set_session_type(SOUND_SESSION_TYPE_MEDIA);
-	if (ret < 0) {
-		err("sound_manager_set_session_type() failed. error_code:[%d]", ret);
-		return -1;
-	} else {
-		info("sound_manager_set_session_type() success");
-		audio_handle->current_device = CALLMGR_AUDIO_DEVICE_NONE_E;
-		audio_handle->cb_fn(CM_AUDIO_EVENT_PATH_CHANGED_E, (void*)CALLMGR_AUDIO_DEVICE_NONE_E, audio_handle->user_data);
-	}
-#endif
 	return 0;
 }
 
@@ -324,6 +299,39 @@ static int __callmgr_audio_get_device_type_string(sound_device_type_e device_typ
 			return -1;
 	}
 
+	return 0;
+}
+
+static int __callmgr_audio_get_sound_device(sound_device_type_e device_type, sound_device_h *sound_device)
+{
+	sound_device_list_h device_list = NULL;
+	sound_device_h	device = NULL;
+	sound_device_type_e o_device_type;
+	int ret = -1;
+	int index = 0;
+
+	ret = sound_manager_get_current_device_list (SOUND_DEVICE_ALL_MASK, &device_list);
+	if (ret != SOUND_MANAGER_ERROR_NONE) {
+		err("sound_manager_get_current_device_list() get failed");
+		return -1;
+	}
+
+	while (1) {
+		ret = sound_manager_get_next_device (device_list, &device);
+		if (ret == SOUND_MANAGER_ERROR_NONE && device) {
+			sound_manager_get_device_type(device, &o_device_type);
+			if (o_device_type == device_type) {
+				info("found device!!");
+				break;
+			}
+		}
+		else {
+			err("sound_manager_get_next_device() failed with err[%d]", ret);
+			return -1;
+		}
+	}
+
+	*sound_device = device;
 	return 0;
 }
 
@@ -367,37 +375,6 @@ int _callmgr_audio_is_sound_device_available(callmgr_audio_device_e device_type,
 	return 0;
 }
 
-static int __callmgr_audio_get_sound_device(sound_device_type_e device_type, sound_device_h *sound_device)
-{
-	sound_device_list_h device_list = NULL;
-	sound_device_h	device = NULL;
-	sound_device_type_e o_device_type;
-	int ret = -1;
-
-	ret = sound_manager_get_current_device_list (SOUND_DEVICE_ALL_MASK, &device_list);
-	if (ret != SOUND_MANAGER_ERROR_NONE) {
-		err("sound_manager_get_current_device_list() get failed");
-		return -1;
-	}
-
-	while (1) {
-		ret = sound_manager_get_next_device (device_list, &device);
-		if (ret == SOUND_MANAGER_ERROR_NONE && device) {
-			sound_manager_get_device_type(device, &o_device_type);
-			if (o_device_type == device_type) {
-				info("found device!!");
-				break;
-			}
-		}
-		else {
-			err("sound_manager_get_next_device() failed with err[%d]", ret);
-			return -1;
-		}
-	}
-
-	*sound_device = device;
-	return 0;
-}
 #if 0
 static int __callmgr_audio_get_sound_route(callmgr_audio_handle_h audio_handle, callmgr_audio_route_e route, sound_session_call_mode_e *sound_route, callmgr_audio_device_e *active_device)
 {
@@ -440,12 +417,14 @@ static int __callmgr_audio_get_sound_route(callmgr_audio_handle_h audio_handle, 
 	err("No available route");
 	return -1;
 }
+#endif
 
-static int __callmgr_audio_set_audio_control_state(callmgr_audio_handle_h audio_handle, sound_session_call_mode_e route)
+static int __callmgr_audio_set_audio_control_state(callmgr_audio_handle_h audio_handle, sound_device_h route)
 {
 	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
+#if 0
 	int is_noise_reduction = 0;
-#if 0 
+ 
 	/* ToDo : vconf will be changed to MM API */
 	switch (route) {
 	case SOUND_SESSION_CALL_MODE_VOICE_WITH_BLUETOOTH:
@@ -509,7 +488,7 @@ static int __callmgr_audio_set_audio_control_state(callmgr_audio_handle_h audio_
 
 	return 0;
 }
-#endif
+
 int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_audio_route_e route)
 {
 	int ret = -1;
@@ -566,7 +545,7 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 	}
 
 	__callmgr_audio_get_sound_device(device_type, &sound_device);
-	//__callmgr_audio_set_audio_control_state(audio_handle, sound_device);
+	__callmgr_audio_set_audio_control_state(audio_handle, sound_device);
 	ret = sound_manager_add_device_for_stream_routing (audio_handle->sound_stream_handle, sound_device);
 	if (ret != SOUND_MANAGER_ERROR_NONE) {
 		err("sound_manager_add_device_for_stream_routing() failed:[%d]", ret);
@@ -610,27 +589,6 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 	audio_handle->current_route = device_type;
 	audio_handle->cb_fn(CM_AUDIO_EVENT_PATH_CHANGED_E, (void*)route, audio_handle->user_data);
 	info("Success set route");
-#if 0
-	callmgr_audio_device_e active_device = CALLMGR_AUDIO_DEVICE_NONE_E;
-	sound_session_call_mode_e sound_route = SOUND_SESSION_CALL_MODE_VOICE_WITH_BUILTIN_RECEIVER;
-	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
-	dbg(">>");
-
-	__callmgr_audio_get_sound_route(audio_handle, route, &sound_route, &active_device);
-	__callmgr_audio_set_audio_control_state(audio_handle, sound_route);
-
-	info("set route : %d", sound_route);
-	ret = sound_manager_set_call_session_mode(sound_route);
-	if (ret != SOUND_MANAGER_ERROR_NONE) {
-		err("callmgr_audio_set_audio_route() failed:[%d]", ret);
-		return -1;
-	}
-	info("Success set route");
-
-	audio_handle->current_device = active_device;
-	audio_handle->cb_fn(CM_AUDIO_EVENT_PATH_CHANGED_E, (void*)active_device, audio_handle->user_data);
-#endif
-
 	return 0;
 }
 
@@ -717,7 +675,7 @@ int _callmgr_audio_set_audio_tx_mute(callmgr_audio_handle_h audio_handle, gboole
 		return -1;
 	}
 	audio_handle->is_mute_state = is_mute_state;
-	dbg("updated mute state : %d", audio_handle->is_mute_state);
+	info("updated mute state : %d", audio_handle->is_mute_state);
 #endif
 	return 0;
 }
@@ -756,24 +714,23 @@ int _callmgr_audio_get_noise_reduction(callmgr_audio_handle_h audio_handle, gboo
 	return 0;
 }
 
-
 int _callmgr_audio_is_ringtone_mode(callmgr_audio_handle_h audio_handle, gboolean *o_is_ringtone_mode)
 {
 	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
 	CM_RETURN_VAL_IF_FAIL(o_is_ringtone_mode, -1);
 
-	//sound_session_call_mode_e sound_route = SOUND_SESSION_CALL_MODE_RINGTONE;
+	sound_type_e sound_type = SOUND_TYPE_SYSTEM;
 	*o_is_ringtone_mode = FALSE;
 
-	//int ret = sound_manager_get_call_session_mode(&sound_route);
-	//if (ret != SOUND_MANAGER_ERROR_NONE) {
-	//	err("callmgr_audio_set_audio_route() failed:[%d]", ret);
-	//	return -1;
-	//}
+	int ret = sound_manager_get_sound_type(audio_handle, &sound_type);
+	if (ret != SOUND_MANAGER_ERROR_NONE) {
+		err("callmgr_audio_set_audio_route() failed:[%d]", ret);
+		return -1;
+	}
 
-	//if (sound_route == SOUND_SESSION_CALL_MODE_RINGTONE) {
-	//	*o_is_ringtone_mode = TRUE;
-	//}
+	if (sound_type == SOUND_TYPE_RINGTONE) {
+		*o_is_ringtone_mode = TRUE;
+	}
 
 	return 0;
 }
@@ -792,6 +749,18 @@ int _callmgr_audio_get_current_volume(callmgr_audio_handle_h audio_handle, int *
 	}
 
 	*o_volume = volume;
+
+	return 0;
+}
+
+int _callmgr_audio_get_session_mode(callmgr_audio_handle_h audio_handle, callmgr_audio_session_mode_e *o_session_mode)
+{
+	int ret = -1;
+	info(">>");
+	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
+	CM_RETURN_VAL_IF_FAIL(o_session_mode, -1);
+
+	*o_session_mode = audio_handle->current_mode;
 
 	return 0;
 }

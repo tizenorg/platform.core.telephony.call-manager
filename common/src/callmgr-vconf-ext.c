@@ -29,7 +29,7 @@ int _callmgr_vconf_is_data_lock(gboolean *is_datalock)
 	char *data_lock = vconf_get_str(VCONFKEY_ODE_CRYPTO_STATE);
 	if (data_lock) {
 		if (g_strcmp0(data_lock, "encrypted") == 0) {
-			dbg("Data lock state.");
+			info("Data lock state.");
 			*is_datalock = TRUE;
 		} else {
 			*is_datalock = FALSE;
@@ -149,7 +149,7 @@ int _callmgr_vconf_is_answer_mode_enabled(gboolean *is_answer_mode_enabled)
 		return -1;
 	}
 
-	dbg("answer_mode = [%d]", answer_mode);
+	info("answer_mode = [%d]", answer_mode);
 	if (answer_mode == 1) {
 		*is_answer_mode_enabled = TRUE;
 	} else {
@@ -170,7 +170,7 @@ int _callmgr_vconf_get_auto_answer_time(int *auto_answer_time_in_sec)
 		return -1;
 	}
 
-	dbg("auto_answer_time = [%d]", auto_answer_time);
+	info("auto_answer_time = [%d]", auto_answer_time);
 	*auto_answer_time_in_sec = auto_answer_time;
 
 	return 0;
@@ -283,7 +283,7 @@ int _callmgr_vconf_is_do_not_disturb(gboolean *do_not_disturb)
 		if (is_do_not_disturb == 0) {
 			*do_not_disturb = FALSE;
 		} else {
-			dbg("Do not disturb setting is on");
+			info("Do not disturb setting is on");
 			*do_not_disturb = TRUE;
 		}
 	}

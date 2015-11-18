@@ -250,7 +250,7 @@ static void __callmgr_popup_app_service(app_control_h app_control, void *user_da
 
 		ret = app_control_get_extra_data(app_control, "SUB_INFO", &sub_info);
 		if (ret != 0 || !sub_info) {
-			err("app_control_get_extra_data() failed[%d] or no extra_data");
+			ERR("app_control_get_extra_data() failed[%d] or no extra_data");
 			elm_exit();
 		}
 		DBG("INFO: [%s]", sub_info);
@@ -266,6 +266,9 @@ static void __callmgr_popup_app_service(app_control_h app_control, void *user_da
 			break;
 		case CALLMGR_POPUP_REC_STATUS_STOP_BY_TIME_SHORT_E:
 			_callmgr_popup_create_toast_msg(_("IDS_VR_TPOP_UNABLE_TO_SAVE_RECORDING_RECORDING_TOO_SHORT"));
+			break;
+		case CALLMGR_POPUP_REC_STATUS_STOP_BY_NO_ENOUGH_MEMORY_E:
+			_callmgr_popup_create_toast_msg(_("IDS_CALL_POP_UNABLE_TO_RECORD_NOT_ENOUGH_MEMORY"));
 			break;
 		default:
 			ERR("unhandled sub info[%d]", rec_status_sub_info);
@@ -290,6 +293,10 @@ static void __callmgr_popup_app_service(app_control_h app_control, void *user_da
 		switch (toast_popup_type) {
 		case CALLMGR_POPUP_TOAST_SWAP_CALL:
 			_callmgr_popup_create_toast_msg(_("IDS_CALL_TPOP_SWAPPING_CALLS_ING"));
+			break;
+		case CALLMGR_POPUP_TOAST_CUSTOM:
+			// show ad->dial_num string as it is.
+			_callmgr_popup_create_toast_msg(_(ad->dial_num));
 			break;
 		default:
 			ERR("unhadled toast popup type(%d)", toast_popup_type);

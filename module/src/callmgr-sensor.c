@@ -19,7 +19,6 @@
 #include <vconf.h>
 #include <dbus/dbus.h>
 #include <stdint.h>
-#include <device/display.h>
 #include <gesture_recognition.h>
 
 #include "callmgr-sensor.h"

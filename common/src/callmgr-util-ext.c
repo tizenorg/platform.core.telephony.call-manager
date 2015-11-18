@@ -25,11 +25,28 @@
 int _callmgr_util_is_recording_progress(gboolean *is_recording)
 {
 	bool b_is_voice_recording = FALSE;
-	bool b_is_video_recording = FALSE;
 	recorder_is_in_recording(RECORDER_AUDIO_SOURCE, &b_is_voice_recording);
+
+#if 0
+	/* Do not check video recording because of performance */
+	bool b_is_video_recording = FALSE;
 	recorder_is_in_recording(RECORDER_VIDEO_SOURCE, &b_is_video_recording);
 	dbg("b_is_voice_recording = [%d] b_is_video_recording = [%d]", b_is_voice_recording, b_is_video_recording);
 	*is_recording = b_is_voice_recording || b_is_video_recording;
+#else
+	*is_recording = b_is_voice_recording;
+#endif
+	return 0;
+}
+
+int _callmgr_util_is_video_recording_progress(gboolean *is_recording)
+{
+	bool b_is_video_recording = FALSE;
+
+	recorder_is_in_recording(RECORDER_VIDEO_SOURCE, &b_is_video_recording);
+	warn("b_is_video_recording = [%d]", b_is_video_recording);
+	*is_recording = b_is_video_recording;
+
 	return 0;
 }
 
@@ -58,6 +75,6 @@ int _callmgr_util_check_block_mode_num(const char *str_num, gboolean *is_blocked
 		phone_misc_disconnect(handle);
 		handle = NULL;
 	}
-	dbg("Call Log is_blocked value:[%d]", *is_blocked);
+	info("Call Log is_blocked value:[%d]", *is_blocked);
 	return result;
 }

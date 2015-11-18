@@ -734,7 +734,6 @@ static gboolean __get_call_status_handler(GDBusInterfaceSkeleton *di,
 	return TRUE;
 }
 
-
 static void __on_name_appeared (GDBusConnection *connection,
                   const gchar     *name,
                   const gchar     *name_owner,
@@ -771,7 +770,7 @@ static void __on_name_vanished (GDBusConnection *connection,
 		if(0 == g_strcmp0(name, tmp->appid) && TRUE == tmp->is_appeared){
 			g_bus_unwatch_name( tmp->watch_id);
 			core_data->watch_list = g_slist_remove(core_data->watch_list, tmp);
-			dbg("appid [%s] exits , stop watching it, now client num = %d ", tmp->appid, g_slist_length(core_data->watch_list));
+			info("appid [%s] exits , stop watching it, now client num = %d ", tmp->appid, g_slist_length(core_data->watch_list));
 			g_free(tmp->appid);
 			g_free(tmp);
 			break;
@@ -779,7 +778,7 @@ static void __on_name_vanished (GDBusConnection *connection,
 	}
 
 	if (NULL == core_data->watch_list){
-		dbg("end all calls");
+		warn("end all calls");
 		_callmgr_core_process_end_call(core_data, 0, CM_TEL_CALL_RELEASE_TYPE_ALL_CALLS);
 	}
 }
@@ -886,6 +885,21 @@ static gboolean __get_answering_machine_status_handler(GDBusInterfaceSkeleton *d
 
 	return TRUE;
 }
+
+static gboolean __get_video_recording_status_handler(GDBusInterfaceSkeleton *di,
+		GDBusMethodInvocation *invoc, gpointer user_data)
+{
+	dbg("__get_video_recording_status_handler() is called");
+	callmgr_core_data_t *core_data = (callmgr_core_data_t *)user_data;
+	CM_RETURN_VAL_IF_FAIL(core_data, FALSE);
+	gboolean is_video_recording = FALSE;
+
+	is_video_recording = core_data->is_video_recording;
+	g_dbus_method_invocation_return_value (invoc, g_variant_new ("(b)", is_video_recording));
+
+	return TRUE;
+}
+
 
 /********************************************/
 static gchar *__callmgr_dbus_convert_name_to_path (const gchar *name)
@@ -1002,6 +1016,7 @@ static int __callmgr_dbus_init_handlers (callmgr_core_data_t *core_data)
 	g_signal_connect(di, "handle-stop-voice-record", G_CALLBACK(__stop_voice_record_handler), core_data);
 	g_signal_connect(di, "handle-get-mute-status", G_CALLBACK(__get_mute_status_handler), core_data);
 	g_signal_connect(di, "handle-get-answering-machine-status", G_CALLBACK(__get_answering_machine_status_handler), core_data);
+	g_signal_connect(di, "handle-get-video-recording-status", G_CALLBACK(__get_video_recording_status_handler), core_data);
 
 	__callmgr_dbus_object_export(core_data, di, CALLMGR_DBUS_PATH);
 	core_data->dbus_skeleton_interface = di;

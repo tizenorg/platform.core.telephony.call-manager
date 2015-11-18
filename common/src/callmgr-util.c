@@ -35,6 +35,7 @@
 
 #include "callmgr-util.h"
 #include "callmgr-log.h"
+#include "callmgr-vconf.h"
 
 #define CALLUI_PKG_NAME "org.tizen.call-ui"
 #define SOUND_PATH_SILENT	"silent"
@@ -125,10 +126,11 @@ gboolean _callmgr_util_check_access_control(cynara *p_cynara, GDBusMethodInvocat
 		privilege = TELEPHONY_ADMIN_PRIVILEGE;
 
 	ret = cynara_check(p_cynara, client_smack, client_session, uid_string, privilege);
-	if (ret != CYNARA_API_ACCESS_ALLOWED)
+	if (ret != CYNARA_API_ACCESS_ALLOWED) {
 		warn("pid(%u) access (%s - %s) denied(%d)", pid, label, perm, ret);
-	else
+	} else {
 		result = TRUE;
+	}
 OUT:
 	if (result == FALSE) {
 		g_dbus_method_invocation_return_error(invoc,
@@ -361,7 +363,7 @@ int _callmgr_util_is_callui_running(gboolean *is_callui_running)
 		dbg("call app is already running");
 		*is_callui_running = TRUE;
 	} else {
-		dbg("call app is not running");
+		info("call app is not running");
 		*is_callui_running = FALSE;
 	}
 	return 0;
@@ -430,13 +432,13 @@ static void __callmgr_util_popup_reply_cb(app_control_h request, app_control_h r
 			ret = app_control_get_extra_data(reply, "RESULT", &ext_data);
 			if (APP_CONTROL_ERROR_NONE == ret) {
 				if (ext_data) {
-					dbg("popup result: [%s]", ext_data);
+					info("popup result: [%s]", ext_data);
 					popup_result = atoi(ext_data);
 					g_free(ext_data);
 					popup_data->popup_result_cb(popup_data->popup_type, (void*)popup_result, popup_data->user_data);
 				}
 			} else {
-				dbg("app_control_get_extra_data failed");
+				err("app_control_get_extra_data failed");
 			}
 		}
 		g_free(popup_data);
@@ -487,7 +489,7 @@ int _callmgr_util_launch_popup(call_popup_type popup_type, int info, const char*
 	if (result != APP_CONTROL_ERROR_NONE) {
 		warn("Retry");
 		result = app_control_send_launch_request(app_control, __callmgr_util_popup_reply_cb, popup_data);
-		dbg("retry : %d", result);
+		err("retry : %d", result);
 	}
 	app_control_destroy(app_control);
 
@@ -812,17 +814,17 @@ int _callmgr_util_check_disturbing_setting(gboolean *is_do_not_disturb)
 	if (ret == -2) {
 		err = notification_system_setting_load_system_setting(&system_setting);
 		if (err!= NOTIFICATION_ERROR_NONE || system_setting == NULL) {
-			dbg("notification_system_setting_load_system_setting failed [%d]\n", err);
+			err("notification_system_setting_load_system_setting failed [%d]\n", err);
 			goto out;
 		}
 		notification_system_setting_get_do_not_disturb(system_setting, &do_not_disturb);
 	}
 
-	dbg("do_not_disturb [%d]", do_not_disturb);
+	info("do_not_disturb [%d]", do_not_disturb);
 
 	if(do_not_disturb) {
 		err = notification_setting_get_setting_by_package_name(CALLUI_PKG_NAME, &setting);
-		if((err = NOTIFICATION_ERROR_NONE) || (setting == NULL)) {
+		if(err != NOTIFICATION_ERROR_NONE || setting == NULL) {
 			err("notification_setting_get_setting_by_package_name failed [%d]", err);
 			goto out;
 		}

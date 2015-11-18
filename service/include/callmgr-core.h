@@ -46,12 +46,14 @@ typedef enum _call_event{
 	CALL_MANAGER_CALL_EVENT_ACTIVE_E,
 	CALL_MANAGER_CALL_EVENT_HELD_E,
 	CALL_MANAGER_CALL_EVENT_ALERT_E,
-	CALL_MANAGER_CALL_EVENT_INCOMING_E,
+
+	CALL_MANAGER_CALL_EVENT_INCOMING_E = 5,
 	CALL_MANAGER_CALL_EVENT_WAITING_E,
 	CALL_MANAGER_CALL_EVENT_JOIN_E,
 	CALL_MANAGER_CALL_EVENT_SPLIT_E,
 	CALL_MANAGER_CALL_EVENT_SWAP_E,
-	CALL_MANAGER_CALL_EVENT_RETRIEVED_E,
+
+	CALL_MANAGER_CALL_EVENT_RETRIEVED_E = 10,
 	CALL_MANAGER_CALL_EVENT_CALL_CONTROL_E,
 } callmgr_call_event_e;
 
@@ -80,6 +82,7 @@ typedef enum {
 	CALL_ERR_CAUSE_PHONE_NOT_INITIALIZED_E,
 	CALL_ERR_CAUSE_NOT_REGISTERED_ON_NETWORK_E,
 	CALL_ERR_CAUSE_VOICE_SERVICE_BLOCKED_E,
+	CALL_ERR_CAUSE_NO_SIM_E,
 } callmgr_call_error_cause_e;
 
 typedef enum {
@@ -182,6 +185,7 @@ typedef struct _callmgr_core_data {
 	gboolean is_auto_answered;
 
 	gboolean is_mute_on;
+	gboolean is_video_recording;
 } callmgr_core_data_t;
 
 int _callmgr_core_init(callmgr_core_data_t **o_core_data);

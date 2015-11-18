@@ -44,6 +44,7 @@ typedef enum {
 
 int _callmgr_vconf_is_security_lock(gboolean *is_security_lock);
 int _callmgr_vconf_is_pwlock(gboolean *is_pwlock);
+int _callmgr_vconf_is_low_battery(gboolean *is_low_battery);
 int _callmgr_vconf_is_sound_setting_enabled(gboolean *is_sound_enabled);
 int _callmgr_vconf_is_vibration_setting_enabled(gboolean *is_vibration_enabled);
 int _callmgr_vconf_is_vibrate_when_ringing_enabled(gboolean *vibrate_when_ring_flag);

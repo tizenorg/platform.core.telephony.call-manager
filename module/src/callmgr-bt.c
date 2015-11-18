@@ -40,7 +40,7 @@ static void __callmgr_bt_ag_audio_connection_state_changed_cb(int result,
 	callmgr_bt_handle_h bt_handle = (callmgr_bt_handle_h)user_data;
 	CM_RETURN_IF_FAIL(bt_handle);
 
-	dbg("type : %d, connected : %d", type, connected);
+	info("type : %d, connected : %d", type, connected);
 	if (type == BT_AUDIO_PROFILE_TYPE_HSP_HFP) {
 		/* Handle HFP connection */
 		bt_handle->is_connected = connected;
@@ -71,7 +71,7 @@ static void __callmgr_bt_ag_call_handling_event_cb(bt_ag_call_handling_event_e e
 	cm_bt_event_type_e bt_event = CM_BT_EVENT_CALL_HANDLE_ACCEPT_E;
 	CM_RETURN_IF_FAIL(bt_handle);
 
-	dbg("event : %d , id : %d", event, call_id);
+	info("event : %d , id : %d", event, call_id);
 	switch (event) {
 		case BT_AG_CALL_HANDLING_EVENT_ANSWER:
 			bt_event = CM_BT_EVENT_CALL_HANDLE_ACCEPT_E;
@@ -97,7 +97,7 @@ static void __callmgr_bt_ag_multi_call_handling_event_cb(bt_ag_multi_call_handli
 	cm_bt_event_type_e bt_event = CM_BT_EVENT_CALL_HANDLE_0_SEND_E;
 	CM_RETURN_IF_FAIL(bt_handle);
 
-	dbg("event : %d", event);
+	info("event : %d", event);
 	switch (event) {
 		case BT_AG_MULTI_CALL_HANDLING_EVENT_RELEASE_HELD_CALLS:
 			bt_event = CM_BT_EVENT_CALL_HANDLE_0_SEND_E;
@@ -192,7 +192,7 @@ static int __callmgr_bt_is_headset_connected(gboolean *o_is_connected)
 		err("err : 0x%x", ret);
 		return -1;
 	} else {
-		dbg("BT headset is %s", (is_connected ? "CONNECTED" : "DISCONNECTED"));
+		info("BT headset is %s", (is_connected ? "CONNECTED" : "DISCONNECTED"));
 	}
 
 	*o_is_connected = is_connected;
@@ -362,7 +362,7 @@ int _callmgr_bt_add_call_list(callmgr_bt_handle_h bt_handle, int call_id, int ca
 		}
 	}
 
-	dbg("id : %d, state : %d", call_id, call_status);
+	info("id : %d, state : %d", call_id, call_status);
 
 	/* Can not send NULL number */
 	if (phone_num) {

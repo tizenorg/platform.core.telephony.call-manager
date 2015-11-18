@@ -101,53 +101,60 @@ char *_callmgr_popup_get_call_err_string(callmgr_call_err_type_e type, char *num
 	switch (type) {
 	case ERR_CALL_FAILED_E:
 		string = _("IDS_CALL_POP_CALLFAILED");
-	break;
+		break;
 	case ERR_CALL_NOT_ALLOWED_E:
 		string = _("IDS_CALL_POP_CALLNOTCALLOWED");
-	break;
+		break;
 	case ERR_EMERGENCY_ONLY_E:
 		string = _("IDS_CALL_POP_CALLING_EMERG_ONLY");
-	break;
+		break;
 	case ERR_IS_NOT_EMERGENCY_E:
 		string = _("IDS_COM_BODY_UNABLE_TO_CALL_PS_IS_NOT_EMERGENCY_NUMBER");
-	break;
+		break;
 	case ERR_WRONG_NUMBER_E:
 		string = _("IDS_CALL_POP_CAUSE_WRONG_NUMBER");
-	break;
+		break;
 	case ERR_FDN_CALL_ONLY_E:
 		string = _("IDS_COM_BODY_OUTGOING_CALLS_ARE_RESTRICTED_BY_FDN");
-	break;
+		break;
 	case ERR_OUT_OF_SERVICE_E:
 		string = _("IDS_COM_BODY_OUT_OF_SERVICE_AREA");
-	break;
+		break;
 	case ERR_FAILED_TO_ADD_CALL_E:
 		string = _("IDS_CALL_BODY_FAILED_TO_ADD_CALL");
-	break;
+		break;
 	case ERR_NOT_REGISTERED_ON_NETWORK_E:
 		string = _("IDS_COM_BODY_NOT_REGISTERED_ON_NETWORK");
-	break;
+		break;
 	case ERR_PHONE_NOT_INITIALIZED_E:
 		string = _("IDS_VCALL_POP_PHONE_NOT_INITIALISED");
-	break;
+		break;
 	case ERR_TRANSFER_CALL_FAIL_E:
 		string = _("IDS_CALL_POP_TRANSFER_FAILED");
-	break;
+		break;
+	case ERR_LOW_BATTERY_INCOMING_E:
+		string = _("IDS_VCALL_TPOP_UNABLE_TO_CONNECT_VIDEO_CALL_BATTERY_POWER_LOW");
+		break;
 	case ERR_JOIN_CALL_FAILED_E:
 		string = _("IDS_CALL_POP_UNABLE_TO_MAKE_CONFERENCE_CALLS");
-	break;
+		break;
 	case ERR_HOLD_CALL_FAILED_E:
 		string = _("IDS_COM_BODY_UNABLE_TO_SWITCH_CALLS");
-	break;
+		break;
 	case ERR_ANSWER_CALL_FAILED_E:
 		string = _("IDS_CALL_POP_OPERATION_REFUSED");
-	break;
+		break;
 	case ERR_SWAP_CALL_FAILED_E:
 	case ERR_RETREIVE_CALL_FAILED_E:
 		string = _("IDS_CALL_POP_SWAP_FAILED");
-	break;
+		break;
+	case ERR_NO_SIM_E:
+		string = _("IDS_CALL_TPOP_INSERT_SIM_CARD");
+		break;
 	default:
 		WARN("Invalid info");
 		string = NULL;
+		break;
 	}
 
 	if (type == ERR_IS_NOT_EMERGENCY_E) {
@@ -167,7 +174,7 @@ void _callmgr_popup_reply_to_launch_request(CallMgrPopAppData_t *ad, char *key, 
 	}
 	result = app_control_create(&reply);
 	if(result != APP_CONTROL_ERROR_NONE) {
-		warn("app_control_create() return error : %d", result);
+		WARN("app_control_create() return error : %d", result);
 		return;
 	}
 

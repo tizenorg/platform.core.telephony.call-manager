@@ -62,6 +62,7 @@ int _callmgr_audio_deinit(callmgr_audio_handle_h audio_handle);
 int _callmgr_audio_create_call_sound_session(callmgr_audio_handle_h audio_handle, callmgr_audio_session_mode_e session_mode);
 int _callmgr_audio_destroy_call_sound_session(callmgr_audio_handle_h audio_handle);
 int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_audio_route_e route);
+int _callmgr_audio_get_audio_route(callmgr_audio_handle_h audio_handle, callmgr_audio_route_e *o_route);
 int _callmgr_audio_get_active_device(callmgr_audio_handle_h audio_handle, callmgr_audio_device_e *o_route);
 
 int _callmgr_audio_set_extra_vol(callmgr_audio_handle_h audio_handle, gboolean is_extra_vol);
@@ -81,6 +82,7 @@ int _callmgr_audio_set_link_direction_downlink(void);
 int _callmgr_audio_set_media_mode_with_current_device(void);
 
 int _callmgr_audio_get_current_volume(callmgr_audio_handle_h audio_handle, int *o_volume);
+int _callmgr_audio_get_session_mode(callmgr_audio_handle_h audio_handle, callmgr_audio_session_mode_e *o_session_mode);
 
 #endif	//__CALLMGR_AUDIO_H__
 

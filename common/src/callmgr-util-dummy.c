@@ -24,6 +24,11 @@ int _callmgr_util_is_recording_progress(gboolean *is_recording)
 	return -1;
 }
 
+int _callmgr_util_is_video_recording_progress(gboolean *is_recording)
+{
+	return -1;
+}
+
 int _callmgr_util_check_block_mode_num(const char *str_num, gboolean *is_blocked)
 {
 	return -1;

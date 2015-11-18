@@ -386,11 +386,9 @@ static int __callmgr_core_process_dtmf_number(callmgr_core_data_t *core_data)
 	_callmgr_telephony_get_dtmf_number(call, &dtmf_number);
 
 	if (dtmf_number == NULL) {
-		cm_telephony_sat_event_type_e sat_event_type = CM_TELEPHONY_SAT_EVENT_NONE;
-		_callmgr_telephony_get_sat_event_type(core_data->telephony_handle, &sat_event_type);
-
-		dbg("sat_event_type:%d", sat_event_type);
-		if (sat_event_type == CM_TELEPHONY_SAT_EVENT_SEND_DTMF) {
+		gboolean b_is_ongoing = FALSE;
+		_callmgr_telephony_get_sat_event_status(core_data->telephony_handle, CM_TELEPHONY_SAT_EVENT_SEND_DTMF, &b_is_ongoing);
+		if (b_is_ongoing == TRUE) {
 			_callmgr_telephony_send_sat_response(core_data->telephony_handle,
 					CM_TELEPHONY_SAT_EVENT_SEND_DTMF, CM_TELEPHONY_SAT_RESPONSE_ME_RET_SUCCESS, CM_TELEPHONY_SIM_UNKNOWN);
 		}
@@ -511,7 +509,7 @@ static void __callmgr_core_auto_answer(callmgr_core_data_t *core_data)
 			core_data->auto_answer_timer = g_timeout_add_seconds(auto_answer_time_in_sec, __callmgr_core_auto_answer_timer_cb,core_data);
 		}
 		else{
-			dbg("Without earjack or bt, skip auto answer ");
+			warn("Without earjack or bt, skip auto answer ");
 		}
 
 	}
@@ -541,7 +539,6 @@ static void __callmgr_core_process_incoming_call(callmgr_core_data_t *core_data,
 	unsigned int call_id = -1;
 	char *number = NULL;
 	callmgr_contact_info_t *contact_out_info = NULL;
-	cm_telephony_call_type_e call_type = CM_TEL_CALL_TYPE_CS_VOICE;
 	callmgr_audio_session_mode_e sound_mode = CALLMGR_AUDIO_SESSION_NONE_E;
 	int ret = -1;
 	int person_id = -1;
@@ -549,6 +546,8 @@ static void __callmgr_core_process_incoming_call(callmgr_core_data_t *core_data,
 	cm_telephony_call_type_e tel_call_type = CM_TEL_CALL_TYPE_INVALID;
 	callmgr_call_type_e cm_call_type = CALL_TYPE_INVALID_E;
 	cm_telephony_end_cause_type_e end_cause = CM_TELEPHONY_ENDCAUSE_MAX;
+
+	gboolean is_video_recording = FALSE;
 
 	dbg("__callmgr_core_process_incoming_call() called");
 	CM_RETURN_IF_FAIL(core_data);
@@ -570,6 +569,11 @@ static void __callmgr_core_process_incoming_call(callmgr_core_data_t *core_data,
 	}
 	g_free(number);
 
+	/* We need to notify recording status before create call session */
+	/* Unset this value when stop ringtone */
+	_callmgr_util_is_video_recording_progress(&is_video_recording);
+	core_data->is_video_recording = is_video_recording;
+
 	_callmgr_util_is_callui_running(&is_callui_running);
 	if (FALSE == is_callui_running) {
 		_callmgr_util_launch_callui(call_id, sim_slot, cm_call_type);
@@ -588,15 +592,14 @@ static void __callmgr_core_process_incoming_call(callmgr_core_data_t *core_data,
 		return;
 	}
 
-	_callmgr_telephony_get_call_type(incom_call, &call_type);
-	if (call_type == CM_TEL_CALL_TYPE_CS_VOICE) {
+	if (cm_call_type == CALL_TYPE_VOICE_E) {
 		sound_mode = CALLMGR_AUDIO_SESSION_VOICE_E;
 	}
-	else if (call_type == CM_TEL_CALL_TYPE_CS_VIDEO) {
+	else if (cm_call_type == CALL_TYPE_VIDEO_E) {
 		sound_mode = CALLMGR_AUDIO_SESSION_VIDEO_E;
 	}
 	else {
-		err("Invalid call type[%d].", call_type);
+		err("Invalid call type[%d].", cm_call_type);
 		sound_mode = CALLMGR_AUDIO_SESSION_VOICE_E;
 	}
 
@@ -633,7 +636,6 @@ static void __callmgr_core_start_incom_noti(callmgr_core_data_t *core_data)
 	gboolean has_held_call = FALSE;
 	gboolean is_earjack_available = FALSE;
 	cm_telephony_call_data_t *incom_call = NULL;
-	cm_telephony_call_type_e tel_call_type = CM_TEL_CALL_TYPE_INVALID;
 	int person_id = -1;
 	unsigned int call_id = -1;
 
@@ -641,7 +643,12 @@ static void __callmgr_core_start_incom_noti(callmgr_core_data_t *core_data)
 	CM_RETURN_IF_FAIL(core_data);
 	_callmgr_telephony_get_call_by_state(core_data->telephony_handle, CM_TEL_CALL_STATE_INCOMING, &incom_call);
 
-	if(incom_call) {
+	if (incom_call) {
+		__callmgr_core_send_bt_events(core_data, 0);
+
+		/* Auto Answering */
+		__callmgr_core_auto_answer(core_data);
+
 		_callmgr_telephony_has_call_by_state(core_data->telephony_handle, CM_TEL_CALL_STATE_ACTIVE, &has_active_call);
 		_callmgr_telephony_has_call_by_state(core_data->telephony_handle, CM_TEL_CALL_STATE_HELD, &has_held_call);
 
@@ -651,7 +658,6 @@ static void __callmgr_core_start_incom_noti(callmgr_core_data_t *core_data)
 			return;
 		}
 		_callmgr_telephony_get_call_id(incom_call, &call_id);
-		_callmgr_telephony_get_call_type(incom_call, &tel_call_type);
 		_callmgr_ct_get_person_id(call_id, &person_id);
 
 		_callmgr_ringer_stop_signal(core_data->ringer_handle);
@@ -664,20 +670,22 @@ static void __callmgr_core_start_incom_noti(callmgr_core_data_t *core_data)
 			char *caller_ringtone_path = NULL;
 			_callmgr_ct_get_caller_ringtone_path(call_id, &caller_ringtone_path);
 			_callmgr_ringer_start_alert(core_data->ringer_handle, caller_ringtone_path, is_earjack_available);
-
 		}
 
 		/* Init motion sensor to use turn over mute */
 		_callmgr_sensor_face_down_start(core_data->sensor_handle);
 
 	} else {
-		dbg("no incoming call exists...return");
+		err("no incoming call exists...return");
 	}
 }
 
 static void __callmgr_core_stop_incom_noti(callmgr_core_data_t *core_data)
 {
 	CM_RETURN_IF_FAIL(core_data);
+
+	/* Reset value */
+	core_data->is_video_recording = FALSE;
 
 	/* Stop ringtone */
 	_callmgr_ringer_stop_alternate_tone(core_data->ringer_handle);
@@ -737,7 +745,7 @@ static void __callmgr_core_answer_msg_finished_cb(void *user_data)
 
 int __callmgr_core_get_signal_type(cm_telephony_end_cause_type_e end_cause_type, callmgr_play_signal_type_e *signal_type)
 {
-	dbg("end_cause_type: %d", end_cause_type);
+	info("end_cause_type: %d", end_cause_type);
 	*signal_type = CALL_SIGNAL_NONE_E;
 
 	switch (end_cause_type) {
@@ -770,7 +778,7 @@ int __callmgr_core_get_signal_type(cm_telephony_end_cause_type_e end_cause_type,
 		break;
 	}
 
-	dbg("------ Signal Type : %d ---------", *signal_type);
+	info("------ Signal Type : %d ---------", *signal_type);
 	return 0;
 }
 
@@ -782,7 +790,7 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 	gboolean is_bt_connected = FALSE;
 	gboolean is_earjack_connected = FALSE;
 	cm_telephony_end_cause_type_e end_cause = CM_TELEPHONY_ENDCAUSE_MAX;
-	dbg("__callmgr_core_process_telephony_events() called %d", event_type);
+	dbg("event_type[%d]", event_type);
 	CM_RETURN_IF_FAIL(core_data);
 
 	if ((event_type > CM_TELEPHONY_EVENT_IDLE) && (event_type <= CM_TELEPHONY_EVENT_RETRIEVED)) {
@@ -808,6 +816,7 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 				gboolean is_ecc = FALSE;
 				gboolean b_play_effect_tone = TRUE;
 				int call_cnt = 0;
+				callmgr_call_data_t *end_call_data = NULL;
 
 				__callmgr_core_cancel_auto_answer(core_data);
 				__callmgr_core_stop_incom_noti(core_data);
@@ -834,11 +843,20 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 				log_data->call_duration = call_duration;
 				log_data->presentation = CM_CT_PLOG_PRESENT_DEFAULT;
 
+				if (core_data->incom && core_data->incom->call_id == call_id) {
+					end_call_data = core_data->incom;
+				} else if (core_data->active_dial && core_data->active_dial->call_id == call_id) {
+					end_call_data = core_data->active_dial;
+				} else if (core_data->held && core_data->held->call_id == call_id) {
+					end_call_data = core_data->held;
+				}
+
 				/* Set log presentation */
 				if (is_ecc) {
 					log_data->presentation = CM_CT_PLOG_PRESENT_EMERGENCY;
-				}
-				else {
+				} else if (end_call_data && end_call_data->is_voicemail_number) {
+					log_data->presentation = CM_CT_PLOG_PRESENT_VOICEMAIL;
+				} else {
 					cm_telephony_name_mode_e name_mode = CM_TEL_NAME_MODE_NONE;
 					_callmgr_telephony_get_call_name_mode(call_data_out, &name_mode);
 					if (name_mode == CM_TEL_NAME_MODE_UNKNOWN) {
@@ -876,10 +894,10 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 						}
 						else if (reject_type == CM_CT_PLOG_REJECT_TYPE_SETTING_REJECT_E) {
 							if (cm_call_type == CALL_TYPE_VIDEO_E) {
-								log_data->log_type = CM_CT_PLOG_TYPE_VIDEO_REJECT_E;
+								log_data->log_type = CM_CT_PLOG_TYPE_VIDEO_BLOCKED_E;
 							}
 							else {
-								log_data->log_type = CM_CT_PLOG_TYPE_VOICE_REJECT_E;
+								log_data->log_type = CM_CT_PLOG_TYPE_VOICE_BLOCKED_E;
 							}
 						}
 						else if (reject_type == CM_CT_PLOG_REJECT_TYPE_REC_REJECT_E) {
@@ -951,7 +969,9 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 							b_play_effect_tone = FALSE;
 						}
 					}
-					if (b_play_effect_tone) {
+
+					_callmgr_audio_get_active_device(core_data->audio_handle, &active_device);
+					if ((b_play_effect_tone) && (active_device != CALLMGR_AUDIO_DEVICE_BT_E)) {
 						if (_callmgr_ringer_play_effect(core_data->ringer_handle, CM_RINGER_EFFECT_DISCONNECT_TONE_E, __callmgr_core_disconnect_tone_finished_cb, core_data) < 0) {
 							err("_callmgr_ringer_play_effect() is failed");
 						}
@@ -1009,10 +1029,10 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 							cm_telephony_answer_request_type_e end_active_after_held_end = CM_TEL_INVALID;
 							_callmgr_telephony_get_answer_request_type(core_data->telephony_handle, &end_active_after_held_end);
 							if(CM_TEL_END_ACTIVE_AFTER_HELD_END == end_active_after_held_end) {
-								dbg("End active call and accept incoming call...");
+								info("End active call and accept incoming call...");
 								_callmgr_core_process_answer_call(core_data, CM_TEL_CALL_ANSWER_TYPE_RELEASE_ACTIVE_AND_ACCEPT);
 							} else if (CM_TEL_HOLD_ACTIVE_AFTER_HELD_END == end_active_after_held_end) {
-								dbg("Hold active call and accept incoming call...");
+								info("Hold active call and accept incoming call...");
 								_callmgr_core_process_answer_call(core_data, CM_TEL_CALL_ANSWER_TYPE_HOLD_ACTIVE_AND_ACCEPT);
 							}
 							_callmgr_telephony_set_answer_request_type(core_data->telephony_handle, CM_TEL_INVALID);
@@ -1032,6 +1052,9 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 				_callmgr_telephony_get_call_by_call_id(core_data->telephony_handle, call_id, &call_data_out);
 				_callmgr_telephony_get_call_type(call_data_out, &call_type);
 				__callmgr_core_convert_tel_call_type(call_type, &cm_call_type);
+				/********setting the mute status to off initially which treats every call as new call ***/
+				/*****and sets the mute status to off initially********/
+				_callmgr_core_process_set_mute_state(core_data, 0);
 
 				_callmgr_dbus_send_call_event(core_data, CALL_MANAGER_CALL_EVENT_ACTIVE_E, call_id, active_sim_slot, end_cause);
 				_callmgr_ringer_stop_alert(core_data->ringer_handle);
@@ -1111,13 +1134,7 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 				cm_telephony_call_data_t *call_data_out = NULL;
 				cm_telephony_call_type_e tel_call_type = CM_TEL_CALL_TYPE_INVALID;
 				callmgr_call_type_e cm_call_type = CALL_TYPE_INVALID_E;
-				callmgr_audio_session_mode_e audio_session = CALLMGR_AUDIO_SESSION_NONE_E;
-				cm_telephony_call_data_t *sat_call = NULL;
-
-				if (_callmgr_telephony_get_sat_originated_call(core_data->telephony_handle, &sat_call) == 0) {
-					_callmgr_telephony_send_sat_response(core_data->telephony_handle,
-							CM_TELEPHONY_SAT_EVENT_SETUP_CALL, CM_TELEPHONY_SAT_RESPONSE_ME_RET_SUCCESS, CM_TELEPHONY_SIM_UNKNOWN);
-				}
+				callmgr_audio_session_mode_e sound_mode = CALLMGR_AUDIO_SESSION_NONE_E;
 
 				_callmgr_telephony_get_call_by_call_id(core_data->telephony_handle, call_id, &call_data_out);
 				/*Update Contact Info in contact list*/
@@ -1130,7 +1147,7 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 						_callmgr_ct_get_person_id(call_id, &person_id);
 						dbg("Contact Info added successfully for CallId : %d, ContactIdx : %d", call_id, person_id);
 					} else {
-						dbg("Failed to add contact object");
+						err("Failed to add contact object");
 					}
 
 					g_free(number);
@@ -1141,15 +1158,15 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 
 				__callmgr_core_convert_tel_call_type(tel_call_type, &cm_call_type);
 				if(CALL_TYPE_VOICE_E == cm_call_type) {
-					audio_session = CALLMGR_AUDIO_SESSION_VOICE_E;
+					sound_mode = CALLMGR_AUDIO_SESSION_VOICE_E;
 				} else {
-					audio_session = CALLMGR_AUDIO_SESSION_VIDEO_E;
+					sound_mode = CALLMGR_AUDIO_SESSION_VIDEO_E;
 				}
 
 				_callmgr_ringer_stop_signal(core_data->ringer_handle);
 				_callmgr_ringer_stop_effect(core_data->ringer_handle);
 
-				ret = _callmgr_audio_create_call_sound_session(core_data->audio_handle, audio_session);
+				ret = _callmgr_audio_create_call_sound_session(core_data->audio_handle, sound_mode);
 				if (ret < 0) {
 					err("_callmgr_audio_create_call_sound_session() failed");
 				}
@@ -1195,6 +1212,7 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 					gboolean is_blocked_num = FALSE;
 					gboolean is_rec_blocked = FALSE;
 					gboolean is_bike_mode_enabled = FALSE;
+					gboolean is_low_battery = FALSE;
 					int call_cnt = -1;
 					gboolean is_do_not_disturb = FALSE;
 
@@ -1212,6 +1230,7 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 					_callmgr_util_check_block_mode_num(number, &is_blocked_num);
 					_callmgr_vconf_is_recording_reject_enabled(&is_rec_blocked);
 					_callmgr_vconf_is_bike_mode_enabled(&is_bike_mode_enabled);
+					_callmgr_vconf_is_low_battery(&is_low_battery);
 
 					_callmgr_util_check_disturbing_setting(&is_do_not_disturb);
 					_callmgr_telephony_get_call_count(core_data->telephony_handle, &call_cnt);
@@ -1237,6 +1256,19 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 						} else {
 							_callmgr_ct_set_log_reject_type(core_data->incom->call_id, CM_CT_PLOG_REJECT_TYPE_BLOCKED_E);
 						}
+					} else if ((is_low_battery == TRUE) && (cm_call_type == CALL_TYPE_VIDEO_E)) {
+						warn("Low battery video call");
+						/* Low battery is lower priority than other block cause */
+						callmgr_contact_info_t *contact_out_info = NULL;
+
+						int ret = _callmgr_telephony_reject_call(core_data->telephony_handle);
+						if (ret < 0) {
+							err("_callmgr_telephony_reject_call() get failed");
+						}
+						_callmgr_ct_add_ct_info((const char *)number, core_data->incom->call_id, &contact_out_info);
+						_callmgr_ct_set_log_reject_type(core_data->incom->call_id, CM_CT_PLOG_REJECT_TYPE_BLOCKED_E);
+
+						_callmgr_util_launch_popup(CALL_POPUP_CALL_ERR, CALL_ERR_LOW_BATTERY_INCOMING, NULL, 0, NULL, NULL);
 					} else {
 						__callmgr_core_process_incoming_call(core_data, call, active_sim_slot);
 						__callmgr_core_set_call_status(core_data, CALL_MANAGER_CALL_STATUS_RINGING_E, cm_call_type, number);
@@ -1303,9 +1335,13 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 						_callmgr_dbus_send_dial_status(core_data, CALL_MANAGER_DIAL_FAIL);
 					}
 
-					if (_callmgr_telephony_get_sat_originated_call(core_data->telephony_handle, &call) == 0) {
-						_callmgr_telephony_send_sat_response(core_data->telephony_handle,
-								CM_TELEPHONY_SAT_EVENT_SETUP_CALL, CM_TELEPHONY_SAT_RESPONSE_ME_UNABLE_TO_PROCESS_COMMAND, CM_TELEPHONY_SIM_UNKNOWN);
+					if (result == CM_TEL_CALL_ERR_REJ_SAT_CALL_CTRL) {
+						dbg("will send TR soon when CALL_CONTROL indication coming.")
+					} else {
+						if (_callmgr_telephony_get_sat_originated_call(core_data->telephony_handle, &call) == 0) {
+							_callmgr_telephony_send_sat_response(core_data->telephony_handle,
+									CM_TELEPHONY_SAT_EVENT_SETUP_CALL, CM_TELEPHONY_SAT_RESPONSE_ME_UNABLE_TO_PROCESS_COMMAND, CM_TELEPHONY_SIM_UNKNOWN);
+						}
 					}
 				}
 			}
@@ -1326,7 +1362,7 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 			{
 				int ringbacktone_info = GPOINTER_TO_INT(event_data);
 				/* play /stop ringback tone */
-				dbg("ringback info received = %d ", ringbacktone_info);
+				info("ringback info received = %d ", ringbacktone_info);
 
 				if (ringbacktone_info == 1) {
 					_callmgr_ringer_play_local_ringback_tone(core_data->ringer_handle);
@@ -1362,7 +1398,7 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 		case CM_TELEPHONY_EVENT_PREFERRED_SIM_CHANGED:
 			{
 				int preferred_sim = GPOINTER_TO_INT(event_data);
-				dbg("preferred SIM [%d]", preferred_sim);
+				info("preferred SIM [%d]", preferred_sim);
 				_callmgr_util_launch_popup(CALL_POPUP_HIDE, CALL_ERR_NONE, NULL, 0, NULL, NULL);
 			}
 			break;
@@ -1370,12 +1406,75 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 			{
 				int ret = 0;
 				char *number = NULL, *name = NULL;
+				cm_telephony_sat_setup_call_type_e sat_setup_call_type = CM_TELEPHONY_SAT_SETUP_CALL_RESERVED;
+				int call_cnt = 0;
+
 				_callmgr_telephony_get_sat_setup_call_number(core_data->telephony_handle, &number);
 				_callmgr_telephony_get_sat_setup_call_name(core_data->telephony_handle, &name);
+				_callmgr_telephony_get_sat_setup_call_type(core_data->telephony_handle, &sat_setup_call_type);
+				_callmgr_telephony_get_call_count(core_data->telephony_handle, &call_cnt);
 
 				if (!number) {
 					err("number is NULL.");
 					goto SAT_SETUP_CALL_FAIL_EXIT;
+				}
+
+				info("setup_call_type(%d), number(%s), name(%s), current call_cnt(%d)", sat_setup_call_type, number, name, call_cnt);
+
+				if (call_cnt > 0) {
+					switch (sat_setup_call_type) {
+					case CM_TELEPHONY_SAT_SETUP_CALL_IF_ANOTHER_CALL_NOT_BUSY_WITH_REDIAL:
+					case CM_TELEPHONY_SAT_SETUP_CALL_IF_ANOTHER_CALL_NOT_BUSY:
+						warn("There is another call. send fail TR.");
+						goto SAT_SETUP_CALL_FAIL_EXIT;
+						break;
+					case CM_TELEPHONY_SAT_SETUP_CALL_PUT_ALL_OTHER_CALLS_ON_HOLD_WITH_REDIAL:
+					case CM_TELEPHONY_SAT_SETUP_CALL_PUT_ALL_OTHER_CALLS_ON_HOLD:
+						if (core_data->incom) {
+							warn("There is incoming call.");
+							goto SAT_SETUP_CALL_FAIL_EXIT;
+						} else if (core_data->active_dial) {
+							if (core_data->active_dial->call_state == CM_TEL_CALL_STATE_DIALING
+									|| core_data->active_dial->call_state == CM_TEL_CALL_STATE_ALERT) {
+								warn("Call is dialing or alerting.");
+								goto SAT_SETUP_CALL_FAIL_EXIT;
+							} else if (core_data->held) {
+								warn("There are already 2 calls which active & held.");
+								goto SAT_SETUP_CALL_FAIL_EXIT;
+							}
+
+							info("Put all other calls on hold. after that request setup call.")
+							ret = _callmgr_telephony_hold_call(core_data->telephony_handle);
+							if (ret < 0) {
+								err("_callmgr_telephony_hold_call[%d] failed.", ret);
+								goto SAT_SETUP_CALL_FAIL_EXIT;
+							}
+							return;
+						}
+						break;
+					case CM_TELEPHONY_SAT_SETUP_CALL_DISCONN_ALL_OTHER_CALLS_WITH_REDIAL:
+					case CM_TELEPHONY_SAT_SETUP_CALL_DISCONN_ALL_OTHER_CALLS:
+						info("Disconnect all other calls. after that request setup call.")
+						ret = _callmgr_core_process_end_call(core_data, 0, CM_TEL_CALL_RELEASE_TYPE_ALL_CALLS);
+						if (ret < 0) {
+							err("_callmgr_core_process_end_call[%d] failed.", ret);
+							goto SAT_SETUP_CALL_FAIL_EXIT;
+						}
+						return;
+						break;
+					default:
+						warn("Unhandled type[%d]", sat_setup_call_type);
+						goto SAT_SETUP_CALL_FAIL_EXIT;
+						break;
+					}
+				} else {
+					callmgr_audio_session_mode_e session_mode = CALLMGR_AUDIO_SESSION_NONE_E;
+					_callmgr_audio_get_session_mode(core_data->audio_handle, &session_mode);
+					if (session_mode == CALLMGR_AUDIO_SESSION_VIDEO_E) {
+						warn("VT remain");
+						/* VT session was not destroyed. Send fail response for SAT */
+						goto SAT_SETUP_CALL_FAIL_EXIT;
+					}
 				}
 
 				ret = _callmgr_util_launch_callui_by_sat(active_sim_slot);
@@ -1428,13 +1527,33 @@ SAT_SEND_DTMF_FAIL_EXIT:
 			break;
 		case CM_TELEPHONY_EVENT_SAT_CALL_CONTROL_RESULT:
 			{
-				gboolean *b_ui_update = event_data;
+				cm_telephony_sat_call_ctrl_type_e *call_ctrl_type = event_data;
 
-				_callmgr_telephony_send_sat_response(core_data->telephony_handle,
-						CM_TELEPHONY_SAT_EVENT_CALL_CONTROL_RESULT, CM_TELEPHONY_SAT_RESPONSE_NONE, CM_TELEPHONY_SIM_UNKNOWN);
+				if (*call_ctrl_type == CM_TELEPHONY_SAT_CALL_CTRL_R_NOT_ALLOWED) {
+					_callmgr_util_launch_popup(CALL_POPUP_CALL_ERR, CALL_ERR_NOT_ALLOWED, NULL, 0, NULL, NULL);
 
-				if (*b_ui_update == TRUE)
+					info("send TR with cause which call is not allowed by SAT call control.")
+					_callmgr_telephony_send_sat_response(core_data->telephony_handle,
+							CM_TELEPHONY_SAT_EVENT_SETUP_CALL, CM_TELEPHONY_SAT_RESPONSE_ME_CONTROL_PERMANENT_PROBLEM, CM_TELEPHONY_SIM_UNKNOWN);
+				} else {
+					if (*call_ctrl_type == CM_TELEPHONY_SAT_CALL_CTRL_R_ALLOWED_MOD) {
+						char popup[128] = {0,};
+						char *number = NULL;
+						cm_telephony_call_data_t *call = NULL;
+
+						_callmgr_telephony_get_sat_call_control_call(core_data->telephony_handle, &call);
+						_callmgr_telephony_get_call_number(call, &number);
+						if (number) {
+							// display "Number changed by SIM: XXXX" with popup
+							// according to SMC lab. requirement (P150909-00591)
+							g_snprintf(popup, 127, "Number changed by SIM: %s", number);
+							_callmgr_util_launch_popup(CALL_POPUP_TOAST, CALL_POPUP_TOAST_CUSTOM, popup, 0 , NULL, NULL);
+
+							g_free(number);
+						}
+					}
 					_callmgr_dbus_send_call_event(core_data, CALL_MANAGER_CALL_EVENT_CALL_CONTROL_E, 0, active_sim_slot, end_cause);
+				}
 				return;
 			}
 			break;
@@ -1487,13 +1606,15 @@ static void __callmgr_core_process_audio_events(cm_audio_event_type_e event_type
 
 				_callmgr_core_get_audio_state(core_data, &route);
 				_callmgr_dbus_send_audio_status(core_data, route);
-				__callmgr_core_set_telephony_audio_route(core_data, active_device);
+				if (route != CALL_AUDIO_PATH_NONE_E) {
+					__callmgr_core_set_telephony_audio_route(core_data, active_device);
+				}
 			}
 			break;
 		case CM_AUDIO_EVENT_EARJACK_CHANGED_E:
 			{
 				gboolean is_available = GPOINTER_TO_INT(event_data);
-				dbg("Earjack state : %d", is_available);
+				info("Earjack state : %d", is_available);
 				if (core_data->active_dial || core_data->held) {
 					/*Change path only if outgoing call or connected call exists */
 					callmgr_audio_device_e active_device = CALLMGR_AUDIO_DEVICE_NONE_E;
@@ -1554,7 +1675,7 @@ static void __callmgr_core_process_audio_events(cm_audio_event_type_e event_type
 						telephony_type = CM_TAPI_SOUND_PATH_HANDSET;
 						break;
 				}
-				dbg("type : %d, vol : %d", telephony_type, volume);
+				info("type : %d, vol : %d", telephony_type, volume);
 
 				_callmgr_telephony_set_modem_volume(core_data->telephony_handle, telephony_type, volume);
 			}
@@ -1922,7 +2043,7 @@ static void __callmgr_core_process_sensor_events(cm_sensor_event_type_e event_ty
 	switch (event_type) {
 		case CM_SENSOR_EVENT_TURN_OVER_E:
 			{
-				dbg("Detect turn over");
+				info("Detect turn over");
 				__callmgr_core_stop_incom_noti(core_data);
 			}
 			break;
@@ -1988,7 +2109,7 @@ int _callmgr_core_get_audio_state(callmgr_core_data_t *core_data, callmgr_path_t
 	dbg("_callmgr_core_get_audio_state is called");
 	callmgr_audio_device_e active_device = CALLMGR_AUDIO_DEVICE_NONE_E;
 	if (_callmgr_audio_get_active_device(core_data->audio_handle, &active_device) < 0) {
-		dbg("_callmgr_audio_get_active_device() failed");
+		err("_callmgr_audio_get_active_device() failed");
 		return -1;
 	}
 
@@ -2014,7 +2135,7 @@ int _callmgr_core_get_audio_state(callmgr_core_data_t *core_data, callmgr_path_t
 	return 0;
 }
 
-static gboolean __callmgr_core_check_is_mocall_possible(callmgr_core_data_t *core_data, gboolean is_emergency, callmgr_call_type_e call_type, callmgr_call_error_cause_e* reason)
+static gboolean __callmgr_core_check_is_mocall_possible(callmgr_core_data_t *core_data, gboolean is_emergency, callmgr_call_type_e call_type, const char* number, callmgr_call_error_cause_e* reason)
 {
 	CM_RETURN_VAL_IF_FAIL(core_data, FALSE);
 	cm_telephony_call_data_t *call = NULL;
@@ -2197,6 +2318,9 @@ static int __callmgr_core_launch_error_popup(callmgr_call_error_cause_e error_ca
 		break;
 	case CALL_ERR_CAUSE_NOT_REGISTERED_ON_NETWORK_E:
 		_callmgr_util_launch_popup(CALL_POPUP_CALL_ERR, CALL_ERR_NOT_REGISTERED_ON_NETWORK, NULL, 0, NULL, NULL);
+		break;
+	case CALL_ERR_CAUSE_NO_SIM_E:
+		_callmgr_util_launch_popup(CALL_POPUP_CALL_ERR, CALL_ERR_NO_SIM, NULL, 0, NULL, NULL);
 		break;
 	default:
 		_callmgr_util_launch_popup(CALL_POPUP_CALL_ERR, CALL_ERR_FAILED, NULL, 0, NULL, NULL);
@@ -2383,7 +2507,7 @@ int _callmgr_core_process_dial(callmgr_core_data_t *core_data, const char *numbe
 		return 0;
 	}
 
-	is_mo_possible = __callmgr_core_check_is_mocall_possible(core_data, is_emergency_call, call_type, &err_cause);
+	is_mo_possible = __callmgr_core_check_is_mocall_possible(core_data, is_emergency_call, call_type, number, &err_cause);
 	if (is_mo_possible == FALSE) {
 		if (err_cause == CALL_ERR_CAUSE_FLIGHT_MODE_E) {
 			/* Check if already a MO Invalid handle calldata exists */
@@ -2467,7 +2591,7 @@ int _callmgr_core_process_dial(callmgr_core_data_t *core_data, const char *numbe
 int _callmgr_core_process_end_call(callmgr_core_data_t *core_data, unsigned int call_id, int release_type)
 {
 	int ret = -1;
-	dbg("callid[%d], release_type[%d]");
+	info("callid[%d], release_type[%d]");
 	CM_RETURN_VAL_IF_FAIL(core_data, -1);
 
 	switch (release_type) {
@@ -2495,7 +2619,7 @@ int _callmgr_core_process_end_call(callmgr_core_data_t *core_data, unsigned int 
 			}
 			break;
 		default:
-			err("wrong release_type");
+			err("wrong release_type")
 			return -1;
 	}
 
@@ -2646,15 +2770,15 @@ int _callmgr_core_process_answer_call(callmgr_core_data_t *core_data, int ans_ty
 
 int _callmgr_core_process_spk_on(callmgr_core_data_t *core_data)
 {
-	callmgr_audio_device_e cur_route = CALLMGR_AUDIO_DEVICE_RECEIVER_E;
+	callmgr_audio_route_e cur_route = CALLMGR_AUDIO_ROUTE_RECEIVER_E;
 	dbg(">>");
 	CM_RETURN_VAL_IF_FAIL(core_data, -1);
 
-	if (_callmgr_audio_get_active_device(core_data->audio_handle, &cur_route) < 0) {
+	if (_callmgr_audio_get_audio_route(core_data->audio_handle, &cur_route) < 0) {
 		err("_callmgr_audio_get_active_device() failed");
 		return -1;
 	}
-	if (cur_route == CALLMGR_AUDIO_DEVICE_SPEAKER_E) {
+	if (cur_route == CALLMGR_AUDIO_ROUTE_SPEAKER_E) {
 		warn("Already SPK");
 		return -1;
 	}
@@ -2671,15 +2795,15 @@ int _callmgr_core_process_spk_on(callmgr_core_data_t *core_data)
 
 int _callmgr_core_process_spk_off(callmgr_core_data_t *core_data)
 {
-	callmgr_audio_device_e cur_route = CALLMGR_AUDIO_DEVICE_RECEIVER_E;
+	callmgr_audio_route_e cur_route = CALLMGR_AUDIO_ROUTE_RECEIVER_E;
 	dbg(">>");
 	CM_RETURN_VAL_IF_FAIL(core_data, -1);
 
-	if (_callmgr_audio_get_active_device(core_data->audio_handle, &cur_route) < 0) {
+	if (_callmgr_audio_get_audio_route(core_data->audio_handle, &cur_route) < 0) {
 		err("_callmgr_audio_get_active_device() failed");
 		return -1;
 	}
-	if (cur_route != CALLMGR_AUDIO_DEVICE_SPEAKER_E) {
+	if (cur_route != CALLMGR_AUDIO_ROUTE_SPEAKER_E) {
 		warn("Not SPK");
 		return -1;
 	}

@@ -21,11 +21,9 @@
 
 #include "callmgr-log.h"
 #include "callmgr-answer-msg.h"
+#include "callmgr-vconf.h"
 
 #define CALLMGR_ANSWERING_BEEP_PATH		MODULE_RES_DIR "/Beep.ogg"
-
-static void *g_finished_cb;
-static void *g_user_data;
 
 struct __answer_msg_data {
 	player_h player_handle;		/**< Bike mode Handle to MM Player */
@@ -183,11 +181,11 @@ static gboolean __callmgr_answer_msg_play_beep_finish_idle_cb(gpointer user_data
 	return FALSE;
 }
 
-static void __callmgr_answer_msg_play_beep_finish_cb(callmgr_answer_msg_h answer_msg_handle)
+static void __callmgr_answer_msg_play_beep_finish_cb(void *user_data)
 {
 	dbg("..");
-	CM_RETURN_IF_FAIL(answer_msg_handle);
-
+	CM_RETURN_IF_FAIL(user_data);
+	callmgr_answer_msg_h answer_msg_handle = (callmgr_answer_msg_h)user_data;
 	g_idle_add(__callmgr_answer_msg_play_beep_finish_idle_cb, answer_msg_handle);
 }
 
@@ -201,10 +199,11 @@ static gboolean __callmgr_answer_msg_play_ment_finish_idle_cb(gpointer user_data
 	return FALSE;
 }
 
-static void __callmgr_answer_msg_play_ment_finish_cb(callmgr_answer_msg_h answer_msg_handle)
+static void __callmgr_answer_msg_play_ment_finish_cb(void *user_data)
 {
 	dbg("..");
-	CM_RETURN_IF_FAIL(answer_msg_handle);
+	CM_RETURN_IF_FAIL(user_data);
+	callmgr_answer_msg_h answer_msg_handle = (callmgr_answer_msg_h)user_data;
 	g_idle_add(__callmgr_answer_msg_play_ment_finish_idle_cb, answer_msg_handle);
 }
 

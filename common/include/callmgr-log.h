@@ -28,15 +28,29 @@ __BEGIN_DECLS
 #define CALLMGR_LOG_TAG "CALL_MGR"
 #endif
 
-#define dbg(fmt,args...)   do { RLOG(LOG_DEBUG, CALLMGR_LOG_TAG, fmt "\n", __func__, __LINE__, ##args); } while (0)
-#define info(fmt,args...)   do { RLOG(LOG_INFO, CALLMGR_LOG_TAG, fmt "\n", __func__, __LINE__, ##args); } while (0)
-#define warn(fmt,args...)   do { RLOG(LOG_WARN, CALLMGR_LOG_TAG, fmt "\n", __func__, __LINE__, ##args); } while (0)
-#define err(fmt,args...)   do { RLOG(LOG_ERROR, CALLMGR_LOG_TAG, fmt "\n", __func__, __LINE__, ##args); } while (0)
-#define fatal(fmt,args...)   do { RLOG(LOG_FATAL, CALLMGR_LOG_TAG, fmt "\n", __func__, __LINE__, ##args); } while (0)
+#define CALLMGR_RLOG_ENABLED 1
 
-#define sec_err(fmt, args...) do { SECURE_RLOG(LOG_ERROR, CALLMGR_LOG_TAG, fmt "\n", __func__, __LINE__, ##args); } while (0)
-#define sec_warn(fmt, args...) do { SECURE_RLOG(LOG_WARN, CALLMGR_LOG_TAG, fmt "\n", __func__, __LINE__, ##args); } while (0)
-#define sec_dbg(fmt, args...) do { SECURE_RLOG(LOG_DEBUG, CALLMGR_LOG_TAG, fmt "\n", __func__, __LINE__, ##args); } while (0)
+#ifdef CALLMGR_RLOG_ENABLED
+#define dbg(fmt,args...)   { RLOG(LOG_DEBUG, CALLMGR_LOG_TAG, fmt "\n", ##args); }
+#define info(fmt,args...)   { RLOG(LOG_INFO, CALLMGR_LOG_TAG, fmt "\n", ##args); }
+#define warn(fmt,args...)   { RLOG(LOG_WARN, CALLMGR_LOG_TAG, fmt "\n", ##args); }
+#define err(fmt,args...)   { RLOG(LOG_ERROR, CALLMGR_LOG_TAG, fmt "\n", ##args); }
+#define fatal(fmt,args...)   { RLOG(LOG_FATAL, CALLMGR_LOG_TAG, fmt "\n", ##args); }
+
+#define sec_err(fmt, arg...) {SECURE_RLOG(LOG_ERROR, CALLMGR_LOG_TAG, fmt"\n", ##arg); }
+#define sec_warn(fmt, arg...) {SECURE_RLOG(LOG_WARN, CALLMGR_LOG_TAG, fmt"\n", ##arg); }
+#define sec_dbg(fmt, arg...) {SECURE_RLOG(LOG_DEBUG, CALLMGR_LOG_TAG, fmt"\n", ##arg); }
+#else
+#define dbg(fmt,args...)   { __dlog_print(LOG_ID_MAIN, DLOG_DEBUG, CALLMGR_LOG_TAG, "<%s:%d> " fmt "\n", __func__, __LINE__, ##args); }
+#define info(fmt,args...)   { __dlog_print(LOG_ID_MAIN, DLOG_WARN, CALLMGR_LOG_TAG, "<%s:%d> " fmt "\n", __func__, __LINE__, ##args); }
+#define warn(fmt,args...)   { __dlog_print(LOG_ID_MAIN, DLOG_WARN, CALLMGR_LOG_TAG, "<%s:%d> " fmt "\n", __func__, __LINE__, ##args); }
+#define err(fmt,args...)   { __dlog_print(LOG_ID_MAIN, DLOG_ERROR, CALLMGR_LOG_TAG, "<%s:%d> " fmt "\n", __func__, __LINE__, ##args); }
+#define fatal(fmt,args...)   { __dlog_print(LOG_ID_MAIN, DLOG_FATAL, CALLMGR_LOG_TAG, "<%s:%d> " fmt "\n", __func__, __LINE__, ##args); }
+
+#define sec_err(fmt, arg...) {SECURE_LOGE(CALLMGR_LOG_TAG, fmt"\n", ##arg); }
+#define sec_warn(fmt, arg...) {SECURE_LOGW(CALLMGR_LOG_TAG, fmt"\n", ##arg); }
+#define sec_dbg(fmt, arg...) {SECURE_LOGD(CALLMGR_LOG_TAG, fmt"\n", ##arg); }
+#endif
 
 #define CM_RETURN_IF_FAIL(scalar_exp) {\
 	if (!(scalar_exp)) \

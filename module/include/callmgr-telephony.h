@@ -160,6 +160,7 @@ typedef enum {
 	CM_TEL_CALL_ERR_FDN_ONLY,
 	CM_TEL_CALL_ERR_DIAL_FAIL,
 	CM_TEL_CALL_ERR_FM_OFF_FAIL,		/* Fail to Flight Mode*/
+	CM_TEL_CALL_ERR_REJ_SAT_CALL_CTRL,
 }cm_telephony_call_err_cause_type_e;
 
 typedef enum {
@@ -199,8 +200,6 @@ typedef enum {
 	CM_NETWORK_STATUS_EMERGENCY_ONLY,
 } cm_network_status_e;
 
-// TODO:
-//Add more events
 typedef enum {
 	CM_TELEPHONY_EVENT_MIN,	/* 0 */
 
@@ -350,6 +349,24 @@ typedef enum {
 	CM_TELEPHONY_SAT_RESPONSE_ME_RET_SUCCESS											/**< Return success */
 } cm_telephony_sat_response_type_e;
 
+typedef enum {
+	CM_TELEPHONY_SAT_CALL_CTRL_R_ALLOWED_NO_MOD = 0x00,
+	CM_TELEPHONY_SAT_CALL_CTRL_R_NOT_ALLOWED = 0x01,
+	CM_TELEPHONY_SAT_CALL_CTRL_R_ALLOWED_MOD = 0x02,
+	CM_TELEPHONY_SAT_CALL_CTRL_RESERVED = 0xFF,
+} cm_telephony_sat_call_ctrl_type_e;	// in sync with TelSatCallCtrlResultType_t in libslp-tapi
+
+typedef enum {
+	CM_TELEPHONY_SAT_SETUP_CALL_IF_ANOTHER_CALL_NOT_BUSY = 0x00, /**< command qualifier for SETUP CALL IF ANOTHER CALL IS NOT BUSY */
+	CM_TELEPHONY_SAT_SETUP_CALL_IF_ANOTHER_CALL_NOT_BUSY_WITH_REDIAL = 0x01, /**< command qualifier for SETUP CALL IF ANOTHER CALL IS NOT BUSY WITH REDIAL */
+	CM_TELEPHONY_SAT_SETUP_CALL_PUT_ALL_OTHER_CALLS_ON_HOLD = 0x02, /**< command qualifier for SETUP CALL PUTTING ALL OTHER CALLS ON HOLD */
+	CM_TELEPHONY_SAT_SETUP_CALL_PUT_ALL_OTHER_CALLS_ON_HOLD_WITH_REDIAL = 0x03, /**< command qualifier for SETUP CALL PUTTING ALL OTHER CALLS ON HOLD WITH REDIAL */
+	CM_TELEPHONY_SAT_SETUP_CALL_DISCONN_ALL_OTHER_CALLS = 0x04, /**< command qualifier for SETUP CALL DISCONNECTING ALL OTHER CALLS */
+	CM_TELEPHONY_SAT_SETUP_CALL_DISCONN_ALL_OTHER_CALLS_WITH_REDIAL = 0x05, /**< command qualifier for SETUP CALL DISCONNECTING ALL OTHER CALLS WITH REDIAL */
+	CM_TELEPHONY_SAT_SETUP_CALL_RESERVED = 0xFF /**< command qualifier for SETUP CALL RESERVED */
+} cm_telephony_sat_setup_call_type_e;	// in sync with TelSatCmdQualiSetupCall_t in libslp-tapi
+
+
 typedef void (*telephony_event_cb) (cm_telephony_event_type_e event_type, void *event_data, void *user_data);
 
 int _callmgr_telephony_init(callmgr_telephony_t *telephony_handle, telephony_event_cb cb_fn, void *user_data);
@@ -398,9 +415,10 @@ int _callmgr_telephony_get_call_name_mode(cm_telephony_call_data_t *call, cm_tel
 int _callmgr_telephony_set_ecc_category(cm_telephony_call_data_t *call, int ecc_category);
 int _callmgr_telephony_has_call_by_state(callmgr_telephony_t telephony_handle, cm_telephony_call_state_e state, gboolean *b_has_call);
 int _callmgr_telephony_get_call_by_state(callmgr_telephony_t telephony_handle, cm_telephony_call_state_e state, cm_telephony_call_data_t **call_data_out);
-int _callmgr_telephony_get_sat_event_type(callmgr_telephony_t telephony_handle, cm_telephony_sat_event_type_e *sat_event_type);
+int _callmgr_telephony_get_sat_event_status(callmgr_telephony_t telephony_handle, cm_telephony_sat_event_type_e event_type, gboolean *b_is_ongoing);
+int _callmgr_telephony_get_sat_setup_call_type(callmgr_telephony_t telephony_handle, cm_telephony_sat_setup_call_type_e *sat_setup_call_type);
 int _callmgr_telephony_get_sat_originated_call(callmgr_telephony_t telephony_handle, cm_telephony_call_data_t **call_data_out);
-int _callmgr_telephony_is_sat_originated_call(cm_telephony_call_data_t *call, gboolean *is_sat_originated_call);
+int _callmgr_telephony_get_sat_call_control_call(callmgr_telephony_t telephony_handle, cm_telephony_call_data_t **call_data_out);
 int _callmgr_telephony_set_sat_originated_call_flag(cm_telephony_call_data_t *call, gboolean is_sat_originated_call);
 int _callmgr_telephony_get_sat_setup_call_number(callmgr_telephony_t telephony_handle, char **call_number);
 int _callmgr_telephony_get_sat_setup_call_name(callmgr_telephony_t telephony_handle, char **call_name);

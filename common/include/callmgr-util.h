@@ -57,16 +57,19 @@ typedef enum {
 	CALL_ERR_NOT_REGISTERED_ON_NETWORK,
 	CALL_ERR_PHONE_NOT_INITIALIZED,
 	CALL_ERR_TRANSFER_CALL_FAILED,
+	CALL_ERR_LOW_BATTERY_INCOMING,
 	CALL_ERR_JOIN_CALL_FAILED,
 	CALL_ERR_HOLD_CALL_FAILED,
 	CALL_ERR_SWAP_CALL_FAILED,
 	CALL_ERR_RETRIEVE_CALL_FAILED,
 	CALL_ERR_ANSWER_CALL_FAILED,
+	CALL_ERR_NO_SIM,
 	CALL_ERR_NONE,
 } call_err_type;
 
 typedef enum {
 	CALL_POPUP_TOAST_SWAP_CALL,
+	CALL_POPUP_TOAST_CUSTOM,
 	CALL_POPUP_TOAST_MAX,
 } call_popup_toast_type_e;
 
@@ -88,6 +91,7 @@ typedef enum {
 	CM_UTIL_REC_STATUS_STOP_BY_NORMAL_E,
 	CM_UTIL_REC_STATUS_STOP_BY_MEMORY_FULL_E,
 	CM_UTIL_REC_STATUS_STOP_BY_TIME_SHORT,
+	CM_UTIL_REC_STATUS_STOP_BY_NO_ENOUGH_MEMORY,
 } cm_util_rec_status_sub_info_e;
 
 typedef void (*callmgr_util_popup_result_cb) (call_popup_type popup_type, void *result, void *user_data);
@@ -140,6 +144,7 @@ int _callmgr_util_is_incall_ss_string(const char *number, gboolean *o_is_incall_
 int _callmgr_util_launch_ciss(const char* number, int sim_slot);
 
 int _callmgr_util_is_recording_progress(gboolean *is_recording);
+int _callmgr_util_is_video_recording_progress(gboolean *is_recording);
 
 int _callmgr_util_check_disturbing_setting(gboolean *is_do_not_disturb);
 

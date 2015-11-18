@@ -23,6 +23,7 @@
 #include <vconf.h>
 #include <device/haptic.h>
 #include <mm_sound.h>
+#include <stdlib.h>
 
 #include "callmgr-ringer.h"
 #include "callmgr-util.h"
@@ -282,14 +283,14 @@ static int __callmgr_ringer_create_ringtone_stream(callmgr_ringer_handle_h ringe
 	ret = sound_manager_create_stream_information_internal(SOUND_STREAM_TYPE_RINGTONE_CALL, __callmgr_ringer_ringtone_stream_focus_state_cb,
 		NULL, &ringer_handle->ringtone_stream_handle);
 	if (ret != SOUND_MANAGER_ERROR_NONE) {
-	      err("sound_manager_create_stream_information_internal() get failed with err[%d]", ret);
-	      return -1;
+		err("sound_manager_create_stream_information_internal() get failed with err[%d]", ret);
+		return -1;
 	}
 
 	ret = sound_manager_acquire_focus(ringer_handle->ringtone_stream_handle, SOUND_STREAM_FOCUS_FOR_PLAYBACK|SOUND_STREAM_FOCUS_FOR_RECORDING, NULL);
 	if (ret != SOUND_MANAGER_ERROR_NONE) {
-	      err("sound_manager_acquire_focus() get failed with err[%d]", ret);
-	      return -1;
+		err("sound_manager_acquire_focus() get failed with err[%d]", ret);
+		return -1;
 	}
 	return 0;
 }
@@ -317,23 +318,25 @@ static int __callmgr_ringer_play_melody(callmgr_ringer_handle_h ringer_handle, c
 	gboolean increasing_vol = FALSE;
 	gboolean is_ringtone_playable = FALSE;
 	gboolean is_silent_ringtone = FALSE;
+	gboolean is_default_ringtone = FALSE;
 	float adjusted_val = 0.0;
 	char *ringtone_path = NULL;
 	char *default_ringtone_path = NULL;
+	char *position = NULL;
+	int startposition = 0;
 	CM_RETURN_VAL_IF_FAIL(ringer_handle, -1);
+
+	if (ringer_handle->player_handle) {
+		warn("Already playing melody. Ignore this request");
+		return -1;
+	}
 
 	ret = __callmgr_ringer_create_ringtone_stream(ringer_handle);
 	if (ret < 0) {
 		err("__callmgr_ringer_create_ringtone_stream() get failed");
 		return -1;
 	}
-/*
-	ret = sound_manager_set_call_session_mode(SOUND_SESSION_CALL_MODE_RINGTONE);
-	if (SOUND_MANAGER_ERROR_NONE != ret) {
-		err("sound_manager_set_call_session_mode() Error: [0x%x]", ret);
-		return -1;
-	}
-*/
+
 	ret = sound_manager_get_volume(SOUND_TYPE_RINGTONE, &ringtone_volume);
 	if (SOUND_MANAGER_ERROR_NONE != ret) {
 		err("sound_manager_get_volume() Error: [0x%x]", ret);
@@ -361,6 +364,7 @@ static int __callmgr_ringer_play_melody(callmgr_ringer_handle_h ringer_handle, c
 			err("_callmgr_vconf_get_ringtone_path() failed");
 			ringtone_path = g_strdup(default_ringtone_path);
 		}
+		is_default_ringtone = TRUE;
 	}
 
 	if ((_callmgr_util_is_silent_ringtone(ringtone_path, &is_silent_ringtone) == 0) && (is_silent_ringtone == TRUE)) {
@@ -404,6 +408,7 @@ static int __callmgr_ringer_play_melody(callmgr_ringer_handle_h ringer_handle, c
 
 			return -1;
 		}
+		is_default_ringtone = TRUE;
 	}
 
 	ret = _callmgr_vconf_get_increasing_volume_setting(&increasing_vol);
@@ -429,6 +434,32 @@ static int __callmgr_ringer_play_melody(callmgr_ringer_handle_h ringer_handle, c
 
 		return -1;
 	}
+
+	if (is_default_ringtone) {
+		info("default ringtone");
+
+		position = vconf_get_str(VCONFKEY_SETAPPL_CALL_RINGTONE_PATH_WITH_RECOMMENDATION_TIME_STR);
+		if (position != NULL) {
+			startposition = atoi(position);
+			info("highlight ringtone: startposition(%d)", startposition);
+
+			g_free(position);
+		}
+		else {
+			warn("position is NULL");
+		}
+	}
+	else {
+		// ToDo: in case of contact ringtone and group ringtone
+	}
+
+	if (startposition > 0) {
+		ret = player_set_play_position(ringer_handle->player_handle, startposition, true, NULL, NULL);
+		if (PLAYER_ERROR_NONE != ret) {
+			err("player_set_play_position() failed, error: [%d]", ret);
+		}
+	}
+
 	if (increasing_vol) {
 		ringer_handle->increment_timer = g_timeout_add(CALLMGR_RINGTONE_INCREMENT_TIMER_INTERVAL, __callmgr_ringer_increasing_melody_cb, (gpointer)ringer_handle);
 	}
@@ -459,7 +490,7 @@ static int __callmgr_ringer_stop_melody(callmgr_ringer_handle_h ringer_handle)
 
 	player_get_state(ringer_handle->player_handle, &player_state);
 
-	dbg("current player state = %d", player_state);
+	info("current player state = %d", player_state);
 
 	if (PLAYER_STATE_PLAYING == player_state || PLAYER_STATE_PAUSED == player_state) {
 		ret = player_stop(ringer_handle->player_handle);
@@ -467,6 +498,9 @@ static int __callmgr_ringer_stop_melody(callmgr_ringer_handle_h ringer_handle)
 			err("player_stop() failed: [0x%x]", ret);
 
 			return -1;
+		}
+		else {
+			info("player_stop done");
 		}
 	}
 
@@ -476,12 +510,17 @@ static int __callmgr_ringer_stop_melody(callmgr_ringer_handle_h ringer_handle)
 
 		return -1;
 	}
+	else {
+		info("player_unprepare done");
+	}
 
 	ret = player_destroy(ringer_handle->player_handle);
 	if (PLAYER_ERROR_NONE != ret) {
 		err("player_destroy() failed: [0x%x]", ret);
-
 		return -1;
+	}
+	else {
+		info("player_destroy done");
 	}
 
 	ringer_handle->player_handle = NULL;
@@ -567,7 +606,7 @@ static int __callmgr_ringer_stop_vibration(callmgr_ringer_handle_h ringer_handle
 
 static void __callmgr_ringer_play_effect_finish_cb(void *user_data, int id)
 {
-	dbg("__callmgr_ringer_play_effect_finish_cb");
+	info("__callmgr_ringer_play_effect_finish_cb");
 	callmgr_ringer_handle_h ringer_handle = (callmgr_ringer_handle_h)user_data;
 	CM_RETURN_IF_FAIL(ringer_handle);
 
@@ -616,7 +655,7 @@ int _callmgr_ringer_start_alert(callmgr_ringer_handle_h ringer_handle, char *cal
 
 int _callmgr_ringer_play_local_ringback_tone(callmgr_ringer_handle_h ringer_handle)
 {
-	dbg("_callmgr_ringer_play_local_ringback_tone");
+	info("_callmgr_ringer_play_local_ringback_tone");
 
 	CM_RETURN_VAL_IF_FAIL(ringer_handle, -1);
 
@@ -632,7 +671,7 @@ int _callmgr_ringer_play_local_ringback_tone(callmgr_ringer_handle_h ringer_hand
 
 int _callmgr_ringer_stop_local_ringback_tone(callmgr_ringer_handle_h ringer_handle)
 {
-	dbg("_callmgr_ringer_stop_local_ringback_tone");
+	info("_callmgr_ringer_stop_local_ringback_tone");
 
 	CM_RETURN_VAL_IF_FAIL(ringer_handle, -1);
 
@@ -647,6 +686,8 @@ int _callmgr_ringer_stop_local_ringback_tone(callmgr_ringer_handle_h ringer_hand
 		return -1;
 	}
 
+	info("tone_player_stop done");
+
 	ringer_handle->ringback_tone_play_handle = -1;
 	ringer_handle->current_status = CM_RINGER_STATUS_IDLE_E;
 	return 0;
@@ -655,7 +696,7 @@ static gboolean __callmgr_waiting_tone_play_end_cb(gpointer pdata)
 {
 	callmgr_ringer_handle_h ringer_handle = (callmgr_ringer_handle_h)pdata;
 	CM_RETURN_VAL_IF_FAIL(ringer_handle, FALSE);
-	dbg("__callmgr_waiting_tone_play_end_cb");
+	info("__callmgr_waiting_tone_play_end_cb");
 
 	if (ringer_handle->waiting_tone_timer != -1) {
 		dbg("waiting_tone_timer removing..");
@@ -675,7 +716,7 @@ static gboolean __callmgr_waiting_tone_play_end_cb(gpointer pdata)
 int _callmgr_ringer_start_alternate_tone(callmgr_ringer_handle_h ringer_handle)
 {
 	int ret = -1;
-	dbg("_callmgr_ringer_start_alternate_tone()");
+	info("_callmgr_ringer_start_alternate_tone()");
 	CM_RETURN_VAL_IF_FAIL(ringer_handle, -1);
 
 	ret = tone_player_start(TONE_TYPE_SUP_CALL_WAITING, SOUND_TYPE_CALL, 4000, &ringer_handle->alternate_tone_handle);
@@ -683,6 +724,9 @@ int _callmgr_ringer_start_alternate_tone(callmgr_ringer_handle_h ringer_handle)
 		err("tone_player_start() failed");
 		return -1;
 	}
+
+	info("tone_player_start done");
+
 	ringer_handle->current_status = CM_RINGER_STATUS_RINGING_E;
 	ringer_handle->waiting_tone_timer = g_timeout_add(CALLMGR_2ND_CALL_BEEP_INTERVAL, __callmgr_waiting_tone_play_end_cb, (gpointer)ringer_handle);
 
@@ -796,7 +840,7 @@ static gboolean __callmgr_ringer_play_signal_end_cb(gpointer pdata)
 {
 	callmgr_ringer_handle_h ringer_handle = (callmgr_ringer_handle_h)pdata;
 	CM_RETURN_VAL_IF_FAIL(ringer_handle, FALSE);
-	dbg("__callmgr_ringer_play_signal_end_cb");
+	info("__callmgr_ringer_play_signal_end_cb");
 
 	if (ringer_handle->signal_tone_timer != -1) {
 		dbg("play signal end and signal_tone_timer removing..");
@@ -821,7 +865,7 @@ int _callmgr_ringer_play_signal(callmgr_ringer_handle_h ringer_handle, cm_ringer
 	CM_RETURN_VAL_IF_FAIL(ringer_handle, -1);
 
 	if (CM_RINGER_SIGNAL_NONE_E == signal_type) {
-		dbg("No Signal Type Assigned");
+		err("No Signal Type Assigned");
 		return -1;
 	}
 
@@ -847,7 +891,7 @@ int _callmgr_ringer_play_signal(callmgr_ringer_handle_h ringer_handle, cm_ringer
 		ret = tone_player_start(TONE_TYPE_SUP_CONGESTION, SOUND_TYPE_CALL, 2000, &ringer_handle->signal_play_handle);
 		break;
 	default:
-		dbg("Invalid Signal Type");
+		err("Invalid Signal Type");
 		break;
 	}
 

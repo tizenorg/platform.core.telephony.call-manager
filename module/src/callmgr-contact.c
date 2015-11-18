@@ -204,7 +204,7 @@ static int __callmgr_ct_get_caller_ringtone(int person_id, callmgr_contact_info_
 		if (CONTACTS_ERROR_NONE != err) {
 			err("contacts_record_get_str(ringtone path) error %d", err);
 		} else {
-			dbg("Caller ringtone");
+			info("Caller ringtone");
 			contact_info->caller_ringtone_path = g_strdup(ringtone_path);
 			free(ringtone_path);
 		}
@@ -287,7 +287,7 @@ int _callmgr_ct_add_ct_info(const char *phone_number, unsigned int call_id, call
 
 	__callmgr_ct_get_person_id_by_num(phone_number, &person_id);
 	if (-1 == person_id) {
-		dbg("no contact saved for this number in db");
+		err("no contact saved for this number in db");
 	} else {
 		info("contact saved with index : %d", person_id);
 		__callmgr_ct_get_caller_ringtone(person_id, contact_info);
@@ -445,7 +445,7 @@ int _callmgr_ct_add_log(cm_ct_plog_data_t *log_data)
 			err("contacts_record_create is failed");
 		} else if (contacts_record_set_str(log_record, _contacts_phone_log.address, contact_info->number) != CONTACTS_ERROR_NONE) {
 			err("contacts_record_set_str(Number) is failed");
-		} else if (contacts_record_set_int(log_record, _contacts_phone_log.log_time, (current_time-log_data->call_duration)) != CONTACTS_ERROR_NONE) {
+		} else if (contacts_record_set_int(log_record, _contacts_phone_log.log_time, (current_time)) != CONTACTS_ERROR_NONE) {	/* Log time is call end time*/
 			err("contacts_record_set_int(Time) is failed");
 		} else if (contacts_record_set_int(log_record, _contacts_phone_log.log_type, log_data->log_type) != CONTACTS_ERROR_NONE) {
 			err("contacts_record_set_int(Type) is failed");
@@ -460,7 +460,7 @@ int _callmgr_ct_add_log(cm_ct_plog_data_t *log_data)
 		} else if (contacts_db_insert_record(log_record, NULL) != CONTACTS_ERROR_NONE) {
 			err("contacts_db_insert_record is failed");
 		} else {
-			dbg("Call log is added successfully");
+			info("Call log is added successfully");
 		}
 		contacts_record_destroy(log_record, TRUE);
 	}
@@ -479,6 +479,7 @@ int _callmgr_ct_add_log(cm_ct_plog_data_t *log_data)
 			__callmgr_ct_add_rec_reject_notification(contact_info->number, contact_info->person_id, log_data->presentation);
 		}
 	}
+
 	return 0;
 }
 
@@ -697,7 +698,7 @@ static void __callmgr_ct_add_notification(int missed_cnt)
 	}
 
 	g_snprintf(str_cnt, sizeof(str_cnt), "%d", missed_cnt);
-	dbg("Notification string :[%s] [%s]", str_buf, str_cnt);
+	info("Notification string :[%s] [%s]", str_buf, str_cnt);
 
 	noti_err = notification_set_text(noti, NOTIFICATION_TEXT_TYPE_TITLE, str_buf, str_id, NOTIFICATION_VARIABLE_TYPE_NONE);
 	if (noti_err != NOTIFICATION_ERROR_NONE) {
@@ -846,14 +847,23 @@ static void __callmgr_ct_add_notification(int missed_cnt)
 				}
 
 				if (strstr(disp_name_str, disp_str) == NULL) {
-					if (strlen((const char *)disp_name_str) >= 1) {
+					int remain_max = sizeof(disp_name_str) - strlen((const char *)disp_name_str) - 1;
+
+					if ((remain_max > 0) && (strlen((const char *)disp_name_str) >= 1)) {
 						strncat(disp_name_str, ",", sizeof(char));
 						b_is_single = false;
+						remain_max = remain_max - sizeof(char);
 					}
-					if (strlen(disp_str) > 0) {
-						strncat(disp_name_str, disp_str, strlen(disp_str));
+
+					if ((remain_max > 0) && (strlen(disp_str) > 0)) {
+						if (strlen(disp_str) < remain_max) {
+							strncat(disp_name_str, disp_str, strlen(disp_str));
+						}
+						else {
+							strncat(disp_name_str, disp_str, remain_max);
+						}
 					}
-					dbg("disp_str %s  disp_name_str %s", disp_str, disp_name_str);
+					sec_dbg("disp_str(%s), disp_name_str(%s)", disp_str, disp_name_str);
 
 					g_free(disp_str);
 					disp_str = NULL;

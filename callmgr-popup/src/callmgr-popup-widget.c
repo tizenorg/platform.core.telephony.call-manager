@@ -262,13 +262,13 @@ void _callmgr_popup_create_flight_mode(void *data)
 	elm_object_text_set(ad->popup, _("IDS_KPD_POP_FLIGHT_MODE_ON_TURN_FLIGHT_MODE_OFF_TO_MAKE_CALLS"));
 
 	btn_cancel = elm_button_add(ad->popup);
-	elm_object_style_set(btn_cancel, "default");
+	elm_object_style_set(btn_cancel, "popup");
 	elm_object_text_set(btn_cancel, _("IDS_COM_SK_CANCEL"));
 	elm_object_part_content_set(ad->popup, "button1", btn_cancel);
 	evas_object_smart_callback_add(btn_cancel, "clicked", __callmgr_popup_fm_popup_cancel_cb, ad);
 
 	btn_ok = elm_button_add(ad->popup);
-	elm_object_style_set(btn_ok, "default");
+	elm_object_style_set(btn_ok, "popup");
 	elm_object_text_set(btn_ok, _("IDS_COM_SK_OK"));
 	elm_object_part_content_set(ad->popup, "button2", btn_ok);
 	evas_object_smart_callback_add(btn_ok, "clicked", __callmgr_popup_fm_popup_ok_cb, ad);
@@ -556,13 +556,13 @@ void _callmgr_popup_create_try_voice_call(void *data)
 	elm_object_text_set(ad->popup, _("IDS_VCALL_POP_TEXT_FALLBACK_VOICE_OUTOF3G"));
 
 	btn_cancel = elm_button_add(ad->popup);
-	elm_object_style_set(btn_cancel, "default");
+	elm_object_style_set(btn_cancel, "popup");
 	elm_object_text_set(btn_cancel, _("IDS_COM_SK_CANCEL"));
 	elm_object_part_content_set(ad->popup, "button1", btn_cancel);
 	evas_object_smart_callback_add(btn_cancel, "clicked", __callmgr_popup_try_voice_call_cancel_cb, ad);
 
 	btn_ok = elm_button_add(ad->popup);
-	elm_object_style_set(btn_ok, "default");
+	elm_object_style_set(btn_ok, "popup");
 	elm_object_text_set(btn_ok, _("IDS_COM_SK_OK"));
 	elm_object_part_content_set(ad->popup, "button2", btn_ok);
 	evas_object_smart_callback_add(btn_ok, "clicked", __callmgr_popup_try_voice_call_ok_cb, ad);

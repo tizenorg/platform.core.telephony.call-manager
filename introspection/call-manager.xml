@@ -159,6 +159,11 @@
 		<method name="GetAnsweringMachineStatus">
 			<arg direction="out" type="b" name="is_answering_machine_on" />
 		</method>
+
+		<method name="GetVideoRecordingStatus">
+			<arg direction="out" type="b" name="is_video_recording" />
+		</method>
+
 		<!--signal list -->
 
 		<signal name="CallEvent">
