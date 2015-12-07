@@ -1,6 +1,6 @@
 %define major 0
 %define minor 1
-%define patchlevel 43
+%define patchlevel 44
 %define ext_feature 0
 
 Name:           call-manager
@@ -10,6 +10,7 @@ License:        Apache-2.0
 Summary:        Call Manager
 Group:          System/Libraries
 Source0:        call-manager-%{version}.tar.gz
+SOURCE1:        callmgr.conf
 
 BuildRequires: cmake
 BuildRequires: python-xml
@@ -105,7 +106,8 @@ make %{?_smp_mflags}
 %make_install
 mkdir -p %{buildroot}%{_unitdir}/multi-user.target.wants
 ln -s %{_unitdir}/callmgr.service %{buildroot}%{_unitdir}/multi-user.target.wants/callmgr.service
-
+mkdir -p %{buildroot}/etc/dbus-1/system.d/
+cp %{SOURCE1} %{buildroot}/etc/dbus-1/system.d/callmgr.conf
 mkdir -p %{buildroot}/usr/share/license
 cp LICENSE %{buildroot}/usr/share/license/call-manager
 
@@ -121,6 +123,7 @@ ln -s %{_unitdir}/call-logger.service %{buildroot}%{_unitdir}/multi-user.target.
 #/etc/*
 %{_unitdir}/callmgr.service
 %{_unitdir}/multi-user.target.wants/callmgr.service
+/etc/dbus-1/system.d/callmgr.conf
 %{_datadir}/license/call-manager
 %if 0%{?enable_slient_log}
 %attr(755,system,system) /opt/usr/devel/usr/bin/call_silent_logger
