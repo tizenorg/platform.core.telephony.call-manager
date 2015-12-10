@@ -63,8 +63,6 @@ int _callmgr_audio_create_call_sound_session(callmgr_audio_handle_h audio_handle
 int _callmgr_audio_destroy_call_sound_session(callmgr_audio_handle_h audio_handle);
 int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_audio_route_e route);
 int _callmgr_audio_get_audio_route(callmgr_audio_handle_h audio_handle, callmgr_audio_route_e *o_route);
-int _callmgr_audio_get_active_device(callmgr_audio_handle_h audio_handle, callmgr_audio_device_e *o_route);
-
 int _callmgr_audio_set_extra_vol(callmgr_audio_handle_h audio_handle, gboolean is_extra_vol);
 int _callmgr_audio_get_extra_vol(callmgr_audio_handle_h audio_handle, gboolean *o_is_extra_vol);
 

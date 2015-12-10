@@ -163,9 +163,9 @@ static int __callmgr_core_set_default_audio_route(callmgr_core_data_t *core_data
 
 	_callmgr_telephony_get_video_call(core_data->telephony_handle, &call_data);
 	if (call_data) {
-		default_route = CALLMGR_AUDIO_ROUTE_SPEAKER_EARJACK_E;
+		default_route = CALLMGR_AUDIO_ROUTE_SPEAKER_E;
 	} else {
-		default_route = CALLMGR_AUDIO_ROUTE_RECEIVER_EARJACK_E;
+		default_route = CALLMGR_AUDIO_ROUTE_RECEIVER_E;
 	}
 
 	ret = _callmgr_audio_set_audio_route(core_data->audio_handle, default_route);
@@ -724,13 +724,13 @@ static void __callmgr_core_answer_msg_finished_cb(void *user_data)
 {
 	dbg("..");
 	callmgr_core_data_t *core_data = (callmgr_core_data_t *)user_data;
-	callmgr_audio_device_e active_device = CALLMGR_AUDIO_DEVICE_NONE_E;
+	callmgr_audio_route_e route = CALLMGR_AUDIO_ROUTE_NONE_E;
 	char *call_name = NULL;
 	int ret = -1;
 
 	_callmgr_audio_set_link_direction_downlink();
-	_callmgr_audio_get_active_device(core_data->audio_handle, &active_device);
-	_callmgr_audio_set_audio_route(core_data->audio_handle, active_device);
+	_callmgr_audio_get_audio_route(core_data->audio_handle, &route);
+	_callmgr_audio_set_audio_route(core_data->audio_handle, route);
 
 	_callmgr_ct_get_call_name(core_data->active_dial->call_id, &call_name);
 	ret = _callmgr_vr_start_record(core_data->vr_handle, core_data->active_dial->call_number, call_name, TRUE);
@@ -786,6 +786,7 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 {
 	callmgr_core_data_t *core_data = (callmgr_core_data_t *)user_data;
 	callmgr_audio_device_e active_device = CALLMGR_AUDIO_DEVICE_NONE_E;
+	callmgr_audio_route_e route = CALLMGR_AUDIO_ROUTE_NONE_E;
 	cm_telepony_sim_slot_type_e active_sim_slot = 0;
 	gboolean is_bt_connected = FALSE;
 	gboolean is_earjack_connected = FALSE;
@@ -970,8 +971,8 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 						}
 					}
 
-					_callmgr_audio_get_active_device(core_data->audio_handle, &active_device);
-					if ((b_play_effect_tone) && (active_device != CALLMGR_AUDIO_DEVICE_BT_E)) {
+					_callmgr_audio_get_audio_route(core_data->audio_handle, &route);
+					if ((b_play_effect_tone) && (route != CALLMGR_AUDIO_ROUTE_BT_E)) {
 						if (_callmgr_ringer_play_effect(core_data->ringer_handle, CM_RINGER_EFFECT_DISCONNECT_TONE_E, __callmgr_core_disconnect_tone_finished_cb, core_data) < 0) {
 							err("_callmgr_ringer_play_effect() is failed");
 						}
@@ -1066,8 +1067,8 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 					_callmgr_audio_set_link_direction_uplink();
 				}
 
-				_callmgr_audio_get_active_device(core_data->audio_handle, &active_device);
-				if (active_device == CALLMGR_AUDIO_DEVICE_NONE_E) {
+				_callmgr_audio_get_audio_route(core_data->audio_handle, &route);
+				if (route == CALLMGR_AUDIO_ROUTE_NONE_E) {
 					_callmgr_bt_is_connected(core_data->bt_handle, &is_bt_connected);
 					if (is_bt_connected) {
 						if (_callmgr_bt_open_sco(core_data->bt_handle) < 0) {
@@ -1171,8 +1172,8 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 					err("_callmgr_audio_create_call_sound_session() failed");
 				}
 
-				_callmgr_audio_get_active_device(core_data->audio_handle, &active_device);
-				if (active_device == CALLMGR_AUDIO_DEVICE_NONE_E) {
+				_callmgr_audio_get_audio_route(core_data->audio_handle, &route);
+				if (route == CALLMGR_AUDIO_ROUTE_NONE_E) {
 					_callmgr_bt_is_connected(core_data->bt_handle, &is_bt_connected);
 
 					if (is_bt_connected) {
@@ -1617,14 +1618,13 @@ static void __callmgr_core_process_audio_events(cm_audio_event_type_e event_type
 				info("Earjack state : %d", is_available);
 				if (core_data->active_dial || core_data->held) {
 					/*Change path only if outgoing call or connected call exists */
-					callmgr_audio_device_e active_device = CALLMGR_AUDIO_DEVICE_NONE_E;
+					callmgr_audio_route_e route = CALLMGR_AUDIO_ROUTE_NONE_E;
 					dbg("Change path");
 
-					_callmgr_audio_get_active_device(core_data->audio_handle, &active_device);
-
+					_callmgr_audio_get_audio_route(core_data->audio_handle, &route);
 
 					if (is_available == TRUE) {
-						if (active_device == CALLMGR_AUDIO_DEVICE_BT_E) {
+						if (route == CALLMGR_AUDIO_ROUTE_BT_E) {
 							_callmgr_bt_close_sco(core_data->bt_handle);
 						}
 						else {
@@ -1637,7 +1637,7 @@ static void __callmgr_core_process_audio_events(cm_audio_event_type_e event_type
 
 						if (is_bt_connected) {
 							_callmgr_bt_open_sco(core_data->bt_handle);
-						} else if (active_device != CALLMGR_AUDIO_DEVICE_SPEAKER_E) {
+						} else if (route != CALLMGR_AUDIO_ROUTE_SPEAKER_E) {
 							gboolean is_cradle_conn = FALSE;
 							_callmgr_vconf_is_cradle_status(&is_cradle_conn);
 
@@ -1838,9 +1838,10 @@ static void __callmgr_core_process_bt_events(cm_bt_event_type_e event_type, void
 					}
 				}
 				else {
-					callmgr_audio_device_e active_device = CALLMGR_AUDIO_DEVICE_NONE_E;
-					_callmgr_audio_get_active_device(core_data->audio_handle, &active_device);
-					if (active_device == CALLMGR_AUDIO_DEVICE_BT_E) {
+					callmgr_audio_route_e route = CALLMGR_AUDIO_ROUTE_NONE_E;
+					_callmgr_audio_get_audio_route(core_data->audio_handle, &route);
+
+					if (route == CALLMGR_AUDIO_ROUTE_BT_E) {
 						if (core_data->active_dial || core_data->held) {
 						}
 						else {
@@ -1865,9 +1866,9 @@ static void __callmgr_core_process_bt_events(cm_bt_event_type_e event_type, void
 						_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_BT_E);
 					}
 					else {
-						callmgr_audio_device_e active_device = CALLMGR_AUDIO_DEVICE_NONE_E;
-						_callmgr_audio_get_active_device(core_data->audio_handle, &active_device);
-						if (active_device == CALLMGR_AUDIO_DEVICE_BT_E) {
+						callmgr_audio_route_e route = CALLMGR_AUDIO_ROUTE_NONE_E;
+						_callmgr_audio_get_audio_route(core_data->audio_handle, &route);
+						if (route == CALLMGR_AUDIO_ROUTE_BT_E) {
 							__callmgr_core_set_default_audio_route(core_data);
 						}
 					}
@@ -2102,7 +2103,7 @@ int _callmgr_core_deinit(callmgr_core_data_t *core_data)
 	g_free(core_data);
 	return 0;
 }
-
+/*
 int _callmgr_core_get_audio_state(callmgr_core_data_t *core_data, callmgr_path_type_e *o_audio_state)
 {
 	CM_RETURN_VAL_IF_FAIL(core_data, -1);
@@ -2131,6 +2132,21 @@ int _callmgr_core_get_audio_state(callmgr_core_data_t *core_data, callmgr_path_t
 			*o_audio_state = CALL_AUDIO_PATH_NONE_E;
 			break;
 	}
+
+	return 0;
+}
+*/
+int _callmgr_core_get_audio_state(callmgr_core_data_t *core_data, callmgr_path_type_e *o_audio_state)
+{
+	CM_RETURN_VAL_IF_FAIL(core_data, -1);
+	dbg("_callmgr_core_get_audio_state is called");
+	callmgr_audio_route_e audio_state;
+	if (_callmgr_audio_get_audio_route(core_data->audio_handle, &audio_state) < 0) {
+		dbg("_callmgr_audio_get_audio_route() failed");
+		return -1;
+	}
+
+	*o_audio_state = audio_state;
 
 	return 0;
 }
@@ -2775,7 +2791,7 @@ int _callmgr_core_process_spk_on(callmgr_core_data_t *core_data)
 	CM_RETURN_VAL_IF_FAIL(core_data, -1);
 
 	if (_callmgr_audio_get_audio_route(core_data->audio_handle, &cur_route) < 0) {
-		err("_callmgr_audio_get_active_device() failed");
+		err("_callmgr_audio_get_audio_route() failed");
 		return -1;
 	}
 	if (cur_route == CALLMGR_AUDIO_ROUTE_SPEAKER_E) {
@@ -2800,7 +2816,7 @@ int _callmgr_core_process_spk_off(callmgr_core_data_t *core_data)
 	CM_RETURN_VAL_IF_FAIL(core_data, -1);
 
 	if (_callmgr_audio_get_audio_route(core_data->audio_handle, &cur_route) < 0) {
-		err("_callmgr_audio_get_active_device() failed");
+		err("_callmgr_audio_get_audio_route() failed");
 		return -1;
 	}
 	if (cur_route != CALLMGR_AUDIO_ROUTE_SPEAKER_E) {
@@ -2885,7 +2901,7 @@ int _callmgr_core_process_record_stop(callmgr_core_data_t *core_data)
 int _callmgr_core_process_set_extra_vol(callmgr_core_data_t *core_data, gboolean is_extra_vol)
 {
 	dbg(">>");
-	callmgr_audio_device_e cur_route = CALLMGR_AUDIO_DEVICE_RECEIVER_E;
+	callmgr_audio_route_e route = CALLMGR_AUDIO_ROUTE_RECEIVER_E;
 	CM_RETURN_VAL_IF_FAIL(core_data, -1);
 
 	if (_callmgr_audio_set_extra_vol(core_data->audio_handle, is_extra_vol) < 0) {
@@ -2893,8 +2909,8 @@ int _callmgr_core_process_set_extra_vol(callmgr_core_data_t *core_data, gboolean
 		return -1;
 	}
 
-	_callmgr_audio_get_active_device(core_data->audio_handle, &cur_route);
-	if (__callmgr_core_set_telephony_audio_route(core_data, cur_route) < 0) {
+	_callmgr_audio_get_audio_route(core_data->audio_handle, &route);
+	if (__callmgr_core_set_telephony_audio_route(core_data, route) < 0) {
 		err("__callmgr_core_set_telephony_audio_route() failed");
 		return -1;
 	}

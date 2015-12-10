@@ -270,6 +270,7 @@ int _callmgr_audio_destroy_call_sound_session(callmgr_audio_handle_h audio_handl
 
 	audio_handle->vstream = NULL;
 	audio_handle->sound_stream_handle = NULL;
+	info("_callmgr_audio_destroy_call_sound_session DONE");
 
 	return 0;
 }
@@ -628,16 +629,6 @@ int _callmgr_audio_get_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 	return 0;
 }
 
-int _callmgr_audio_get_active_device(callmgr_audio_handle_h audio_handle, callmgr_audio_device_e *o_route)
-{
-	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
-	CM_RETURN_VAL_IF_FAIL(o_route, -1);
-	dbg(">>");
-	warn("active device [%d]", audio_handle->current_device);
-	*o_route = audio_handle->current_device;
-	return 0;
-}
-
 int _callmgr_audio_set_extra_vol(callmgr_audio_handle_h audio_handle, gboolean is_extra_vol)
 {
 	callmgr_audio_device_e cur_route = CALLMGR_AUDIO_DEVICE_RECEIVER_E;
@@ -645,12 +636,6 @@ int _callmgr_audio_set_extra_vol(callmgr_audio_handle_h audio_handle, gboolean i
 
 	audio_handle->is_extra_vol = is_extra_vol;
 	dbg("updated extra vol : %d", audio_handle->is_extra_vol);
-
-	_callmgr_audio_get_active_device(audio_handle, &cur_route);
-	if (_callmgr_audio_set_audio_route(audio_handle, cur_route) < 0) {
-		err("_callmgr_audio_set_audio_route() failed");
-		return -1;
-	}
 
 	return 0;
 }
@@ -697,12 +682,6 @@ int _callmgr_audio_set_noise_reduction(callmgr_audio_handle_h audio_handle, gboo
 	audio_handle->is_noise_reduction = is_noise_reduction_on;
 	dbg("updated noise reduction : %d", audio_handle->is_noise_reduction);
 
-	_callmgr_audio_get_active_device(audio_handle, &cur_route);
-	if (_callmgr_audio_set_audio_route(audio_handle, cur_route) < 0) {
-		err("_callmgr_audio_set_audio_route() failed");
-		return -1;
-	}
-
 	return 0;
 }
 
@@ -724,7 +703,7 @@ int _callmgr_audio_is_ringtone_mode(callmgr_audio_handle_h audio_handle, gboolea
 
 	int ret = sound_manager_get_sound_type(audio_handle, &sound_type);
 	if (ret != SOUND_MANAGER_ERROR_NONE) {
-		err("callmgr_audio_set_audio_route() failed:[%d]", ret);
+		err("sound_manager_get_sound_type() failed:[%d]", ret);
 		return -1;
 	}
 
