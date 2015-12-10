@@ -1,3 +1,11 @@
+Code-Review+2: JooSeok Park <jooseok.park@samsung.com>
+Verified+1: JooSeok Park <jooseok.park@samsung.com>
+Submitted-by: JooSeok Park <jooseok.park@samsung.com>
+Submitted-at: Thu, 10 Dec 2015 15:42:48 -0800
+Reviewed-on: https://review.tizen.org/gerrit/53937
+Project: platform/core/telephony/call-manager
+Branch: refs/heads/tizen
+
 Reviewed-on: https://review.tizen.org/gerrit/53937
 Project: platform/core/telephony/call-manager
 Branch: refs/heads/tizen
