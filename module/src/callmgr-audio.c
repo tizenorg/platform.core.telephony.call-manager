@@ -270,6 +270,7 @@ int _callmgr_audio_destroy_call_sound_session(callmgr_audio_handle_h audio_handl
 
 	audio_handle->vstream = NULL;
 	audio_handle->sound_stream_handle = NULL;
+	audio_handle->current_route = -1;
 	info("_callmgr_audio_destroy_call_sound_session DONE");
 
 	return 0;
@@ -701,7 +702,7 @@ int _callmgr_audio_is_ringtone_mode(callmgr_audio_handle_h audio_handle, gboolea
 	sound_type_e sound_type = SOUND_TYPE_SYSTEM;
 	*o_is_ringtone_mode = FALSE;
 
-	int ret = sound_manager_get_sound_type(audio_handle, &sound_type);
+	int ret = sound_manager_get_sound_type(audio_handle->sound_stream_handle, &sound_type);
 	if (ret != SOUND_MANAGER_ERROR_NONE) {
 		err("sound_manager_get_sound_type() failed:[%d]", ret);
 		return -1;

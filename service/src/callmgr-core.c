@@ -785,7 +785,6 @@ int __callmgr_core_get_signal_type(cm_telephony_end_cause_type_e end_cause_type,
 static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e event_type, void *event_data, void *user_data)
 {
 	callmgr_core_data_t *core_data = (callmgr_core_data_t *)user_data;
-	callmgr_audio_device_e active_device = CALLMGR_AUDIO_DEVICE_NONE_E;
 	callmgr_audio_route_e route = CALLMGR_AUDIO_ROUTE_NONE_E;
 	cm_telepony_sim_slot_type_e active_sim_slot = 0;
 	gboolean is_bt_connected = FALSE;
@@ -1087,7 +1086,7 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 						/* Active > 2nd incoming > End active > Incoming > Active */
 						/* We need to set previous audio route */
 						warn("Set prev route");
-						int ret = _callmgr_audio_set_audio_route(core_data->audio_handle, active_device);
+						int ret = _callmgr_audio_set_audio_route(core_data->audio_handle, route);
 						if (ret < 0) {
 							err("_callmgr_audio_set_audio_route() fails");
 						}
