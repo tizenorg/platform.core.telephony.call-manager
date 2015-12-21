@@ -1,6 +1,6 @@
 %define major 0
 %define minor 1
-%define patchlevel 45
+%define patchlevel 46
 %define ext_feature 0
 
 Name:           call-manager
@@ -35,6 +35,7 @@ BuildRequires: pkgconfig(capi-system-device)
 BuildRequires: pkgconfig(notification)
 BuildRequires: pkgconfig(badge)
 BuildRequires: pkgconfig(mm-sound)
+BuildRequires: pkgconfig(libsystemd-login)
 
 BuildRequires: edje-tools
 BuildRequires: gettext-tools

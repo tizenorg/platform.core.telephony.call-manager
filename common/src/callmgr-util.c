@@ -32,6 +32,7 @@
 #include <msg.h>
 #include <cynara-creds-gdbus.h>
 #include <cynara-session.h>
+#include <systemd/sd-login.h>
 
 #include "callmgr-util.h"
 #include "callmgr-log.h"
@@ -191,9 +192,38 @@ static gboolean __callmgr_util_dispatch_job_on_new_thread(gchar *name, GThreadFu
 	return TRUE;
 }
 
+ static int __find_login_user(uid_t *uid)
+ {
+	uid_t *uids;
+	int ret, i;
+	char *state;
+
+	ret = sd_get_uids(&uids);
+	if (ret <= 0)
+	     return -1;
+
+	for (i = 0; i < ret ; i++) {
+	     if (sd_uid_get_state(uids[i], &state) < 0) {
+	             free(uids);
+	             return -1;
+	     } else {
+	             if (!strncmp(state, "online", 6)) {
+	                     *uid = uids[i];
+	                     free(uids);
+	                     free(state);
+	                     return 0;
+	             }
+	     }
+	}
+	free(uids);
+	free(state);
+	return -1;
+ }
+
 static gpointer __callmgr_util_launch_voice_call(gpointer data)
 {
 	GThread* selfi = g_thread_self();
+	uid_t target_uid;
 
 	dbg("__callmgr_util_launch_voice_call");
 	callmgr_thread_data_t *cb_data = (callmgr_thread_data_t*)data;
@@ -204,7 +234,6 @@ static gpointer __callmgr_util_launch_voice_call(gpointer data)
 	kb = bundle_create();
 
 	appsvc_set_operation(kb, APPSVC_OPERATION_CALL);
-	appsvc_set_pkgname(kb, "org.tizen.call");
 	appsvc_set_uri(kb,"tel:MT");
 
 	g_snprintf(buf, 2, "%d", cb_data->call_id);
@@ -214,7 +243,13 @@ static gpointer __callmgr_util_launch_voice_call(gpointer data)
 	g_snprintf(buf, 2, "%d", cb_data->sim_slot);
 	dbg("sim_slot : [%s]", buf);
 	appsvc_add_data(kb, "sim_slot", buf);
-	appsvc_run_service(kb, 0, NULL, NULL);
+
+	if (__find_login_user(&target_uid) < 0) {
+		warn("Fail to get login user\n");
+	} else {
+		appsvc_usr_run_service(kb, 0, NULL, NULL, target_uid);
+	}
+
 	bundle_free(kb);
 	g_free(cb_data);
 
@@ -228,6 +263,7 @@ static gpointer __callmgr_util_launch_voice_call(gpointer data)
 static gpointer __callmgr_util_launch_voice_call_by_sat(gpointer data)
 {
 	GThread* selfi = g_thread_self();
+	uid_t target_uid;
 
 	dbg("__callmgr_util_launch_voice_call");
 	callmgr_thread_data_t *cb_data = (callmgr_thread_data_t*)data;
@@ -244,7 +280,11 @@ static gpointer __callmgr_util_launch_voice_call_by_sat(gpointer data)
 	dbg("sim_slot : [%s]", buf);
 	appsvc_add_data(kb, "sim_slot", buf);
 
-	appsvc_run_service(kb, 0, NULL, NULL);
+	if (__find_login_user(&target_uid) < 0) {
+		warn("Fail to get login user\n");
+	} else {
+		appsvc_usr_run_service(kb, 0, NULL, NULL, target_uid);
+	}
 	bundle_free(kb);
 	g_free(cb_data);
 
@@ -259,6 +299,7 @@ static gpointer __callmgr_util_launch_voice_call_by_sat(gpointer data)
 static gpointer __callmgr_util_launch_video_call(gpointer data)
 {
 	GThread* selfi = g_thread_self();
+	uid_t target_uid;
 
 	dbg("__callmgr_util_launch_video_call");
 	callmgr_thread_data_t *cb_data = (callmgr_thread_data_t*)data;
@@ -281,7 +322,11 @@ static gpointer __callmgr_util_launch_video_call(gpointer data)
 	g_snprintf(buf, 2, "%d", cb_data->sim_slot);
 	dbg("sim_slot : [%s]", buf);
 	appsvc_add_data(kb, "sim_slot", buf);
-	appsvc_run_service(kb, 0, NULL, NULL);
+	if (__find_login_user(&target_uid) < 0) {
+		warn("Fail to get login user\n");
+	} else {
+		appsvc_usr_run_service(kb, 0, NULL, NULL, target_uid);
+	}
 	bundle_free(kb);
 	g_free(cb_data);
 

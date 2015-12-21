@@ -19,6 +19,7 @@ pkg_check_modules(common_pkgs REQUIRED
 	capi-media-recorder
 	notification
 	msg-service
+	libsystemd-login
 )
 
 FOREACH(flag ${common_pkgs_CFLAGS})
