@@ -1,6 +1,6 @@
 %define major 0
 %define minor 1
-%define patchlevel 46
+%define patchlevel 47
 %define ext_feature 0
 
 Name:           call-manager
@@ -54,7 +54,6 @@ BuildRequires: pkgconfig(cynara-session)
 BuildRequires: pkgconfig(msg-service)
 
 Requires(post): /sbin/ldconfig
-Requires(post): sys-assert
 Requires(postun): /sbin/ldconfig
 
 %if "%{profile}" != "mobile"
