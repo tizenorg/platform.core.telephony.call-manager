@@ -48,4 +48,4 @@ TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${service_pkgs_LDFLAGS} callmgr_module cal
 INSTALL(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
 
 # Configuration files (dbus & smack)
-INSTALL(FILES ${CMAKE_SOURCE_DIR}/resource/callmgr.service DESTINATION ${UNITDIR})
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/resource/callmgr.service DESTINATION /usr/lib/systemd/user/)

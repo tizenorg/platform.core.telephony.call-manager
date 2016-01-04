@@ -1,6 +1,6 @@
 %define major 0
 %define minor 1
-%define patchlevel 47
+%define patchlevel 48
 %define ext_feature 0
 
 Name:           call-manager
@@ -104,8 +104,8 @@ make %{?_smp_mflags}
 
 %install
 %make_install
-mkdir -p %{buildroot}%{_unitdir}/multi-user.target.wants
-ln -s %{_unitdir}/callmgr.service %{buildroot}%{_unitdir}/multi-user.target.wants/callmgr.service
+mkdir -p %{buildroot}/usr/lib/systemd/user/default.target.wants
+ln -s /usr/lib/systemd/user/callmgr.service %{buildroot}/usr/lib/systemd/user/default.target.wants/callmgr.service
 mkdir -p %{buildroot}/etc/dbus-1/system.d/
 cp %{SOURCE1} %{buildroot}/etc/dbus-1/system.d/callmgr.conf
 mkdir -p %{buildroot}/usr/share/license
@@ -113,7 +113,7 @@ cp LICENSE %{buildroot}/usr/share/license/call-manager
 
 %if 0%{?enable_slient_log}
 mkdir -p %{buildroot}/opt/usr/data/call/
-ln -s %{_unitdir}/call-logger.service %{buildroot}%{_unitdir}/multi-user.target.wants/call-logger.service
+ln -s /usr/lib/systemd/user/call-logger.service %{buildroot}/usr/lib/systemd/user/default.target.wants/call-logger.service
 %endif
 
 %files
@@ -121,8 +121,8 @@ ln -s %{_unitdir}/call-logger.service %{buildroot}%{_unitdir}/multi-user.target.
 %defattr(644,system,system,-)
 %attr(755,system,system) %{_bindir}/callmgrd
 #/etc/*
-%{_unitdir}/callmgr.service
-%{_unitdir}/multi-user.target.wants/callmgr.service
+/usr/lib/systemd/user/callmgr.service
+/usr/lib/systemd/user/default.target.wants/callmgr.service
 /etc/dbus-1/system.d/callmgr.conf
 %{_datadir}/license/call-manager
 %if 0%{?enable_slient_log}
