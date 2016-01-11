@@ -23,6 +23,7 @@
 #include <vconf.h>
 #include <device/haptic.h>
 #include <mm_sound.h>
+#include <wav_player.h>
 #include <stdlib.h>
 
 #include "callmgr-ringer.h"
@@ -655,12 +656,21 @@ int _callmgr_ringer_start_alert(callmgr_ringer_handle_h ringer_handle, char *cal
 
 int _callmgr_ringer_play_local_ringback_tone(callmgr_ringer_handle_h ringer_handle)
 {
+	int ret = SOUND_MANAGER_ERROR_NONE;
+
 	info("_callmgr_ringer_play_local_ringback_tone");
 
 	CM_RETURN_VAL_IF_FAIL(ringer_handle, -1);
 
-	if (TONE_PLAYER_ERROR_NONE != tone_player_start(TONE_TYPE_ANSI_RINGTONE, SOUND_TYPE_CALL, -1, &ringer_handle->ringback_tone_play_handle)) {
-		err("Error tone_player_start");
+	ret = sound_manager_create_stream_information_internal(SOUND_STREAM_TYPE_RINGBACKTONE_CALL, __callmgr_ringer_ringtone_stream_focus_state_cb, 
+		NULL, &ringer_handle->ringtone_stream_handle);
+	if (ret != SOUND_MANAGER_ERROR_NONE) {
+		err("sound_manager_create_stream_information_internal() get failed with err[%d]", ret);
+		return -1;
+	}
+
+	if (TONE_PLAYER_ERROR_NONE != tone_player_start_with_stream_info(TONE_TYPE_ANSI_RINGTONE, ringer_handle->ringtone_stream_handle , -1, &ringer_handle->ringback_tone_play_handle)) {
+		err("Error tone_player_start_with_stream_info");
 		ringer_handle->ringback_tone_play_handle = -1;
 		return -1;
 	}
@@ -690,6 +700,9 @@ int _callmgr_ringer_stop_local_ringback_tone(callmgr_ringer_handle_h ringer_hand
 
 	ringer_handle->ringback_tone_play_handle = -1;
 	ringer_handle->current_status = CM_RINGER_STATUS_IDLE_E;
+
+	__callmgr_ringer_destroy_ringtone_stream(ringer_handle);
+
 	return 0;
 }
 static gboolean __callmgr_waiting_tone_play_end_cb(gpointer pdata)
@@ -716,16 +729,25 @@ static gboolean __callmgr_waiting_tone_play_end_cb(gpointer pdata)
 int _callmgr_ringer_start_alternate_tone(callmgr_ringer_handle_h ringer_handle)
 {
 	int ret = -1;
+	int sound_manager_ret = SOUND_MANAGER_ERROR_NONE;
+
 	info("_callmgr_ringer_start_alternate_tone()");
 	CM_RETURN_VAL_IF_FAIL(ringer_handle, -1);
 
-	ret = tone_player_start(TONE_TYPE_SUP_CALL_WAITING, SOUND_TYPE_CALL, 4000, &ringer_handle->alternate_tone_handle);
-	if (ret != TONE_PLAYER_ERROR_NONE) {
-		err("tone_player_start() failed");
+	sound_manager_ret = sound_manager_create_stream_information_internal(SOUND_STREAM_TYPE_RINGBACKTONE_CALL, __callmgr_ringer_ringtone_stream_focus_state_cb, 
+		NULL, &ringer_handle->ringtone_stream_handle);
+	if (sound_manager_ret != SOUND_MANAGER_ERROR_NONE) {
+		err("sound_manager_create_stream_information_internal() get failed with err[%d]", sound_manager_ret);
 		return -1;
 	}
 
-	info("tone_player_start done");
+	ret = tone_player_start_with_stream_info(TONE_TYPE_SUP_CALL_WAITING, ringer_handle->ringtone_stream_handle, 4000, &ringer_handle->alternate_tone_handle);
+	if (ret != TONE_PLAYER_ERROR_NONE) {
+		err("tone_player_start_with_stream_info() failed");
+		return -1;
+	}
+
+	info("tone_player_start_with_stream_info done");
 
 	ringer_handle->current_status = CM_RINGER_STATUS_RINGING_E;
 	ringer_handle->waiting_tone_timer = g_timeout_add(CALLMGR_2ND_CALL_BEEP_INTERVAL, __callmgr_waiting_tone_play_end_cb, (gpointer)ringer_handle);
@@ -738,6 +760,7 @@ int _callmgr_ringer_stop_alert(callmgr_ringer_handle_h ringer_handle)
 	dbg("_callmgr_ringer_stop_alert()");
 
 	CM_RETURN_VAL_IF_FAIL(ringer_handle, -1);
+
 	__callmgr_ringer_stop_melody(ringer_handle);
 	__callmgr_ringer_stop_vibration(ringer_handle);
 	ringer_handle->current_status = CM_RINGER_STATUS_IDLE_E;
@@ -762,9 +785,9 @@ int _callmgr_ringer_stop_alternate_tone(callmgr_ringer_handle_h ringer_handle)
 	ret = tone_player_stop(ringer_handle->alternate_tone_handle);
 	if (ret != TONE_PLAYER_ERROR_NONE) {
 		err("tone_player_stop() failed");
-
 		return -1;
 	}
+
 	ringer_handle->current_status = CM_RINGER_STATUS_IDLE_E;
 	ringer_handle->alternate_tone_handle = -1;
 
@@ -775,6 +798,9 @@ int _callmgr_ringer_stop_alternate_tone(callmgr_ringer_handle_h ringer_handle)
 	}
 
 	ringer_handle->alternate_tone_play_count = 0;
+
+	__callmgr_ringer_destroy_ringtone_stream(ringer_handle);
+
 	return 0;
 }
 
@@ -782,11 +808,19 @@ int _callmgr_ringer_play_effect(callmgr_ringer_handle_h ringer_handle, cm_ringer
 {
 	dbg("_callmgr_ringer_play_effect()");
 	CM_RETURN_VAL_IF_FAIL(ringer_handle, -1);
-	int ret = MM_ERROR_NONE;
+	int ret = WAV_PLAYER_ERROR_NONE;
+	int sound_manager_ret = SOUND_MANAGER_ERROR_NONE;
 	char *effect_path = NULL;
 
 	ringer_handle->play_effect_cb_fn = cb_fn;
 	ringer_handle->play_effect_user_data = user_data;
+
+	sound_manager_ret = sound_manager_create_stream_information_internal(SOUND_STREAM_TYPE_RINGBACKTONE_CALL, __callmgr_ringer_ringtone_stream_focus_state_cb, 
+		NULL, &ringer_handle->ringtone_stream_handle);
+	if (sound_manager_ret != SOUND_MANAGER_ERROR_NONE) {
+		err("sound_manager_create_stream_information_internal() get failed with err[%d]", sound_manager_ret);
+		return -1;
+	}
 
 	switch (effect_type) {
 		case CM_RINGER_EFFECT_CONNECT_TONE_E:
@@ -800,38 +834,42 @@ int _callmgr_ringer_play_effect(callmgr_ringer_handle_h ringer_handle, cm_ringer
 			return -1;
 	}
 
-	ret = mm_sound_play_sound((const char *)effect_path, VOLUME_TYPE_CALL, __callmgr_ringer_play_effect_finish_cb, (void *)ringer_handle, &(ringer_handle->play_effect_handle));
-	if (ret != MM_ERROR_NONE) {
-		err("mm_sound_play_sound failed:[%d]", ret);
+	ret = wav_player_start_with_stream_info((const char *)effect_path, ringer_handle->ringtone_stream_handle, __callmgr_ringer_play_effect_finish_cb, (void *)ringer_handle, &(ringer_handle->play_effect_handle));
+	if (ret != WAV_PLAYER_ERROR_NONE) {
+		err("wav_player_start_with_stream_info failed:[%d]", ret);
 		g_free(effect_path);
 		return -1;
 	}
 	g_free(effect_path);
 
 	ringer_handle->current_status = CM_RINGER_STATUS_RINGING_E;
+
 	return 0;
  }
 
 int _callmgr_ringer_stop_effect(callmgr_ringer_handle_h ringer_handle)
 {
-	dbg("_callmgr_ringer_stop_effect");
 	int ret = MM_ERROR_NONE;
 	CM_RETURN_VAL_IF_FAIL(ringer_handle, -1);
+
+	dbg("_callmgr_ringer_stop_effect");
 
 	if (ringer_handle->play_effect_handle < 0) {
 		err("Invalid handle");
 		return -1;
 	}
 
-	ret = mm_sound_stop_sound(ringer_handle->play_effect_handle);
+	ret = wav_player_stop(ringer_handle->play_effect_handle);
 	if (ret != MM_ERROR_NONE) {
-		err("mm_sound_stop_sound failed:[%d]", ret);
+		err("wav_player_stop failed:[%d]", ret);
 	}
 
 	ringer_handle->play_effect_cb_fn = NULL;
 	ringer_handle->play_effect_user_data = NULL;
 	ringer_handle->play_effect_handle = -1;
 	ringer_handle->current_status = CM_RINGER_STATUS_IDLE_E;
+
+	__callmgr_ringer_destroy_ringtone_stream(ringer_handle);
 
 	return 0;
 }
@@ -862,6 +900,7 @@ int _callmgr_ringer_play_signal(callmgr_ringer_handle_h ringer_handle, cm_ringer
 {
 	dbg("_callmgr_ringer_play_signal type[%d]", signal_type);
 	int ret = TONE_PLAYER_ERROR_NONE;
+	int sound_manager_ret = SOUND_MANAGER_ERROR_NONE;
 	CM_RETURN_VAL_IF_FAIL(ringer_handle, -1);
 
 	if (CM_RINGER_SIGNAL_NONE_E == signal_type) {
@@ -879,16 +918,23 @@ int _callmgr_ringer_play_signal(callmgr_ringer_handle_h ringer_handle, cm_ringer
 	ringer_handle->play_signal_cb_fn = cb_fn;
 	ringer_handle->play_signal_user_data = user_data;
 
+	sound_manager_ret = sound_manager_create_stream_information_internal(SOUND_STREAM_TYPE_RINGBACKTONE_CALL, __callmgr_ringer_ringtone_stream_focus_state_cb, 
+		NULL, &ringer_handle->ringtone_stream_handle);
+	if (sound_manager_ret != SOUND_MANAGER_ERROR_NONE) {
+		err("sound_manager_create_stream_information_internal() get failed with err[%d]", sound_manager_ret);
+		return -1;
+	}
+
 	switch (signal_type) {
 	case CM_RINGER_SIGNAL_USER_BUSY_TONE_E:
-		ret = tone_player_start(TONE_TYPE_SUP_BUSY, SOUND_TYPE_CALL, 5000, &ringer_handle->signal_play_handle);
+		ret = tone_player_start_with_stream_info(TONE_TYPE_SUP_BUSY, ringer_handle->ringtone_stream_handle, 5000, &ringer_handle->signal_play_handle);
 		break;
 	case CM_RINGER_SIGNAL_WRONG_NUMBER_TONE_E:
 	case CM_RINGER_SIGNAL_CALL_FAIL_TONE_E:
-		ret = tone_player_start(TONE_TYPE_SUP_ERROR, SOUND_TYPE_CALL, 2000, &ringer_handle->signal_play_handle);
+		ret = tone_player_start_with_stream_info(TONE_TYPE_SUP_ERROR, ringer_handle->ringtone_stream_handle, 2000, &ringer_handle->signal_play_handle);
 		break;
 	case CM_RINGER_SIGNAL_NW_CONGESTION_TONE_E:
-		ret = tone_player_start(TONE_TYPE_SUP_CONGESTION, SOUND_TYPE_CALL, 2000, &ringer_handle->signal_play_handle);
+		ret = tone_player_start_with_stream_info(TONE_TYPE_SUP_CONGESTION, ringer_handle->ringtone_stream_handle, 2000, &ringer_handle->signal_play_handle);
 		break;
 	default:
 		err("Invalid Signal Type");
@@ -915,9 +961,11 @@ int _callmgr_ringer_play_signal(callmgr_ringer_handle_h ringer_handle, cm_ringer
 
 int _callmgr_ringer_stop_signal(callmgr_ringer_handle_h ringer_handle)
 {
-	dbg("_callmgr_ringer_stop_signal");
 	int ret = TONE_PLAYER_ERROR_NONE;
+
 	CM_RETURN_VAL_IF_FAIL(ringer_handle, -1);
+
+	dbg("_callmgr_ringer_stop_signal");
 
 	if (ringer_handle->signal_tone_timer != -1) {
 		dbg("signal_tone_timer removing..");
@@ -938,6 +986,8 @@ int _callmgr_ringer_stop_signal(callmgr_ringer_handle_h ringer_handle)
 	ringer_handle->play_signal_cb_fn = NULL;
 	ringer_handle->play_signal_user_data = NULL;
 	ringer_handle->current_status = CM_RINGER_STATUS_IDLE_E;
+
+	__callmgr_ringer_destroy_ringtone_stream(ringer_handle);
 
 	return 0;
 }
