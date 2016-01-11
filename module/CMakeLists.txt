@@ -25,6 +25,7 @@ pkg_check_modules(module_pkgs REQUIRED
 	cynara-client
 	cynara-creds-gdbus
 	cynara-session
+	capi-media-wav-player
 )
 
 FOREACH(flag ${module_pkgs_CFLAGS})
