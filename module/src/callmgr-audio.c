@@ -219,11 +219,6 @@ int _callmgr_audio_create_call_sound_session(callmgr_audio_handle_h audio_handle
 		return -1;
 	}
 
-	ret = sound_manager_acquire_focus(audio_handle->sound_stream_handle, SOUND_STREAM_FOCUS_FOR_PLAYBACK|SOUND_STREAM_FOCUS_FOR_RECORDING, NULL);
-	if (ret != SOUND_MANAGER_ERROR_NONE) {
-		err("sound_manager_acquire_focus() get failed with err[%d]", ret);
-	}
-
 	/* Handle EP event  */
 	ret = sound_manager_set_device_connected_cb(SOUND_DEVICE_ALL_MASK, __callmgr_audio_available_route_changed_cb, audio_handle);
 	if (ret != SOUND_MANAGER_ERROR_NONE) {
@@ -501,7 +496,7 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
 	CM_RETURN_VAL_IF_FAIL(audio_handle->sound_stream_handle, -1);
 
-	dbg(">>");
+	dbg("_callmgr_audio_set_audio_route");
 
 	switch(route) {
 		case CALLMGR_AUDIO_ROUTE_SPEAKER_E:
@@ -575,6 +570,12 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 	}
 
 	if (audio_handle->vstream == NULL) {
+		ret = sound_manager_acquire_focus(audio_handle->sound_stream_handle, SOUND_STREAM_FOCUS_FOR_PLAYBACK|SOUND_STREAM_FOCUS_FOR_RECORDING, NULL);
+		if (ret != SOUND_MANAGER_ERROR_NONE) {
+			err("sound_manager_acquire_focus() get failed with err[%d]", ret);
+			return -1;
+		}
+
 		ret = sound_manager_create_virtual_stream (audio_handle->sound_stream_handle, &audio_handle->vstream);
 		if (ret != SOUND_MANAGER_ERROR_NONE) {
 			err("sound_manager_create_virtual_stream() failed:[%d]", ret);
@@ -586,6 +587,7 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 			err("sound_manager_start_virtual_stream() failed:[%d]", ret);
 			return -1;
 		}
+
 	}
 
 	audio_handle->current_route = device_type;
