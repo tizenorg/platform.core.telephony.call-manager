@@ -31,6 +31,13 @@
 #include "callmgr-vr.h"
 #include "callmgr-answer-msg.h"
 
+#ifdef TIZEN_SOUND_ROUTING_FEATURE
+#define SOUND_MGR_BUS_NAME "org.pulseaudio.StreamManager"
+#define SOUND_MGR_PATH_NAME "/org/pulseaudio/StreamManager"
+#define SOUND_MGR_INTERFACE_NAME "org.pulseaudio.StreamManager"
+#define SOUND_MGR_MEMBER_NAME "Command"
+#endif
+
 /*This enum is inline with cm_call_status_e, so update both enums together*/
 typedef enum _call_status{
 	CALL_MANAGER_CALL_STATUS_IDLE_E = 0,
@@ -218,6 +225,10 @@ int _callmgr_core_process_dtmf_resp(callmgr_core_data_t *core_data, callmgr_dtmf
 int _callmgr_core_process_stop_alert(callmgr_core_data_t *core_data);
 int _callmgr_core_process_start_alert(callmgr_core_data_t *core_data);
 
-/*End of cm_call_data get api's*/
+#ifdef TIZEN_SOUND_ROUTING_FEATURE
+void _callmgr_core_init_dbus_call_routing_status(callmgr_core_data_t *core_data);
+void _callmgr_core_shutdown_dbus_call_routing_status();
+int _callmgr_core_get_call_routing_status();
+#endif
 
 #endif	//__CALL_MANAGER_H__
