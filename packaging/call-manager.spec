@@ -1,6 +1,6 @@
 %define major 0
 %define minor 1
-%define patchlevel 48
+%define patchlevel 49
 %define ext_feature 0
 
 Name:           call-manager
@@ -35,7 +35,7 @@ BuildRequires: pkgconfig(capi-system-device)
 BuildRequires: pkgconfig(notification)
 BuildRequires: pkgconfig(badge)
 BuildRequires: pkgconfig(mm-sound)
-BuildRequires: pkgconfig(libsystemd-login)
+BuildRequires: pkgconfig(capi-media-wav-player)
 
 BuildRequires: edje-tools
 BuildRequires: gettext-tools
@@ -85,6 +85,9 @@ export FFLAGS="$FFLAGS -DTIZEN_ENGINEER_MODE"
 cmake . -DCMAKE_INSTALL_PREFIX=%{_prefix} -DVERSION=%{version} \
 -DLIB_INSTALL_DIR=%{_libdir} \
 -DUNIT_INSTALL_DIR=%{_unitdir} \
+%if "%{?tizen_target_name}" == "TM1"
+-DTIZEN_SOUND_ROUTING_FEATURE=1 \
+%endif
 %if 0%{?ext_feature}
 -D_ENABLE_EXT_FEATURE:BOOL=ON \
 %else
