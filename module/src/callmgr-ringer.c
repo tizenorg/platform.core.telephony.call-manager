@@ -168,12 +168,6 @@ static int __callmgr_ringer_prepare_player(callmgr_ringer_handle_h ringer_handle
 		return -1;
 	}
 
-	ret = player_set_sound_type(ringer_handle->player_handle, SOUND_TYPE_RINGTONE);
-	if (ret != PLAYER_ERROR_NONE) {
-		err("player_set_sound_type() ERR: %d!!!!", ret);
-		return -1;
-	}
-
 	ret = player_set_looping(ringer_handle->player_handle, TRUE);
 	if (ret != PLAYER_ERROR_NONE) {
 		err("player_set_looping() ERR: %d!!!!", ret);
