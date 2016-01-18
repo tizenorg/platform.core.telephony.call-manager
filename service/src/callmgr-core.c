@@ -2829,7 +2829,7 @@ int _callmgr_core_process_spk_off(callmgr_core_data_t *core_data)
 		return -1;
 	}
 
-	if (_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_RECEIVER_EARJACK_E) < 0) {
+	if (_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_RECEIVER_E) < 0) {
 		err("_callmgr_audio_set_audio_route() failed");
 		return -1;
 	}
