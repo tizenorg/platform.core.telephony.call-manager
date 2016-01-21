@@ -467,8 +467,8 @@ int _callmgr_ct_add_log(cm_ct_plog_data_t *log_data)
 
 	contacts_disconnect();
 
-	if ((log_data->log_type == CM_CT_PLOG_TYPE_VOICE_INCOMMING_UNSEEN_E)
-		|| (log_data->log_type == CM_CT_PLOG_TYPE_VIDEO_INCOMMING_UNSEEN_E)) {
+	if ((log_data->log_type == CM_CT_PLOG_TYPE_VOICE_INCOMING_UNSEEN_E)
+		|| (log_data->log_type == CM_CT_PLOG_TYPE_VIDEO_INCOMING_UNSEEN_E)) {
 		_callmgr_ct_set_missed_call_notification();
 	} else if ((log_data->log_type == CM_CT_PLOG_TYPE_VOICE_BLOCKED_E)
 		|| (log_data->log_type == CM_CT_PLOG_TYPE_VIDEO_BLOCKED_E)
@@ -522,11 +522,11 @@ static int __callmgr_ct_get_missed_call_count(void)
 		err("contacts_query_create failed");
 	} else if (contacts_filter_create(_contacts_phone_log._uri, &filter) != CONTACTS_ERROR_NONE) {
 		err("contacts_filter_create failed");
-	} else if (contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMMING_UNSEEN) != CONTACTS_ERROR_NONE) {
+	} else if (contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN) != CONTACTS_ERROR_NONE) {
 		err("contacts_filter_add_int failed");
 	} else if (contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_OR) != CONTACTS_ERROR_NONE) {
 		err("contacts_filter_add_operator failed");
-	} else if (contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_EQUAL, CONTACTS_PLOG_TYPE_VIDEO_INCOMMING_UNSEEN) != CONTACTS_ERROR_NONE) {
+	} else if (contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_EQUAL, CONTACTS_PLOG_TYPE_VIDEO_INCOMING_UNSEEN) != CONTACTS_ERROR_NONE) {
 		err("contacts_filter_add_int failed");
 	} else if (contacts_query_set_filter(query, filter) != CONTACTS_ERROR_NONE) {
 		err("contacts_query_set_filter failed");
@@ -723,11 +723,11 @@ static void __callmgr_ct_add_notification(int missed_cnt)
 		err("contacts_query_create is error");
 	} else if (contacts_filter_create(_contacts_phone_log._uri, &filter) != CONTACTS_ERROR_NONE) {
 		err("contacts_filter_create is error");
-	} else if (contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMMING_UNSEEN) != CONTACTS_ERROR_NONE) {
+	} else if (contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_EQUAL, CONTACTS_PLOG_TYPE_VOICE_INCOMING_UNSEEN) != CONTACTS_ERROR_NONE) {
 		err("contacts_filter_add_int is error");
 	} else if (contacts_filter_add_operator(filter, CONTACTS_FILTER_OPERATOR_OR) != CONTACTS_ERROR_NONE) {
 		err("contacts_filter_add_operator is error");
-	} else if (contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_EQUAL, CONTACTS_PLOG_TYPE_VIDEO_INCOMMING_UNSEEN) != CONTACTS_ERROR_NONE) {
+	} else if (contacts_filter_add_int(filter, _contacts_phone_log.log_type, CONTACTS_MATCH_EQUAL, CONTACTS_PLOG_TYPE_VIDEO_INCOMING_UNSEEN) != CONTACTS_ERROR_NONE) {
 		err("contacts_filter_add_int is error");
 	} else if (contacts_query_set_filter(query, filter) != CONTACTS_ERROR_NONE) {
 		err("contacts_query_set_filter is error");

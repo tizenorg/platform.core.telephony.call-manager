@@ -910,20 +910,20 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 						}
 						else {
 							if (cm_call_type == CALL_TYPE_VIDEO_E) {
-								log_data->log_type = CM_CT_PLOG_TYPE_VIDEO_INCOMMING_UNSEEN_E;
+								log_data->log_type = CM_CT_PLOG_TYPE_VIDEO_INCOMING_UNSEEN_E;
 							}
 							else {
-								log_data->log_type = CM_CT_PLOG_TYPE_VOICE_INCOMMING_UNSEEN_E;
+								log_data->log_type = CM_CT_PLOG_TYPE_VOICE_INCOMING_UNSEEN_E;
 							}
 						}
 						b_play_effect_tone = FALSE;
 					}
 					else {
 						if (cm_call_type == CALL_TYPE_VIDEO_E) {
-							log_data->log_type = CM_CT_PLOG_TYPE_VIDEO_INCOMMING_E;
+							log_data->log_type = CM_CT_PLOG_TYPE_VIDEO_INCOMING_E;
 						}
 						else {
-							log_data->log_type = CM_CT_PLOG_TYPE_VOICE_INCOMMING_E;
+							log_data->log_type = CM_CT_PLOG_TYPE_VOICE_INCOMING_E;
 						}
 					}
 				}

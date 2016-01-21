@@ -28,14 +28,14 @@ typedef struct __contact_data callmgr_contact_info_t;
  */
 typedef enum {
     CM_CT_PLOG_TYPE_NONE_E,                        /**< None */
-    CM_CT_PLOG_TYPE_VOICE_INCOMMING_E = 1,         /**< Incoming call */
+    CM_CT_PLOG_TYPE_VOICE_INCOMING_E = 1,         /**< Incoming call */
     CM_CT_PLOG_TYPE_VOICE_OUTGOING_E = 2,          /**< Outgoing call */
-    CM_CT_PLOG_TYPE_VIDEO_INCOMMING_E = 3,         /**< Incoming video call */
+    CM_CT_PLOG_TYPE_VIDEO_INCOMING_E = 3,         /**< Incoming video call */
     CM_CT_PLOG_TYPE_VIDEO_OUTGOING_E = 4,          /**< Outgoing video call */
-    CM_CT_PLOG_TYPE_VOICE_INCOMMING_UNSEEN_E = 5,  /**< Not confirmed missed call */
-    CM_CT_PLOG_TYPE_VOICE_INCOMMING_SEEN_E = 6,    /**< Confirmed missed call */
-    CM_CT_PLOG_TYPE_VIDEO_INCOMMING_UNSEEN_E = 7,  /**< Not confirmed missed video call */
-    CM_CT_PLOG_TYPE_VIDEO_INCOMMING_SEEN_E = 8,    /**< Confirmed missed video call */
+    CM_CT_PLOG_TYPE_VOICE_INCOMING_UNSEEN_E = 5,  /**< Not confirmed missed call */
+    CM_CT_PLOG_TYPE_VOICE_INCOMING_SEEN_E = 6,    /**< Confirmed missed call */
+    CM_CT_PLOG_TYPE_VIDEO_INCOMING_UNSEEN_E = 7,  /**< Not confirmed missed video call */
+    CM_CT_PLOG_TYPE_VIDEO_INCOMING_SEEN_E = 8,    /**< Confirmed missed video call */
     CM_CT_PLOG_TYPE_VOICE_REJECT_E = 9,            /**< Rejected call */
     CM_CT_PLOG_TYPE_VIDEO_REJECT_E = 10,           /**< Rejected video call */
     CM_CT_PLOG_TYPE_VOICE_BLOCKED_E = 11,          /**< Blocked call */
