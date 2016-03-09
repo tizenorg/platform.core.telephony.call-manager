@@ -776,13 +776,12 @@ static int __callmgr_vr_make_dir(const char *dir_path, mode_t mode)
 static char *__callmgr_vr_get_start_time(time_t start_time)
 {
 	char str_time[15] = {0, };
-	struct tm *tm_ptr = NULL;
-	tm_ptr = localtime(&start_time);
-	if (tm_ptr == NULL) {
+	struct tm tm_local;
+	if (localtime_r(&start_time, &tm_local) == NULL) {
 		err("Fail to get localtime !");
 		return NULL;
 	}
-	strftime(str_time, sizeof(str_time), "%Y%m%d%H%M%S", tm_ptr);
+	strftime(str_time, sizeof(str_time), "%Y%m%d%H%M%S", &tm_local);
 	dbg("str : %s", str_time);
 
 	return strdup(str_time);
