@@ -777,7 +777,8 @@ static char *__callmgr_vr_get_start_time(time_t start_time)
 {
 	char str_time[15] = {0, };
 	struct tm *tm_ptr = NULL;
-	tm_ptr = localtime(&start_time);
+	struct tm tm_local;
+	tm_ptr = localtime_r(&start_time, &tm_local);
 	if (tm_ptr == NULL) {
 		err("Fail to get localtime !");
 		return NULL;
