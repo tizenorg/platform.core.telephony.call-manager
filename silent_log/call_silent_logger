@@ -1,8 +1,0 @@
-#!/bin/sh
-
-if [ "$1" = "stop" ]
-then
-	kill -9 `ps -ef | grep "opt/usr/data/call/call_log" | awk 'NR==1{print $2}'`
-else
-	/usr/bin/dlogutil CALL_MGR CALL_MGR_CLIENT CALL_MGR_POPUP CALL_UI -r 2048 -n 3 -f /opt/usr/data/call/call_log -v threadtime &
-fi
