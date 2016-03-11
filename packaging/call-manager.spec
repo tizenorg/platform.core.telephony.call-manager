@@ -36,6 +36,7 @@ BuildRequires: pkgconfig(notification)
 BuildRequires: pkgconfig(badge)
 BuildRequires: pkgconfig(mm-sound)
 BuildRequires: pkgconfig(capi-media-wav-player)
+BuildRequires: pkgconfig(libtzplatform-config)
 
 BuildRequires: edje-tools
 BuildRequires: gettext-tools
@@ -76,15 +77,11 @@ Display Voice mail notification popup
 %build
 export LDFLAGS+=" -Wl,-z,nodelete "
 
-%if 0%{?enable_slient_log}
-export CFLAGS="$CFLAGS -DTIZEN_ENGINEER_MODE"
-export CXXFLAGS="$CXXFLAGS -DTIZEN_ENGINEER_MODE"
-export FFLAGS="$FFLAGS -DTIZEN_ENGINEER_MODE"
-%endif
-
 cmake . -DCMAKE_INSTALL_PREFIX=%{_prefix} -DVERSION=%{version} \
 -DLIB_INSTALL_DIR=%{_libdir} \
 -DUNIT_INSTALL_DIR=%{_unitdir} \
+-DTZ_SYS_RO_APP=%TZ_SYS_RO_APP \
+-DTZ_SYS_ETC=%TZ_SYS_ETC \
 %if "%{?tizen_target_name}" == "TM1"
 -DTIZEN_SOUND_ROUTING_FEATURE=1 \
 %endif
@@ -92,9 +89,6 @@ cmake . -DCMAKE_INSTALL_PREFIX=%{_prefix} -DVERSION=%{version} \
 -D_ENABLE_EXT_FEATURE:BOOL=ON \
 %else
 -D_ENABLE_EXT_FEATURE:BOOL=OFF \
-%endif
-%if 0%{?enable_slient_log}
--DTIZEN_ENGINEER_MODE=1 \
 %endif
 
 #make %{?_smp_mflags} VERBOSE=1
@@ -114,11 +108,6 @@ cp %{SOURCE1} %{buildroot}/etc/dbus-1/system.d/callmgr.conf
 mkdir -p %{buildroot}/usr/share/license
 cp LICENSE %{buildroot}/usr/share/license/call-manager
 
-%if 0%{?enable_slient_log}
-mkdir -p %{buildroot}/opt/usr/data/call/
-ln -s /usr/lib/systemd/user/call-logger.service %{buildroot}/usr/lib/systemd/user/default.target.wants/call-logger.service
-%endif
-
 %files
 %manifest callmgr.manifest
 %defattr(644,system,system,-)
@@ -128,11 +117,6 @@ ln -s /usr/lib/systemd/user/call-logger.service %{buildroot}/usr/lib/systemd/use
 /usr/lib/systemd/user/default.target.wants/callmgr.service
 /etc/dbus-1/system.d/callmgr.conf
 %{_datadir}/license/call-manager
-%if 0%{?enable_slient_log}
-%attr(755,system,system) /opt/usr/devel/usr/bin/call_silent_logger
-%attr(755,system,system) /opt/etc/dump.d/module.d/call_silent_log_dump.sh
-/opt/usr/data/call
-%endif
 /usr/share/call-manager/*
 
 %files -n org.tizen.callmgr-popup

@@ -24,6 +24,7 @@
 #include <app.h>
 #include <vconf.h>
 #include <gio/gio.h>
+#include <tzplatform_config.h>
 
 #include "callmgr-popup-debug.h"
 
@@ -31,7 +32,7 @@
 #define CALLMRG_POPUP_MODULE_EXPORT __attribute__ ((visibility("default")))
 #endif
 
-#define PATH_EDJ "/usr/apps/org.tizen.callmgr-popup/res/edje/popup_custom.edj"
+#define PATH_EDJ tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.callmgr-popup/res/edje/popup_custom.edj")
 
 #define CALL_DOMAIN "call"
 #define SYS_DOMAIN "sys_string"

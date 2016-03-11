@@ -26,6 +26,7 @@
 #include <app.h>
 #include <app_control.h>
 #include <stdlib.h>
+#include <tzplatform_config.h>
 
 #include "callmgr-contact.h"
 #include "callmgr-util.h"
@@ -36,18 +37,18 @@
 #define DIALER_PKG		"org.tizen.phone"
 #define CLOUD_PKG		"/usr/bin/cloud-pdm-server"
 
-#define NOTI_IMGDIR		"/usr/apps/org.tizen.quickpanel/shared/res/noti_icons/Contact"
-#define IMGDIR			"/usr/apps/org.tizen.call-ui/res/images"
-#define ICONDIR			IMGDIR"/icon"
-#define IND_IMGDIR			"/usr/apps/org.tizen.quickpanel/shared/res/noti_icons/Lock screen"
+#define NOTI_IMGDIR		tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.quickpanel/shared/res/noti_icons/Contact")
+#define IMGDIR			tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.call-ui/res/images")
+#define ICONDIR			tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.call-ui/res/images/icon")
+#define IND_IMGDIR			tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.quickpanel/shared/res/noti_icons/Lock screen")
 
-#define NOTIFY_MISSED_CALL_ICON			NOTI_IMGDIR"/noti_contact_default.png"
-#define NOTIFY_MISSED_CALL_IND_ICON		IND_IMGDIR"/noti_missed_call.png"
-#define NOTIFY_MISSED_CALL_ICON_SUB			NOTI_IMGDIR"/noti_icon_missed.png"
-#define NOTIFY_BLOCKED_CALL_ICON		IMGDIR"/noti_icon_reject_auto.png"
-#define NOTIFY_BLOCKED_CALL_ICON_SUB	IMGDIR"/noti_icon_reject_auto.png"
+#define NOTIFY_MISSED_CALL_ICON			tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.quickpanel/shared/res/noti_icons/Contact/noti_contact_default.png")
+#define NOTIFY_MISSED_CALL_IND_ICON		tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.quickpanel/shared/res/noti_icons/Lock screen/noti_missed_call.png")
+#define NOTIFY_MISSED_CALL_ICON_SUB		tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.quickpanel/shared/res/noti_icons/Contact/noti_icon_missed.png")
+#define NOTIFY_BLOCKED_CALL_ICON		tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.call-ui/res/images/noti_icon_reject_auto.png")
+#define NOTIFY_BLOCKED_CALL_ICON_SUB	tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.call-ui/res/images/noti_icon_reject_auto.png")
 
-#define PHONE_ICON		"/usr/share/icons/default/small/org.tizen.phone.png"
+#define PHONE_ICON		tzplatform_mkpath(TZ_SYS_RO_ICONS, "default/small/org.tizen.phone.png")
 #define INVALID_CT_INDEX -1
 
 #define CALL_MISSED_TAG		"CALL_MISSED"
@@ -650,7 +651,7 @@ static void __callmgr_ct_add_notification(int missed_cnt)
 			  err("Fail to notification_set_tag : %d", noti_err);
 	}
 
-	noti_err = notification_set_text_domain(noti, "call-ui", "/usr/apps/org.tizen.call-ui/res/locale");
+	noti_err = notification_set_text_domain(noti, "call-ui", tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.call-ui/res/locale"));
 	if (noti_err != NOTIFICATION_ERROR_NONE) {
 		warn("Fail to notification_set_text_domain");
 	}
@@ -1058,7 +1059,7 @@ static void __callmgr_ct_add_rec_reject_notification(char *number, int person_id
 			  err("Fail to notification_set_tag : %d", noti_err);
 	}
 
-	noti_err = notification_set_text_domain(noti, "call-ui", "/usr/apps/org.tizen.call-ui/res/locale");
+	noti_err = notification_set_text_domain(noti, "call-ui", tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.call-ui/res/locale"));
 	if (noti_err != NOTIFICATION_ERROR_NONE) {
 		warn("Fail to notification_set_text_domain");
 	}

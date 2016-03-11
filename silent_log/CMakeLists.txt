@@ -1,5 +1,0 @@
-MESSAGE(===== Installing silent log programs =======)
-INSTALL(PROGRAMS call_silent_logger DESTINATION /opt/usr/devel/usr/bin )
-INSTALL(PROGRAMS call_silent_log_dump.sh DESTINATION /opt/etc/dump.d/module.d )
-INSTALL(FILES call-logger.service DESTINATION /usr/lib/systemd/system)
-MESSAGE(===== done =======)

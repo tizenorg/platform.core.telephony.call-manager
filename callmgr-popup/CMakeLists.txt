@@ -37,11 +37,12 @@ pkg_check_modules(callmgr_popup_pkgs REQUIRED
 	efl-extension
 	capi-system-device
 	notification
+	libtzplatform-config
 )
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR} include)
 
-SET(PREFIX "/usr/apps/org.tizen.callmgr-popup/")
+SET(PREFIX "${TZ_SYS_RO_APP}/org.tizen.callmgr-popup/")
 SET(BINDIR "${PREFIX}/bin")
 SET(RESDIR "${PREFIX}/res")
 SET(EDJDIR "${RESDIR}/edje")

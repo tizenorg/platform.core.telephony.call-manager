@@ -26,6 +26,7 @@ pkg_check_modules(module_pkgs REQUIRED
 	cynara-creds-gdbus
 	cynara-session
 	capi-media-wav-player
+	libtzplatform-config
 )
 
 FOREACH(flag ${module_pkgs_CFLAGS})

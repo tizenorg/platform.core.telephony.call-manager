@@ -7,7 +7,7 @@
 	<author email="jm15.kim@samsung.com" href="www.samsung.com">Jungmin Kim</author>
 	<author email="eh1112.kim@samsung.com" href="www.samsung.com">eunhye Kim</author>
 	<description>Voicemail popup application</description>
-	<ui-application appid="org.tizen.callmgr-popup" exec="/usr/apps/org.tizen.callmgr-popup/bin/callmgr-popup" nodisplay="true" multiple="false" type="capp" taskmanage="false">
+	<ui-application appid="org.tizen.callmgr-popup" exec="callmgr-popup" nodisplay="true" multiple="false" type="capp" taskmanage="false">
 		<label>Call</label>
 		<background-category value="system"/>
 	</ui-application>

@@ -24,6 +24,7 @@
 #include <dirent.h>
 #include <unistd.h>
 #include <media_content.h>
+#include <tzplatform_config.h>
 #if 0 /*remove media product header*/
 #include <media_cloud_info_product.h>
 #endif
@@ -103,14 +104,14 @@ typedef struct {
 	void *user_data;
 } callmgr_vr_cb_info_t;
 
-#define CM_VR_FEX_CLIPS_PATH_PHONE		"/opt/usr/media/Sounds"
-#define CM_VR_FEX_CLIPS_PATH_MMC		"/opt/storage/sdcard/Sounds/Voice recorder"
+#define CM_VR_FEX_CLIPS_PATH_PHONE		tzplatform_getenv(TZ_USER_SOUNDS)
+#define CM_VR_FEX_CLIPS_PATH_MMC		tzplatform_mkpath(TZ_SYS_STORAGE, "sdcard/Sounds/Voice recorder")
 #define CM_VR_ANSWER_MEMO_FOLDER_NAME		".AnswerMessage"
 
 #define CM_VR_DEFAULT_FILENAME		"Voicecall"
 #define CM_VR_DEFAULT_EXT			".amr"
 #define CM_VR_FILE_NAME				CM_VR_DEFAULT_FILENAME""CM_VR_DEFAULT_EXT
-#define CM_VR_TEMP_FILENAME			CM_VR_FEX_CLIPS_PATH_PHONE"/"CM_VR_FILE_NAME
+#define CM_VR_TEMP_FILENAME			tzplatform_mkpath(TZ_USER_SOUNDS, CM_VR_FILE_NAME)
 
 #define CM_VR_SAMPLERATE_LOW		  8000
 #define CM_VR_ENCODER_BITRATE_AMR		12200
