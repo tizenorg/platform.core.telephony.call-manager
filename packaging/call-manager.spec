@@ -56,7 +56,7 @@ BuildRequires: pkgconfig(msg-service)
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 
-%if "%{profile}" != "mobile"
+%if "%{profile}" != "mobile" && "%{profile}" != "ivi"
 ExcludeArch: %{arm} %ix86 x86_64
 %endif
 
