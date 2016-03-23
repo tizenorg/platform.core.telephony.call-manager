@@ -9,6 +9,14 @@ Branch: refs/heads/tizen
 Verified+1: Jiwan Kim <ji-wan.kim@samsung.com>
 Code-Review+2: JooSeok Park <jooseok.park@samsung.com>
 Submitted-by: JooSeok Park <jooseok.park@samsung.com>
+Submitted-at: Fri, 11 Mar 2016 01:28:43 -0700
+Reviewed-on: https://review.tizen.org/gerrit/61922
+Project: platform/core/telephony/call-manager
+Branch: refs/heads/tizen
+
+Verified+1: Jiwan Kim <ji-wan.kim@samsung.com>
+Code-Review+2: JooSeok Park <jooseok.park@samsung.com>
+Submitted-by: JooSeok Park <jooseok.park@samsung.com>
 Submitted-at: Fri, 11 Mar 2016 00:28:43 -0800
 Reviewed-on: https://review.tizen.org/gerrit/61922
 Project: platform/core/telephony/call-manager
