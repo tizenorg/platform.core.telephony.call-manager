@@ -1206,7 +1206,7 @@ int _callmgr_vr_stop_record(callmgr_vr_handle_h vr_handle)
 
 static int __callmgr_vr_fex_get_available_memory_space(callmgr_vr_store_type_e store_type)
 {
-	char *path = NULL;
+	const char *path = NULL;
 	int available_kilobytes = 0;
 	int result;
 

@@ -806,7 +806,7 @@ int _callmgr_util_check_disturbing_setting(gboolean *is_do_not_disturb)
 {
 	notification_system_setting_h system_setting = NULL;
 	notification_setting_h setting = NULL;
-	bool do_not_disturb = false;
+	gboolean do_not_disturb = false;
 	bool do_not_disturb_except = false;
 	int err = NOTIFICATION_ERROR_NONE;
 	int ret = 0;
@@ -818,7 +818,7 @@ int _callmgr_util_check_disturbing_setting(gboolean *is_do_not_disturb)
 			err("notification_system_setting_load_system_setting failed [%d]\n", err);
 			goto out;
 		}
-		notification_system_setting_get_do_not_disturb(system_setting, &do_not_disturb);
+		notification_system_setting_get_do_not_disturb(system_setting, (bool *)&do_not_disturb);
 	}
 
 	info("do_not_disturb [%d]", do_not_disturb);

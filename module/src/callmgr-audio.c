@@ -311,7 +311,6 @@ static int __callmgr_audio_get_sound_device(sound_device_type_e device_type, sou
 	sound_device_h	device = NULL;
 	sound_device_type_e o_device_type;
 	int ret = -1;
-	int index = 0;
 
 	ret = sound_manager_get_current_device_list (SOUND_DEVICE_ALL_MASK, &device_list);
 	if (ret != SOUND_MANAGER_ERROR_NONE) {
@@ -640,7 +639,6 @@ int _callmgr_audio_get_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 
 int _callmgr_audio_set_extra_vol(callmgr_audio_handle_h audio_handle, gboolean is_extra_vol)
 {
-	callmgr_audio_device_e cur_route = CALLMGR_AUDIO_DEVICE_RECEIVER_E;
 	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
 
 	audio_handle->is_extra_vol = is_extra_vol;
@@ -686,7 +684,6 @@ int _callmgr_audio_get_audio_tx_mute_state(callmgr_audio_handle_h audio_handle, 
 
 int _callmgr_audio_set_noise_reduction(callmgr_audio_handle_h audio_handle, gboolean is_noise_reduction_on)
 {
-	callmgr_audio_device_e cur_route = CALLMGR_AUDIO_DEVICE_RECEIVER_E;
 	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
 	audio_handle->is_noise_reduction = is_noise_reduction_on;
 	dbg("updated noise reduction : %d", audio_handle->is_noise_reduction);
@@ -743,7 +740,6 @@ int _callmgr_audio_get_current_volume(callmgr_audio_handle_h audio_handle, int *
 
 int _callmgr_audio_get_session_mode(callmgr_audio_handle_h audio_handle, callmgr_audio_session_mode_e *o_session_mode)
 {
-	int ret = -1;
 	info(">>");
 	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
 	CM_RETURN_VAL_IF_FAIL(o_session_mode, -1);

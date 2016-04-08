@@ -63,7 +63,7 @@ Evas_Object *_callmgr_popup_create_win(void)
 	Evas *e;
 	const char *str = "mobile";
 
-	int	w, h;
+	//int	w, h;
 
 	eo = elm_win_add(NULL, PACKAGE, ELM_WIN_DIALOG_BASIC);
 	e = evas_object_evas_get(eo);
@@ -75,7 +75,7 @@ Evas_Object *_callmgr_popup_create_win(void)
 	}
 
 	if (eo) {
-		elm_win_profile_set(eo, &str);	/* Desktop mode only */
+		elm_win_profile_set(eo, str);	/* Desktop mode only */
 		elm_win_title_set(eo, PACKAGE);
 		elm_win_alpha_set(eo, EINA_TRUE);
 		elm_win_raise(eo);
@@ -112,7 +112,7 @@ Evas_Object *_callmgr_popup_create_win(void)
 
 static void __callmgr_popup_set_win_level(Evas_Object *parent, int bwin_noti)
 {
-	Ecore_X_Window xwin;
+	//Ecore_X_Window xwin;
 	DBG("..");
 	//Ecore_X_Atom qp_scroll_state = ecore_x_atom_get("_E_MOVE_PANEL_SCROLLABLE_STATE");;	/* Quick panel scrollable state */
 
