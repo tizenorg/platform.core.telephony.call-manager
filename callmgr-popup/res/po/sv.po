@@ -286,3 +286,17 @@ msgstr "Inaktivera flygläge."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Inspelningen har sparats i Röstinspelning."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Missat samtal"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Missade samtal"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Okänd"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Hemligt nummer"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Betaltelefon"

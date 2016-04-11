@@ -286,3 +286,17 @@ msgstr "Díchumasaigh Mód Eitilte"
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Taifeadadh sábháilte sa Ghuth-thaifeadán."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Glao caillte"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Glaonna caillte"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Anaithnid"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Uimhir phríobháideach"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Táillefón"

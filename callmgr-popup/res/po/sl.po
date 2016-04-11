@@ -286,3 +286,17 @@ msgstr "Onemogoči način letenja."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Posnetek shranjen v Snemalnik zvoka."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Neodgovorjen klic"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Neodgovorjeni klici"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Neznano"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Zasebna številka"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Javni telefon"

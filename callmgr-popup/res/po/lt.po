@@ -286,3 +286,17 @@ msgstr "Išjungti skrydžio režimą."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Įrašas išsaugotas diktofone."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Neatsakytas skambutis"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Pral.skamb."
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Nežinomas"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Privatus numeris"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Taksofonas"

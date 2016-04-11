@@ -286,3 +286,17 @@ msgstr "إلغاء تفعيل وضع الطيران."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "تم حفظ التسجيل في مسجل الصوت."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "مكالمة فائتة"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "مكالمات فائتة"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "غير معروف"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "ﺎﻟﺮﻘﻣ ﺎﻠﺧﺎﺻ"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "ﻩﺎﺘﻓ ﺎﻠﻌﻤﻟﺓ"

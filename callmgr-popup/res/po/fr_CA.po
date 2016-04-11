@@ -286,3 +286,17 @@ msgstr "Désactiver le mode Hors-ligne."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Enregistrement sauvegardé dans Dictaphone."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Appel manqué"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Appels manqués"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Appel masqué"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Numéro privé"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Téléphone public"

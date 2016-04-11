@@ -286,3 +286,17 @@ msgstr "Isključi Profil bez mreže."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Snimka spremljena u Diktafon."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Propušteni poziv"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Propušteni pozivi"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Nepoznato"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Privatni broj"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Govornica"

@@ -286,3 +286,17 @@ msgstr "Deaktivér Flytilstand."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Optagelse gemt i Diktafon."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Ubesvaret opkald"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Ubesvarede opkald"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Ukendt"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Hemmeligt nummer"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Modtagerbetalt opkald"

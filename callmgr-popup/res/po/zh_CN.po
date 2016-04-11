@@ -286,3 +286,17 @@ msgstr "禁用飞行模式。"
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "录音已保存在录音机中。"
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "未接来电"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "未接来电"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "未知"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "私人号码"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "投币式公用电话"

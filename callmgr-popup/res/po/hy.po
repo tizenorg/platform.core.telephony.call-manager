@@ -286,3 +286,17 @@ msgstr "Կասեցնել Թռիչքային ռեժիմը:"
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Ձայնագրումը պահպանվեց Ձայնագրիչում:"
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Բացթողած զանգ"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Բցթղծ կանչեր"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Անհայտ"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Գաղտնի համար"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Ավտոմատ հեռախոս"

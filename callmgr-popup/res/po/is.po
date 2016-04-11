@@ -286,3 +286,17 @@ msgstr "Slökkva á flugstillingu."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Upptaka vistuð í raddupptöku."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Ósvarað"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Ósvöruð símtöl"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Óþekkt"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Leyninúmer"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Almenningssími"

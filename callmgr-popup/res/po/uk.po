@@ -286,3 +286,17 @@ msgstr "Вимкнути режим без зв’язку."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Записування збережено у розділі «Диктофон»."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Пропущений виклик"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Проп. вик-и"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Невідомо"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Приватний номер"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Таксофон"

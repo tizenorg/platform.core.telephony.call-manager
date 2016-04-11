@@ -286,3 +286,17 @@ msgstr "機内モードを無効にする"
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "録音ファイルを[ボイスレコーダー]に保存しました。"
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "不在着信"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "不在着信"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "通知不可能"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "非通知"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "公衆電話"

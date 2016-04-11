@@ -286,3 +286,17 @@ msgstr "Desactivar modo Avión"
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Grabación guardada en Grabadora de voz."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Llamada perdida"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Llams perd"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Desconocido"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Número privado"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Teléfono pago"

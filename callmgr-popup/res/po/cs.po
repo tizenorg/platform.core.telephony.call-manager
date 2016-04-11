@@ -286,3 +286,17 @@ msgstr "Vypněte režim Letadlo."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Nahrávka byla uložena do Záznamníku."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Zmeškaný hovor"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Nepř. hovory"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Neznámé"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Soukromé číslo"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Telefonní automat"

@@ -1,6 +1,6 @@
 %define major 0
 %define minor 1
-%define patchlevel 56
+%define patchlevel 57
 %define ext_feature 0
 
 Name:           call-manager
@@ -123,4 +123,4 @@ cp LICENSE %{buildroot}/usr/share/license/call-manager
 /usr/apps/org.tizen.callmgr-popup/bin/callmgr-popup
 /usr/share/packages/org.tizen.callmgr-popup.xml
 /usr/apps/org.tizen.callmgr-popup/res/edje/popup_custom.edj
-/usr/apps/org.tizen.callmgr-popup/res/locale/*/*/callmgr-popup.mo
+/usr/apps/org.tizen.callmgr-popup/shared/res/locale/*/*/callmgr-popup.mo

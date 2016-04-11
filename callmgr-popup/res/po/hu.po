@@ -286,3 +286,17 @@ msgstr "Tiltsa le a Repülő üzemmódot."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Felvétel mentve a Hangrögzítőbe."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Nem fogadott hívás"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Nem fogadott"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Ismeretlen"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Privát szám"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Telefonfülke"

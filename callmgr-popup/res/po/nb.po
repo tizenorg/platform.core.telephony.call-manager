@@ -286,3 +286,17 @@ msgstr "Deaktiver Flymodus."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Opptak lagret i Lydopptaker."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Ubesvart anrop"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Tapte anrop"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Ukjent"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Privat nummer"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Telefonautomat"

@@ -286,3 +286,17 @@ msgstr "停用飛行模式。"
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "錄音已儲存至錄音機。"
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "未接電話"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "未接電話"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "未知"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "私人號碼"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "公用電話"

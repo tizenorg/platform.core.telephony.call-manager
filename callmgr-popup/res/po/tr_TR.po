@@ -286,3 +286,17 @@ msgstr "Uçuş modunu devre dışı bırak."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Kayıt Ses Kaydedici'ye kaydedildi."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Cevapsız arama"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Cevapsız arama"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Gizli numara"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Özel numara"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Ankesörlü telefon"

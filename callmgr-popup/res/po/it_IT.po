@@ -286,3 +286,17 @@ msgstr "Disattiva Modalità offline."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Registrazione salvata nel Registratore vocale."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Chiamata persa"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Chiamate perse"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Sconosciuto"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Numero privato"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Telefono pubblico"
