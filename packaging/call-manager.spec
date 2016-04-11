@@ -1,6 +1,6 @@
 %define major 0
 %define minor 1
-%define patchlevel 55
+%define patchlevel 56
 %define ext_feature 0
 
 Name:           call-manager
@@ -57,7 +57,7 @@ BuildRequires: pkgconfig(msg-service)
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 
-%if "%{profile}" != "mobile" && "%{profile}" != "ivi"
+%if "%{profile}" != "common" && "%{profile}" != "mobile" && "%{profile}" != "ivi"
 ExcludeArch: %{arm} %ix86 x86_64
 %endif
 
