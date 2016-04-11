@@ -286,3 +286,17 @@ msgstr "[비행기 탑승 모드]를 해제하세요."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "녹음 파일을 [음성 녹음]에 저장하였습니다."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "부재중 전화"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "부재중 전화"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "번호정보 없음"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "발신번호 표시제한"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "공중전화"

@@ -286,3 +286,17 @@ msgstr "Исклучи режим за летало."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Снимката е сочувана во Диктафонот."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Пропуштен повик"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "пропуштени повици"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Непознато"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Приватен број"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Тел. говорница"

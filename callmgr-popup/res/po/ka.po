@@ -286,3 +286,17 @@ msgstr "ფრენის რეჟიმის გამორთვა."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "ჩანაწერი შენახულია ხმის ჩამწერში."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "გამოტოვებული ზარი"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "გამორჩენილი ზარები"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "უცნობი"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "პირადი ნომერი"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "ტაქსოფონი"

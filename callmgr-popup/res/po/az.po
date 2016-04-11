@@ -286,3 +286,17 @@ msgstr "Uçuş rejimini qeyri-aktiv et."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Yazı Səsyazmada saxlandı."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Buraxılmış zəng"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "buraxılmış zənglər"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Naməlum"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Gizli nömrə"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Taksofon"

@@ -286,3 +286,17 @@ msgstr "Απενεργοποίηση της λειτουργίας πτήσης.
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Η εγγραφή αποθηκεύτηκε στην εφαρμογή “Εγγραφή Φωνής”."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Αναπάντητη κλήση"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Αναπάντητες"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Άγνωστο"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Απόρρητος αριθμός"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Καρτοτηλέφωνο"

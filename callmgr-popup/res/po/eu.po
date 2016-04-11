@@ -286,3 +286,17 @@ msgstr "Ezgaitu Hegaldi modua"
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Grabaketa Ahots Grabagailuan gorde da."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Galdutako deia"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Galdutako deiak"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Ezezaguna"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Zenbaki pribatua"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Telefono publikoa"

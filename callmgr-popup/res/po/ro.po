@@ -286,3 +286,17 @@ msgstr "Dezactivare mod Avion"
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Înregistrarea a fost salvată în Înregistrare voce."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Apel pierdut"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Apel. pierd."
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Necunoscut"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Număr privat"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Telefon public"

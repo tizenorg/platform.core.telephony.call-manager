@@ -286,3 +286,17 @@ msgstr "Vliegtuigstand uitschakelen"
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Opname opgeslagen in Spraakrecorder."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Gemiste oproep"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Gemiste oproepen"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Onbekend"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Privé-nummer"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Oproep uit telefooncel"

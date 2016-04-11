@@ -286,3 +286,17 @@ msgstr "Offline-Modus deaktivieren"
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Aufnahme in Diktiergerät gespeichert."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Anruf in Abwesenheit"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Anr. in Abwesenheit"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Unbekannt"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Private Nummer"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Payphone"

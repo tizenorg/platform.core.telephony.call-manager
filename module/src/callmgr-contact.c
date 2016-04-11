@@ -651,7 +651,7 @@ static void __callmgr_ct_add_notification(int missed_cnt)
 			  err("Fail to notification_set_tag : %d", noti_err);
 	}
 
-	noti_err = notification_set_text_domain(noti, "call-ui", tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.call-ui/res/locale"));
+	noti_err = notification_set_text_domain(noti, "callmgr-popup", tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.callmgr-popup/shared/res/locale"));
 	if (noti_err != NOTIFICATION_ERROR_NONE) {
 		warn("Fail to notification_set_text_domain");
 	}
@@ -825,8 +825,8 @@ static void __callmgr_ct_add_notification(int missed_cnt)
 							disp_id = "IDS_CALL_BODY_UNKNOWN";
 							break;
 						case CALL_LOG_SERVICE_TYPE_REJECT_BY_USER:
-							disp_str = g_strdup(_("IDS_CLOG_BODY_PRIVATE_NUMBER"));
-							disp_id = "IDS_CLOG_BODY_PRIVATE_NUMBER";
+							disp_str = g_strdup(_("IDS_COM_BODY_PRIVATE_NUMBER"));
+							disp_id = "IDS_COM_BODY_PRIVATE_NUMBER";
 							break;
 						case CALL_LOG_SERVICE_TYPE_PAYPHONE:
 							disp_str = g_strdup(_("IDS_CALL_BODY_PAYPHONE"));
@@ -1059,7 +1059,7 @@ static void __callmgr_ct_add_rec_reject_notification(char *number, int person_id
 			  err("Fail to notification_set_tag : %d", noti_err);
 	}
 
-	noti_err = notification_set_text_domain(noti, "call-ui", tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.call-ui/res/locale"));
+	noti_err = notification_set_text_domain(noti, "callmgr-popup", tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.callmgr-popup/shared/res/locale"));
 	if (noti_err != NOTIFICATION_ERROR_NONE) {
 		warn("Fail to notification_set_text_domain");
 	}
@@ -1124,8 +1124,8 @@ static void __callmgr_ct_add_rec_reject_notification(char *number, int person_id
 				disp_id = "IDS_CALL_BODY_UNKNOWN";
 				break;
 			case CM_CT_PLOG_PRESENT_REJECT_BY_USER:
-				disp_str = _("IDS_CLOG_BODY_PRIVATE_NUMBER");
-				disp_id = "IDS_CLOG_BODY_PRIVATE_NUMBER";
+				disp_str = _("IDS_COM_BODY_PRIVATE_NUMBER");
+				disp_id = "IDS_COM_BODY_PRIVATE_NUMBER";
 				break;
 			case CM_CT_PLOG_PRESENT_PAYPHONE:
 				disp_str = _("IDS_CALL_BODY_PAYPHONE");

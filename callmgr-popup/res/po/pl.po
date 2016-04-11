@@ -286,3 +286,17 @@ msgstr "Wyłącz tryb offline."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Nagranie zapisano na Dyktafonie."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Połączenie nieodebrane"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Nieodebrane"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Numer Prywatny"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Numer prywatny"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Telefon publiczny"

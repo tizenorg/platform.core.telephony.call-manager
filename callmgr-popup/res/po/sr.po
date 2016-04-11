@@ -286,3 +286,17 @@ msgstr "Onemogući režim letenja."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Snimak je sačuvan u folderu Snimač govora."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Propušten poziv"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Propušteni pozivi"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Nepoznato"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Privatni broj"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Govornica"

@@ -286,3 +286,17 @@ msgstr "Desativar modo Offline."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Gravação salva no Gravador de Voz."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Chamada Perdida"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Chamadas perdidas"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Desconhecido"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Número privado"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Telefone pré-pago"

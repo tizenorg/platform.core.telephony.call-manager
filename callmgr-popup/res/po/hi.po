@@ -286,3 +286,17 @@ msgstr "फ्लाइट मोड अक्षम करें।"
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "रिकॉर्डिंग वॉइस रिकॉर्डर में सुरक्षित की गई।"
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "छूटी कॉल"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "छूटी कॉल्स"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "अज्ञात"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "निजी नंबर"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "पेफोन"

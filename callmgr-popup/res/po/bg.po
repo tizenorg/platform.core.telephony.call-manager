@@ -286,3 +286,17 @@ msgstr "Деактивирай режим Полет"
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Записът е запазен в Диктофон."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Пропуснат разговор"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Пропyснати разговори"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Няма информация"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Частен номер"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Телефон с предплащане"

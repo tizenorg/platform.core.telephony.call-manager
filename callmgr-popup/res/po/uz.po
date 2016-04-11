@@ -286,3 +286,17 @@ msgstr "Parvoz rejimini o‘chirish."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Yozuv Ovoz yozish vositasida saqlandi."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Qabul qilinmagan qo‘ng‘iroq"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Jav-siz qo‘."
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Noma’lum"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Maxfiy raqam"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Taksofon"

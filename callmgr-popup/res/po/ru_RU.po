@@ -286,3 +286,17 @@ msgstr "Выключить автономный режим."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Запись сохранена в папку диктофона."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Пропущенный вызов"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Пропущенные"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Неизвестно"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Скрытый номер"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Таксофон"

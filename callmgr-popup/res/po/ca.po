@@ -286,3 +286,17 @@ msgstr "Deshabilitar mode Vol"
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Gravació desada a la Gravadora de veu."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Trucada perduda"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Trucades perdudes"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Desconegut"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Número privat"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Telèfon de pagament"

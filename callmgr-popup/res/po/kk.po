@@ -286,3 +286,17 @@ msgstr "Ұшу режимін өшіру."
 msgid "IDS_CALL_TPOP_RECORDING_SAVED_IN_VOICE_RECORDER"
 msgstr "Жазба “Диктофон” ішіне сақталды."
 
+msgid "IDS_CALL_POP_CALLMISSED"
+msgstr "Қабылданбаған қоңырау"
+
+msgid "IDS_CALL_POP_MISSED_CALLS_ABB"
+msgstr "Қабылданбаған"
+
+msgid "IDS_CALL_BODY_UNKNOWN"
+msgstr "Белгісіз"
+
+msgid "IDS_COM_BODY_PRIVATE_NUMBER"
+msgstr "Жеке нөмір"
+
+msgid "IDS_CALL_BODY_PAYPHONE"
+msgstr "Таксофон"
