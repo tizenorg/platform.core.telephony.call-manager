@@ -35,6 +35,7 @@
 
 /* ToDo: Need check replace */ 
 #define KEY_POWER	"XF86PowerOff"
+#define KEY_HOME	"XF86Home"
 #define SHARED_GRAB		0x000f00
 
 static const char* simIconNode[SIM_ICON_MAX] = {
@@ -141,9 +142,18 @@ static Eina_Bool __callmgr_popup_win_hard_key_down_cb(void *data, int type, void
 {
 	DBG("..");
 	Ecore_Event_Key *ev = event;
-/*	CallMgrPopAppData_t *ad = (CallMgrPopAppData_t *)data;*/
+	CallMgrPopAppData_t *ad = (CallMgrPopAppData_t *)data;
 
-	if (!strcmp(ev->keyname, KEY_POWER)) {
+	if (!strcmp(ev->keyname, KEY_HOME) || !strcmp(ev->keyname, KEY_POWER)) {
+		WARN("KEY_HOME pressed");
+
+		if ((ad->popup) && (ad->popup_type != CALLMGR_POPUP_FLIGHT_MODE_DISABLING_E)) {
+			evas_object_del(ad->popup);
+			ad->popup = NULL;
+			_callmgr_popup_reply_to_launch_request(ad, "RESULT", "0");	/* "0" means CANCEL */
+
+			elm_exit();
+		}
 	}
 
 	return EINA_FALSE;
@@ -156,6 +166,9 @@ static Eina_Bool __callmgr_popup_win_hard_key_up_cb(void *data, int type, void *
 /*	CallMgrPopAppData_t *ad = (CallMgrPopAppData_t *)data;*/
 
 	if (!strcmp(ev->keyname, KEY_POWER)) {
+		WARN("KEY_POWER released");
+	} else if (!strcmp(ev->keyname, KEY_HOME)) {
+		WARN("KEY_HOME released");
 	}
 	return EINA_FALSE;
 }
@@ -174,6 +187,13 @@ void _callmgr_popup_system_grab_key(void *data)
 		WARN("grab key");
 	}
 
+	result = elm_win_keygrab_set(ad->win_main, KEY_HOME, 0, 0, 0, ELM_WIN_KEYGRAB_SHARED);
+	if (result) {
+		ERR("KEY_HOME key grab failed");
+	} else {
+		WARN("grab key");
+	}
+
 	ad->upkey_handler = ecore_event_handler_add(ECORE_EVENT_KEY_UP, __callmgr_popup_win_hard_key_up_cb, ad);
 	ad->downkey_handler = ecore_event_handler_add(ECORE_EVENT_KEY_DOWN, __callmgr_popup_win_hard_key_down_cb, ad);
 }
@@ -188,6 +208,13 @@ void _callmgr_popup_system_ungrab_key(void *data)
 	result = elm_win_keygrab_unset(ad->win_main, KEY_POWER, 0, 0);
 	if (result) {
 		WARN("KEY_POWER key ungrab failed");
+	} else {
+		WARN("ungrab key");
+	}
+
+	result = elm_win_keygrab_unset(ad->win_main, KEY_HOME, 0, 0);
+	if (result) {
+		WARN("KEY_HOME key ungrab failed");
 	} else {
 		WARN("ungrab key");
 	}
