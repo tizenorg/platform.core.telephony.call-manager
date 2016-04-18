@@ -139,6 +139,9 @@ static void __callmgr_popup_app_service(app_control_h app_control, void *user_da
 	SEC_WARN("NUMBER(%s)", ad->dial_num);
 	WARN("Popup type(%d)", ad->popup_type);
 
+	// Grab HW key
+	_callmgr_popup_system_grab_key(ad);
+
 	switch (ad->popup_type) {
 	case CALLMGR_POPUP_FLIGHT_MODE_E:
 		ret = app_control_get_extra_data(app_control, "SUB_INFO", &extra_data);
