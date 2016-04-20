@@ -85,6 +85,7 @@ static void __callmgr_sensor_face_down_cb(gesture_type_e gesture, const gesture_
 int _callmgr_sensor_face_down_start(callmgr_sensor_handle_h sensor_handle)
 {
 	dbg(">>");
+	CM_RETURN_VAL_IF_FAIL(sensor_handle, -1);
 
 	int ret = -1;
 	bool is_supported = true;
@@ -145,6 +146,7 @@ int _callmgr_sensor_face_down_start(callmgr_sensor_handle_h sensor_handle)
 int _callmgr_sensor_face_down_stop(callmgr_sensor_handle_h sensor_handle)
 {
 	dbg(">>");
+	CM_RETURN_VAL_IF_FAIL(sensor_handle, -1);
 
 	if (sensor_handle->gesture_handle == NULL) {
 		warn("No handle");

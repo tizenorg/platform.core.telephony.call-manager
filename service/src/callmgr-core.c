@@ -2077,13 +2077,16 @@ int _callmgr_core_init(callmgr_core_data_t **o_core_data)
 	CM_RETURN_VAL_IF_FAIL(core_data->ringer_handle, -1);
 
 	_callmgr_bt_init(&core_data->bt_handle, __callmgr_core_process_bt_events, core_data);
-	CM_RETURN_VAL_IF_FAIL(core_data->bt_handle, -1);
+	if (!core_data->bt_handle)
+		err("core_data->bt_handle is NULL");
 
 	_callmgr_sensor_init(&core_data->sensor_handle, __callmgr_core_process_sensor_events, core_data);
-	CM_RETURN_VAL_IF_FAIL(core_data->sensor_handle, -1);
+	if (!core_data->sensor_handle)
+		err("core_data->sensor_handle is NULL");
 
 	_callmgr_vr_init(&core_data->vr_handle, __callmgr_core_process_vr_events, core_data);
-	CM_RETURN_VAL_IF_FAIL(core_data->vr_handle, -1);
+	if (!core_data->vr_handle)
+		err("core_data->vr_handle is NULL");
 
 	*o_core_data = core_data;
 
