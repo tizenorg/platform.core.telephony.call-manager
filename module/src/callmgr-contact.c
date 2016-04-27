@@ -662,9 +662,9 @@ static void __callmgr_ct_add_notification(int missed_cnt)
 		err("Fail to app_control_create");
 	} else {
 		dbg("Create service");
-		if (app_control_set_app_id(service, DIALER_PKG)  != APP_CONTROL_ERROR_NONE) {
+		if (app_control_set_app_id(service, DIALER_PKG) != APP_CONTROL_ERROR_NONE) {
 			err("Fail to app_control_set_app_id");
-		} else if (app_control_set_operation(service, APP_CONTROL_OPERATION_VIEW)  != APP_CONTROL_ERROR_NONE) {
+		} else if (app_control_set_operation(service, APP_CONTROL_OPERATION_DEFAULT)  != APP_CONTROL_ERROR_NONE) {
 			err("Fail to app_control_set_operation");
 		} else if (app_control_add_extra_data(service, "logs", "missed_call")  != APP_CONTROL_ERROR_NONE) {
 			err("Fail to app_control_add_extra_data");
@@ -1070,9 +1070,9 @@ static void __callmgr_ct_add_rec_reject_notification(char *number, int person_id
 		err("Fail to app_control_create");
 	} else {
 		dbg("Create service");
-		if (app_control_set_app_id(service, DIALER_PKG)  != APP_CONTROL_ERROR_NONE) {
+		if (app_control_set_app_id(service, DIALER_PKG) != APP_CONTROL_ERROR_NONE) {
 			err("Fail to app_control_set_app_id");
-		} else if (app_control_set_operation(service, APP_CONTROL_OPERATION_VIEW)  != APP_CONTROL_ERROR_NONE) {
+		} else if (app_control_set_operation(service, APP_CONTROL_OPERATION_DEFAULT)  != APP_CONTROL_ERROR_NONE) {
 			err("Fail to app_control_set_operation");
 		} else if (app_control_add_extra_data(service, "launch_type", "log")  != APP_CONTROL_ERROR_NONE) {
 			err("Fail to app_control_add_extra_data");
