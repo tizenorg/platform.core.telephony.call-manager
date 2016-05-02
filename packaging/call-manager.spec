@@ -1,6 +1,6 @@
 %define major 0
 %define minor 1
-%define patchlevel 60
+%define patchlevel 61
 %define ext_feature 0
 
 Name:           call-manager
@@ -109,8 +109,8 @@ cp LICENSE %{buildroot}/usr/share/license/call-manager
 
 %files
 %manifest callmgr.manifest
-%defattr(644,system,system,-)
-%attr(755,system,system) %{_bindir}/callmgrd
+%defattr(644,root,root,-)
+%attr(755,root,root) %{_bindir}/callmgrd
 #/etc/*
 /usr/lib/systemd/user/callmgr.service
 /usr/lib/systemd/user/default.target.wants/callmgr.service
