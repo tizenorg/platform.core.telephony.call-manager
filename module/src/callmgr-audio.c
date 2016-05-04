@@ -28,6 +28,7 @@ struct __audio_data {
 	gboolean is_extra_vol;
 	gboolean is_noise_reduction;
 	gboolean is_mute_state;
+	gboolean vstream_status;
 
 	sound_stream_info_h sound_stream_handle;
 	sound_device_type_e current_route;
@@ -236,6 +237,23 @@ int _callmgr_audio_create_call_sound_session(callmgr_audio_handle_h audio_handle
  	return 0;
 }
 
+int _callmgr_audio_stop_virtual_stream(callmgr_audio_handle_h audio_handle)
+{
+	int ret = -1;
+	info("_callmgr_audio_stop_virtual_stream");
+	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
+	CM_RETURN_VAL_IF_FAIL(audio_handle->vstream, -1);
+
+	if (audio_handle->vstream_status) {
+		ret = sound_manager_stop_virtual_stream(audio_handle->vstream);
+		if (ret != SOUND_MANAGER_ERROR_NONE)
+			err("sound_manager_stop_virtual_stream() get failed with err[%d]", ret);
+		audio_handle->vstream_status = 0;
+	}
+
+	return 0;
+}
+
 int _callmgr_audio_destroy_call_sound_session(callmgr_audio_handle_h audio_handle)
 {
 	int ret = -1;
@@ -254,9 +272,12 @@ int _callmgr_audio_destroy_call_sound_session(callmgr_audio_handle_h audio_handl
 		return -1;
 	}
 
-	ret = sound_manager_stop_virtual_stream(audio_handle->vstream);
-	if (ret != SOUND_MANAGER_ERROR_NONE) {
-		err("sound_manager_stop_virtual_stream() get failed with err[%d]", ret);
+	if (audio_handle->vstream_status) {
+		ret = sound_manager_stop_virtual_stream(audio_handle->vstream);
+		if (ret != SOUND_MANAGER_ERROR_NONE) {
+			err("sound_manager_stop_virtual_stream() get failed with err[%d]", ret);
+		}
+		audio_handle->vstream_status = 0;
 	}
 
 	ret = sound_manager_destroy_virtual_stream(audio_handle->vstream);
@@ -521,6 +542,14 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 			return -1;
 	}
 
+	if (audio_handle->vstream && !audio_handle->vstream_status) {
+		dbg("Virtual stream is stopped. resume stream");
+		ret = sound_manager_start_virtual_stream(audio_handle->vstream);
+		if (ret != SOUND_MANAGER_ERROR_NONE)
+			err("sound_manager_start_virtual_stream() failed:[%d]", ret);
+		audio_handle->vstream_status = 1;
+	}
+
 	if (audio_handle->current_route != -1) {
 		sound_device_h current_device = NULL;
 		if (audio_handle->current_route == device_type) {
@@ -592,7 +621,7 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 			err("sound_manager_start_virtual_stream() failed:[%d]", ret);
 			return -1;
 		}
-
+		audio_handle->vstream_status = 1;
 	}
 
 	audio_handle->current_route = device_type;
