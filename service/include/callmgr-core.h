@@ -228,7 +228,6 @@ int _callmgr_core_process_start_alert(callmgr_core_data_t *core_data);
 #ifdef TIZEN_SOUND_ROUTING_FEATURE
 void _callmgr_core_init_dbus_call_routing_status(callmgr_core_data_t *core_data);
 void _callmgr_core_shutdown_dbus_call_routing_status();
-int _callmgr_core_get_call_routing_status();
 #endif
 
 #endif	//__CALL_MANAGER_H__

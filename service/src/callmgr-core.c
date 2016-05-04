@@ -2615,7 +2615,7 @@ int _callmgr_core_process_dial(callmgr_core_data_t *core_data, const char *numbe
 int _callmgr_core_process_end_call(callmgr_core_data_t *core_data, unsigned int call_id, int release_type)
 {
 	int ret = -1;
-	info("callid[%d], release_type[%d]");
+	info("call_id[%d], release_type[%d]", call_id, release_type);
 	CM_RETURN_VAL_IF_FAIL(core_data, -1);
 
 	switch (release_type) {
@@ -3000,19 +3000,14 @@ int _callmgr_core_process_start_alert(callmgr_core_data_t *core_data)
 }
 
 #ifdef TIZEN_SOUND_ROUTING_FEATURE
-
-static int stream_status = 0;
 static guint g_dbus_return_id = 0;
 GDBusConnection *call_routing_status_connection = NULL;
 GDBusProxy *call_routing_status_gdbus_proxy = NULL;
 
 static void call_routing_status_dbus_callback(GDBusConnection *connection,
-										const gchar *sender_name,
-										const gchar *object_path,
-										const gchar *interface_name,
-										const gchar *signal_name,
-										GVariant *parameters,
-										gpointer data)
+	const gchar *sender_name, const gchar *object_path,
+	const gchar *interface_name, const gchar *signal_name,
+	GVariant *parameters, gpointer data)
 {
 	int voice_stream = 0;
 	char *routing_voice_call = NULL;
@@ -3020,26 +3015,26 @@ static void call_routing_status_dbus_callback(GDBusConnection *connection,
 
 	dbg("call_routing_status_dbus_callback");
 
-	if (strncasecmp(interface_name, "org.pulseaudio.StreamManager", strlen("org.pulseaudio.StreamManager")) &&
-			strncasecmp(sender_name, "Command", strlen("Command"))) {
+	if (strncasecmp(interface_name, "org.pulseaudio.StreamManager", strlen("org.pulseaudio.StreamManager"))
+			&& strncasecmp(sender_name, "Command", strlen("Command"))) {
 		err("Invalid interface : [%s]", interface_name);
 		return;
 	}
 
-	g_variant_get(parameters, "(si)",
-				&routing_voice_call,
-				&voice_stream);
+	g_variant_get(parameters, "(si)", &routing_voice_call, &voice_stream);
 
-	dbg("voice_stream : [%d], routing_voice_call : [%s]", voice_stream, routing_voice_call);
+	dbg("voice_stream: [%s], routing_voice_call: [%s]",
+		voice_stream == 1 ? "START" : "STOP", routing_voice_call);
 	/* voice_stream 1: Need to start virtual stream
-	      voice_stream 0: Need to stop virtual stram */
-	stream_status = voice_stream;
+	   voice_stream 0: Need to stop virtual stream */
 
-	if(voice_stream == 1 && !g_strcmp0(routing_voice_call, "routing_voice_call")) {
+	if (voice_stream == 1 && !g_strcmp0(routing_voice_call, "routing_voice_call")) {
 		dbg("Routing set for voice call");
 		__callmgr_core_set_default_audio_route(core_data);
+	} else if (voice_stream == 0 && !g_strcmp0(routing_voice_call, "routing_voice_call")) {
+		dbg("Stop virtual stream");
+		_callmgr_audio_stop_virtual_stream(core_data->audio_handle);
 	}
-
 }
 
 void _callmgr_core_init_dbus_call_routing_status(callmgr_core_data_t *core_data)
@@ -3067,8 +3062,9 @@ void _callmgr_core_init_dbus_call_routing_status(callmgr_core_data_t *core_data)
 		call_routing_status_gdbus_proxy = NULL;
 	}
 
-	call_routing_status_gdbus_proxy = g_dbus_proxy_new_sync(call_routing_status_connection, G_DBUS_PROXY_FLAGS_NONE,
-							NULL, SOUND_MGR_BUS_NAME, SOUND_MGR_PATH_NAME, SOUND_MGR_INTERFACE_NAME, NULL, &error);
+	call_routing_status_gdbus_proxy = g_dbus_proxy_new_sync(call_routing_status_connection,
+			G_DBUS_PROXY_FLAGS_NONE, NULL, SOUND_MGR_BUS_NAME, SOUND_MGR_PATH_NAME,
+			SOUND_MGR_INTERFACE_NAME, NULL, &error);
 	if (error) {
 		err("g_dbus_proxy_new_sync() failed : %s", error->message);
 		g_error_free(error);
@@ -3077,15 +3073,9 @@ void _callmgr_core_init_dbus_call_routing_status(callmgr_core_data_t *core_data)
 	}
 
 	g_dbus_return_id = g_dbus_connection_signal_subscribe(call_routing_status_connection,
-															NULL,
-															SOUND_MGR_INTERFACE_NAME,
-															SOUND_MGR_MEMBER_NAME,
-															SOUND_MGR_PATH_NAME,
-															NULL,
-															G_DBUS_SIGNAL_FLAGS_NONE,
-															call_routing_status_dbus_callback,
-															core_data,
-															NULL);
+			NULL, SOUND_MGR_INTERFACE_NAME, SOUND_MGR_MEMBER_NAME,
+			SOUND_MGR_PATH_NAME, NULL, G_DBUS_SIGNAL_FLAGS_NONE,
+			call_routing_status_dbus_callback, core_data, NULL);
 	if (g_dbus_return_id == 0) {
 		err("Failed to subscribe signal");
 		goto _DBUS_ERROR;
@@ -3109,7 +3099,6 @@ _DBUS_ERROR:
 
 void _callmgr_core_shutdown_dbus_call_routing_status()
 {
-
 	if (g_dbus_return_id) {
 		g_dbus_connection_signal_unsubscribe(call_routing_status_connection, g_dbus_return_id);
 		g_dbus_return_id = 0;
@@ -3124,21 +3113,5 @@ void _callmgr_core_shutdown_dbus_call_routing_status()
 		g_object_unref(call_routing_status_gdbus_proxy);
 		call_routing_status_gdbus_proxy = NULL;
 	}
-
 }
-
-int _callmgr_core_get_call_routing_status()
-{
-	int routing_status_t = 0;
-
-	routing_status_t = stream_status;
-
-	dbg("routing_status_t = %d", routing_status_t);
-
-	/* routing_status_t 1: Need to start virtual stream
-	      routing_status_t 0: Need to stop virtual stram */
-	return routing_status_t;
-}
-
 #endif /* TIZEN_SOUND_ROUTING_FEATURE */
-
