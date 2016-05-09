@@ -82,6 +82,56 @@ int _callmgr_audio_deinit(callmgr_audio_handle_h audio_handle)
 	return 0;
 }
 
+static char *__callmgr_audio_convert_device_type_to_string(sound_device_type_e device_type)
+{
+	switch (device_type) {
+	case SOUND_DEVICE_BUILTIN_SPEAKER:
+		return "Built-in speaker";
+	case SOUND_DEVICE_BUILTIN_RECEIVER:
+		return "Built-in receiver";
+	case SOUND_DEVICE_BUILTIN_MIC:
+		return "Built-in mic";
+	case SOUND_DEVICE_AUDIO_JACK:
+		return "Audio jac";
+	case SOUND_DEVICE_BLUETOOTH:
+		return "Bluetooth";
+	case SOUND_DEVICE_HDMI:
+		return "HDMI";
+	case SOUND_DEVICE_FORWARDING:
+		return "Forwarding";
+	case SOUND_DEVICE_USB_AUDIO:
+		return "USB Audio";
+	default:
+		return "Unknown device";
+	}
+}
+
+static char *__callmgr_audio_convert_io_direction_to_string(sound_device_io_direction_e direction)
+{
+	switch (direction) {
+	case SOUND_DEVICE_IO_DIRECTION_IN:
+		return "IN";
+	case SOUND_DEVICE_IO_DIRECTION_OUT:
+		return "OUT";
+	case SOUND_DEVICE_IO_DIRECTION_BOTH:
+		return "BOTH";
+	default:
+		return "Unknown direction";
+	}
+}
+
+static char *__callmgr_audio_convert_device_state_to_string(sound_device_state_e device_state)
+{
+	switch (device_state) {
+	case SOUND_DEVICE_STATE_DEACTIVATED:
+		return "Deactivated";
+	case SOUND_DEVICE_STATE_ACTIVATED:
+		return "Activated";
+	default:
+		return "Unknown state";
+	}
+}
+
 static void __callmgr_audio_available_route_changed_cb(sound_device_h device, bool is_connected, void *user_data)
 {
 	CM_RETURN_IF_FAIL(user_data);
@@ -89,8 +139,10 @@ static void __callmgr_audio_available_route_changed_cb(sound_device_h device, bo
 	callmgr_audio_handle_h audio_handle = (callmgr_audio_handle_h)user_data;
 	sound_device_type_e device_type = SOUND_DEVICE_BUILTIN_RECEIVER;
 
-	sound_manager_get_device_type(device, &device_type);;
-	info("Available route : %d (%d)", device_type, is_connected);
+	sound_manager_get_device_type(device, &device_type);
+	info("Available route : %s (%d)",
+		__callmgr_audio_convert_device_type_to_string(device_type),
+		is_connected ? "Connected" : "Disconnected");
 
 	if (device_type == SOUND_DEVICE_AUDIO_JACK) {
 		audio_handle->cb_fn(CM_AUDIO_EVENT_EARJACK_CHANGED_E, (void *)is_connected, audio_handle->user_data);
@@ -109,21 +161,22 @@ static void __callmgr_audio_active_device_changed_cb(sound_device_h device, soun
 	int ret = SOUND_MANAGER_ERROR_NONE;
 
 	ret = sound_manager_get_device_io_direction(device, &io_direction);
-	if (ret != SOUND_MANAGER_ERROR_NONE) {
-		err("sound_manager_get_device_io_direction() get failed with err[%]", ret);
-	}
+	if (ret != SOUND_MANAGER_ERROR_NONE)
+		err("sound_manager_get_device_io_direction() get failed with err[0x%x]", ret);
 
 	ret = sound_manager_get_device_state(device, &state);
-	if (ret != SOUND_MANAGER_ERROR_NONE) {
-		err("sound_manager_get_device_state() get failed with err[%]", ret);
-	}
+	if (ret != SOUND_MANAGER_ERROR_NONE)
+		err("sound_manager_get_device_state() get failed with err[0x%x]", ret);
 
 	ret = sound_manager_get_device_type(device, &device_type);
-	if (ret != SOUND_MANAGER_ERROR_NONE) {
-		err("sound_manager_get_device_type() get failed with err[%]", ret);
-	}
+	if (ret != SOUND_MANAGER_ERROR_NONE)
+		err("sound_manager_get_device_type() get failed with err[0x%x]", ret);
 
-	info("Active device[%d], IO direction[%d], State[%d]", device_type, io_direction, state);
+	info("Active device[%s], IO direction[%s], State[%s]",
+		__callmgr_audio_convert_device_type_to_string(device_type),
+		__callmgr_audio_convert_io_direction_to_string(io_direction),
+		__callmgr_audio_convert_device_state_to_string(state));
+
 	if ((io_direction == SOUND_DEVICE_IO_DIRECTION_IN) || (state == SOUND_DEVICE_STATE_DEACTIVATED)) {
 		info("No need to inform callmgr-core of this change");
 		return;
@@ -294,34 +347,6 @@ int _callmgr_audio_destroy_call_sound_session(callmgr_audio_handle_h audio_handl
 	audio_handle->sound_stream_handle = NULL;
 	audio_handle->current_route = -1;
 	info("_callmgr_audio_destroy_call_sound_session DONE");
-
-	return 0;
-}
-
-static int __callmgr_audio_get_device_type_string(sound_device_type_e device_type, char **str_device_type)
-{
-	CM_RETURN_VAL_IF_FAIL(str_device_type, -1);
-	switch(device_type) {
-		case SOUND_DEVICE_BUILTIN_SPEAKER:
-			*str_device_type = g_strdup("SPEAKER");
-			break;
-		case SOUND_DEVICE_BUILTIN_RECEIVER:
-			*str_device_type = g_strdup("RECEIVER");
-			break;
-		case SOUND_DEVICE_BUILTIN_MIC:
-			*str_device_type = g_strdup("MIC");
-			break;
-		case SOUND_DEVICE_AUDIO_JACK:
-			*str_device_type = g_strdup("EARJACK");
-			break;
-		case SOUND_DEVICE_BLUETOOTH:
-			*str_device_type = g_strdup("BT");
-			break;
-		default:
-			err("unhandled device type: [%d]", device_type);
-			*str_device_type = g_strdup("UNKNOWN DEVICE");
-			return -1;
-	}
 
 	return 0;
 }
@@ -517,7 +542,6 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 	int ret = -1;
 	sound_device_h sound_device = NULL;
 	sound_device_type_e device_type;
-	char *str_device = NULL;
 
 	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
 	CM_RETURN_VAL_IF_FAIL(audio_handle->sound_stream_handle, -1);
@@ -583,9 +607,7 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 		return -1;
 	}
 
-	__callmgr_audio_get_device_type_string(device_type, &str_device);
-	info("set audio route to: [%s]", str_device);
-	g_free(str_device);
+	info("set audio route to: [%s]", __callmgr_audio_convert_device_type_to_string(device_type));
 
 	if ((route == CALLMGR_AUDIO_ROUTE_SPEAKER_E) || (route == CALLMGR_AUDIO_ROUTE_RECEIVER_E)) {
 		sound_device_h mic = NULL;
@@ -633,7 +655,6 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 int _callmgr_audio_get_audio_route(callmgr_audio_handle_h audio_handle, callmgr_audio_route_e *o_route)
 {
 	callmgr_audio_route_e route = CALLMGR_AUDIO_ROUTE_NONE_E;
-	char *str_device = NULL;
 	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
 	CM_RETURN_VAL_IF_FAIL(o_route, -1);
 	dbg(">>");
@@ -659,9 +680,7 @@ int _callmgr_audio_get_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 	}
 	*o_route = route;
 
-	__callmgr_audio_get_device_type_string(audio_handle->current_route, &str_device);
-	info("current device : [%s]", str_device);
-	g_free(str_device);
+	info("current device : [%s]", __callmgr_audio_convert_device_type_to_string(audio_handle->current_route));
 
 	return 0;
 }

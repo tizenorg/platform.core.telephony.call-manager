@@ -30,6 +30,29 @@
 
 static int __callmgr_dbus_get_gv_from_call_data(callmgr_core_data_t *core_data, callmgr_call_data_t *call_data, GVariant **gv);
 
+static char *__callmgr_dbus_convert_call_state_to_string(cm_telephony_call_state_e call_state)
+{
+	switch (call_state) {
+	case CM_TEL_CALL_STATE_IDLE:
+		return "IDLE";
+	case CM_TEL_CALL_STATE_ACTIVE:
+		return "ACTIVE";
+	case CM_TEL_CALL_STATE_HELD:
+		return "HELD";
+	case CM_TEL_CALL_STATE_DIALING:
+		return "DIALING";
+	case CM_TEL_CALL_STATE_ALERT:
+		return "ALERT";
+	case CM_TEL_CALL_STATE_INCOMING:
+		return "INCOMING";
+	case CM_TEL_CALL_STATE_WAITING:
+		return "WAITING";
+	case CM_TEL_CALL_STATE_MAX:
+	default:
+		return "UNKNOWN";
+	}
+}
+
 /*********************************************
 ************* Signal Handler *********************
 **********************************************/
@@ -401,21 +424,19 @@ static gboolean __get_call_list_handler (GDBusInterfaceSkeleton *di,
 		/*11. Fetch personId from callId*/
 		_callmgr_ct_get_person_id(call_id, &person_id);
 
-		dbg("\n\n <<<<<<<<< CallData Info in Daemon START >>>>>>>>>> \n");
-		dbg("call_id                : %d, ", call_id);
-		dbg("call_direction         : %d, ", call_direction);
-		if (call_number) {
-			dbg("call_number            : %s, ", call_number);
-		}
-		if (calling_name) {
-			dbg("calling_name            : %s, ", calling_name);
-		}
-		dbg("call_type         		: %d, ", call_type);
-		dbg("call_state         	: %d, ", call_state);
-		dbg("is_conference          : %d, ", is_conference);
-		dbg("is_ecc         		: %d, ", is_ecc);
-		dbg("person_id              : %d", person_id);
-		dbg("\n\n <<<<<<<<< CallData Info in Daemon END >>>>>>>>>> \n");
+		dbg("<<<<<<<<< CallData Info in Daemon START >>>>>>>>>>");
+		dbg("call_id       : %d", call_id);
+		dbg("call_direction: %d", call_direction);
+		if (call_number)
+			dbg("call_number   : %s", call_number);
+		if (calling_name)
+			dbg("calling_name  : %s", calling_name);
+		dbg("call_type     : %d", call_type);
+		dbg("call_state    : %s", __callmgr_dbus_convert_call_state_to_string(call_state));
+		dbg("is_conference : %d", is_conference);
+		dbg("is_ecc        : %d", is_ecc);
+		dbg("person_id     : %d", person_id);
+		dbg("<<<<<<<<< CallData Info in Daemon END >>>>>>>>>>");
 
 		g_variant_builder_open(&b, G_VARIANT_TYPE("a{sv}"));
 		g_variant_builder_add(&b, "{sv}", "call_id", g_variant_new_uint32(call_id));
@@ -504,14 +525,13 @@ static gboolean __get_conf_call_list_handler (GDBusInterfaceSkeleton *di,
 		/*5. Fetch name_mode from callData*/
 		_callmgr_telephony_get_call_name_mode(call_obj, &name_mode);
 
-		dbg("\n\n <<<<<<<<< CallData Info in Daemon START >>>>>>>>>> \n");
-		dbg("call_id                : %d, ", call_id);
-		if (call_number) {
-			dbg("call_number            : %s, ", call_number);
-		}
-		dbg("person_id              : %d", person_id);
-		dbg("name_mode              : %d", name_mode);
-		dbg("\n\n <<<<<<<<< CallData Info in Daemon END >>>>>>>>>> \n");
+		dbg("<<<<<<<<< CallData Info in Daemon START >>>>>>>>>>");
+		dbg("call_id    : %d", call_id);
+		if (call_number)
+			dbg("call_number: %s", call_number);
+		dbg("person_id  : %d", person_id);
+		dbg("name_mode  : %d", name_mode);
+		dbg("<<<<<<<<< CallData Info in Daemon END >>>>>>>>>>");
 
 		g_variant_builder_open(&b, G_VARIANT_TYPE("a{sv}"));
 		g_variant_builder_add(&b, "{sv}", "call_id", g_variant_new_uint32(call_id));
@@ -1100,23 +1120,21 @@ static int __callmgr_dbus_get_gv_from_call_data(callmgr_core_data_t *core_data, 
 	/*Fetch personId by call ID*/
 	_callmgr_ct_get_person_id(call_data->call_id, &person_id);
 
-	dbg("\n\n <<<<<<<<< CallData Info in Daemon START >>>>>>>>>> \n");
-	dbg("call_id                : %d, ", call_data->call_id);
-	dbg("call_direction         : %d, ", call_data->call_direction);
-	if (call_data->call_number) {
-		dbg("call_number            : %s, ", call_data->call_number);
-	}
-	if (call_data->calling_name) {
-		dbg("calling_name            : %s, ", call_data->calling_name);
-	}
-	dbg("call_type         		: %d, ", call_data->call_type);
-	dbg("call_state         	: %d, ", call_data->call_state);
-	dbg("is_conference          : %d, ", call_data->is_conference);
-	dbg("is_ecc         		: %d, ", call_data->is_ecc);
-	dbg("is_voicemail_number    : %d, ", call_data->is_voicemail_number);
-	dbg("person_id         		: %d", person_id);
-	dbg("start time			: %ld", call_data->start_time);
-	dbg("\n\n <<<<<<<<< CallData Info in Daemon END >>>>>>>>>> \n");
+	dbg("<<<<<<<<< CallData Info in Daemon START >>>>>>>>>>");
+	dbg("call_id            : %d", call_data->call_id);
+	dbg("call_direction     : %d", call_data->call_direction);
+	if (call_data->call_number)
+		dbg("call_number        : %s", call_data->call_number);
+	if (call_data->calling_name)
+		dbg("calling_name       : %s", call_data->calling_name);
+	dbg("call_type          : %d", call_data->call_type);
+	dbg("call_state         : %s", __callmgr_dbus_convert_call_state_to_string(call_data->call_state));
+	dbg("is_conference      : %d", call_data->is_conference);
+	dbg("is_ecc             : %d", call_data->is_ecc);
+	dbg("is_voicemail_number: %d", call_data->is_voicemail_number);
+	dbg("person_id          : %d", person_id);
+	dbg("start time         : %ld", call_data->start_time);
+	dbg("<<<<<<<<< CallData Info in Daemon END >>>>>>>>>>");
 
 	g_variant_builder_init(&b, G_VARIANT_TYPE("a{sv}"));
 	g_variant_builder_add(&b, "{sv}", "call_id", g_variant_new_uint32(call_data->call_id));
