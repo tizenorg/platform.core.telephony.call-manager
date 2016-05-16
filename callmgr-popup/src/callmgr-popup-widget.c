@@ -385,12 +385,11 @@ static char *__callmgr_popup_sim_list_gl_label_get(void *data, Evas_Object *obj,
 {
 	int idx = GPOINTER_TO_INT(data);
 	char *sim_name = NULL;
-	if (strcmp(part, "elm.text.main.left") == 0) {
-		if (idx == 0) {
+	if (strcmp(part, "elm.text") == 0) {
+		if (idx == 0)
 			sim_name = vconf_get_str(VCONFKEY_SETAPPL_SIM1_NAME);
-		} else {
+		else
 			sim_name = vconf_get_str(VCONFKEY_SETAPPL_SIM2_NAME);
-		}
 
 		if (NULL == sim_name) {
 			ERR("vconf_get_str failed returning NULL");
@@ -414,16 +413,13 @@ static Evas_Object *__callmgr_popup_sim_list_gl_icon_get(void *data, Evas_Object
 		return NULL;
 	}
 
-	if (strcmp(part, "elm.icon.1") == 0) {
-		if (idx == 0) {
-			if (vconf_get_int(VCONFKEY_SETAPPL_SIM1_ICON, &sim_icon_index)) {
+	if (strcmp(part, "elm.swallow.icon") == 0) {
+		if (idx == 0)
+			if (vconf_get_int(VCONFKEY_SETAPPL_SIM1_ICON, &sim_icon_index))
 				ERR("Vconf get error : VCONFKEY_SETAPPL_SIM1_ICON");
-			}
-		} else {
-			if (vconf_get_int(VCONFKEY_SETAPPL_SIM2_ICON, &sim_icon_index)) {
+		else
+			if (vconf_get_int(VCONFKEY_SETAPPL_SIM2_ICON, &sim_icon_index))
 				ERR("Vconf get error : VCONFKEY_SETAPPL_SIM2_ICON");
-			}
-		}
 		DBG("sim_icon_index: %d", idx);
 
 		if (sim_icon_index >= 0 && sim_icon_index < SIM_ICON_MAX) {
@@ -503,7 +499,7 @@ void _callmgr_popup_create_sim_selection(void *data)
 	Elm_Genlist_Item_Class* itc = elm_genlist_item_class_new();
 	ret_if(NULL == itc);
 
-	itc->item_style = "1line";
+	itc->item_style = "type1";
 	itc->func.text_get = __callmgr_popup_sim_list_gl_label_get;
 	itc->func.content_get = __callmgr_popup_sim_list_gl_icon_get;
 	itc->func.state_get = NULL;
