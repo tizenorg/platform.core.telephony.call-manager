@@ -414,12 +414,13 @@ static Evas_Object *__callmgr_popup_sim_list_gl_icon_get(void *data, Evas_Object
 	}
 
 	if (strcmp(part, "elm.swallow.icon") == 0) {
-		if (idx == 0)
+		if (idx == 0) {
 			if (vconf_get_int(VCONFKEY_SETAPPL_SIM1_ICON, &sim_icon_index))
 				ERR("Vconf get error : VCONFKEY_SETAPPL_SIM1_ICON");
-		else
+		} else {
 			if (vconf_get_int(VCONFKEY_SETAPPL_SIM2_ICON, &sim_icon_index))
 				ERR("Vconf get error : VCONFKEY_SETAPPL_SIM2_ICON");
+		}
 		DBG("sim_icon_index: %d", idx);
 
 		if (sim_icon_index >= 0 && sim_icon_index < SIM_ICON_MAX) {
