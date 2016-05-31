@@ -794,6 +794,9 @@ int _callmgr_util_launch_ciss(const char* number, int sim_slot)
 		warn("app_control_add_extra_data() is failed");
 	} else if (app_control_send_launch_request(app_control, NULL, NULL) != APP_CONTROL_ERROR_NONE) {
 		warn("app_control_send_launch_request() is failed");
+		free(sim_slot_id_string);
+		app_control_destroy(app_control);
+		return -1;
 	}
 
 	free(sim_slot_id_string);

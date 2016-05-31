@@ -2526,7 +2526,11 @@ int _callmgr_core_process_dial(callmgr_core_data_t *core_data, const char *numbe
 
 	if (is_ss) {
 		info("SS string");
-		_callmgr_util_launch_ciss(number, active_sim);
+		ret = _callmgr_util_launch_ciss(number, active_sim);
+		if (ret != 0) {
+			err("ciss launch failed. display popup message");
+			__callmgr_core_launch_error_popup(CALL_ERR_CAUSE_WRONG_NUMBER_E, number);
+		}
 		_callmgr_dbus_send_dial_status(core_data, CALL_MANAGER_DIAL_FAIL_SS);
 		return 0;
 	}
