@@ -140,7 +140,7 @@ static void __callmgr_audio_available_route_changed_cb(sound_device_h device, bo
 	sound_device_type_e device_type = SOUND_DEVICE_BUILTIN_RECEIVER;
 
 	sound_manager_get_device_type(device, &device_type);
-	info("Available route : %s (%d)",
+	info("Available route : %s (%s)",
 		__callmgr_audio_convert_device_type_to_string(device_type),
 		is_connected ? "Connected" : "Disconnected");
 

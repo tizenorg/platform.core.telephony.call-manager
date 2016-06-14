@@ -1661,19 +1661,19 @@ static void __callmgr_core_process_audio_events(cm_audio_event_type_e event_type
 				cm_telephony_audio_path_type_e telephony_type = CM_TAPI_SOUND_PATH_HANDSET;
 
 				_callmgr_core_get_audio_state(core_data, &route);
-				switch(route){
-					case CALL_AUDIO_PATH_SPEAKER_E:
-						telephony_type = CM_TAPI_SOUND_PATH_SPK_PHONE;
-						break;
-					case CALL_AUDIO_PATH_EARJACK_E:
-						telephony_type = CM_TAPI_SOUND_PATH_HEADSET;
-						break;
-					case CALL_AUDIO_PATH_BT_E:
-						telephony_type = CM_TAPI_SOUND_PATH_BLUETOOTH;
-						break;
-					default:
-						telephony_type = CM_TAPI_SOUND_PATH_HANDSET;
-						break;
+				switch (route) {
+				case CALL_AUDIO_PATH_SPEAKER_E:
+					telephony_type = CM_TAPI_SOUND_PATH_SPK_PHONE;
+					break;
+				case CALL_AUDIO_PATH_EARJACK_E:
+					telephony_type = CM_TAPI_SOUND_PATH_HEADSET;
+					break;
+				case CALL_AUDIO_PATH_BT_E:
+					telephony_type = CM_TAPI_SOUND_PATH_BLUETOOTH;
+					break;
+				default:
+					telephony_type = CM_TAPI_SOUND_PATH_HANDSET;
+					break;
 				}
 				info("type : %d, vol : %d", telephony_type, volume);
 
@@ -2155,7 +2155,27 @@ int _callmgr_core_get_audio_state(callmgr_core_data_t *core_data, callmgr_path_t
 		return -1;
 	}
 
-	*o_audio_state = audio_state;
+	switch (audio_state) {
+	case CALLMGR_AUDIO_ROUTE_NONE_E:
+		*o_audio_state = CALL_AUDIO_PATH_NONE_E;
+		break;
+	case CALLMGR_AUDIO_ROUTE_SPEAKER_E:
+		*o_audio_state = CALL_AUDIO_PATH_SPEAKER_E;
+		break;
+	case CALLMGR_AUDIO_ROUTE_RECEIVER_E:
+		*o_audio_state = CALL_AUDIO_PATH_RECEIVER_E;
+		break;
+	case CALLMGR_AUDIO_ROUTE_EARJACK_E:
+		*o_audio_state = CALL_AUDIO_PATH_EARJACK_E;
+		break;
+	case CALLMGR_AUDIO_ROUTE_BT_E:
+		*o_audio_state = CALL_AUDIO_PATH_BT_E;
+		break;
+	default:
+		err("Invalid audio state [%d]", audio_state);
+		*o_audio_state = CALL_AUDIO_PATH_NONE_E;
+		break;
+	}
 
 	return 0;
 }
