@@ -986,6 +986,7 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 					_callmgr_telephony_set_audio_tx_mute(core_data->telephony_handle, FALSE);
 					core_data->is_mute_on = FALSE;
 					_callmgr_dbus_send_mute_status(core_data, 0);
+					_callmgr_dbus_send_audio_status(core_data, CALL_AUDIO_PATH_NONE_E);
 
 					_callmgr_vr_get_recording_state(core_data->vr_handle, &record_state);
 					if (record_state == CALLMGR_VR_RECORD_REQUESTED ||
