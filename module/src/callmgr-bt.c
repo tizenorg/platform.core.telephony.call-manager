@@ -26,7 +26,6 @@
 
 struct __bt_data {
 	gboolean is_connected;
-	gboolean is_sco_opened;
 	bt_call_list_h call_list;
 
 	bt_event_cb cb_fn;
@@ -45,23 +44,9 @@ static void __callmgr_bt_ag_audio_connection_state_changed_cb(int result,
 		/* Handle HFP connection */
 		bt_handle->is_connected = connected;
 
-		if (connected == FALSE) {
-			bt_handle->is_sco_opened = FALSE;
-		}
 		bt_handle->cb_fn(CM_BT_EVENT_CONNECTION_CHANGED_E, (void *)connected, bt_handle->user_data);
 	}
 
-}
-
-static void __callmgr_bt_ag_sco_state_changed_cb(int result, bool opened, void *user_data)
-{
-	callmgr_bt_handle_h bt_handle = (callmgr_bt_handle_h)user_data;
-	CM_RETURN_IF_FAIL(bt_handle);
-
-	warn("sco : %d", opened);
-
-	bt_handle->is_sco_opened = opened;
-	bt_handle->cb_fn(CM_BT_EVENT_SCO_CHANGED_E, (void *)opened, bt_handle->user_data);
 }
 
 static void __callmgr_bt_ag_call_handling_event_cb(bt_ag_call_handling_event_e event,
@@ -155,11 +140,6 @@ static void __callmgr_bt_register_handler(callmgr_bt_handle_h bt_handle)
 		warn("bt_audio_set_connection_state_changed_cb / error[%d]", ret);
 	}
 
-	ret = bt_ag_set_sco_state_changed_cb(__callmgr_bt_ag_sco_state_changed_cb, bt_handle);
-	if (BT_ERROR_NONE != ret) {
-		warn("bt_ag_set_sco_state_changed_cb / error[%d]", ret);
-	}
-
 	ret = bt_ag_set_call_handling_event_cb(__callmgr_bt_ag_call_handling_event_cb, bt_handle);
 	if (BT_ERROR_NONE != ret) {
 		warn("bt_ag_set_call_handling_event_cb / error[%d]", ret);
@@ -234,11 +214,6 @@ static void __callmgr_bt_unregister_handler(void)
 		warn("bt_audio_unset_connection_state_changed_cb / error[%d]", ret);
 	}
 
-	ret = bt_ag_unset_sco_state_changed_cb();
-	if (BT_ERROR_NONE != ret) {
-		warn("bt_ag_unset_sco_state_changed_cb / error[%d]", ret);
-	}
-
 	ret = bt_ag_unset_call_handling_event_cb();
 	if (BT_ERROR_NONE != ret) {
 		warn("bt_ag_unset_call_handling_event_cb / error[%d]", ret);
@@ -288,14 +263,6 @@ int _callmgr_bt_is_connected(callmgr_bt_handle_h bt_handle, gboolean *o_is_conne
 	CM_RETURN_VAL_IF_FAIL(bt_handle, -1);
 
 	*o_is_connected = bt_handle->is_connected;
-	return 0;
-}
-
-int _callmgr_bt_is_sco_opened(callmgr_bt_handle_h bt_handle, gboolean *o_is_opned)
-{
-	CM_RETURN_VAL_IF_FAIL(bt_handle, -1);
-
-	*o_is_opned = bt_handle->is_sco_opened;
 	return 0;
 }
 
@@ -387,44 +354,6 @@ int _callmgr_bt_send_call_list(callmgr_bt_handle_h bt_handle)
 	return 0;
 }
 
-int _callmgr_bt_open_sco(callmgr_bt_handle_h bt_handle)
-{
-	CM_RETURN_VAL_IF_FAIL(bt_handle, -1);
-
-	warn("in");
-	if (bt_handle->is_sco_opened) {
-		info("Already SCO");
-		return 0;
-	}
-
-	if (bt_ag_open_sco() != BT_ERROR_NONE) {
-		err("bt_ag_open_sco fail");
-		return -1;
-	}
-
-	warn("out");
-	return 0;
-}
-
-int _callmgr_bt_close_sco(callmgr_bt_handle_h bt_handle)
-{
-	CM_RETURN_VAL_IF_FAIL(bt_handle, -1);
-
-	warn("in");
-	if (!bt_handle->is_sco_opened) {
-		info("Already closed SCO");
-		return -1;
-	}
-
-	if (bt_ag_close_sco() != BT_ERROR_NONE) {
-		err("bt_ag_close_sco fail");
-		return -1;
-	}
-
-	warn("out");
-	return 0;
-}
-
 int _callmgr_bt_is_nrec_enabled(callmgr_bt_handle_h bt_handle, gboolean *o_is_nrec)
 {
 	CM_RETURN_VAL_IF_FAIL(bt_handle, -1);
@@ -463,4 +392,3 @@ int _callmgr_bt_get_spk_gain(callmgr_bt_handle_h bt_handle, int *o_volume)
 
 	return 0;
 }
-

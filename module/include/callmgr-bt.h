@@ -25,7 +25,6 @@
 //Add more events
 typedef enum {
 	CM_BT_EVENT_CONNECTION_CHANGED_E,
-	CM_BT_EVENT_SCO_CHANGED_E,
 	CM_BT_EVENT_DTMF_TRANSMITTED_E,
 	CM_BT_EVENT_SPK_GAIN_CHANGED_E,
 
@@ -58,7 +57,6 @@ int _callmgr_bt_init(callmgr_bt_handle_h *o_bt_handle, bt_event_cb cb_fn, void *
 int _callmgr_bt_deinit(callmgr_bt_handle_h bt_handle);
 
 int _callmgr_bt_is_connected(callmgr_bt_handle_h bt_handle, gboolean *o_is_connected);
-int _callmgr_bt_is_sco_opened(callmgr_bt_handle_h bt_handle, gboolean *o_is_opned);
 
 int _callmgr_bt_send_event(callmgr_bt_handle_h bt_handle, cm_bt_call_event_type_e call_event, int call_id, char *phone_num);
 int _callmgr_bt_add_call_list(callmgr_bt_handle_h bt_handle, int call_id, int call_status, char *phone_num);

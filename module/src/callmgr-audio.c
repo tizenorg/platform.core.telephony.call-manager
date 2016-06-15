@@ -146,6 +146,8 @@ static void __callmgr_audio_available_route_changed_cb(sound_device_h device, bo
 
 	if (device_type == SOUND_DEVICE_AUDIO_JACK) {
 		audio_handle->cb_fn(CM_AUDIO_EVENT_EARJACK_CHANGED_E, (void *)is_connected, audio_handle->user_data);
+	} else if (device_type == SOUND_DEVICE_BLUETOOTH) {
+		audio_handle->cb_fn(CM_AUDIO_EVENT_BT_CHANGED_E, (void *)is_connected, audio_handle->user_data);
 	}
 }
 
@@ -581,16 +583,17 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 			return -1;
 		}
 
-		if ((audio_handle->current_route == SOUND_DEVICE_BUILTIN_SPEAKER) || (audio_handle->current_route == SOUND_DEVICE_BUILTIN_RECEIVER)) {
+		if ((audio_handle->current_route == SOUND_DEVICE_BUILTIN_SPEAKER)
+				|| (audio_handle->current_route == SOUND_DEVICE_BUILTIN_RECEIVER)) {
 			sound_device_h mic = NULL;
+			dbg("Remove Built-in mic device");
 			__callmgr_audio_get_sound_device(SOUND_DEVICE_BUILTIN_MIC, &mic);
 			ret = sound_manager_remove_device_for_stream_routing (audio_handle->sound_stream_handle, mic);
-
-			if (ret != SOUND_MANAGER_ERROR_NONE) {
+			if (ret != SOUND_MANAGER_ERROR_NONE)
 				err("sound_manager_remove_device_for_stream_routing() failed:[%d]", ret);
-			}
 		}
 
+		dbg("Remove current device [%s]", __callmgr_audio_convert_device_type_to_string(audio_handle->current_route));
 		__callmgr_audio_get_sound_device(audio_handle->current_route, &current_device);
 		ret = sound_manager_remove_device_for_stream_routing (audio_handle->sound_stream_handle, current_device);
 		if (ret != SOUND_MANAGER_ERROR_NONE) {
@@ -599,6 +602,7 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 		audio_handle->current_route = -1;
 	}
 
+	dbg("Add new device [%s]", __callmgr_audio_convert_device_type_to_string(device_type));
 	__callmgr_audio_get_sound_device(device_type, &sound_device);
 	__callmgr_audio_set_audio_control_state(audio_handle, sound_device);
 	ret = sound_manager_add_device_for_stream_routing (audio_handle->sound_stream_handle, sound_device);
@@ -607,10 +611,9 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 		return -1;
 	}
 
-	info("set audio route to: [%s]", __callmgr_audio_convert_device_type_to_string(device_type));
-
 	if ((route == CALLMGR_AUDIO_ROUTE_SPEAKER_E) || (route == CALLMGR_AUDIO_ROUTE_RECEIVER_E)) {
 		sound_device_h mic = NULL;
+		dbg("Add Built-in mic device");
 		__callmgr_audio_get_sound_device(SOUND_DEVICE_BUILTIN_MIC, &mic);
 		ret = sound_manager_add_device_for_stream_routing (audio_handle->sound_stream_handle, mic);
 		if (ret != SOUND_MANAGER_ERROR_NONE) {
@@ -657,7 +660,6 @@ int _callmgr_audio_get_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 	callmgr_audio_route_e route = CALLMGR_AUDIO_ROUTE_NONE_E;
 	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
 	CM_RETURN_VAL_IF_FAIL(o_route, -1);
-	dbg(">>");
 
 	if (audio_handle->current_route != -1) {
 		switch (audio_handle->current_route) {

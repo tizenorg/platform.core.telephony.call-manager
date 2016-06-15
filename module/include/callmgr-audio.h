@@ -52,6 +52,7 @@ typedef enum {
 	CM_AUDIO_EVENT_PATH_CHANGED_E,
 	CM_AUDIO_EVENT_EARJACK_CHANGED_E,
 	CM_AUDIO_EVENT_VOLUME_CHANGED_E,
+	CM_AUDIO_EVENT_BT_CHANGED_E,
 } cm_audio_event_type_e;
 
 typedef struct __audio_data *callmgr_audio_handle_h;

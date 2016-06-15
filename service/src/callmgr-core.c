@@ -1070,14 +1070,10 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 				_callmgr_audio_get_audio_route(core_data->audio_handle, &route);
 				if (route == CALLMGR_AUDIO_ROUTE_NONE_E) {
 					_callmgr_bt_is_connected(core_data->bt_handle, &is_bt_connected);
-					if (is_bt_connected) {
-						if (_callmgr_bt_open_sco(core_data->bt_handle) < 0) {
-							err("SCO open failed.");
-							__callmgr_core_set_default_audio_route(core_data);
-						}
-					} else {
+					if (is_bt_connected)
+						_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_BT_E);
+					else
 						__callmgr_core_set_default_audio_route(core_data);
-					}
 				}
 				else {
 					gboolean is_ringtone_mode = FALSE;
@@ -1175,16 +1171,10 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 				_callmgr_audio_get_audio_route(core_data->audio_handle, &route);
 				if (route == CALLMGR_AUDIO_ROUTE_NONE_E) {
 					_callmgr_bt_is_connected(core_data->bt_handle, &is_bt_connected);
-
-					if (is_bt_connected) {
-						if (_callmgr_bt_open_sco(core_data->bt_handle) < 0) {
-							err("SCO open failed.");
-							__callmgr_core_set_default_audio_route(core_data);
-						}
-					}
-					else {
+					if (is_bt_connected)
+						_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_BT_E);
+					else
 						__callmgr_core_set_default_audio_route(core_data);
-					}
 				}
 
 				if (core_data->call_status != CALL_MANAGER_CALL_STATUS_OFFHOOK_E) {
@@ -1625,7 +1615,7 @@ static void __callmgr_core_process_audio_events(cm_audio_event_type_e event_type
 
 					if (is_available == TRUE) {
 						if (route == CALLMGR_AUDIO_ROUTE_BT_E) {
-							_callmgr_bt_close_sco(core_data->bt_handle);
+							__callmgr_core_set_default_audio_route(core_data);
 						}
 						else {
 							_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_EARJACK_E);
@@ -1636,7 +1626,7 @@ static void __callmgr_core_process_audio_events(cm_audio_event_type_e event_type
 						_callmgr_bt_is_connected(core_data->bt_handle, &is_bt_connected);
 
 						if (is_bt_connected) {
-							_callmgr_bt_open_sco(core_data->bt_handle);
+							_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_BT_E);
 						} else if (route != CALLMGR_AUDIO_ROUTE_SPEAKER_E) {
 							gboolean is_cradle_conn = FALSE;
 							_callmgr_vconf_is_cradle_status(&is_cradle_conn);
@@ -1678,6 +1668,14 @@ static void __callmgr_core_process_audio_events(cm_audio_event_type_e event_type
 				info("type : %d, vol : %d", telephony_type, volume);
 
 				_callmgr_telephony_set_modem_volume(core_data->telephony_handle, telephony_type, volume);
+			}
+			break;
+		case CM_AUDIO_EVENT_BT_CHANGED_E:
+			{
+				if (core_data->active_dial || core_data->held)
+					_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_BT_E);
+				else
+					info("No active call. Ignore");
 			}
 			break;
 		default:
@@ -1802,7 +1800,6 @@ static void __callmgr_core_send_bt_events(callmgr_core_data_t *core_data, int id
 static void __callmgr_core_process_bt_events(cm_bt_event_type_e event_type, void *event_data, void *user_data)
 {
 	gboolean is_connected = FALSE;
-	gboolean is_sco_opned = FALSE;
 	char *dtmf_char = NULL;
 	int spk_gain = 0;
 	int req_call_id = 0;
@@ -1825,17 +1822,6 @@ static void __callmgr_core_process_bt_events(cm_bt_event_type_e event_type, void
 
 					/* Send init event */
 					__callmgr_core_send_bt_events(core_data, 0);
-
-				/*	Headset is connected, Set the Sound Status to Headset
-					and change the path only incase of mocall and connected call */
-
-					if (core_data->active_dial || core_data->held) {
-						/* Open SCO to set BT path */
-						_callmgr_bt_open_sco(core_data->bt_handle);
-					}
-					else {
-						info("No active call. Ignore");
-					}
 				}
 				else {
 					callmgr_audio_route_e route = CALLMGR_AUDIO_ROUTE_NONE_E;
@@ -1854,29 +1840,6 @@ static void __callmgr_core_process_bt_events(cm_bt_event_type_e event_type, void
 
 				}
 				/* Todo : Send event to UI*/
-			}
-			break;
-		case CM_BT_EVENT_SCO_CHANGED_E:
-			{
-				is_sco_opned = GPOINTER_TO_INT(event_data);
-
-				/* Todo : We need to check incom for inband ringtone */
-				if (core_data->active_dial || core_data->held) {
-					if (is_sco_opned) {
-						_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_BT_E);
-					}
-					else {
-						callmgr_audio_route_e route = CALLMGR_AUDIO_ROUTE_NONE_E;
-						_callmgr_audio_get_audio_route(core_data->audio_handle, &route);
-						if (route == CALLMGR_AUDIO_ROUTE_BT_E) {
-							__callmgr_core_set_default_audio_route(core_data);
-						}
-					}
-					/* Todo : Send event to UI*/
-				}
-				else {
-					info("No active call. Ignore");
-				}
 			}
 			break;
 		case CM_BT_EVENT_DTMF_TRANSMITTED_E:
@@ -2832,8 +2795,6 @@ int _callmgr_core_process_spk_on(callmgr_core_data_t *core_data)
 		return -1;
 	}
 
-	_callmgr_bt_close_sco(core_data->bt_handle);
-
 	if (_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_SPEAKER_E) < 0) {
 		err("_callmgr_audio_set_audio_route() failed");
 		return -1;
@@ -2870,9 +2831,9 @@ int _callmgr_core_process_bluetooth_on(callmgr_core_data_t *core_data)
 	dbg(">>");
 	CM_RETURN_VAL_IF_FAIL(core_data, -1);
 	int ret = -1;
-	ret = _callmgr_bt_open_sco(core_data->bt_handle);
+	ret = _callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_BT_E);
 	if (ret < 0) {
-		err("_callmgr_bt_open_sco() get failed");
+		err("_callmgr_audio_set_audio_route() get failed");
 	}
 
 	return ret;
@@ -2883,9 +2844,9 @@ int _callmgr_core_process_bluetooth_off(callmgr_core_data_t *core_data)
 	dbg(">>");
 	CM_RETURN_VAL_IF_FAIL(core_data, -1);
 	int ret = -1;
-	ret = _callmgr_bt_close_sco(core_data->bt_handle);
+	ret = __callmgr_core_set_default_audio_route(core_data);
 	if (ret < 0) {
-		err("_callmgr_bt_close_sco() get failed");
+		err("__callmgr_core_set_default_audio_route() get failed");
 	}
 
 	return ret;
