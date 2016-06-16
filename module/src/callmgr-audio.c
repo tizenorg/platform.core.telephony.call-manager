@@ -36,51 +36,11 @@ struct __audio_data {
 
 	callmgr_audio_session_mode_e current_mode;
 	callmgr_audio_device_e current_device;
+	callmgr_audio_device_e current_device_list;
 
 	audio_event_cb cb_fn;
 	void *user_data;
 };
-
-int _callmgr_audio_init(callmgr_audio_handle_h *audio_handle, audio_event_cb cb_fn, void *user_data)
-{
-	struct __audio_data *handle = NULL;
-	int b_noise_reduction = 0;
-
-	handle = calloc(1, sizeof(struct __audio_data));
-	CM_RETURN_VAL_IF_FAIL(handle, -1);
-
-	handle->cb_fn = cb_fn;
-	handle->user_data = user_data;
-	handle->is_extra_vol = FALSE;
-	handle->is_mute_state = FALSE;
-	handle->current_mode = CALLMGR_AUDIO_SESSION_NONE_E;
-	handle->current_device = CALLMGR_AUDIO_DEVICE_NONE_E;
-	handle->current_route = -1;
-	handle->sound_stream_handle = NULL;
-	handle->vstream = NULL;
-
-	if (vconf_get_bool(VCONFKEY_CISSAPPL_NOISE_REDUCTION_BOOL, &b_noise_reduction) < 0) {
-		warn("vconf get bool failed");
-	}
-	handle->is_noise_reduction = (gboolean)b_noise_reduction;
-	*audio_handle = handle;
-
-	dbg("Audio init done");
-
-	return 0;
-}
-int _callmgr_audio_deinit(callmgr_audio_handle_h audio_handle)
-{
-
-	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
-
-	/* TODO: Release all handles */
-
-	_callmgr_audio_destroy_call_sound_session(audio_handle);
-	g_free(audio_handle);
-
-	return 0;
-}
 
 static char *__callmgr_audio_convert_device_type_to_string(sound_device_type_e device_type)
 {
@@ -140,15 +100,95 @@ static void __callmgr_audio_available_route_changed_cb(sound_device_h device, bo
 	sound_device_type_e device_type = SOUND_DEVICE_BUILTIN_RECEIVER;
 
 	sound_manager_get_device_type(device, &device_type);
-	info("Available route : %s (%s)",
-		__callmgr_audio_convert_device_type_to_string(device_type),
-		is_connected ? "Connected" : "Disconnected");
-
 	if (device_type == SOUND_DEVICE_AUDIO_JACK) {
-		audio_handle->cb_fn(CM_AUDIO_EVENT_EARJACK_CHANGED_E, (void *)is_connected, audio_handle->user_data);
+		if (is_connected)
+			audio_handle->current_device_list |= CALLMGR_AUDIO_DEVICE_EARJACK_E;
+		else
+			audio_handle->current_device_list -= CALLMGR_AUDIO_DEVICE_EARJACK_E;
 	} else if (device_type == SOUND_DEVICE_BLUETOOTH) {
-		audio_handle->cb_fn(CM_AUDIO_EVENT_BT_CHANGED_E, (void *)is_connected, audio_handle->user_data);
+		if (is_connected)
+			audio_handle->current_device_list |= CALLMGR_AUDIO_DEVICE_BT_E;
+		else
+			audio_handle->current_device_list -= CALLMGR_AUDIO_DEVICE_BT_E;
 	}
+
+	info("[%s] is [%s], current device list [0x%x]",
+		__callmgr_audio_convert_device_type_to_string(device_type),
+		is_connected ? "Connected" : "Disconnected", audio_handle->current_device_list);
+
+	if (device_type == SOUND_DEVICE_AUDIO_JACK)
+		audio_handle->cb_fn(CM_AUDIO_EVENT_EARJACK_CHANGED_E, (void *)is_connected, audio_handle->user_data);
+	else if (device_type == SOUND_DEVICE_BLUETOOTH)
+		audio_handle->cb_fn(CM_AUDIO_EVENT_BT_CHANGED_E, (void *)is_connected, audio_handle->user_data);
+}
+
+int _callmgr_audio_init(callmgr_audio_handle_h *audio_handle, audio_event_cb cb_fn, void *user_data)
+{
+	struct __audio_data *handle = NULL;
+	int b_noise_reduction = 0;
+	int ret;
+	sound_device_list_h device_list = NULL;
+	sound_device_h device = NULL;
+	sound_device_type_e device_type;
+
+	handle = calloc(1, sizeof(struct __audio_data));
+	CM_RETURN_VAL_IF_FAIL(handle, -1);
+
+	handle->cb_fn = cb_fn;
+	handle->user_data = user_data;
+	handle->is_extra_vol = FALSE;
+	handle->is_mute_state = FALSE;
+	handle->current_mode = CALLMGR_AUDIO_SESSION_NONE_E;
+	handle->current_device = CALLMGR_AUDIO_DEVICE_NONE_E;
+	handle->current_device_list = CALLMGR_AUDIO_DEVICE_SPEAKER_E | CALLMGR_AUDIO_DEVICE_RECEIVER_E;
+	handle->current_route = -1;
+	handle->sound_stream_handle = NULL;
+	handle->vstream = NULL;
+
+	if (vconf_get_bool(VCONFKEY_CISSAPPL_NOISE_REDUCTION_BOOL, &b_noise_reduction) < 0) {
+		warn("vconf get bool failed");
+	}
+	handle->is_noise_reduction = (gboolean)b_noise_reduction;
+	*audio_handle = handle;
+
+	/* Get current device list */
+	ret = sound_manager_get_current_device_list(SOUND_DEVICE_ALL_MASK, &device_list);
+	if (ret != SOUND_MANAGER_ERROR_NONE) {
+		err("sound_manager_get_current_device_list() failed. [%d][%s]", ret, get_error_message(ret));
+		return -1;
+	}
+
+	/* Set current device */
+	while (sound_manager_get_next_device(device_list, &device) == SOUND_MANAGER_ERROR_NONE) {
+		sound_manager_get_device_type(device, &device_type);
+		if (device_type == SOUND_DEVICE_AUDIO_JACK)
+			handle->current_device_list |= CALLMGR_AUDIO_DEVICE_EARJACK_E;
+		else if (device_type == SOUND_DEVICE_BLUETOOTH)
+			handle->current_device_list |= CALLMGR_AUDIO_DEVICE_BT_E;
+	}
+	dbg("Current device list [0x%x]", handle->current_device_list);
+
+	/* Set device connected cb */
+	ret = sound_manager_set_device_connected_cb(SOUND_DEVICE_ALL_MASK, __callmgr_audio_available_route_changed_cb, handle);
+	if (ret != SOUND_MANAGER_ERROR_NONE) {
+		err("sound_manager_set_device_connected_cb() failed. [%d][%s]", ret, get_error_message(ret));
+		return -1;
+	}
+
+	dbg("Audio init done");
+	return 0;
+}
+
+int _callmgr_audio_deinit(callmgr_audio_handle_h audio_handle)
+{
+	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
+
+	/* TODO: Release all handles */
+
+	_callmgr_audio_destroy_call_sound_session(audio_handle);
+	g_free(audio_handle);
+
+	return 0;
 }
 
 static void __callmgr_audio_active_device_changed_cb(sound_device_h device, sound_device_changed_info_e changed_info, void *user_data)
@@ -275,13 +315,6 @@ int _callmgr_audio_create_call_sound_session(callmgr_audio_handle_h audio_handle
 		return -1;
 	}
 
-	/* Handle EP event  */
-	ret = sound_manager_set_device_connected_cb(SOUND_DEVICE_ALL_MASK, __callmgr_audio_available_route_changed_cb, audio_handle);
-	if (ret != SOUND_MANAGER_ERROR_NONE) {
-		err("sound_manager_set_device_connected_cb() failed. [%d]", ret);
-		return -1;
-	}
-
 	/* Path is changed by other modules */
 	ret = sound_manager_set_device_information_changed_cb(SOUND_DEVICE_ALL_MASK, __callmgr_audio_active_device_changed_cb, audio_handle);
 	if (ret != SOUND_MANAGER_ERROR_NONE) {
@@ -385,43 +418,16 @@ static int __callmgr_audio_get_sound_device(sound_device_type_e device_type, sou
 	return 0;
 }
 
-int _callmgr_audio_is_sound_device_available(callmgr_audio_device_e device_type, gboolean *is_available)
+int _callmgr_audio_is_sound_device_available(callmgr_audio_handle_h audio_handle,
+	callmgr_audio_device_e device_type, gboolean *is_available)
 {
-	sound_device_list_h device_list = NULL;
-	sound_device_h	device = NULL;
-	sound_device_type_e o_device_type;
-	int ret = -1;
+	CM_RETURN_VAL_IF_FAIL(audio_handle, -1);
 
-	ret = sound_manager_get_current_device_list(SOUND_DEVICE_ALL_MASK, &device_list);
-	if (ret != SOUND_MANAGER_ERROR_NONE) {
-		err("sound_manager_get_current_device_list() get failed");
-		return -1;
-	}
+	if (audio_handle->current_device_list & device_type)
+		*is_available = TRUE;
+	else
+		*is_available = FALSE;
 
-	while (1) {
-		ret = sound_manager_get_next_device(device_list, &device);
-		if (ret == SOUND_MANAGER_ERROR_NONE && device) {
-			sound_manager_get_device_type(device, &o_device_type);
-			if ((device_type == CALLMGR_AUDIO_DEVICE_SPEAKER_E) && (o_device_type == SOUND_DEVICE_BUILTIN_SPEAKER)) {
-				info("found SPEAKER!!");
-				break;
-			} else if ((device_type == CALLMGR_AUDIO_DEVICE_RECEIVER_E) && (o_device_type == SOUND_DEVICE_BUILTIN_RECEIVER)) {
-				info("found RECEIVER!!");
-				break;
-			} else if ((device_type == CALLMGR_AUDIO_DEVICE_EARJACK_E) && (o_device_type == SOUND_DEVICE_AUDIO_JACK)) {
-				info("found EARJACK!!");
-				break;
-			} else if ((device_type == CALLMGR_AUDIO_DEVICE_BT_E) && (o_device_type == SOUND_DEVICE_BLUETOOTH)) {
-				info("found BLUETOOTH!!");
-				break;
-			}
-		} else {
-			err("sound_manager_get_next_device() failed with err[%d]", ret);
-			return -1;
-		}
-	}
-
-	*is_available = TRUE;
 	return 0;
 }
 
@@ -577,7 +583,6 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 	}
 
 	if (audio_handle->current_route != -1) {
-		sound_device_h current_device = NULL;
 		if (audio_handle->current_route == device_type) {
 			warn("sound path is already set to this device");
 			return -1;
@@ -585,17 +590,16 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 
 		if ((audio_handle->current_route == SOUND_DEVICE_BUILTIN_SPEAKER)
 				|| (audio_handle->current_route == SOUND_DEVICE_BUILTIN_RECEIVER)) {
-			sound_device_h mic = NULL;
 			dbg("Remove Built-in mic device");
-			__callmgr_audio_get_sound_device(SOUND_DEVICE_BUILTIN_MIC, &mic);
-			ret = sound_manager_remove_device_for_stream_routing (audio_handle->sound_stream_handle, mic);
+			__callmgr_audio_get_sound_device(SOUND_DEVICE_BUILTIN_MIC, &sound_device);
+			ret = sound_manager_remove_device_for_stream_routing (audio_handle->sound_stream_handle, sound_device);
 			if (ret != SOUND_MANAGER_ERROR_NONE)
 				err("sound_manager_remove_device_for_stream_routing() failed:[%d]", ret);
 		}
 
 		dbg("Remove current device [%s]", __callmgr_audio_convert_device_type_to_string(audio_handle->current_route));
-		__callmgr_audio_get_sound_device(audio_handle->current_route, &current_device);
-		ret = sound_manager_remove_device_for_stream_routing (audio_handle->sound_stream_handle, current_device);
+		__callmgr_audio_get_sound_device(audio_handle->current_route, &sound_device);
+		ret = sound_manager_remove_device_for_stream_routing (audio_handle->sound_stream_handle, sound_device);
 		if (ret != SOUND_MANAGER_ERROR_NONE) {
 			err("sound_manager_remove_device_for_stream_routing() failed:[%d]", ret);
 		}
@@ -612,10 +616,9 @@ int _callmgr_audio_set_audio_route(callmgr_audio_handle_h audio_handle, callmgr_
 	}
 
 	if ((route == CALLMGR_AUDIO_ROUTE_SPEAKER_E) || (route == CALLMGR_AUDIO_ROUTE_RECEIVER_E)) {
-		sound_device_h mic = NULL;
 		dbg("Add Built-in mic device");
-		__callmgr_audio_get_sound_device(SOUND_DEVICE_BUILTIN_MIC, &mic);
-		ret = sound_manager_add_device_for_stream_routing (audio_handle->sound_stream_handle, mic);
+		__callmgr_audio_get_sound_device(SOUND_DEVICE_BUILTIN_MIC, &sound_device);
+		ret = sound_manager_add_device_for_stream_routing (audio_handle->sound_stream_handle, sound_device);
 		if (ret != SOUND_MANAGER_ERROR_NONE) {
 			err("sound_manager_add_device_for_stream_routing() failed:[%d]", ret);
 			return -1;

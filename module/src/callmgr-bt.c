@@ -25,7 +25,6 @@
 #include "callmgr-log.h"
 
 struct __bt_data {
-	gboolean is_connected;
 	bt_call_list_h call_list;
 
 	bt_event_cb cb_fn;
@@ -42,8 +41,6 @@ static void __callmgr_bt_ag_audio_connection_state_changed_cb(int result,
 	info("type : %d, connected : %d", type, connected);
 	if (type == BT_AUDIO_PROFILE_TYPE_HSP_HFP) {
 		/* Handle HFP connection */
-		bt_handle->is_connected = connected;
-
 		bt_handle->cb_fn(CM_BT_EVENT_CONNECTION_CHANGED_E, (void *)connected, bt_handle->user_data);
 	}
 
@@ -161,24 +158,6 @@ static void __callmgr_bt_register_handler(callmgr_bt_handle_h bt_handle)
 	}
 }
 
-static int __callmgr_bt_is_headset_connected(gboolean *o_is_connected)
-{
-	CM_RETURN_VAL_IF_FAIL(o_is_connected, -1);
-	bool is_connected = FALSE;
-	int ret = BT_ERROR_NONE;
-
-	ret = bt_ag_is_connected(&is_connected);
-	if (ret != BT_ERROR_NONE) {
-		err("err : 0x%x", ret);
-		return -1;
-	} else {
-		info("BT headset is %s", (is_connected ? "CONNECTED" : "DISCONNECTED"));
-	}
-
-	*o_is_connected = is_connected;
-	return  0;
-}
-
 int _callmgr_bt_init(callmgr_bt_handle_h *o_bt_handle, bt_event_cb cb_fn, void *user_data)
 {
 	/* Todo: Set and get current BT status */
@@ -197,8 +176,6 @@ int _callmgr_bt_init(callmgr_bt_handle_h *o_bt_handle, bt_event_cb cb_fn, void *
 	*o_bt_handle = handle;
 
 	__callmgr_bt_register_handler(handle);
-
-	__callmgr_bt_is_headset_connected(&handle->is_connected);
 
 	dbg("BT init done");
 
@@ -255,14 +232,6 @@ int _callmgr_bt_deinit(callmgr_bt_handle_h bt_handle)
 
 	g_free(bt_handle);
 
-	return 0;
-}
-
-int _callmgr_bt_is_connected(callmgr_bt_handle_h bt_handle, gboolean *o_is_connected)
-{
-	CM_RETURN_VAL_IF_FAIL(bt_handle, -1);
-
-	*o_is_connected = bt_handle->is_connected;
 	return 0;
 }
 

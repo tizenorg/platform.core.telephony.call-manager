@@ -56,8 +56,6 @@ typedef void (*bt_event_cb) (cm_bt_event_type_e event_type, void *event_data, vo
 int _callmgr_bt_init(callmgr_bt_handle_h *o_bt_handle, bt_event_cb cb_fn, void *user_data);
 int _callmgr_bt_deinit(callmgr_bt_handle_h bt_handle);
 
-int _callmgr_bt_is_connected(callmgr_bt_handle_h bt_handle, gboolean *o_is_connected);
-
 int _callmgr_bt_send_event(callmgr_bt_handle_h bt_handle, cm_bt_call_event_type_e call_event, int call_id, char *phone_num);
 int _callmgr_bt_add_call_list(callmgr_bt_handle_h bt_handle, int call_id, int call_status, char *phone_num);
 int _callmgr_bt_send_call_list(callmgr_bt_handle_h bt_handle);

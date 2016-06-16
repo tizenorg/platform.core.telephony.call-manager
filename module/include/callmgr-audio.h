@@ -74,7 +74,7 @@ int _callmgr_audio_get_audio_tx_mute_state(callmgr_audio_handle_h audio_handle, 
 int _callmgr_audio_set_noise_reduction(callmgr_audio_handle_h audio_handle, gboolean is_noise_reduction_on);
 int _callmgr_audio_get_noise_reduction(callmgr_audio_handle_h audio_handle, gboolean *o_is_noise_reduction_on);
 
-int _callmgr_audio_is_sound_device_available(callmgr_audio_device_e device_type, gboolean *is_available);
+int _callmgr_audio_is_sound_device_available(callmgr_audio_handle_h audio_handle, callmgr_audio_device_e device_type, gboolean *is_available);
 int _callmgr_audio_is_ringtone_mode(callmgr_audio_handle_h audio_handle, gboolean *o_is_ringtone_mode);
 
 int _callmgr_audio_set_link_direction_uplink(void);

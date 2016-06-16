@@ -496,9 +496,8 @@ static void __callmgr_core_auto_answer(callmgr_core_data_t *core_data)
 		warn("Request testmode auto answer");
 		core_data->auto_answer_timer = g_timeout_add_seconds(3, __callmgr_core_auto_answer_timer_cb, core_data);
 	} else if (TRUE == is_answer_mode_enabled){
-
-		_callmgr_bt_is_connected(core_data->bt_handle, &is_bt_connected);
-		_callmgr_audio_is_sound_device_available(CALLMGR_AUDIO_DEVICE_EARJACK_E, &is_earjack_available);
+		_callmgr_audio_is_sound_device_available(core_data->audio_handle, CALLMGR_AUDIO_DEVICE_BT_E, &is_bt_connected);
+		_callmgr_audio_is_sound_device_available(core_data->audio_handle, CALLMGR_AUDIO_DEVICE_EARJACK_E, &is_earjack_available);
 
 		if (TRUE == is_bt_connected || TRUE == is_earjack_available) {
 			if (_callmgr_vconf_get_auto_answer_time(&auto_answer_time_in_sec) < 0) {
@@ -611,14 +610,13 @@ static void __callmgr_core_process_incoming_call(callmgr_core_data_t *core_data,
 		err("_callmgr_audio_create_call_sound_session() failed");
 	}
 
-	_callmgr_audio_is_sound_device_available(CALLMGR_AUDIO_DEVICE_EARJACK_E, &is_earjack_available);
+	_callmgr_audio_is_sound_device_available(core_data->audio_handle, CALLMGR_AUDIO_DEVICE_EARJACK_E, &is_earjack_available);
 	if (person_id == -1) {
 		_callmgr_ringer_start_alert(core_data->ringer_handle, NULL, is_earjack_available);
 	} else {
 		char *caller_ringtone_path = NULL;
 		_callmgr_ct_get_caller_ringtone_path(call_id, &caller_ringtone_path);
 		_callmgr_ringer_start_alert(core_data->ringer_handle, caller_ringtone_path, is_earjack_available);
-
 	}
 
 	/* Init motion sensor to use turn over mute */
@@ -663,7 +661,7 @@ static void __callmgr_core_start_incom_noti(callmgr_core_data_t *core_data)
 		_callmgr_ringer_stop_signal(core_data->ringer_handle);
 		_callmgr_ringer_stop_effect(core_data->ringer_handle);
 
-		_callmgr_audio_is_sound_device_available(CALLMGR_AUDIO_DEVICE_EARJACK_E, &is_earjack_available);
+		_callmgr_audio_is_sound_device_available(core_data->audio_handle, CALLMGR_AUDIO_DEVICE_EARJACK_E, &is_earjack_available);
 		if (person_id == -1) {
 			_callmgr_ringer_start_alert(core_data->ringer_handle, NULL, is_earjack_available);
 		} else {
@@ -1017,7 +1015,7 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 							_callmgr_telephony_get_call_id(call_data_out, &call_id);
 
 							_callmgr_ct_get_caller_ringtone_path(call_id, &caller_ringtone_path);
-							_callmgr_audio_is_sound_device_available(CALLMGR_AUDIO_DEVICE_EARJACK_E, &is_earjack_connected);
+							_callmgr_audio_is_sound_device_available(core_data->audio_handle, CALLMGR_AUDIO_DEVICE_EARJACK_E, &is_earjack_connected);
 							_callmgr_ringer_start_alert(core_data->ringer_handle, caller_ringtone_path, is_earjack_connected);
 							CM_SAFE_FREE(caller_ringtone_path);
 						}
@@ -1069,7 +1067,7 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 
 				_callmgr_audio_get_audio_route(core_data->audio_handle, &route);
 				if (route == CALLMGR_AUDIO_ROUTE_NONE_E) {
-					_callmgr_bt_is_connected(core_data->bt_handle, &is_bt_connected);
+					_callmgr_audio_is_sound_device_available(core_data->audio_handle, CALLMGR_AUDIO_DEVICE_BT_E, &is_bt_connected);
 					if (is_bt_connected)
 						_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_BT_E);
 					else
@@ -1170,7 +1168,7 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 
 				_callmgr_audio_get_audio_route(core_data->audio_handle, &route);
 				if (route == CALLMGR_AUDIO_ROUTE_NONE_E) {
-					_callmgr_bt_is_connected(core_data->bt_handle, &is_bt_connected);
+					_callmgr_audio_is_sound_device_available(core_data->audio_handle, CALLMGR_AUDIO_DEVICE_BT_E, &is_bt_connected);
 					if (is_bt_connected)
 						_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_BT_E);
 					else
@@ -1623,7 +1621,7 @@ static void __callmgr_core_process_audio_events(cm_audio_event_type_e event_type
 					}
 					else {
 						gboolean is_bt_connected = FALSE;
-						_callmgr_bt_is_connected(core_data->bt_handle, &is_bt_connected);
+						_callmgr_audio_is_sound_device_available(core_data->audio_handle, CALLMGR_AUDIO_DEVICE_BT_E, &is_bt_connected);
 
 						if (is_bt_connected) {
 							_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_BT_E);
@@ -3015,8 +3013,13 @@ static void call_routing_status_dbus_callback(GDBusConnection *connection,
 	   voice_stream 0: Need to stop virtual stream */
 
 	if (voice_stream == 1 && !g_strcmp0(routing_voice_call, "routing_voice_call")) {
+		gboolean is_bt_connected = FALSE;
 		dbg("Routing set for voice call");
-		__callmgr_core_set_default_audio_route(core_data);
+		_callmgr_audio_is_sound_device_available(core_data->audio_handle, CALLMGR_AUDIO_DEVICE_BT_E, &is_bt_connected);
+		if (is_bt_connected)
+			_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_BT_E);
+		else
+			__callmgr_core_set_default_audio_route(core_data);
 	} else if (voice_stream == 0 && !g_strcmp0(routing_voice_call, "routing_voice_call")) {
 		dbg("Stop virtual stream");
 		_callmgr_audio_stop_virtual_stream(core_data->audio_handle);
