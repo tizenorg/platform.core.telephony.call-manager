@@ -160,12 +160,18 @@ static int __callmgr_core_set_default_audio_route(callmgr_core_data_t *core_data
 	cm_telephony_call_data_t *call_data = NULL;
 	callmgr_audio_route_e default_route = CALLMGR_AUDIO_ROUTE_NONE_E;
 	int ret = -1;
+	gboolean is_earjack_available = FALSE;
 
-	_callmgr_telephony_get_video_call(core_data->telephony_handle, &call_data);
-	if (call_data) {
-		default_route = CALLMGR_AUDIO_ROUTE_SPEAKER_E;
+	_callmgr_audio_is_sound_device_available(core_data->audio_handle, CALLMGR_AUDIO_DEVICE_EARJACK_E, &is_earjack_available);
+	if (is_earjack_available) {
+		default_route = CALLMGR_AUDIO_ROUTE_EARJACK_E;
 	} else {
-		default_route = CALLMGR_AUDIO_ROUTE_RECEIVER_E;
+		_callmgr_telephony_get_video_call(core_data->telephony_handle, &call_data);
+		if (call_data) {
+			default_route = CALLMGR_AUDIO_ROUTE_SPEAKER_E;
+		} else {
+			default_route = CALLMGR_AUDIO_ROUTE_RECEIVER_E;
+		}
 	}
 
 	ret = _callmgr_audio_set_audio_route(core_data->audio_handle, default_route);
@@ -1612,14 +1618,8 @@ static void __callmgr_core_process_audio_events(cm_audio_event_type_e event_type
 					_callmgr_audio_get_audio_route(core_data->audio_handle, &route);
 
 					if (is_available == TRUE) {
-						if (route == CALLMGR_AUDIO_ROUTE_BT_E) {
-							__callmgr_core_set_default_audio_route(core_data);
-						}
-						else {
-							_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_EARJACK_E);
-						}
-					}
-					else {
+						_callmgr_audio_set_audio_route(core_data->audio_handle, CALLMGR_AUDIO_ROUTE_EARJACK_E);
+					} else {
 						gboolean is_bt_connected = FALSE;
 						_callmgr_audio_is_sound_device_available(core_data->audio_handle, CALLMGR_AUDIO_DEVICE_BT_E, &is_bt_connected);
 
