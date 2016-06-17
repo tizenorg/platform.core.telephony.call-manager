@@ -158,7 +158,7 @@ int _callmgr_audio_init(callmgr_audio_handle_h *audio_handle, audio_event_cb cb_
 		return -1;
 	}
 
-	/* Set current device */
+	/* Set current device list */
 	while (sound_manager_get_next_device(device_list, &device) == SOUND_MANAGER_ERROR_NONE) {
 		sound_manager_get_device_type(device, &device_type);
 		if (device_type == SOUND_DEVICE_AUDIO_JACK)
@@ -185,6 +185,7 @@ int _callmgr_audio_deinit(callmgr_audio_handle_h audio_handle)
 
 	/* TODO: Release all handles */
 
+	sound_manager_unset_device_connected_cb();
 	_callmgr_audio_destroy_call_sound_session(audio_handle);
 	g_free(audio_handle);
 
@@ -351,7 +352,6 @@ int _callmgr_audio_destroy_call_sound_session(callmgr_audio_handle_h audio_handl
 	CM_RETURN_VAL_IF_FAIL(audio_handle->sound_stream_handle, -1);
 
 	sound_manager_unset_volume_changed_cb();
-	sound_manager_unset_device_connected_cb();
 	sound_manager_unset_device_information_changed_cb();
 
 	ret = sound_manager_release_focus(audio_handle->sound_stream_handle, SOUND_STREAM_FOCUS_FOR_PLAYBACK|SOUND_STREAM_FOCUS_FOR_RECORDING, NULL);
