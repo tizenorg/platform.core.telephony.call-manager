@@ -46,7 +46,7 @@ SET(PREFIX "${TZ_SYS_RO_APP}/org.tizen.callmgr-popup/")
 SET(BINDIR "${PREFIX}/bin")
 SET(RESDIR "${PREFIX}/res")
 SET(EDJDIR "${RESDIR}/edje")
-SET(SHARED_DIR "${PREFIX}/shared/res/locale")
+SET(LOCALEDIR "${RESDIR}/locale")
 SET(PKG_NAME "org.tizen.callmgr-popup")
 
 FOREACH(flag ${callmgr_popup_pkgs_CFLAGS})

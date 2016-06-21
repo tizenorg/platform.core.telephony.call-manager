@@ -651,7 +651,7 @@ static void __callmgr_ct_add_notification(int missed_cnt)
 			  err("Fail to notification_set_tag : %d", noti_err);
 	}
 
-	noti_err = notification_set_text_domain(noti, "callmgr-popup", tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.callmgr-popup/shared/res/locale"));
+	noti_err = notification_set_text_domain(noti, "callmgr-popup", tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.callmgr-popup/res/locale"));
 	if (noti_err != NOTIFICATION_ERROR_NONE) {
 		warn("Fail to notification_set_text_domain");
 	}
@@ -1059,7 +1059,7 @@ static void __callmgr_ct_add_rec_reject_notification(char *number, int person_id
 			  err("Fail to notification_set_tag : %d", noti_err);
 	}
 
-	noti_err = notification_set_text_domain(noti, "callmgr-popup", tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.callmgr-popup/shared/res/locale"));
+	noti_err = notification_set_text_domain(noti, "callmgr-popup", tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.callmgr-popup/res/locale"));
 	if (noti_err != NOTIFICATION_ERROR_NONE) {
 		warn("Fail to notification_set_text_domain");
 	}
