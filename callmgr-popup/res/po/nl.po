@@ -300,3 +300,6 @@ msgstr "Privé-nummer"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Oproep uit telefooncel"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Autom geweigerde oproep"

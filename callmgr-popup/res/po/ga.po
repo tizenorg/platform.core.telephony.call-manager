@@ -300,3 +300,6 @@ msgstr "Uimhir phríobháideach"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Táillefón"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Glao diúlt. go huathoib."

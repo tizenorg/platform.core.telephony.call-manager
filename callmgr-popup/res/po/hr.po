@@ -300,3 +300,6 @@ msgstr "Privatni broj"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Govornica"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Poziv auto. odbačen"

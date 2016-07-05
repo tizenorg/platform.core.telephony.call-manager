@@ -300,3 +300,6 @@ msgstr "Gizli nömrə"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Taksofon"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Avto-imtina edilmiş zəng"

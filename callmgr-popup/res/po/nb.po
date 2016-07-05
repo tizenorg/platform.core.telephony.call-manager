@@ -300,3 +300,6 @@ msgstr "Privat nummer"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Telefonautomat"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Autoavvist anrop"

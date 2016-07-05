@@ -300,3 +300,6 @@ msgstr "Скрытый номер"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Таксофон"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Автоотклоненный вызов"

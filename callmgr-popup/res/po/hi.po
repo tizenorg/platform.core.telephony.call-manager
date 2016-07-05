@@ -300,3 +300,6 @@ msgstr "निजी नंबर"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "पेफोन"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "स्वतः अस्वीकृत कॉल"

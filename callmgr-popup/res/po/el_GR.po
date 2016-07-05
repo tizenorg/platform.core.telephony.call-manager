@@ -300,3 +300,6 @@ msgstr "Απόρρητος αριθμός"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Καρτοτηλέφωνο"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Αυτ. απόρριψη κλήσης"

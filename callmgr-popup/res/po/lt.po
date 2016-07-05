@@ -300,3 +300,6 @@ msgstr "Privatus numeris"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Taksofonas"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Automat. atmesti skambutį"

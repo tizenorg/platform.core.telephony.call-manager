@@ -300,3 +300,6 @@ msgstr "Maxfiy raqam"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Taksofon"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Qo‘n-ni avtomatik rad et"

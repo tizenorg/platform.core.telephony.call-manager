@@ -300,3 +300,6 @@ msgstr "Număr privat"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Telefon public"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Apel respins automat"

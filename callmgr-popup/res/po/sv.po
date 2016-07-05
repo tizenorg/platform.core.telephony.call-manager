@@ -300,3 +300,6 @@ msgstr "Hemligt nummer"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Betaltelefon"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Automatavvisat samtal"

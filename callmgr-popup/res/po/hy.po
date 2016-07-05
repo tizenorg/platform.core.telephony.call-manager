@@ -300,3 +300,6 @@ msgstr "Գաղտնի համար"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Ավտոմատ հեռախոս"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Ինքնաբերաբար մերժված զանգ"

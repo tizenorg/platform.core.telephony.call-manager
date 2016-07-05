@@ -300,3 +300,6 @@ msgstr "私人號碼"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "公用電話"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "自動拒接的來電"

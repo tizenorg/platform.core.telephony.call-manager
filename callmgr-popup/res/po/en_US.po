@@ -300,3 +300,6 @@ msgstr "Private number"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Payphone"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Auto rejected call"

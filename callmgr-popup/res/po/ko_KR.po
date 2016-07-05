@@ -300,3 +300,6 @@ msgstr "발신번호 표시제한"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "공중전화"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "자동 거절된 전화"

@@ -300,3 +300,6 @@ msgstr "非通知"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "公衆電話"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "自動着信拒否"

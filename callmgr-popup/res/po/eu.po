@@ -300,3 +300,6 @@ msgstr "Zenbaki pribatua"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Telefono publikoa"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Ukatu deia automatikoki"

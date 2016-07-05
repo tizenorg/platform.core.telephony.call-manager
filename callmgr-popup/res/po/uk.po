@@ -300,3 +300,6 @@ msgstr "Приватний номер"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Таксофон"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Автовідхилений виклик"

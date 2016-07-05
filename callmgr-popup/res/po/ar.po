@@ -300,3 +300,6 @@ msgstr "ﺎﻟﺮﻘﻣ ﺎﻠﺧﺎﺻ"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "ﻩﺎﺘﻓ ﺎﻠﻌﻤﻟﺓ"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "مكالمة مرفوضة تلقائيا"

@@ -300,3 +300,6 @@ msgstr "Частен номер"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Телефон с предплащане"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Автом. отхвърлено повикв."

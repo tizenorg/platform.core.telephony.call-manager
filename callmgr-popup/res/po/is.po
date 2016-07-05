@@ -300,3 +300,6 @@ msgstr "Leyninúmer"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Almenningssími"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Sjálfkrafa hafnað símtal"

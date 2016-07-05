@@ -300,3 +300,6 @@ msgstr "Приватен број"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Тел. говорница"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Автом. одбиен повик"

@@ -300,3 +300,6 @@ msgstr "Privát szám"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Telefonfülke"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Aut. elutasított hívás"

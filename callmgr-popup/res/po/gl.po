@@ -300,3 +300,6 @@ msgstr "Número privado"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Cabina"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Chamada rexeitada autom."

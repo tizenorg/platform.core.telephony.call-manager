@@ -300,3 +300,6 @@ msgstr "Özel numara"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Ankesörlü telefon"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Oto reddedilmiş arama"

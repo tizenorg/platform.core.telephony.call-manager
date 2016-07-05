@@ -300,3 +300,6 @@ msgstr "Privāts numurs"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Taksofons"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Autom. noraidīts zvans"

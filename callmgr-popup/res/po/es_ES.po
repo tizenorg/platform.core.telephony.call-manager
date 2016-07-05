@@ -300,3 +300,6 @@ msgstr "Número privado"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Teléfono pago"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Llamada rechazada auto"

@@ -300,3 +300,6 @@ msgstr "Zasebna številka"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Javni telefon"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Samodejno zavrnjen klic"

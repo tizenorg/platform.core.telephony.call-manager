@@ -1,6 +1,6 @@
 %define major 0
 %define minor 1
-%define patchlevel 71
+%define patchlevel 72
 %define ext_feature 0
 
 Name:           call-manager

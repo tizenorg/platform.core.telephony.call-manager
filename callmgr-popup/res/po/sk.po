@@ -300,3 +300,6 @@ msgstr "Súkromné číslo"
 
 msgid "IDS_CALL_BODY_PAYPHONE"
 msgstr "Telef. automat"
+
+msgid "IDS_CALL_MBODY_AUTO_REJECTED_CALL"
+msgstr "Autom. odmietnutý hovor"
