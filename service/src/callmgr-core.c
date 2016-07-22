@@ -1062,7 +1062,7 @@ static void __callmgr_core_process_telephony_events(cm_telephony_event_type_e ev
 				_callmgr_core_process_set_mute_state(core_data, 0);
 
 				_callmgr_dbus_send_call_event(core_data, CALL_MANAGER_CALL_EVENT_ACTIVE_E, call_id, active_sim_slot, end_cause);
-				_callmgr_ringer_stop_alert(core_data->ringer_handle);
+				__callmgr_core_stop_incom_noti(core_data);
 				_callmgr_ringer_stop_local_ringback_tone(core_data->ringer_handle);
 
 				_callmgr_vconf_is_bike_mode_enabled(&is_bike_mode_enabled);
@@ -2773,7 +2773,6 @@ int _callmgr_core_process_answer_call(callmgr_core_data_t *core_data, int ans_ty
 	}
 
 	__callmgr_core_cancel_auto_answer(core_data);
-	__callmgr_core_stop_incom_noti(core_data);
 
 	return ret;
 }
